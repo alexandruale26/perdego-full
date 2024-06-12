@@ -20,7 +20,6 @@
     "no-trailing-spaces": "error",
     "eol-last": ["error", "always"],
     "no-unreachable": "error",
-    "prettier/prettier": "error",
     "spaced-comment": "off",
     "consistent-return": "off",
     "func-names": "off",
@@ -30,6 +29,15 @@
     "no-underscore-dangle": "off",
     "class-methods-use-this": "off",
     "prefer-destructuring": ["error", { "object": true, "array": false }],
-    "no-unused-vars": ["error", { "argsIgnorePattern": "req|res|next|val" }]
+    "no-unused-vars": ["error", { "argsIgnorePattern": "req|res|next|val" }],
+    "import/no-extraneous-dependencies": ["off", { "devDependencies": true }],
+    "import/extensions": [
+      "error",
+      "ignorePackages",
+      {
+        "js": "always",
+        "jsx": "never"
+      }
+    ]
   }
 }
