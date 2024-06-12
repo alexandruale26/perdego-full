@@ -46,6 +46,8 @@ const userSchema = new mongoose.Schema(
   { timestamps: true },
 );
 
+const oneSecond = 1000;
+
 // This only works on CREATE and SAVE (new entry) not UPDATE
 // Don't ever use UPDATE methods when dealing with passwords and security
 // AVAILABLE ON ALL "PRE" MIDDLEWARE
@@ -61,9 +63,9 @@ userSchema.pre("save", async function (next) {
 userSchema.pre("save", function (next) {
   if (!this.isModified("password") || this.isNew) return next();
 
-  // Token is created before this timestamp so we decrement time with 1 second to ensure
-  // that token is created after password change - vital for "changedPasswordAfter" method
-  this.passwordChangedAt = Date.now() - 1000;
+  // Token is created before "passwordChangedAt" timestamp, decrement time with 1 second to ensure
+  // that token is created after "passwordChangedAt" - vital for "changedPasswordAfter" method
+  this.passwordChangedAt = Date.now() - oneSecond;
   next();
 });
 
@@ -73,6 +75,20 @@ userSchema.methods.correctPassword = async function (
   userPassword,
 ) {
   return await bcrypt.compare(candidatePassword, userPassword);
+};
+
+userSchema.methods.changedPasswordAfter = function (JWTTimestamp) {
+  if (this.passwordChangedAt) {
+    const passwordChangedAtInSecs = parseInt(
+      this.passwordChangedAt.getTime() / oneSecond,
+      10,
+    );
+
+    return JWTTimestamp < passwordChangedAtInSecs;
+  }
+
+  // FALSE - password not changed after token was created
+  return false;
 };
 
 export default mongoose.model("User", userSchema);

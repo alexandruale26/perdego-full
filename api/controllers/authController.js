@@ -68,3 +68,60 @@ export const login = catchAsync(async (req, res, next) => {
 
   createAndSendToken(user, 200, res);
 });
+
+export const protect = catchAsync(async (req, res, next) => {
+  // 1. Getting the token and check if it exists
+  let token;
+
+  if (
+    req.headers.authorization &&
+    req.headers.authorization.startsWith("Bearer")
+  ) {
+    token = req.headers.authorization.split(" ")[1];
+  }
+
+  if (!token) {
+    return next(
+      new AppError("Te rugam autentifica-te pentru a primi acces.", 401),
+    );
+  }
+
+  // 2. Decode token
+  const decoded = await promisify(jwt.verify)(token, process.env.JWT_SECRET);
+
+  // 3. Check if user still exists
+  const currentUser = await User.findById(decoded.id);
+
+  if (!currentUser) {
+    return next(new AppError("Utilizatorul nu exista", 401));
+  }
+
+  // 4. Check if user changed passwords after token was issued
+  if (currentUser.changedPasswordAfter(decoded.iat)) {
+    return next(
+      new AppError(
+        "Utilizatorul a modificat recent parola. Te rugam autentifica-te.",
+        401,
+      ),
+    );
+  }
+
+  // 5. Grant access to protected route
+  req.user = currentUser;
+  next();
+});
+
+export const updatePassword = catchAsync(async (req, res, next) => {
+  const { currentPassword } = req.body;
+  const user = await User.findById(req.user.id).select("+password");
+
+  if (!(await user.correctPassword(currentPassword, user.password))) {
+    return next(new AppError("Parola curenta este gresita.", 401));
+  }
+
+  user.password = currentPassword;
+  user.passwordConfirm = currentPassword;
+
+  await user.save();
+  createAndSendToken(user, 200, res); // Send token
+});
