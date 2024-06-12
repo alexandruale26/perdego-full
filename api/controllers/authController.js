@@ -2,6 +2,8 @@ import { promisify } from "util";
 import jwt from "jsonwebtoken";
 import crypto from "crypto";
 import User from "../models/userModel.js";
+import catchAsync from "../utils/catchAsync.js";
+import AppError from "../utils/appError.js";
 
 const signToken = (id) =>
   jwt.sign({ id }, process.env.JWT_SECRET, {
@@ -25,8 +27,9 @@ const createAndSendToken = (user, statusCode, res) => {
 
   res.cookie("jwt", token, cookieOptions);
 
-  // remove password from output
+  // remove password and __v from output
   user.password = undefined;
+  user.__v = undefined;
 
   res.status(statusCode).json({
     status: "success",
@@ -35,20 +38,33 @@ const createAndSendToken = (user, statusCode, res) => {
   });
 };
 
-// eslint-disable-next-line import/prefer-default-export
-export const signup = async (req, res, next) => {
+export const signup = catchAsync(async (req, res, next) => {
   const { name, email, password, passwordConfirm } = req.body;
 
-  try {
-    const newUser = await User.create({
-      name,
-      email,
-      password,
-      passwordConfirm,
-    });
+  const newUser = await User.create({
+    name,
+    email,
+    password,
+    passwordConfirm,
+  });
 
-    createAndSendToken(newUser, 201, res);
-  } catch (error) {
-    next(error);
+  createAndSendToken(newUser, 201, res);
+});
+
+export const login = catchAsync(async (req, res, next) => {
+  const { email, password } = req.body;
+
+  if (!email || !password) {
+    return next(new AppError("Introdu adresa de email si parola.", 400));
   }
-};
+
+  const user = await User.findOne({ email }).select("+password");
+
+  if (!user || !(await user.correctPassword(password, user.password))) {
+    return next(
+      new AppError("Adresa de email sau parola este incorecta.", 401),
+    );
+  }
+
+  createAndSendToken(user, 200, res);
+});
