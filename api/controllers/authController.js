@@ -1,6 +1,5 @@
 import { promisify } from "util";
 import jwt from "jsonwebtoken";
-import crypto from "crypto";
 import User from "../models/userModel.js";
 import catchAsync from "../utils/catchAsync.js";
 import AppError from "../utils/appError.js";
@@ -11,9 +10,10 @@ const signToken = (id) =>
   });
 
 const createAndSendToken = (user, statusCode, res) => {
-  const token = signToken(user._id);
+  const token = signToken(user.id);
 
   // TODO: add correct expires in process.env
+  // TODO: implement cookie refresh JWT not to force user to log in if is active
   const cookieOptions = {
     expires: new Date(
       Date.now() + process.env.JWT_COOKIE_EXPIRES_IN * 24 * 60 * 60 * 1000,
@@ -27,25 +27,24 @@ const createAndSendToken = (user, statusCode, res) => {
 
   res.cookie("jwt", token, cookieOptions);
 
-  // remove password and __v from output
-  user.password = undefined;
-  user.__v = undefined;
+  const userDiluted = getLimitedUserData(user);
 
   res.status(statusCode).json({
     status: "success",
     token,
-    data: { user },
+    data: { user: userDiluted },
   });
 };
 
 export const signup = catchAsync(async (req, res, next) => {
-  const { name, email, password, passwordConfirm } = req.body;
+  const { name, email, password, passwordConfirm, phone } = req.body;
 
   const newUser = await User.create({
     name,
     email,
     password,
     passwordConfirm,
+    phone,
   });
 
   createAndSendToken(newUser, 201, res);
@@ -69,6 +68,23 @@ export const login = catchAsync(async (req, res, next) => {
   createAndSendToken(user, 200, res);
 });
 
+export const updatePassword = catchAsync(async (req, res, next) => {
+  const { currentPassword } = req.body;
+  const user = await User.findById(req.user.id).select("+password");
+
+  if (!(await user.correctPassword(currentPassword, user.password))) {
+    return next(new AppError("Parola curenta este gresita.", 401));
+  }
+
+  user.password = currentPassword;
+  user.passwordConfirm = currentPassword;
+
+  // TODO: see if should send dilutedUser
+  await user.save();
+  createAndSendToken(user, 200, res); // Send token
+});
+
+// TODO: think if protect should keep all user data
 export const protect = catchAsync(async (req, res, next) => {
   // 1. Getting the token and check if it exists
   let token;
@@ -97,6 +113,7 @@ export const protect = catchAsync(async (req, res, next) => {
   }
 
   // 4. Check if user changed passwords after token was issued
+  // thus forcing the user to log in if using multiple devices
   if (currentUser.changedPasswordAfter(decoded.iat)) {
     return next(
       new AppError(
@@ -111,17 +128,6 @@ export const protect = catchAsync(async (req, res, next) => {
   next();
 });
 
-export const updatePassword = catchAsync(async (req, res, next) => {
-  const { currentPassword } = req.body;
-  const user = await User.findById(req.user.id).select("+password");
-
-  if (!(await user.correctPassword(currentPassword, user.password))) {
-    return next(new AppError("Parola curenta este gresita.", 401));
-  }
-
-  user.password = currentPassword;
-  user.passwordConfirm = currentPassword;
-
-  await user.save();
-  createAndSendToken(user, 200, res); // Send token
-});
+function getLimitedUserData(user) {
+  return { _id: user.id, name: user.name };
+}

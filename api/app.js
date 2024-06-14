@@ -1,9 +1,11 @@
 import express from "express";
 import morgan from "morgan";
 
-import userRouter from "./routes/userRoutes.js";
-import globalErrorHandler from "./controllers/errorController.js";
 import AppError from "./utils/appError.js";
+
+import userRouter from "./routes/userRoutes.js";
+import postRouter from "./routes/postRoutes.js";
+import globalErrorHandler from "./controllers/errorController.js";
 
 const app = express();
 
@@ -16,6 +18,7 @@ app.use(express.json({ limit: "10kb" }));
 
 // API ROUTES
 app.use("/api/v1/users", userRouter);
+app.use("/api/v1/posts", postRouter);
 
 app.all("*", (req, res, next) => {
   const err = new AppError(

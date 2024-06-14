@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 import bcrypt from "bcryptjs";
 import validator from "validator";
+import crypto from "crypto";
 
 const userSchema = new mongoose.Schema(
   {
@@ -39,6 +40,20 @@ const userSchema = new mongoose.Schema(
       },
       trim: true,
     },
+    phone: {
+      type: String,
+      required: [true, "Introdu numarul tau de telefon."],
+      match: [/^07\d{8}$/, "Introdu un numar de telefon valid."],
+    },
+
+    // TODO: solve location issues
+    location: {
+      type: String,
+    },
+    slug: {
+      type: String,
+      default: crypto.randomBytes(4).toString("hex"),
+    },
     passwordChangedAt: Date,
     passwordResetToken: String,
     passwordResetExpires: Date,
@@ -46,7 +61,7 @@ const userSchema = new mongoose.Schema(
   { timestamps: true },
 );
 
-const oneSecond = 1000;
+const seconds = 1000;
 
 // This only works on CREATE and SAVE (new entry) not UPDATE
 // Don't ever use UPDATE methods when dealing with passwords and security
@@ -65,7 +80,7 @@ userSchema.pre("save", function (next) {
 
   // Token is created before "passwordChangedAt" timestamp, decrement time with 1 second to ensure
   // that token is created after "passwordChangedAt" - vital for "changedPasswordAfter" method
-  this.passwordChangedAt = Date.now() - oneSecond;
+  this.passwordChangedAt = Date.now() - seconds;
   next();
 });
 
@@ -80,7 +95,7 @@ userSchema.methods.correctPassword = async function (
 userSchema.methods.changedPasswordAfter = function (JWTTimestamp) {
   if (this.passwordChangedAt) {
     const passwordChangedAtInSecs = parseInt(
-      this.passwordChangedAt.getTime() / oneSecond,
+      this.passwordChangedAt.getTime() / seconds,
       10,
     );
 
