@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 import bcrypt from "bcryptjs";
 import validator from "validator";
-import crypto from "crypto";
+import slugify from "../utils/slugify.js";
 
 const userSchema = new mongoose.Schema(
   {
@@ -52,7 +52,7 @@ const userSchema = new mongoose.Schema(
     },
     slug: {
       type: String,
-      default: crypto.randomBytes(4).toString("hex"),
+      default: () => slugify(),
     },
     passwordChangedAt: Date,
     passwordResetToken: String,
@@ -61,7 +61,8 @@ const userSchema = new mongoose.Schema(
   { timestamps: true },
 );
 
-const seconds = 1000;
+const seconds = 1;
+const getMsFromSeconds = (secs) => secs * 1000;
 
 // This only works on CREATE and SAVE (new entry) not UPDATE
 // Don't ever use UPDATE methods when dealing with passwords and security
@@ -80,7 +81,7 @@ userSchema.pre("save", function (next) {
 
   // Token is created before "passwordChangedAt" timestamp, decrement time with 1 second to ensure
   // that token is created after "passwordChangedAt" - vital for "changedPasswordAfter" method
-  this.passwordChangedAt = Date.now() - seconds;
+  this.passwordChangedAt = Date.now() - getMsFromSeconds(seconds);
   next();
 });
 
@@ -95,7 +96,7 @@ userSchema.methods.correctPassword = async function (
 userSchema.methods.changedPasswordAfter = function (JWTTimestamp) {
   if (this.passwordChangedAt) {
     const passwordChangedAtInSecs = parseInt(
-      this.passwordChangedAt.getTime() / seconds,
+      this.passwordChangedAt.getTime() / getMsFromSeconds(seconds),
       10,
     );
 
