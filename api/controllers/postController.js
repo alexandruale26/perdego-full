@@ -43,3 +43,11 @@ export const createPost = catchAsync(async (req, res, next) => {
 
   res.status(201).json({ statud: "success", data: { post: newPost } });
 });
+
+export const deletePost = catchAsync(async (req, res, next) => {
+  const post = await Post.findByIdAndDelete(req.params.id);
+
+  if (!post) return next(new AppError("Anuntul nu exista.", 404));
+
+  res.status(204).json({ status: "success", data: null });
+});
