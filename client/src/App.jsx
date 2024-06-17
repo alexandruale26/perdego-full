@@ -38,19 +38,16 @@ import Dashboard from "./pages/Dashboard";
 import NewPost from "./pages/NewPost";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
-import Header from "./components/Header";
-import Footer from "./components/Footer";
+import AppLayout from "./components/AppLayout";
 import RouteProtector from "./components/RouteProtector";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: (
-      <>
-        <Header />
+      <AppLayout>
         <Home />
-        <Footer />
-      </>
+      </AppLayout>
     ),
   },
   {
@@ -63,11 +60,9 @@ const router = createBrowserRouter([
   },
   {
     element: (
-      <>
-        <Header />
+      <AppLayout>
         <RouteProtector />
-        <Footer />
-      </>
+      </AppLayout>
     ),
     children: [
       {
@@ -83,11 +78,9 @@ const router = createBrowserRouter([
   {
     path: "/despre",
     element: (
-      <>
-        <Header />
+      <AppLayout>
         <About />
-        <Footer />
-      </>
+      </AppLayout>
     ),
   },
 ]);

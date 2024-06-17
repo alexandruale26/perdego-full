@@ -1,7 +1,7 @@
-import React from "react";
+import { Label } from "../components/ui/label";
 
 const Home = () => {
-  return <div>Home</div>;
+  return <div>{<Label className="text-blue-500">home label</Label>}</div>;
 };
 
 export default Home;
