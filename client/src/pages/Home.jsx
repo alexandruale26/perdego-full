@@ -1,7 +1,9 @@
-import { Label } from "../components/ui/label";
-
 const Home = () => {
-  return <div>{<Label className="text-blue-500">home label</Label>}</div>;
+  return (
+    <main className="w-full min-w-full">
+      <div className="bg-primary bg-hero bg-cover bg-no-repeat bg-center min-h-[740px]"></div>
+    </main>
+  );
 };
 
 export default Home;
