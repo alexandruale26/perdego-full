@@ -18,24 +18,37 @@ module.exports = {
     },
     extend: {
       backgroundImage: {
-        hero: "url('/banner_orange.svg')",
+        hero: "url('banners/banner_orange.svg')",
+      },
+      fontFamily: {
+        sans: ["Fira Sans", "sans-serif"],
       },
       colors: {
-        primary: "#0E332C",
+        primary: "#0e332c",
+        secondary: "#c6dd60",
+        cta: "#e88e38",
+        "btn-primary-hover": "#1d2028",
+        "cta-hover": "#e5c07b",
+        accessibility: "#31ccec",
+        success: "#21ba45",
+        warning: "#f2c037",
+        error: "#ff001c",
+
+        black: "var(--black)",
+        "black-medium": "#1d1d1d",
+        "black-light": "#282828",
+
+        grey: "#333333",
+        "grey-2": "#4e4e4d",
+        "grey-3": "#828282",
+        "grey-4": "#bdbdbd",
+        "grey-5": "#d9d9da",
 
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
-        // primary: {
-        //   DEFAULT: "hsl(var(--primary))",
-        //   foreground: "hsl(var(--primary-foreground))",
-        // },
-        secondary: {
-          DEFAULT: "hsl(var(--secondary))",
-          foreground: "hsl(var(--secondary-foreground))",
-        },
         destructive: {
           DEFAULT: "hsl(var(--destructive))",
           foreground: "hsl(var(--destructive-foreground))",
@@ -58,8 +71,7 @@ module.exports = {
         },
       },
       borderRadius: {
-        lg: "var(--radius)",
-        md: "calc(var(--radius) - 2px)",
+        // 8px default
         sm: "calc(var(--radius) - 4px)",
       },
       keyframes: {
