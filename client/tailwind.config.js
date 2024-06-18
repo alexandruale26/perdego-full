@@ -43,6 +43,7 @@ module.exports = {
         "grey-3": "#828282",
         "grey-4": "#bdbdbd",
         "grey-5": "#d9d9da",
+        "grey-6": "#f5f5f5",
 
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
