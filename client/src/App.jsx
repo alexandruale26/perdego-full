@@ -76,7 +76,7 @@ const router = createBrowserRouter([
     ],
   },
   {
-    path: "/despre",
+    path: "/despre-noi",
     element: (
       <AppLayout>
         <About />

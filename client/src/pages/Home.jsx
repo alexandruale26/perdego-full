@@ -3,6 +3,10 @@ import * as Input from "../components/ui/input";
 import Button from "../components/ui/button";
 import { Search } from "lucide-react";
 import PostSteps from "../components/PostSteps";
+import PerdegoTip from "../components/PerdegoTip";
+import ObjectCategories from "../components/ObjectCategories";
+import LatestPosts from "../components/LatestPosts";
+import LeaveAReview from "../components/LeaveAReview";
 
 const Home = () => {
   const handleSubmit = (e) => {
@@ -10,7 +14,7 @@ const Home = () => {
   };
 
   return (
-    <main className="w-full min-w-full">
+    <main className="w-full">
       {/* HERO SECTION */}
       <section className="w-full flex flex-col items-center justify-between bg-primary bg-hero bg-auto bg-no-repeat bg-center h-[500px] lg:bg-cover 2xl:h-[650px]">
         {/* SEARCH */}
@@ -56,29 +60,21 @@ const Home = () => {
       </section>
 
       {/* HOW IT WORKS */}
-      <div className="w-full max-w-[1200px] py-10 px-6 mx-auto">
+      <section className="w-full max-w-[1200px] py-10 px-6 mx-auto">
         <PostSteps />
+        <PerdegoTip />
+      </section>
 
-        <div className="w-full max-h-[245px] flex items-center justify-between gap-8 bg-grey-6 rounded-lg pl-10 pr-6 mt-6 overflow-hidden">
-          <div className="max-w-[40%] flex flex-col gap-6">
-            <h2 className="text-3xl font-bold text-primary leading-none -mt-2">
-              Sfatul PERDEGO
-            </h2>
-            <p className="tracking-wide leading-relaxed">
-              Dacă adaugi poză anunțului tău, ai șanse mai mari de a găsi
-              obiectul pierdut sau proprietarul.
-            </p>
-            <Button asChild variant="cta" size="cta" className="w-fit mt-">
-              <Link to="/anunturi/nou">Adaugǎ anunț</Link>
-            </Button>
-          </div>
-          <img
-            src="/graph_found.svg"
-            alt="perdego banner"
-            className="max-w-[60%] object-contain"
-          />
-        </div>
-      </div>
+      {/* OBJECT CATEGORIES */}
+      <ObjectCategories />
+
+      {/* LATEST POSTS */}
+      <LatestPosts />
+
+      {/* LEAVE A REVIEW */}
+      <section className="w-full max-w-[1200px] pt-2 pb-10 px-6 mx-auto">
+        <LeaveAReview />
+      </section>
     </main>
   );
 };

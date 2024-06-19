@@ -9,22 +9,22 @@ import { Fragment } from "react";
 
 const icons = [
   {
-    id: "96375",
+    id: "Backpack",
     icon: Backpack,
     description: "Ai pierdut sau ai gǎsit ceva.",
   },
   {
-    id: "18936",
+    id: "UserRound",
     icon: UserRound,
     description: "Creezi cont sau te autentifici.",
   },
   {
-    id: "78944",
+    id: "FilePenLine",
     icon: FilePenLine,
     description: "Publici anunțul cu detaliile necesare.",
   },
   {
-    id: "34771",
+    id: "Handshake",
     icon: Handshake,
     description: "Eşti contactat pentru înapoiere.",
   },
@@ -44,7 +44,7 @@ const Card = ({ item }) => {
 
 const PostSteps = () => {
   return (
-    <section className="flex flex-col items-center gap-8">
+    <div className="flex flex-col items-center gap-8">
       <h2 className="text-lg font-bold">Cum funcționeazǎ PERDEGO</h2>
       <div className="w-full flex">
         {icons.map((item, i) => {
@@ -60,7 +60,7 @@ const PostSteps = () => {
           }
         })}
       </div>
-    </section>
+    </div>
   );
 };
 
