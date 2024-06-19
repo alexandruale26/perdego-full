@@ -19,6 +19,7 @@ module.exports = {
     extend: {
       backgroundImage: {
         hero: "url('banners/banner_orange.svg')",
+        authenticate: "url('banners/banner_green.svg')",
       },
       fontFamily: {
         sans: ["Fira Sans", "sans-serif"],

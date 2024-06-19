@@ -40,6 +40,7 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import AppLayout from "./components/AppLayout";
 import RouteProtector from "./components/RouteProtector";
+import Authenticate from "./pages/Authenticate";
 
 const router = createBrowserRouter([
   {
@@ -51,12 +52,17 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/autentificare",
-    element: <Login />,
-  },
-  {
-    path: "/creeaza-cont",
-    element: <Signup />,
+    element: <Authenticate />,
+    children: [
+      {
+        path: "/signup",
+        element: <Signup />,
+      },
+      {
+        path: "/login",
+        element: <Login />,
+      },
+    ],
   },
   {
     element: (

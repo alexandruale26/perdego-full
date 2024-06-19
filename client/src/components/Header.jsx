@@ -9,9 +9,15 @@ const Header = () => {
         <img src="logo.png" alt="logo" className="w-[253px] h-[60px]" />
       </Link>
       <nav className="flex items-center gap-10">
-        <Button variant="iconText" size="iconText">
+        {/* <Button variant="iconText" size="iconText">
           <UserRound />
           <span className="text-black">Contul tǎu</span>
+        </Button> */}
+        <Button asChild variant="iconText" size="iconText">
+          <Link to="/login">
+            <UserRound />
+            <span className="text-black">Contul tǎu</span>
+          </Link>
         </Button>
         <Button asChild>
           <Link to="/administrare">Adaugǎ anunț nou</Link>
