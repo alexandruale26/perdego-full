@@ -4,12 +4,12 @@ import { cva } from "class-variance-authority";
 import { X } from "lucide-react";
 
 const inputVariants = cva(
-  "flex h-14 w-full rounded-md border border-grey-4 px-3 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50",
+  "flex h-14 w-full rounded-md border border-grey-4 px-3 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-grey-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50",
   {
     variants: {
       variant: {
-        form: "bg-transparent rounded-sm",
-        search: "bg-grey-6 rounded-md",
+        form: "bg-transparent rounded-sm px-4",
+        search: "bg-grey-6 rounded-md px-12",
       },
     },
     defaultVariants: {
@@ -18,21 +18,32 @@ const inputVariants = cva(
   },
 );
 
-const Field = forwardRef(({ className, type, variant, ...props }, ref) => {
+export const Root = ({ children, className }) => {
   return (
-    <input
-      type={type}
-      className={cn(inputVariants({ variant, className }))}
-      ref={ref}
-      {...props}
-    />
+    <div
+      className={cn(
+        "relative w-full flex items-center justify-center input--root",
+        className,
+      )}
+    >
+      {children}
+    </div>
   );
-});
-Field.displayName = "Field";
-
-export const Root = ({ children }) => {
-  return <div className="relative input--root">{children}</div>;
 };
+
+export const Field = forwardRef(
+  ({ className, type, variant, ...props }, ref) => {
+    return (
+      <input
+        type={type}
+        className={cn(inputVariants({ variant, className }))}
+        ref={ref}
+        {...props}
+      />
+    );
+  },
+);
+Field.displayName = "Field";
 
 export const Clear = ({ className, ...props }) => {
   const handleClick = (e) => {
@@ -55,7 +66,7 @@ export const Clear = ({ className, ...props }) => {
     <button
       onClick={handleClick}
       className={cn(
-        "size-6 p-0 rounded-full absolute inset-y-0 right-1 shrink-0 top-1/2 -translate-y-1/2",
+        "size-7 flex items-center justify-center p-0 rounded-full absolute inset-y-0 right-2 shrink-0 top-1/2 -translate-y-1/2",
         className,
       )}
       {...props}
@@ -64,5 +75,3 @@ export const Clear = ({ className, ...props }) => {
     </button>
   );
 };
-
-export { Field };

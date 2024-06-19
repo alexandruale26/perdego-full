@@ -23,6 +23,13 @@ module.exports = {
       fontFamily: {
         sans: ["Fira Sans", "sans-serif"],
       },
+      fontSize: {
+        lg: "1.25rem", // 20px,
+        "3xl": "2rem", // 32px
+      },
+      height: {
+        18: "4.5rem", // 72px
+      },
       colors: {
         primary: "#0e332c",
         secondary: "#c6dd60",
@@ -54,6 +61,7 @@ module.exports = {
           DEFAULT: "hsl(var(--destructive))",
           foreground: "hsl(var(--destructive-foreground))",
         },
+
         muted: {
           DEFAULT: "hsl(var(--muted))",
           foreground: "hsl(var(--muted-foreground))",
@@ -72,8 +80,10 @@ module.exports = {
         },
       },
       borderRadius: {
-        // 8px default
-        sm: "calc(var(--radius) - 4px)",
+        sm: "0.25rem", // 4px
+      },
+      boxShadow: {
+        lg: "6px 10px 15px rgba(0, 0, 0, 0.3)",
       },
       keyframes: {
         "accordion-down": {

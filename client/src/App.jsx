@@ -70,7 +70,7 @@ const router = createBrowserRouter([
         element: <Dashboard />,
       },
       {
-        path: "/posts/new",
+        path: "/anunturi/nou",
         element: <NewPost />,
       },
     ],
