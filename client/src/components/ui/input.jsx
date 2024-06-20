@@ -4,16 +4,21 @@ import { cva } from "class-variance-authority";
 import { X } from "lucide-react";
 
 const inputVariants = cva(
-  "flex h-14 w-full rounded-md border border-grey-4 px-3 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-grey-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50",
+  "flex w-full border text-base border-grey-4 ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-grey-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50",
   {
     variants: {
       variant: {
-        form: "bg-transparent rounded-sm px-4",
-        search: "bg-grey-6 rounded-md px-12",
+        form: "bg-transparent rounded-sm",
+        search: "bg-grey-6 rounded-md",
+      },
+      size: {
+        form: " h-14 px-4",
+        search: " h-14 px-12",
       },
     },
     defaultVariants: {
       variant: "form",
+      size: "form",
     },
   },
 );
@@ -32,11 +37,11 @@ export const Root = ({ children, className }) => {
 };
 
 export const Field = forwardRef(
-  ({ className, type, variant, ...props }, ref) => {
+  ({ className, type, variant, size, ...props }, ref) => {
     return (
       <input
         type={type}
-        className={cn(inputVariants({ variant, className }))}
+        className={cn(inputVariants({ variant, size, className }))}
         ref={ref}
         {...props}
       />

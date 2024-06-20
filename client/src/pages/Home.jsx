@@ -30,6 +30,7 @@ const Home = () => {
             <Input.Field
               id="search"
               variant="search"
+              size="search"
               placeholder="Cauți ceva anume?"
               maxLength={50}
             />
@@ -37,14 +38,19 @@ const Home = () => {
           </Input.Root>
 
           <Input.Root className="max-w-[250px]">
-            <Input.Field id="location" variant="search" placeholder="Locație" />
+            <Input.Field
+              id="location"
+              variant="search"
+              size="search"
+              placeholder="Locație"
+            />
             <Input.Clear />
           </Input.Root>
 
           <Button
             variant="iconText"
             size="iconText"
-            className="bg-grey-6 rounded-md text-base"
+            className="bg-grey-6 text-base"
             asChild
           >
             <Link to="/anunturi">

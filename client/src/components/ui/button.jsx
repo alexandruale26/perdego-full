@@ -10,14 +10,14 @@ const buttonVariants = cva(
       variant: {
         primary: "bg-primary text-white hover:bg-btn-primary-hover",
         cta: "bg-cta text-white hover:bg-btn-primary-hover",
-        iconText: "text-primary font-semibold",
+        iconText: "text-primary font-semibold rounded-md",
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
       },
       size: {
-        primary: "h-12 px-16",
+        primary: "h-14 px-16",
         cta: "h-14 px-8",
-        iconText: "h-14 gap-1.5 px-3",
+        iconText: "h-14 gap-1.5 px-4",
         icon: "size-12",
       },
     },

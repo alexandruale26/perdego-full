@@ -14,12 +14,12 @@ const Header = () => {
           <span className="text-black">Contul tǎu</span>
         </Button> */}
         <Button asChild variant="iconText" size="iconText">
-          <Link to="/login">
+          <Link to="/autentificare">
             <UserRound />
             <span className="text-black">Contul tǎu</span>
           </Link>
         </Button>
-        <Button asChild>
+        <Button asChild className="h-12">
           <Link to="/administrare">Adaugǎ anunț nou</Link>
         </Button>
       </nav>
