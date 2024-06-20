@@ -1,7 +1,7 @@
-import { Link } from "react-router-dom";
-import * as Selector from "../components/ui/selector";
 import Button from "../components/ui/button";
 import * as Input from "../components/ui/input";
+import AuthenticateHeader from "../components/authenticate/AuthenticateHeader";
+import AuthenticateFormBase from "../components/authenticate/AuthenticateFormBase";
 
 const Signup = () => {
   const handleSubmit = (e) => {
@@ -10,17 +10,10 @@ const Signup = () => {
   };
 
   return (
-    <>
-      <Selector.Group defaultValue="cont-nou">
-        <Selector.Item asChild value="autentificare" className="pl-4">
-          <Link to="/autentificare">Intrǎ în cont</Link>
-        </Selector.Item>
-        <Selector.Item asChild value="cont-nou" className="text-end pr-4">
-          <Link to="/cont-nou">Creeazǎ un cont</Link>
-        </Selector.Item>
-      </Selector.Group>
+    <div>
+      <AuthenticateHeader defaultValue="cont-nou" />
 
-      <form onSubmit={handleSubmit} className="flex flex-col gap-4 py-8">
+      <AuthenticateFormBase handleSubmit={handleSubmit}>
         <Input.Root>
           <Input.Field id="email" placeholder="Adresa ta de email" />
         </Input.Root>
@@ -39,12 +32,11 @@ const Signup = () => {
         <Input.Root>
           <Input.Field id="phone" placeholder="Numarul tǎu de telefon" />
         </Input.Root>
-
         <Button type="submit" className="mx-10 my-8">
           Creeazǎ un cont
         </Button>
-      </form>
-    </>
+      </AuthenticateFormBase>
+    </div>
   );
 };
 

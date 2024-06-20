@@ -29,6 +29,11 @@ export const Group = ({
       (child) => child.dataset.value === defaultValue,
     );
 
+    if (!defaultItem)
+      throw new Error(
+        "Selector <Group> must have a valid 'defaultValue. Insert valid 'defaultValue' to <Group> or 'value' to <Item>",
+      );
+
     defaultItem.classList.add("border-b-4");
   }, [defaultValue]);
 
@@ -47,8 +52,10 @@ export const Group = ({
 };
 
 export const Item = forwardRef(
-  ({ className, value, asChild = false, ...props }, ref) => {
+  ({ className, value = undefined, asChild = false, ...props }, ref) => {
     const Comp = asChild ? Slot : "li";
+
+    if (!value) throw new Error("Selector <Item> must have a value");
 
     return (
       <Comp

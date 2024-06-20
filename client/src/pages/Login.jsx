@@ -1,16 +1,38 @@
 import { Link } from "react-router-dom";
-import * as Selector from "../components/ui/selector";
+import Button from "../components/ui/button";
+import * as Input from "../components/ui/input";
+import AuthenticateHeader from "../components/authenticate/AuthenticateHeader";
+import AuthenticateFormBase from "../components/authenticate/AuthenticateFormBase";
 
 const Login = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("submitted");
+  };
+
   return (
-    <Selector.Group defaultValue="autentificare">
-      <Selector.Item asChild value="autentificare" className="pl-4">
-        <Link to="/autentificare">Intrǎ în cont</Link>
-      </Selector.Item>
-      <Selector.Item asChild value="cont-nou" className="text-end pr-4">
-        <Link to="/cont-nou">Creeazǎ un cont</Link>
-      </Selector.Item>
-    </Selector.Group>
+    <div>
+      <AuthenticateHeader defaultValue="autentificare" />
+
+      <AuthenticateFormBase handleSubmit={handleSubmit}>
+        <Input.Root>
+          <Input.Field id="email" placeholder="Adresa ta de email" />
+        </Input.Root>
+        <Input.Root>
+          <Input.Field id="password" placeholder="Introdu parola" />
+        </Input.Root>
+
+        <span className="text-sm text-start ml-2 mt-4">
+          <strong className="font-semibold hover:border-b-2 hover:border-accessibility">
+            <Link to="/am-uitat-parola">Ai uitat parola?</Link>
+          </strong>
+        </span>
+
+        <Button type="submit" className="mx-10 my-8">
+          Intrǎ în cont
+        </Button>
+      </AuthenticateFormBase>
+    </div>
   );
 };
 

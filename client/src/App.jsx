@@ -36,11 +36,14 @@ import Home from "./pages/Home";
 import About from "./pages/About";
 import Dashboard from "./pages/Dashboard";
 import NewPost from "./pages/NewPost";
+import Authenticate from "./pages/Authenticate";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
+import ForgotPassword from "./pages/ForgotPassword";
+import ChangePassword from "./pages/ChangePassword";
 import AppLayout from "./components/AppLayout";
 import RouteProtector from "./components/RouteProtector";
-import Authenticate from "./pages/Authenticate";
+import TermsAndConditions from "./pages/TermsAndConditions";
 
 const router = createBrowserRouter([
   {
@@ -61,6 +64,14 @@ const router = createBrowserRouter([
       {
         path: "/autentificare",
         element: <Login />,
+      },
+      {
+        path: "/am-uitat-parola",
+        element: <ForgotPassword />,
+      },
+      {
+        path: "/schimba-parola",
+        element: <ChangePassword />,
       },
     ],
   },
@@ -86,6 +97,14 @@ const router = createBrowserRouter([
     element: (
       <AppLayout>
         <About />
+      </AppLayout>
+    ),
+  },
+  {
+    path: "/termeni-si-conditii",
+    element: (
+      <AppLayout>
+        <TermsAndConditions />
       </AppLayout>
     ),
   },
