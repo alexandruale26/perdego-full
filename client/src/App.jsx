@@ -55,11 +55,11 @@ const router = createBrowserRouter([
     element: <Authenticate />,
     children: [
       {
-        path: "/signup",
+        path: "/cont-nou",
         element: <Signup />,
       },
       {
-        path: "/login",
+        path: "/autentificare",
         element: <Login />,
       },
     ],
