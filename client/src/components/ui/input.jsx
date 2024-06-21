@@ -24,6 +24,7 @@ const inputVariants = cva(
   },
 );
 
+// TODO: move the root to form.jsx
 export const Root = ({ children, className }) => {
   return (
     <div

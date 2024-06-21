@@ -21,7 +21,7 @@ const Authenticate = () => {
             asChild
             variant="link"
             size="link"
-            className="absolute top-3 left-3"
+            className="absolute top-2 left-2"
             tabIndex={1}
           >
             <Link to="/">

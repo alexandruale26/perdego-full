@@ -20,4 +20,4 @@ const Label = forwardRef(({ className, ...props }, ref) => (
 Label.displayName = "Label";
 Label.propTypes = { className: PropTypes.string };
 
-export { Label };
+export default Label;
