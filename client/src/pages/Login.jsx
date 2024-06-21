@@ -31,6 +31,7 @@ const Login = () => {
       email: "",
       password: "",
     },
+    mode: "all",
   });
 
   function onSubmit(values) {
@@ -49,9 +50,7 @@ const Login = () => {
             render={({ field }) => (
               <FormItem>
                 <FormControl>
-                  <Input.Root>
-                    <Input.Field placeholder="Adresa ta de e-mail" {...field} />
-                  </Input.Root>
+                  <Input.Field placeholder="Adresa ta de e-mail" {...field} />
                 </FormControl>
                 <InputErrorMessage />
               </FormItem>
@@ -63,11 +62,8 @@ const Login = () => {
             name="password"
             render={({ field }) => (
               <FormItem>
-                <FormControl>
-                  <Input.Root>
-                    <Input.Field placeholder="Introdu parola" {...field} />
-                    <Input.Clear />
-                  </Input.Root>
+                <FormControl addSensible={true}>
+                  <Input.Field placeholder="Introdu parola" {...field} />
                 </FormControl>
                 <InputErrorMessage />
               </FormItem>

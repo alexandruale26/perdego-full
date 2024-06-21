@@ -80,3 +80,7 @@
 body {
   color: var(--black);
 }
+
+input[type="password"] {
+  letter-spacing: 0.125rem;
+}

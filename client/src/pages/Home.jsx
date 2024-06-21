@@ -34,7 +34,7 @@ const Home = () => {
               placeholder="Cauți ceva anume?"
               maxLength={50}
             />
-            <Input.Clear />
+            <Input.ClearField />
           </Input.Root>
 
           <Input.Root className="max-w-[250px]">
@@ -44,7 +44,7 @@ const Home = () => {
               size="search"
               placeholder="Locație"
             />
-            <Input.Clear />
+            <Input.ClearField />
           </Input.Root>
 
           <Button

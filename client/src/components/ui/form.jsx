@@ -1,8 +1,10 @@
 import { createContext, useContext, forwardRef, useId } from "react";
 import { Slot } from "@radix-ui/react-slot";
 import { Controller, FormProvider, useFormContext } from "react-hook-form";
+import PropTypes from "prop-types";
 
 import { cn } from "../../lib/utils.js";
+import { HideSensibleData } from "./input.jsx";
 import Label from "./label";
 
 // Root of <form> from RFH useFormContext/FormProvider
@@ -17,6 +19,8 @@ export const FormField = ({ ...props }) => {
     </FormFieldContext.Provider>
   );
 };
+FormField.displayName = "FormField";
+FormField.propTypes = { name: PropTypes.string.isRequired };
 
 // eslint-disable-next-line react-refresh/only-export-components
 export const useFormField = () => {
@@ -45,16 +49,21 @@ export const useFormField = () => {
 const FormItemContext = createContext({});
 
 // Parent of label and input
-export const FormItem = forwardRef(({ className, ...props }, ref) => {
+export const FormItem = ({ className, ...props }) => {
   const id = useId();
 
   return (
     <FormItemContext.Provider value={{ id }}>
-      <div ref={ref} className={cn("space-y-2", className)} {...props} />
+      <div
+        // ref={ref}
+        className={cn("space-y-2", className)}
+        {...props}
+      />
     </FormItemContext.Provider>
   );
-});
+};
 FormItem.displayName = "FormItem";
+FormItem.propTypes = { className: PropTypes.string };
 
 // Input label
 export const FormLabel = forwardRef(({ className, ...props }, ref) => {
@@ -70,27 +79,40 @@ export const FormLabel = forwardRef(({ className, ...props }, ref) => {
   );
 });
 FormLabel.displayName = "FormLabel";
+FormLabel.propTypes = { className: PropTypes.string };
 
-// Parent of inputs
-export const FormControl = forwardRef(({ ...props }, ref) => {
-  const { error, formItemId, formDescriptionId, formMessageId } =
-    useFormField();
+// Parent of input
+export const FormControl = forwardRef(
+  ({ addSensible = false, ...props }, ref) => {
+    const { error, formItemId, formDescriptionId, formMessageId } =
+      useFormField();
 
-  return (
-    <Slot
-      ref={ref}
-      id={formItemId}
-      aria-describedby={
-        !error
-          ? `${formDescriptionId}`
-          : `${formDescriptionId} ${formMessageId}`
-      }
-      aria-invalid={!!error}
-      {...props}
-    />
-  );
-});
+    const inputfield = (
+      <Slot
+        ref={ref}
+        id={formItemId}
+        aria-describedby={
+          !error
+            ? `${formDescriptionId}`
+            : `${formDescriptionId} ${formMessageId}`
+        }
+        aria-invalid={!!error}
+        {...props}
+      />
+    );
+
+    return addSensible ? (
+      <div className="relative w-full flex items-center justify-center">
+        {inputfield}
+        <HideSensibleData formItemId={formItemId} />
+      </div>
+    ) : (
+      inputfield
+    );
+  },
+);
 FormControl.displayName = "FormControl";
+FormControl.propTypes = { addSensible: PropTypes.bool };
 
 // Validation error message
 export const InputErrorMessage = forwardRef(({ className, ...props }, ref) => {
@@ -111,3 +133,4 @@ export const InputErrorMessage = forwardRef(({ className, ...props }, ref) => {
   );
 });
 InputErrorMessage.displayName = "InputErrorMessage";
+InputErrorMessage.propTypes = { className: PropTypes.string };

@@ -1,8 +1,8 @@
-import { forwardRef } from "react";
+import { forwardRef, useState } from "react";
 import PropTypes from "prop-types";
 import { cn } from "../../lib/utils";
 import { cva } from "class-variance-authority";
-import { X } from "lucide-react";
+import { X, Eye, EyeOff } from "lucide-react";
 
 const inputVariants = cva(
   "flex w-full border text-base border-grey-4 ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-grey-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50",
@@ -24,7 +24,6 @@ const inputVariants = cva(
   },
 );
 
-// TODO: move the root to form.jsx
 export const Root = ({ children, className }) => {
   return (
     <div
@@ -63,7 +62,7 @@ Field.propTypes = {
   size: PropTypes.oneOf(["form", "search"]),
 };
 
-export const Clear = ({ className, ...props }) => {
+export const ClearField = ({ className, ...props }) => {
   const handleClick = (e) => {
     const parent = e.currentTarget.parentNode;
 
@@ -93,7 +92,40 @@ export const Clear = ({ className, ...props }) => {
     </button>
   );
 };
-Clear.displayName = "Input.Clear";
-Clear.propTypes = {
+ClearField.displayName = "Input.ClearField";
+ClearField.propTypes = {
   className: PropTypes.string,
+};
+
+const eyeIconSize = 24;
+
+export const HideSensibleData = ({ className, formItemId, ...props }) => {
+  const [visible, setVisible] = useState(false);
+
+  const handleClick = () => {
+    const inputField = document.getElementById(formItemId);
+
+    inputField.setAttribute("type", !visible ? "password" : "text");
+    setVisible((prev) => !prev);
+  };
+
+  return (
+    <button
+      // !!! don't ever forget type='button', <form> will think it's a submit button
+      type="button"
+      onClick={handleClick}
+      className={cn(
+        "size-7 flex items-center justify-center p-0 rounded-full absolute inset-y-0 right-4 shrink-0 top-1/2 -translate-y-1/2",
+        className,
+      )}
+      {...props}
+    >
+      {!visible ? <Eye size={eyeIconSize} /> : <EyeOff size={eyeIconSize} />}
+    </button>
+  );
+};
+HideSensibleData.displayName = "HideField";
+HideSensibleData.propTypes = {
+  className: PropTypes.string,
+  formItemId: PropTypes.string,
 };
