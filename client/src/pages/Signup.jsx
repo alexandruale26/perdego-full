@@ -15,7 +15,11 @@ const Signup = () => {
 
       <AuthenticateFormBase handleSubmit={handleSubmit}>
         <Input.Root>
-          <Input.Field id="email" placeholder="Adresa ta de email" />
+          <Input.Field
+            id="email"
+            placeholder="Adresa ta de e-mail"
+            className="border-error border"
+          />
         </Input.Root>
         <Input.Root>
           <Input.Field id="password" placeholder="Creeazǎ o parolǎ" />
@@ -39,5 +43,6 @@ const Signup = () => {
     </div>
   );
 };
+Signup.displayName = "Signup";
 
 export default Signup;

@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import * as Selector from "../ui/selector";
 
 const BasicAuthenticateHeader = ({ defaultValue, title = undefined }) => {
@@ -10,6 +11,11 @@ const BasicAuthenticateHeader = ({ defaultValue, title = undefined }) => {
       </Selector.Item>
     </Selector.Group>
   );
+};
+BasicAuthenticateHeader.displayName = "BasicAuthenticateHeader";
+BasicAuthenticateHeader.propTypes = {
+  defaultValue: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
 };
 
 export default BasicAuthenticateHeader;

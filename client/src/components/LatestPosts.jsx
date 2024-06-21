@@ -34,5 +34,6 @@ const LatestPosts = () => {
     </section>
   );
 };
+LatestPosts.displayName = "LatestPosts";
 
 export default LatestPosts;

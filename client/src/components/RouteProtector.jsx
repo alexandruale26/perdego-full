@@ -1,7 +1,6 @@
-import React from "react";
-
 const RouteProtector = () => {
   return <div>RouteProtector</div>;
 };
+RouteProtector.displayName = "RouteProtector";
 
 export default RouteProtector;

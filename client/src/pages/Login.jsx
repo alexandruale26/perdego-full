@@ -16,14 +16,14 @@ const Login = () => {
 
       <AuthenticateFormBase handleSubmit={handleSubmit}>
         <Input.Root>
-          <Input.Field id="email" placeholder="Adresa ta de email" />
+          <Input.Field id="email" placeholder="Adresa ta de e-mail" />
         </Input.Root>
         <Input.Root>
           <Input.Field id="password" placeholder="Introdu parola" />
         </Input.Root>
 
         <span className="text-sm text-start ml-2 mt-4">
-          <strong className="font-semibold hover:border-b-2 hover:border-accessibility">
+          <strong className="font-semibold hover:border-b-2 hover:border-secondary transition-colors">
             <Link to="/am-uitat-parola">Ai uitat parola?</Link>
           </strong>
         </span>
@@ -35,5 +35,6 @@ const Login = () => {
     </div>
   );
 };
+Login.displayName = "Login";
 
 export default Login;

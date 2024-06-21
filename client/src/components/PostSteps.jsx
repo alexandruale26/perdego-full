@@ -5,6 +5,7 @@ import {
   Handshake,
   MoveRight,
 } from "lucide-react";
+import PropTypes from "prop-types";
 import { Fragment } from "react";
 
 const icons = [
@@ -30,7 +31,7 @@ const icons = [
   },
 ];
 
-const Card = ({ item }) => {
+const PostStepsCard = ({ item }) => {
   const Icon = item.icon;
   return (
     <div className="w-full flex flex-col items-center gap-7 text-primary">
@@ -41,6 +42,13 @@ const Card = ({ item }) => {
     </div>
   );
 };
+PostStepsCard.displayName = "PostStepsCard";
+PostStepsCard.propTypes = {
+  item: PropTypes.shape({
+    icon: PropTypes.object.isRequired,
+    description: PropTypes.string.isRequired,
+  }),
+};
 
 const PostSteps = () => {
   return (
@@ -49,11 +57,11 @@ const PostSteps = () => {
       <div className="w-full flex">
         {icons.map((item, i) => {
           if (i === icons.length - 1) {
-            return <Card item={item} key={item.id} />;
+            return <PostStepsCard item={item} key={item.id} />;
           } else {
             return (
               <Fragment key={item.id}>
-                <Card item={item} key={item.id} />
+                <PostStepsCard item={item} key={item.id} />
                 <MoveRight width={250} height={200} strokeWidth={1} />
               </Fragment>
             );
@@ -63,5 +71,6 @@ const PostSteps = () => {
     </div>
   );
 };
+PostSteps.displayName = "PostSteps";
 
 export default PostSteps;

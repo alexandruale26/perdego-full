@@ -24,5 +24,6 @@ const PerdegoTip = () => {
     </div>
   );
 };
+PerdegoTip.displayName = "PerdegoTip";
 
 export default PerdegoTip;

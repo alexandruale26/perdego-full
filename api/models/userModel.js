@@ -13,11 +13,11 @@ const userSchema = new mongoose.Schema(
     },
     email: {
       type: String,
-      required: [true, "Introdu adresa ta de email."],
+      required: [true, "Introdu adresa ta de e-mail."],
       unique: true,
       lowercase: true,
       trim: true,
-      validate: [validator.isEmail, "Introdu o adresa de email valida."],
+      validate: [validator.isEmail, "Introdu o adresa de e-mail valida."],
     },
     password: {
       type: String,

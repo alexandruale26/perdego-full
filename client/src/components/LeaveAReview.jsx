@@ -18,5 +18,6 @@ const LeaveAReview = () => {
     </div>
   );
 };
+LeaveAReview.displayName = "LeaveAReview";
 
 export default LeaveAReview;

@@ -54,14 +54,14 @@ export const login = catchAsync(async (req, res, next) => {
   const { email, password } = req.body;
 
   if (!email || !password) {
-    return next(new AppError("Introdu adresa de email si parola.", 400));
+    return next(new AppError("Introdu adresa de e-mail si parola.", 400));
   }
 
   const user = await User.findOne({ email }).select("+password");
 
   if (!user || !(await user.correctPassword(password, user.password))) {
     return next(
-      new AppError("Adresa de email sau parola este incorecta.", 401),
+      new AppError("Adresa de e-mail sau parola este incorecta.", 401),
     );
   }
 

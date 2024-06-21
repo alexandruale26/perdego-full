@@ -1,4 +1,5 @@
 import { forwardRef, useRef, useEffect } from "react";
+import PropTypes from "prop-types";
 import { Slot } from "@radix-ui/react-slot";
 import { cn } from "../../lib/utils";
 
@@ -11,19 +12,11 @@ export const Group = ({
   const ref = useRef(null);
 
   useEffect(() => {
-    const children = ref.current?.children;
-
-    if (!children || children.length === 0)
-      throw new Error("Selector <Group> can't be empty");
-
-    const childrenArr = Array.from(children);
+    const childrenArr = Array.from(ref.current?.children);
 
     if (!childrenArr.every((child) => child.dataset.type === "selector-item")) {
       throw new Error("Selector <Group> must have only <Item> children");
     }
-
-    if (!defaultValue)
-      throw new Error("Selector <Group> must have a 'defaultValue'");
 
     const defaultItem = childrenArr.find(
       (child) => child.dataset.value === defaultValue,
@@ -50,6 +43,12 @@ export const Group = ({
     </ul>
   );
 };
+Group.displayName = "Selector.Group";
+Group.propTypes = {
+  className: PropTypes.string,
+  children: PropTypes.node.isRequired,
+  defaultValue: PropTypes.string.isRequired,
+};
 
 export const Item = forwardRef(
   ({ className, value = undefined, asChild = false, ...props }, ref) => {
@@ -68,4 +67,9 @@ export const Item = forwardRef(
     );
   },
 );
-Item.displayName = "Item";
+Item.displayName = "Selector.Item";
+Item.propTypes = {
+  className: PropTypes.string,
+  asChild: PropTypes.bool,
+  value: PropTypes.string.isRequired,
+};

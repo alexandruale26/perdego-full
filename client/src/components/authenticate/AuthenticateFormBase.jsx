@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import { cn } from "../../lib/utils";
 
 const AuthenticateFormBase = ({
@@ -18,6 +19,12 @@ const AuthenticateFormBase = ({
       {children}
     </form>
   );
+};
+AuthenticateFormBase.displayName = "AuthenticateFormBase";
+AuthenticateFormBase.propTypes = {
+  className: PropTypes.string,
+  children: PropTypes.node.isRequired,
+  handleSubmit: PropTypes.func.isRequired,
 };
 
 export default AuthenticateFormBase;

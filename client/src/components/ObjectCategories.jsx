@@ -67,5 +67,6 @@ const ObjectCategories = () => {
     </section>
   );
 };
+ObjectCategories.displayName = "ObjectCategories";
 
 export default ObjectCategories;

@@ -1,4 +1,5 @@
 import { forwardRef } from "react";
+import PropTypes from "prop-types";
 import { Slot } from "@radix-ui/react-slot";
 import { cva } from "class-variance-authority";
 import { cn } from "../../lib/utils";
@@ -11,14 +12,14 @@ const buttonVariants = cva(
         primary: "bg-primary text-white hover:bg-btn-primary-hover",
         cta: "bg-cta text-white hover:bg-btn-primary-hover",
         iconText: "text-primary font-semibold rounded-md",
+        link: "bg-transparent text-primary rounded-full hover:bg-grey-5 transition-colors",
         ghost: "hover:bg-accent hover:text-accent-foreground",
-        link: "text-primary underline-offset-4 hover:underline",
       },
       size: {
         primary: "h-14 px-16",
         cta: "h-14 px-8",
         iconText: "h-14 gap-1.5 px-4",
-        icon: "size-12",
+        link: "size-10",
       },
     },
     defaultVariants: {
@@ -41,5 +42,12 @@ const Button = forwardRef(
   },
 );
 Button.displayName = "Button";
+Button.propTypes = {
+  className: PropTypes.string,
+  // TODO: remove unuses variants or sizes
+  variant: PropTypes.oneOf(["primary", "cta", "iconText", "ghost", "link"]),
+  size: PropTypes.oneOf(["primary", "cta", "iconText", "link"]),
+  asChild: PropTypes.bool,
+};
 
 export default Button;

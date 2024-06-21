@@ -17,13 +17,13 @@ const ForgotPassword = () => {
       />
 
       <p className="tracking-wide leading-relaxed mt-8">
-        Introdu adresa de email a contului tău pentru a primi instrucțiunile de
+        Introdu adresa de e-mail a contului tău pentru a primi instrucțiunile de
         schimbare a parolei.
       </p>
 
       <AuthenticateFormBase handleSubmit={handleSubmit}>
         <Input.Root>
-          <Input.Field id="email" placeholder="Adresa ta de email" />
+          <Input.Field id="email" placeholder="Adresa ta de e-mail" />
         </Input.Root>
 
         <Button type="submit" className="mx-10 my-8">

@@ -1,4 +1,5 @@
 import { forwardRef } from "react";
+import PropTypes from "prop-types";
 import { cn } from "../../lib/utils";
 import { cva } from "class-variance-authority";
 import { X } from "lucide-react";
@@ -12,7 +13,7 @@ const inputVariants = cva(
         search: "bg-grey-6 rounded-md",
       },
       size: {
-        form: " h-14 px-4",
+        form: " h-14 pl-6 pr-14",
         search: " h-14 px-12",
       },
     },
@@ -35,6 +36,11 @@ export const Root = ({ children, className }) => {
     </div>
   );
 };
+Root.displayName = "Input.Root";
+Root.propTypes = {
+  children: PropTypes.node.isRequired,
+  className: PropTypes.string,
+};
 
 export const Field = forwardRef(
   ({ className, type, variant, size, ...props }, ref) => {
@@ -48,7 +54,13 @@ export const Field = forwardRef(
     );
   },
 );
-Field.displayName = "Field";
+Field.displayName = "Input.Field";
+Field.propTypes = {
+  className: PropTypes.string,
+  type: PropTypes.string,
+  variant: PropTypes.oneOf(["form", "search"]),
+  size: PropTypes.oneOf(["form", "search"]),
+};
 
 export const Clear = ({ className, ...props }) => {
   const handleClick = (e) => {
@@ -79,4 +91,8 @@ export const Clear = ({ className, ...props }) => {
       <X width={20} height={20} />
     </button>
   );
+};
+Clear.displayName = "Input.Clear";
+Clear.propTypes = {
+  className: PropTypes.string,
 };
