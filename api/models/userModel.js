@@ -41,6 +41,7 @@ const userSchema = new mongoose.Schema(
       trim: true,
     },
     phone: {
+      // TODO: convert input to a phone number. eliminate spaces and dashes
       type: String,
       required: [true, "Introdu numarul tau de telefon."],
       match: [/^07\d{8}$/, "Introdu un numar de telefon valid."],

@@ -53,11 +53,7 @@ export const FormItem = ({ className, ...props }) => {
 
   return (
     <FormItemContext.Provider value={{ id }}>
-      <div
-        // ref={ref}
-        className={cn("space-y-2", className)}
-        {...props}
-      />
+      <div className={cn("space-y-2", className)} {...props} />
     </FormItemContext.Provider>
   );
 };
@@ -65,18 +61,17 @@ FormItem.displayName = "FormItem";
 FormItem.propTypes = { className: PropTypes.string };
 
 // Input label
-export const FormLabel = forwardRef(({ className, ...props }, ref) => {
+export const FormLabel = ({ className, ...props }) => {
   const { error, formItemId } = useFormField();
 
   return (
     <Label
-      ref={ref}
       className={cn(error && "text-destructive", className)}
       htmlFor={formItemId}
       {...props}
     />
   );
-});
+};
 FormLabel.displayName = "FormLabel";
 FormLabel.propTypes = { className: PropTypes.string };
 
@@ -114,7 +109,7 @@ FormControl.displayName = "FormControl";
 FormControl.propTypes = { addSensible: PropTypes.bool };
 
 // Validation error message
-export const InputErrorMessage = forwardRef(({ className, ...props }, ref) => {
+export const InputErrorMessage = ({ className, ...props }) => {
   const { error, formMessageId } = useFormField();
   const errorMsg = error?.message;
 
@@ -122,7 +117,6 @@ export const InputErrorMessage = forwardRef(({ className, ...props }, ref) => {
 
   return (
     <p
-      ref={ref}
       id={formMessageId}
       className={cn("text-sm font-medium text-destructive", className)}
       {...props}
@@ -130,6 +124,6 @@ export const InputErrorMessage = forwardRef(({ className, ...props }, ref) => {
       {errorMsg}
     </p>
   );
-});
+};
 InputErrorMessage.displayName = "InputErrorMessage";
 InputErrorMessage.propTypes = { className: PropTypes.string };

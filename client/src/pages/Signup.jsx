@@ -1,45 +1,128 @@
 import Button from "../components/ui/button";
-import * as Input from "../components/ui/input";
+import { Field as Input } from "../components/ui/input";
 import AuthenticateHeader from "../components/authenticate/AuthenticateHeader";
 import AuthenticateFormBase from "../components/authenticate/AuthenticateFormBase";
 
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  InputErrorMessage,
+} from "../components/ui/form";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import signupSchema from "../schemas/signupSchema.js";
+
+const defaultValues = {
+  email: "",
+  password: "",
+  phone: "",
+  passwordConfirm: "",
+  name: "",
+  location: "",
+};
+
 const Signup = () => {
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("submitted");
-  };
+  const form = useForm({
+    resolver: zodResolver(signupSchema),
+    defaultValues,
+    mode: "all",
+  });
+
+  function onSubmit(values) {
+    console.log(values);
+  }
 
   return (
     <div>
       <AuthenticateHeader defaultValue="cont-nou" />
 
-      <AuthenticateFormBase handleSubmit={handleSubmit}>
-        <Input.Root>
-          <Input.Field
-            id="email"
-            placeholder="Adresa ta de e-mail"
-            className="border-error border"
+      <Form {...form}>
+        <AuthenticateFormBase handleSubmit={form.handleSubmit(onSubmit)}>
+          <FormField
+            control={form.control}
+            name="email"
+            render={({ field }) => (
+              <FormItem>
+                <FormControl>
+                  <Input placeholder="Adresa ta de e-mail" {...field} />
+                </FormControl>
+                <InputErrorMessage />
+              </FormItem>
+            )}
           />
-        </Input.Root>
-        <Input.Root>
-          <Input.Field id="password" placeholder="Creeazǎ o parolǎ" />
-        </Input.Root>
-        <Input.Root>
-          <Input.Field id="passwordConfirm" placeholder="Confirmǎ parola" />
-        </Input.Root>
-        <Input.Root>
-          <Input.Field id="name" placeholder="Numele tǎu" />
-        </Input.Root>
-        <Input.Root>
-          <Input.Field id="location" placeholder="Locație" />
-        </Input.Root>
-        <Input.Root>
-          <Input.Field id="phone" placeholder="Numarul tǎu de telefon" />
-        </Input.Root>
-        <Button type="submit" className="mx-10 my-8">
-          Creeazǎ un cont
-        </Button>
-      </AuthenticateFormBase>
+
+          <FormField
+            control={form.control}
+            name="password"
+            render={({ field }) => (
+              <FormItem>
+                <FormControl>
+                  <Input placeholder="Creeazǎ o parolǎ" {...field} />
+                </FormControl>
+                <InputErrorMessage />
+              </FormItem>
+            )}
+          />
+
+          <FormField
+            control={form.control}
+            name="passwordConfirm"
+            render={({ field }) => (
+              <FormItem>
+                <FormControl>
+                  <Input placeholder="Confirmǎ parola" {...field} />
+                </FormControl>
+                <InputErrorMessage />
+              </FormItem>
+            )}
+          />
+
+          <FormField
+            control={form.control}
+            name="name"
+            render={({ field }) => (
+              <FormItem>
+                <FormControl>
+                  <Input placeholder="Numele tǎu" {...field} />
+                </FormControl>
+                <InputErrorMessage />
+              </FormItem>
+            )}
+          />
+
+          <FormField
+            control={form.control}
+            name="location"
+            render={({ field }) => (
+              <FormItem>
+                <FormControl>
+                  <Input placeholder="Locație" {...field} />
+                </FormControl>
+                <InputErrorMessage />
+              </FormItem>
+            )}
+          />
+
+          <FormField
+            control={form.control}
+            name="phone"
+            render={({ field }) => (
+              <FormItem>
+                <FormControl>
+                  <Input placeholder="Numarul tǎu de telefon" {...field} />
+                </FormControl>
+                <InputErrorMessage />
+              </FormItem>
+            )}
+          />
+
+          <Button type="submit" className="mx-10 my-8">
+            Creeazǎ un cont
+          </Button>
+        </AuthenticateFormBase>
+      </Form>
     </div>
   );
 };
