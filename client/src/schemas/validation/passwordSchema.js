@@ -9,7 +9,7 @@ const fullPasswordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{12,30}$/;
 
 export default z
   .string()
-  .min(12, { message: "Parola trebuie să aibă cel puțin 12 caractere" })
+  .min(12, { message: "Parola trebuie să conținǎ cel puțin 12 caractere" })
   .max(30, { message: "Parola este prea lungǎ" })
   .refine(
     (val) => {

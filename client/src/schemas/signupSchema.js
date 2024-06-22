@@ -6,7 +6,7 @@ import nameSchema from "./validation/nameSchema";
 
 const locationOptions = ["ale"];
 
-export default z
+export const signupSchema = z
   .object({
     email: emailSchema,
     password: passwordSchema,
@@ -26,3 +26,12 @@ export default z
       });
     }
   });
+
+export const defaultValues = {
+  email: "",
+  password: "",
+  phone: "",
+  passwordConfirm: "",
+  name: "",
+  location: "",
+};

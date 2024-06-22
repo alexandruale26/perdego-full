@@ -13,25 +13,13 @@ import {
 } from "../components/ui/form";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
-
-const formSchema = z.object({
-  email: z.string().min(2, {
-    message: "Email must be at least 2 characters.",
-  }),
-  password: z.string().min(4, {
-    message: "Password must be at least 4 characters.",
-  }),
-});
+import { loginSchema, defaultValues } from "../schemas/loginSchema";
 
 const Login = () => {
   const form = useForm({
-    resolver: zodResolver(formSchema),
-    defaultValues: {
-      email: "",
-      password: "",
-    },
-    mode: "all",
+    resolver: zodResolver(loginSchema),
+    defaultValues,
+    mode: "onChange",
   });
 
   function onSubmit(values) {

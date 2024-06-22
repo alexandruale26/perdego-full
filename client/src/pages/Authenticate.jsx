@@ -3,10 +3,13 @@ import { MoveLeft } from "lucide-react";
 import Button from "../components/ui/button";
 
 const Authenticate = () => {
+  // TODO: solve height issue, watch - bg img also scales
+  // TODO: if validation fail, make input border red. and double on focus or show error only on focused invalid input
+  // TODO: see if can use ErorMEssage from RFH to render just one big error of invalid field
   return (
-    <main className="min-w-full min-h-screen relative flex items-center bg-primary bg-authenticate bg-no-repeat bg-center bg-cover">
+    <main className="min-w-full min-h-screen flex items-center bg-primary bg-authenticate bg-no-repeat bg-center bg-cover">
       <div className="absolute right-0 -translate-x-1/4">
-        <div className="w-[520px] h-[760px] relative flex flex-col justify-between bg-white/95 px-12 pt-12 rounded-lg">
+        <div className="w-[520px] h-[760px] flex flex-col justify-between bg-white/95 px-12 pt-12 rounded-lg">
           <Outlet />
 
           <span className="text-sm text-center mb-10">

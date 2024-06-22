@@ -12,22 +12,13 @@ import {
 } from "../components/ui/form";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import signupSchema from "../schemas/signupSchema.js";
-
-const defaultValues = {
-  email: "",
-  password: "",
-  phone: "",
-  passwordConfirm: "",
-  name: "",
-  location: "",
-};
+import { signupSchema, defaultValues } from "../schemas/signupSchema.js";
 
 const Signup = () => {
   const form = useForm({
     resolver: zodResolver(signupSchema),
     defaultValues,
-    mode: "all",
+    mode: "onChange",
   });
 
   function onSubmit(values) {

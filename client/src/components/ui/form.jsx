@@ -118,7 +118,7 @@ export const InputErrorMessage = ({ className, ...props }) => {
   return (
     <p
       id={formMessageId}
-      className={cn("text-sm font-medium text-destructive", className)}
+      className={cn("text-sm text-destructive", className)}
       {...props}
     >
       {errorMsg}
