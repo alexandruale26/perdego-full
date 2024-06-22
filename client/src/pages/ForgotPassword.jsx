@@ -11,10 +11,7 @@ const ForgotPassword = () => {
 
   return (
     <div>
-      <BasicAuthenticateHeader
-        defaultValue="am-uitat-parola"
-        title="Ai uitat parola?"
-      />
+      <BasicAuthenticateHeader title="Ai uitat parola?" />
 
       <p className="tracking-wide leading-relaxed mt-8">
         Introdu adresa de e-mail a contului tău pentru a primi instrucțiunile de

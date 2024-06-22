@@ -22,8 +22,7 @@ export const FormField = ({ ...props }) => {
 FormField.displayName = "FormField";
 FormField.propTypes = { name: PropTypes.string.isRequired };
 
-// eslint-disable-next-line react-refresh/only-export-components
-export const useFormField = () => {
+const useFormField = () => {
   const fieldContext = useContext(FormFieldContext);
   const itemContext = useContext(FormItemContext);
   const { getFieldState, formState } = useFormContext();

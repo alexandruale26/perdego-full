@@ -1,20 +1,16 @@
 import PropTypes from "prop-types";
-import * as Selector from "../ui/selector";
 
-const BasicAuthenticateHeader = ({ defaultValue, title = undefined }) => {
+const BasicAuthenticateHeader = ({ title = undefined }) => {
   if (!title) throw new Error("<BasicAuthenticateHeader> must have a 'title'");
 
   return (
-    <Selector.Group defaultValue={defaultValue}>
-      <Selector.Item asChild value={defaultValue} className="pl-4 border-b-0">
-        <span>{title}</span>
-      </Selector.Item>
-    </Selector.Group>
+    <div className="w-full h-14 flex items-start border-b border-b-primary">
+      <h3 className="w-full h-full text-lg pl-4  border-b-0">{title}</h3>
+    </div>
   );
 };
 BasicAuthenticateHeader.displayName = "BasicAuthenticateHeader";
 BasicAuthenticateHeader.propTypes = {
-  defaultValue: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
 };
 

@@ -63,7 +63,11 @@ const Login = () => {
             render={({ field }) => (
               <FormItem>
                 <FormControl addSensible={true}>
-                  <Input.Field placeholder="Introdu parola" {...field} />
+                  <Input.Field
+                    placeholder="Introdu parola"
+                    type="password"
+                    {...field}
+                  />
                 </FormControl>
                 <InputErrorMessage />
               </FormItem>

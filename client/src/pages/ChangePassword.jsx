@@ -11,10 +11,7 @@ const ChangePassword = () => {
 
   return (
     <div>
-      <BasicAuthenticateHeader
-        defaultValue="schimba-parola"
-        title="Parolǎ nouǎ"
-      />
+      <BasicAuthenticateHeader title="Parolǎ nouǎ" />
 
       <AuthenticateFormBase handleSubmit={handleSubmit}>
         <Input.Root>

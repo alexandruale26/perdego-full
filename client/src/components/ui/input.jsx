@@ -100,13 +100,19 @@ ClearField.propTypes = {
 const eyeIconSize = 24;
 
 export const HideSensibleData = ({ className, formItemId, ...props }) => {
-  const [visible, setVisible] = useState(false);
+  const [hidden, setHidden] = useState(true);
 
   const handleClick = () => {
     const inputField = document.getElementById(formItemId);
+    const attributeValue = inputField.getAttribute("type");
 
-    inputField.setAttribute("type", !visible ? "password" : "text");
-    setVisible((prev) => !prev);
+    if (attributeValue === "password") {
+      inputField.setAttribute("type", "text");
+      setHidden(false);
+    } else if (attributeValue === "text") {
+      inputField.setAttribute("type", "password");
+      setHidden(true);
+    }
   };
 
   return (
@@ -120,7 +126,7 @@ export const HideSensibleData = ({ className, formItemId, ...props }) => {
       )}
       {...props}
     >
-      {!visible ? <Eye size={eyeIconSize} /> : <EyeOff size={eyeIconSize} />}
+      {hidden ? <EyeOff size={eyeIconSize} /> : <Eye size={eyeIconSize} />}
     </button>
   );
 };

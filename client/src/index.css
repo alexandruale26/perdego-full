@@ -84,3 +84,7 @@ body {
 input[type="password"] {
   letter-spacing: 0.125rem;
 }
+
+input[type="password"]::placeholder {
+  letter-spacing: normal;
+}
