@@ -1,7 +1,8 @@
 import * as Input from "../components/ui/input";
-import BasicAuthenticateHeader from "../components/authenticate/BasicAuthenticateHeader";
-import AuthenticateFormBase from "../components/authenticate/AuthenticateFormBase";
+import BasicAuthHeader from "../components/authenticate/BasicAuthHeader";
+import AuthFormBase from "../components/authenticate/AuthFormBase";
 import AuthButton from "../components/authenticate/AuthButton";
+import AuthParagraph from "../components/authenticate/AuthParagraph";
 
 import {
   Form,
@@ -30,15 +31,15 @@ const ForgotPassword = () => {
 
   return (
     <div>
-      <BasicAuthenticateHeader title="Ai uitat parola?" />
+      <BasicAuthHeader title="Ai uitat parola?" />
 
-      <p className="tracking-wide leading-relaxed mt-8">
+      <AuthParagraph>
         Introdu adresa de e-mail a contului tău pentru a primi instrucțiunile de
         schimbare a parolei.
-      </p>
+      </AuthParagraph>
 
       <Form {...form}>
-        <AuthenticateFormBase handleSubmit={form.handleSubmit(onSubmit)}>
+        <AuthFormBase handleSubmit={form.handleSubmit(onSubmit)}>
           <FormField
             control={form.control}
             name="email"
@@ -55,7 +56,7 @@ const ForgotPassword = () => {
           />
 
           <AuthButton title="Trimite" />
-        </AuthenticateFormBase>
+        </AuthFormBase>
       </Form>
     </div>
   );

@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import * as Input from "../components/ui/input";
-import AuthenticateHeader from "../components/authenticate/AuthenticateHeader";
-import AuthenticateFormBase from "../components/authenticate/AuthenticateFormBase";
+import AuthHeader from "../components/authenticate/AuthHeader";
+import AuthFormBase from "../components/authenticate/AuthFormBase";
 import AuthButton from "../components/authenticate/AuthButton";
 
 import {
@@ -28,10 +28,10 @@ const Login = () => {
 
   return (
     <div>
-      <AuthenticateHeader defaultValue="autentificare" />
+      <AuthHeader defaultValue="autentificare" />
 
       <Form {...form}>
-        <AuthenticateFormBase handleSubmit={form.handleSubmit(onSubmit)}>
+        <AuthFormBase handleSubmit={form.handleSubmit(onSubmit)}>
           <FormField
             control={form.control}
             name="email"
@@ -73,7 +73,7 @@ const Login = () => {
           </span>
 
           <AuthButton title="Intrǎ în cont" />
-        </AuthenticateFormBase>
+        </AuthFormBase>
       </Form>
     </div>
   );

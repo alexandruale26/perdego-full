@@ -1,14 +1,14 @@
 import PropTypes from "prop-types";
 import { cn } from "../../lib/utils";
 
-const AuthenticateFormBase = ({
+const AuthFormBase = ({
   className,
   children,
   handleSubmit = undefined,
   ...props
 }) => {
   if (!handleSubmit)
-    throw new Error("<AuthenticateFormBase> must have a 'handleSubmit");
+    throw new Error("<AuthFormBase> must have a 'handleSubmit");
 
   return (
     <form
@@ -20,11 +20,11 @@ const AuthenticateFormBase = ({
     </form>
   );
 };
-AuthenticateFormBase.displayName = "AuthenticateFormBase";
-AuthenticateFormBase.propTypes = {
+AuthFormBase.displayName = "AuthFormBase";
+AuthFormBase.propTypes = {
   className: PropTypes.string,
   children: PropTypes.node.isRequired,
   handleSubmit: PropTypes.func.isRequired,
 };
 
-export default AuthenticateFormBase;
+export default AuthFormBase;

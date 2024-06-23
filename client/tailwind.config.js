@@ -25,7 +25,7 @@ module.exports = {
         sans: ["Fira Sans", "sans-serif"],
       },
       fontSize: {
-        md: "1.125rem",
+        md: "1.125rem", // 18px
         lg: "1.25rem", // 20px,
         "3xl": "2rem", // 32px
       },

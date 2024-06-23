@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import * as Selector from "../ui/selector";
 
-const AuthenticateHeader = ({ defaultValue }) => {
+const AuthHeader = ({ defaultValue }) => {
   return (
     <Selector.Group defaultValue={defaultValue}>
       <Selector.Item asChild value="autentificare" className="pl-4">
@@ -14,7 +14,7 @@ const AuthenticateHeader = ({ defaultValue }) => {
     </Selector.Group>
   );
 };
-AuthenticateHeader.displayName = "AuthenticateHeader";
-AuthenticateHeader.propTypes = { defaultValue: PropTypes.string.isRequired };
+AuthHeader.displayName = "AuthHeader";
+AuthHeader.propTypes = { defaultValue: PropTypes.string.isRequired };
 
-export default AuthenticateHeader;
+export default AuthHeader;

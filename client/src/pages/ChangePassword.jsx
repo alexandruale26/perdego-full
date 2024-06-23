@@ -1,7 +1,8 @@
 import * as Input from "../components/ui/input";
-import BasicAuthenticateHeader from "../components/authenticate/BasicAuthenticateHeader";
-import AuthenticateFormBase from "../components/authenticate/AuthenticateFormBase";
+import BasicAuthHeader from "../components/authenticate/BasicAuthHeader";
+import AuthFormBase from "../components/authenticate/AuthFormBase";
 import AuthButton from "../components/authenticate/AuthButton";
+import AuthParagraph from "../components/authenticate/AuthParagraph";
 
 import {
   Form,
@@ -30,15 +31,15 @@ const ChangePassword = () => {
 
   return (
     <div>
-      <BasicAuthenticateHeader title="Parolǎ nouǎ" />
+      <BasicAuthHeader title="Parolǎ nouǎ" />
 
-      <p className="tracking-wide leading-relaxed mt-8">
+      <AuthParagraph>
         Te rugăm să introduci noua parolă pentru contul tău în câmpurile de mai
         jos.
-      </p>
+      </AuthParagraph>
 
       <Form {...form}>
-        <AuthenticateFormBase handleSubmit={form.handleSubmit(onSubmit)}>
+        <AuthFormBase handleSubmit={form.handleSubmit(onSubmit)}>
           <FormField
             control={form.control}
             name="password"
@@ -78,7 +79,7 @@ const ChangePassword = () => {
           />
 
           <AuthButton title="Creeazǎ parolǎ nouǎ" />
-        </AuthenticateFormBase>
+        </AuthFormBase>
       </Form>
     </div>
   );
