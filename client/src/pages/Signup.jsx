@@ -50,7 +50,11 @@ const Signup = () => {
             render={({ field }) => (
               <FormItem>
                 <FormControl>
-                  <Input placeholder="Creeazǎ o parolǎ" {...field} />
+                  <Input
+                    placeholder="Creeazǎ o parolǎ"
+                    {...field}
+                    type="password"
+                  />
                 </FormControl>
                 <InputErrorMessage />
               </FormItem>
@@ -63,7 +67,11 @@ const Signup = () => {
             render={({ field }) => (
               <FormItem>
                 <FormControl>
-                  <Input placeholder="Confirmǎ parola" {...field} />
+                  <Input
+                    placeholder="Confirmǎ parola"
+                    {...field}
+                    type="password"
+                  />
                 </FormControl>
                 <InputErrorMessage />
               </FormItem>

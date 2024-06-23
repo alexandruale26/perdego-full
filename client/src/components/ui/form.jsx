@@ -22,7 +22,7 @@ export const FormField = ({ ...props }) => {
 FormField.displayName = "FormField";
 FormField.propTypes = { name: PropTypes.string.isRequired };
 
-const useFormField = () => {
+export const useFormField = () => {
   const fieldContext = useContext(FormFieldContext);
   const itemContext = useContext(FormItemContext);
   const { getFieldState, formState } = useFormContext();
@@ -76,37 +76,25 @@ FormLabel.displayName = "FormLabel";
 FormLabel.propTypes = { className: PropTypes.string };
 
 // Parent of input
-export const FormControl = forwardRef(
-  ({ addSensible = false, ...props }, ref) => {
-    const { error, formItemId, formDescriptionId, formMessageId } =
-      useFormField();
+export const FormControl = forwardRef(({ ...props }, ref) => {
+  const { error, formItemId, formDescriptionId, formMessageId } =
+    useFormField();
 
-    const inputfield = (
-      <Slot
-        ref={ref}
-        id={formItemId}
-        aria-describedby={
-          !error
-            ? `${formDescriptionId}`
-            : `${formDescriptionId} ${formMessageId}`
-        }
-        aria-invalid={!!error}
-        {...props}
-      />
-    );
-
-    return addSensible ? (
-      <div className="relative w-full flex items-center justify-center">
-        {inputfield}
-        <HideSensibleData formItemId={formItemId} />
-      </div>
-    ) : (
-      inputfield
-    );
-  },
-);
+  return (
+    <Slot
+      ref={ref}
+      id={formItemId}
+      aria-describedby={
+        !error
+          ? `${formDescriptionId}`
+          : `${formDescriptionId} ${formMessageId}`
+      }
+      aria-invalid={!!error}
+      {...props}
+    />
+  );
+});
 FormControl.displayName = "FormControl";
-FormControl.propTypes = { addSensible: PropTypes.bool };
 
 // Validation error message
 export const InputErrorMessage = ({ className, ...props }) => {

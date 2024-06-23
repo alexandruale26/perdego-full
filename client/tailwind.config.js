@@ -87,6 +87,9 @@ module.exports = {
       boxShadow: {
         lg: "6px 10px 15px rgba(0, 0, 0, 0.3)",
       },
+      backgroundOpacity: {
+        96: "0.96",
+      },
       keyframes: {
         "accordion-down": {
           from: { height: "0" },

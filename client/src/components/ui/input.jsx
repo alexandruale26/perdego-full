@@ -3,9 +3,10 @@ import PropTypes from "prop-types";
 import { cn } from "../../lib/utils";
 import { cva } from "class-variance-authority";
 import { X, Eye, EyeOff } from "lucide-react";
+import { useFormField } from "./form";
 
 const inputVariants = cva(
-  "flex w-full border text-base border-grey-4 ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-grey-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50",
+  "flex w-full border text-base border-grey-4 ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-grey-3 focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-ring focus-visible:ring-offset-0 disabled:cursor-not-allowed disabled:opacity-50",
   {
     variants: {
       variant: {
@@ -24,7 +25,13 @@ const inputVariants = cva(
   },
 );
 
-export const Root = ({ children, className }) => {
+export const Root = ({
+  children,
+  addSensible = false,
+  addClear = false,
+  addValidation = false,
+  className,
+}) => {
   return (
     <div
       className={cn(
@@ -39,6 +46,9 @@ export const Root = ({ children, className }) => {
 Root.displayName = "Input.Root";
 Root.propTypes = {
   children: PropTypes.node.isRequired,
+  addSensible: PropTypes.bool,
+  addClear: PropTypes.bool,
+  addValidation: PropTypes.bool,
   className: PropTypes.string,
 };
 
