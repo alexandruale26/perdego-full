@@ -4,7 +4,6 @@ import { Controller, FormProvider, useFormContext } from "react-hook-form";
 import PropTypes from "prop-types";
 
 import { cn } from "../../lib/utils.js";
-import { HideSensibleData } from "./input.jsx";
 import Label from "./label";
 
 // Root of <form> from RFH useFormContext/FormProvider
@@ -22,6 +21,7 @@ export const FormField = ({ ...props }) => {
 FormField.displayName = "FormField";
 FormField.propTypes = { name: PropTypes.string.isRequired };
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const useFormField = () => {
   const fieldContext = useContext(FormFieldContext);
   const itemContext = useContext(FormItemContext);
@@ -106,7 +106,7 @@ export const InputErrorMessage = ({ className, ...props }) => {
   return (
     <p
       id={formMessageId}
-      className={cn("text-sm text-destructive", className)}
+      className={cn("text-sm text-error", className)}
       {...props}
     >
       {errorMsg}

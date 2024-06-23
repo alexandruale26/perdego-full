@@ -14,12 +14,12 @@ const ChangePassword = () => {
       <BasicAuthenticateHeader title="Parolǎ nouǎ" />
 
       <AuthenticateFormBase handleSubmit={handleSubmit}>
-        <Input.Root>
+        <Input.SuperRoot>
           <Input.Field id="password" placeholder="Creeazǎ o parolǎ" />
-        </Input.Root>
-        <Input.Root>
+        </Input.SuperRoot>
+        <Input.SuperRoot>
           <Input.Field id="passwordConfirm" placeholder="Confirmǎ parola" />
-        </Input.Root>
+        </Input.SuperRoot>
 
         <Button type="submit" className="mx-10 my-8">
           Creeazǎ parolǎ nouǎ

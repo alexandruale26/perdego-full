@@ -19,9 +19,9 @@ const ForgotPassword = () => {
       </p>
 
       <AuthenticateFormBase handleSubmit={handleSubmit}>
-        <Input.Root>
+        <Input.SuperRoot>
           <Input.Field id="email" placeholder="Adresa ta de e-mail" />
-        </Input.Root>
+        </Input.SuperRoot>
 
         <Button type="submit" className="mx-10 my-8">
           Trimite

@@ -1,8 +1,10 @@
-import { forwardRef, useState } from "react";
+import { forwardRef } from "react";
 import PropTypes from "prop-types";
 import { cn } from "../../lib/utils";
 import { cva } from "class-variance-authority";
-import { X, Eye, EyeOff } from "lucide-react";
+import ClearField from "./shared/ClearField";
+import HideSensibleData from "./shared/HideSensibleData";
+import AddValidation from "./shared/AddValidation";
 import { useFormField } from "./form";
 
 const inputVariants = cva(
@@ -14,7 +16,7 @@ const inputVariants = cva(
         search: "bg-grey-6 rounded-md",
       },
       size: {
-        form: " h-14 pl-6 pr-14",
+        form: " h-14 pl-6 pr-22",
         search: " h-14 px-12",
       },
     },
@@ -25,13 +27,7 @@ const inputVariants = cva(
   },
 );
 
-export const Root = ({
-  children,
-  addSensible = false,
-  addClear = false,
-  addValidation = false,
-  className,
-}) => {
+export const Root = ({ children, addClear = false, className }) => {
   return (
     <div
       className={cn(
@@ -40,14 +36,50 @@ export const Root = ({
       )}
     >
       {children}
+      {addClear && <ClearField />}
     </div>
   );
 };
 Root.displayName = "Input.Root";
 Root.propTypes = {
   children: PropTypes.node.isRequired,
-  addSensible: PropTypes.bool,
   addClear: PropTypes.bool,
+  className: PropTypes.string,
+};
+
+export const SuperRoot = ({
+  children,
+  addSensible = false,
+  addValidation = true,
+  className,
+}) => {
+  const { name, error, invalid } = useFormField();
+
+  return (
+    <div
+      className={cn(
+        "relative w-full flex items-center justify-center",
+        className,
+      )}
+    >
+      {children}
+      {(addSensible || addValidation) && (
+        <ul className="flex items-center justify-end gap-2 absolute inset-y-0 right-4 shrink-0 top-1/2 -translate-y-1/2">
+          {addSensible && (
+            <HideSensibleData key={`hide-sensible-data-${name}`} name={name} />
+          )}
+          {addValidation && (
+            <AddValidation fieldValidity={{ error: error?.message, invalid }} />
+          )}
+        </ul>
+      )}
+    </div>
+  );
+};
+SuperRoot.displayName = "Input.SuperRoot";
+SuperRoot.propTypes = {
+  children: PropTypes.node.isRequired,
+  addSensible: PropTypes.bool,
   addValidation: PropTypes.bool,
   className: PropTypes.string,
 };
@@ -70,78 +102,4 @@ Field.propTypes = {
   type: PropTypes.string,
   variant: PropTypes.oneOf(["form", "search"]),
   size: PropTypes.oneOf(["form", "search"]),
-};
-
-export const ClearField = ({ className, ...props }) => {
-  const handleClick = (e) => {
-    const parent = e.currentTarget.parentNode;
-
-    if (!parent || !parent.classList.contains("input--root")) {
-      throw new Error("<Clear> element must be a direct child of <Root>");
-    }
-
-    const input = parent.querySelectorAll("input");
-    if (input.length !== 1) {
-      throw new Error("<Root> element must have only one <input> tag");
-    }
-
-    input[0].value = "";
-    input[0].focus();
-  };
-
-  return (
-    <button
-      onClick={handleClick}
-      className={cn(
-        "size-7 flex items-center justify-center p-0 rounded-full absolute inset-y-0 right-2 shrink-0 top-1/2 -translate-y-1/2",
-        className,
-      )}
-      {...props}
-    >
-      <X width={20} height={20} />
-    </button>
-  );
-};
-ClearField.displayName = "Input.ClearField";
-ClearField.propTypes = {
-  className: PropTypes.string,
-};
-
-const eyeIconSize = 24;
-
-export const HideSensibleData = ({ className, formItemId, ...props }) => {
-  const [hidden, setHidden] = useState(true);
-
-  const handleClick = () => {
-    const inputField = document.getElementById(formItemId);
-    const attributeValue = inputField.getAttribute("type");
-
-    if (attributeValue === "password") {
-      inputField.setAttribute("type", "text");
-      setHidden(false);
-    } else if (attributeValue === "text") {
-      inputField.setAttribute("type", "password");
-      setHidden(true);
-    }
-  };
-
-  return (
-    <button
-      // !!! don't ever forget type='button', <form> will think it's a submit button
-      type="button"
-      onClick={handleClick}
-      className={cn(
-        "size-7 flex items-center justify-center p-0 rounded-full absolute inset-y-0 right-4 shrink-0 top-1/2 -translate-y-1/2",
-        className,
-      )}
-      {...props}
-    >
-      {hidden ? <EyeOff size={eyeIconSize} /> : <Eye size={eyeIconSize} />}
-    </button>
-  );
-};
-HideSensibleData.displayName = "HideField";
-HideSensibleData.propTypes = {
-  className: PropTypes.string,
-  formItemId: PropTypes.string,
 };

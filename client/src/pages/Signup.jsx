@@ -1,5 +1,5 @@
 import Button from "../components/ui/button";
-import { Field as Input } from "../components/ui/input";
+import * as Input from "../components/ui/input";
 import AuthenticateHeader from "../components/authenticate/AuthenticateHeader";
 import AuthenticateFormBase from "../components/authenticate/AuthenticateFormBase";
 
@@ -37,7 +37,9 @@ const Signup = () => {
             render={({ field }) => (
               <FormItem>
                 <FormControl>
-                  <Input placeholder="Adresa ta de e-mail" {...field} />
+                  <Input.SuperRoot>
+                    <Input.Field placeholder="Adresa ta de e-mail" {...field} />
+                  </Input.SuperRoot>
                 </FormControl>
                 <InputErrorMessage />
               </FormItem>
@@ -50,11 +52,13 @@ const Signup = () => {
             render={({ field }) => (
               <FormItem>
                 <FormControl>
-                  <Input
-                    placeholder="Creeazǎ o parolǎ"
-                    {...field}
-                    type="password"
-                  />
+                  <Input.SuperRoot addSensible>
+                    <Input.Field
+                      placeholder="Creeazǎ o parolǎ"
+                      {...field}
+                      type="password"
+                    />
+                  </Input.SuperRoot>
                 </FormControl>
                 <InputErrorMessage />
               </FormItem>
@@ -67,11 +71,13 @@ const Signup = () => {
             render={({ field }) => (
               <FormItem>
                 <FormControl>
-                  <Input
-                    placeholder="Confirmǎ parola"
-                    {...field}
-                    type="password"
-                  />
+                  <Input.SuperRoot addSensible>
+                    <Input.Field
+                      placeholder="Confirmǎ parola"
+                      {...field}
+                      type="password"
+                    />
+                  </Input.SuperRoot>
                 </FormControl>
                 <InputErrorMessage />
               </FormItem>
@@ -84,7 +90,9 @@ const Signup = () => {
             render={({ field }) => (
               <FormItem>
                 <FormControl>
-                  <Input placeholder="Numele tǎu" {...field} />
+                  <Input.SuperRoot>
+                    <Input.Field placeholder="Numele tǎu" {...field} />
+                  </Input.SuperRoot>
                 </FormControl>
                 <InputErrorMessage />
               </FormItem>
@@ -97,7 +105,9 @@ const Signup = () => {
             render={({ field }) => (
               <FormItem>
                 <FormControl>
-                  <Input placeholder="Locație" {...field} />
+                  <Input.SuperRoot>
+                    <Input.Field placeholder="Locație" {...field} />
+                  </Input.SuperRoot>
                 </FormControl>
                 <InputErrorMessage />
               </FormItem>
@@ -110,7 +120,12 @@ const Signup = () => {
             render={({ field }) => (
               <FormItem>
                 <FormControl>
-                  <Input placeholder="Numarul tǎu de telefon" {...field} />
+                  <Input.SuperRoot>
+                    <Input.Field
+                      placeholder="Numarul tǎu de telefon"
+                      {...field}
+                    />
+                  </Input.SuperRoot>
                 </FormControl>
                 <InputErrorMessage />
               </FormItem>

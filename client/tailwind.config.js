@@ -84,11 +84,14 @@ module.exports = {
       borderRadius: {
         sm: "0.25rem", // 4px
       },
+      padding: {
+        22: "5.5rem", // 88px
+      },
       boxShadow: {
         lg: "6px 10px 15px rgba(0, 0, 0, 0.3)",
       },
       backgroundOpacity: {
-        96: "0.96",
+        98: "0.98",
       },
       keyframes: {
         "accordion-down": {
