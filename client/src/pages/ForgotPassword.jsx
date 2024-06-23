@@ -1,7 +1,7 @@
 import * as Input from "../components/ui/input";
 import BasicAuthenticateHeader from "../components/authenticate/BasicAuthenticateHeader";
 import AuthenticateFormBase from "../components/authenticate/AuthenticateFormBase";
-import Button from "../components/ui/button";
+import AuthButton from "../components/authenticate/AuthButton";
 
 import {
   Form,
@@ -54,9 +54,7 @@ const ForgotPassword = () => {
             )}
           />
 
-          <Button type="submit" className="mx-10 my-8">
-            Trimite
-          </Button>
+          <AuthButton title="Trimite" />
         </AuthenticateFormBase>
       </Form>
     </div>

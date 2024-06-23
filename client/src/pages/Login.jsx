@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
-import Button from "../components/ui/button";
 import * as Input from "../components/ui/input";
 import AuthenticateHeader from "../components/authenticate/AuthenticateHeader";
 import AuthenticateFormBase from "../components/authenticate/AuthenticateFormBase";
+import AuthButton from "../components/authenticate/AuthButton";
 
 import {
   Form,
@@ -72,9 +72,7 @@ const Login = () => {
             </strong>
           </span>
 
-          <Button type="submit" className="mx-10 my-8">
-            Intrǎ în cont
-          </Button>
+          <AuthButton title="Intrǎ în cont" />
         </AuthenticateFormBase>
       </Form>
     </div>

@@ -1,7 +1,7 @@
-import Button from "../components/ui/button";
 import * as Input from "../components/ui/input";
 import AuthenticateHeader from "../components/authenticate/AuthenticateHeader";
 import AuthenticateFormBase from "../components/authenticate/AuthenticateFormBase";
+import AuthButton from "../components/authenticate/AuthButton";
 
 import {
   Form,
@@ -132,9 +132,7 @@ const Signup = () => {
             )}
           />
 
-          <Button type="submit" className="mx-10 my-8">
-            Creeazǎ un cont
-          </Button>
+          <AuthButton title="Creeazǎ un cont" />
         </AuthenticateFormBase>
       </Form>
     </div>

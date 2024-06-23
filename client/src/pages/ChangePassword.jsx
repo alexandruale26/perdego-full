@@ -1,7 +1,7 @@
 import * as Input from "../components/ui/input";
 import BasicAuthenticateHeader from "../components/authenticate/BasicAuthenticateHeader";
 import AuthenticateFormBase from "../components/authenticate/AuthenticateFormBase";
-import Button from "../components/ui/button";
+import AuthButton from "../components/authenticate/AuthButton";
 
 import {
   Form,
@@ -77,9 +77,7 @@ const ChangePassword = () => {
             )}
           />
 
-          <Button type="submit" className="mx-10 my-8">
-            Creeazǎ parolǎ nouǎ
-          </Button>
+          <AuthButton title="Creeazǎ parolǎ nouǎ" />
         </AuthenticateFormBase>
       </Form>
     </div>
