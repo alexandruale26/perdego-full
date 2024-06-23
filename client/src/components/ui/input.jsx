@@ -53,7 +53,7 @@ export const SuperRoot = ({
   addValidation = true,
   className,
 }) => {
-  const { name, error, invalid } = useFormField();
+  const { name, error, invalid, isDirty } = useFormField();
 
   return (
     <div
@@ -69,7 +69,9 @@ export const SuperRoot = ({
             <HideSensibleData key={`hide-sensible-data-${name}`} name={name} />
           )}
           {addValidation && (
-            <AddValidation fieldValidity={{ error: error?.message, invalid }} />
+            <AddValidation
+              fieldValidity={{ error: error?.message, invalid, isDirty }}
+            />
           )}
         </ul>
       )}

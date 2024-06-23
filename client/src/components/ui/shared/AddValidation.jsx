@@ -3,10 +3,14 @@ import { Check, CircleAlert } from "lucide-react";
 
 const iconSize = 24;
 
-const AddValidation = ({ fieldValidity: { error, invalid } }) => {
-  if (!invalid) return null;
+const AddValidation = ({ fieldValidity: { error, invalid, isDirty } }) => {
+  if (!invalid && !isDirty) return null;
 
-  return error ? <CircleAlert size={iconSize} /> : <Check size={iconSize} />;
+  return error ? (
+    <CircleAlert size={iconSize} className="text-error" />
+  ) : (
+    <Check size={iconSize} className="text-success" />
+  );
 };
 AddValidation.displayName = "AddValidation";
 AddValidation.propTypes = {
@@ -24,6 +28,7 @@ AddValidation.propTypes = {
       );
     },
     invalid: PropTypes.bool.isRequired,
+    isDirty: PropTypes.bool.isRequired,
   }),
 };
 
