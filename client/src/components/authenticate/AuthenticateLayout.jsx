@@ -1,8 +1,8 @@
 import { Link, Outlet } from "react-router-dom";
 import { MoveLeft } from "lucide-react";
-import Button from "../components/ui/button";
+import Button from "../ui/button";
 
-const Authenticate = () => {
+const AuthenticateLayout = () => {
   return (
     <main className="min-w-full min-h-screen flex items-center bg-primary bg-authenticate bg-no-repeat bg-center bg-cover">
       <div className="absolute right-0 -translate-x-1/4">
@@ -33,6 +33,6 @@ const Authenticate = () => {
     </main>
   );
 };
-Authenticate.displayName = "Authenticate";
+AuthenticateLayout.displayName = "AuthenticateLayout";
 
-export default Authenticate;
+export default AuthenticateLayout;

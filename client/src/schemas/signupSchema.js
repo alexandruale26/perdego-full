@@ -11,7 +11,7 @@ export const signupSchema = z
     email: emailSchema,
     password: passwordSchema,
     phone: phoneSchema,
-    passwordConfirm: z.string().min(1, { message: "Reintrodu parola" }),
+    passwordConfirm: z.string().min(1, { message: "Confirmǎ parola" }),
     name: nameSchema,
     location: z.string().refine((value) => locationOptions.includes(value), {
       message: "Alege o locație",

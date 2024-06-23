@@ -3,7 +3,7 @@ import Home from "./pages/Home";
 import About from "./pages/About";
 import Dashboard from "./pages/Dashboard";
 import NewPost from "./pages/NewPost";
-import Authenticate from "./pages/Authenticate";
+import AuthenticateLayout from "./components/authenticate/AuthenticateLayout";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import ForgotPassword from "./pages/ForgotPassword";
@@ -22,7 +22,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    element: <Authenticate />,
+    element: <AuthenticateLayout />,
     children: [
       {
         path: "/cont-nou",

@@ -3,11 +3,30 @@ import BasicAuthenticateHeader from "../components/authenticate/BasicAuthenticat
 import AuthenticateFormBase from "../components/authenticate/AuthenticateFormBase";
 import Button from "../components/ui/button";
 
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  InputErrorMessage,
+} from "../components/ui/form";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import {
+  forgotPasswordSchema,
+  defaultValues,
+} from "../schemas/forgotPasswordSchema.js";
+
 const ForgotPassword = () => {
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("submitted");
-  };
+  const form = useForm({
+    resolver: zodResolver(forgotPasswordSchema),
+    defaultValues,
+    mode: "onChange",
+  });
+
+  function onSubmit(values) {
+    console.log(values);
+  }
 
   return (
     <div>
@@ -18,15 +37,28 @@ const ForgotPassword = () => {
         schimbare a parolei.
       </p>
 
-      <AuthenticateFormBase handleSubmit={handleSubmit}>
-        <Input.SuperRoot>
-          <Input.Field id="email" placeholder="Adresa ta de e-mail" />
-        </Input.SuperRoot>
+      <Form {...form}>
+        <AuthenticateFormBase handleSubmit={form.handleSubmit(onSubmit)}>
+          <FormField
+            control={form.control}
+            name="email"
+            render={({ field }) => (
+              <FormItem>
+                <FormControl>
+                  <Input.SuperRoot>
+                    <Input.Field placeholder="Adresa ta de e-mail" {...field} />
+                  </Input.SuperRoot>
+                </FormControl>
+                <InputErrorMessage />
+              </FormItem>
+            )}
+          />
 
-        <Button type="submit" className="mx-10 my-8">
-          Trimite
-        </Button>
-      </AuthenticateFormBase>
+          <Button type="submit" className="mx-10 my-8">
+            Trimite
+          </Button>
+        </AuthenticateFormBase>
+      </Form>
     </div>
   );
 };

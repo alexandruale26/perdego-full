@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import Button from "../components/ui/button";
-import { Field as Input } from "../components/ui/input";
+import * as Input from "../components/ui/input";
 import AuthenticateHeader from "../components/authenticate/AuthenticateHeader";
 import AuthenticateFormBase from "../components/authenticate/AuthenticateFormBase";
 
@@ -38,7 +38,9 @@ const Login = () => {
             render={({ field }) => (
               <FormItem>
                 <FormControl>
-                  <Input placeholder="Adresa ta de e-mail" {...field} />
+                  <Input.SuperRoot>
+                    <Input.Field placeholder="Adresa ta de e-mail" {...field} />
+                  </Input.SuperRoot>
                 </FormControl>
                 <InputErrorMessage />
               </FormItem>
@@ -51,11 +53,13 @@ const Login = () => {
             render={({ field }) => (
               <FormItem>
                 <FormControl>
-                  <Input
-                    placeholder="Introdu parola"
-                    type="password"
-                    {...field}
-                  />
+                  <Input.SuperRoot addSensible>
+                    <Input.Field
+                      placeholder="Introdu parola"
+                      type="password"
+                      {...field}
+                    />
+                  </Input.SuperRoot>
                 </FormControl>
                 <InputErrorMessage />
               </FormItem>

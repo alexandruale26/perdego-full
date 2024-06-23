@@ -3,28 +3,85 @@ import BasicAuthenticateHeader from "../components/authenticate/BasicAuthenticat
 import AuthenticateFormBase from "../components/authenticate/AuthenticateFormBase";
 import Button from "../components/ui/button";
 
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  InputErrorMessage,
+} from "../components/ui/form";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import {
+  changePasswordSchema,
+  defaultValues,
+} from "../schemas/changePasswordSchema.js";
+
 const ChangePassword = () => {
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("submitted");
-  };
+  const form = useForm({
+    resolver: zodResolver(changePasswordSchema),
+    defaultValues,
+    mode: "onChange",
+  });
+
+  function onSubmit(values) {
+    console.log(values);
+  }
 
   return (
     <div>
       <BasicAuthenticateHeader title="Parolǎ nouǎ" />
 
-      <AuthenticateFormBase handleSubmit={handleSubmit}>
-        <Input.SuperRoot>
-          <Input.Field id="password" placeholder="Creeazǎ o parolǎ" />
-        </Input.SuperRoot>
-        <Input.SuperRoot>
-          <Input.Field id="passwordConfirm" placeholder="Confirmǎ parola" />
-        </Input.SuperRoot>
+      <p className="tracking-wide leading-relaxed mt-8">
+        Te rugăm să introduci noua parolă pentru contul tău în câmpurile de mai
+        jos.
+      </p>
 
-        <Button type="submit" className="mx-10 my-8">
-          Creeazǎ parolǎ nouǎ
-        </Button>
-      </AuthenticateFormBase>
+      <Form {...form}>
+        <AuthenticateFormBase handleSubmit={form.handleSubmit(onSubmit)}>
+          <FormField
+            control={form.control}
+            name="password"
+            render={({ field }) => (
+              <FormItem>
+                <FormControl>
+                  <Input.SuperRoot addSensible>
+                    <Input.Field
+                      placeholder="Creeazǎ o parolǎ"
+                      {...field}
+                      type="password"
+                    />
+                  </Input.SuperRoot>
+                </FormControl>
+                <InputErrorMessage />
+              </FormItem>
+            )}
+          />
+
+          <FormField
+            control={form.control}
+            name="passwordConfirm"
+            render={({ field }) => (
+              <FormItem>
+                <FormControl>
+                  <Input.SuperRoot addSensible>
+                    <Input.Field
+                      placeholder="Confirmǎ parola"
+                      {...field}
+                      type="password"
+                    />
+                  </Input.SuperRoot>
+                </FormControl>
+                <InputErrorMessage />
+              </FormItem>
+            )}
+          />
+
+          <Button type="submit" className="mx-10 my-8">
+            Creeazǎ parolǎ nouǎ
+          </Button>
+        </AuthenticateFormBase>
+      </Form>
     </div>
   );
 };

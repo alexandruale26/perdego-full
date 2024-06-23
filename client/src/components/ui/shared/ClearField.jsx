@@ -2,6 +2,8 @@ import PropTypes from "prop-types";
 import { cn } from "../../../lib/utils.js";
 import { X } from "lucide-react";
 
+const iconSize = 24;
+
 export const ClearField = ({ className, ...props }) => {
   const handleClick = (e) => {
     const parent = e.currentTarget.parentNode;
@@ -28,7 +30,7 @@ export const ClearField = ({ className, ...props }) => {
       )}
       {...props}
     >
-      <X width={24} height={24} />
+      <X size={iconSize} />
     </button>
   );
 };
