@@ -4,7 +4,10 @@ import passwordSchema from "./validation/passwordSchema";
 export const changePasswordSchema = z
   .object({
     password: passwordSchema,
-    passwordConfirm: z.string().min(1, { message: "Confirmǎ noua parolǎ" }),
+    passwordConfirm: z
+      .string()
+      .min(1, { message: "Confirmǎ noua parolǎ" })
+      .trim(),
   })
   .superRefine(({ password, passwordConfirm }, ctx) => {
     if (password !== passwordConfirm) {

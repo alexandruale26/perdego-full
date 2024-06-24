@@ -6,16 +6,11 @@ import nameSchema from "./validation/nameSchema";
 
 const locationOptions = ["ale"];
 
-export const signupSchema = z
+export const signupAccountSchema = z
   .object({
     email: emailSchema,
     password: passwordSchema,
-    phone: phoneSchema,
-    passwordConfirm: z.string().min(1, { message: "Confirmǎ parola" }),
-    name: nameSchema,
-    location: z.string().refine((value) => locationOptions.includes(value), {
-      message: "Alege o locație",
-    }),
+    passwordConfirm: z.string().min(1, { message: "Confirmǎ parola" }).trim(),
   })
   .superRefine(({ password, passwordConfirm }, ctx) => {
     if (password !== passwordConfirm) {
@@ -26,6 +21,14 @@ export const signupSchema = z
       });
     }
   });
+
+export const signupProfileSchema = z.object({
+  phone: phoneSchema,
+  name: nameSchema,
+  location: z.string().refine((value) => locationOptions.includes(value), {
+    message: "Alege o locație",
+  }),
+});
 
 export const defaultValues = {
   email: "",

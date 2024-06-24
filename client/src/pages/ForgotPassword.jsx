@@ -47,7 +47,7 @@ const ForgotPassword = () => {
               <FormItem>
                 <FormControl>
                   <Input.SuperRoot>
-                    <Input.Field placeholder="Adresa ta de e-mail" {...field} />
+                    <Input.Field placeholder="E-mail" {...field} />
                   </Input.SuperRoot>
                 </FormControl>
                 <InputErrorMessage />

@@ -39,7 +39,7 @@ const Login = () => {
               <FormItem>
                 <FormControl>
                   <Input.SuperRoot>
-                    <Input.Field placeholder="Adresa ta de e-mail" {...field} />
+                    <Input.Field placeholder="E-mail" {...field} />
                   </Input.SuperRoot>
                 </FormControl>
                 <InputErrorMessage />
@@ -55,7 +55,7 @@ const Login = () => {
                 <FormControl>
                   <Input.SuperRoot addSensible>
                     <Input.Field
-                      placeholder="Introdu parola"
+                      placeholder="Parolǎ"
                       type="password"
                       {...field}
                     />
