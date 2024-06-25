@@ -78,7 +78,11 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
-  return <RouterProvider router={router} />;
+  // return <RouterProvider router={router} />;
+
+  return (
+    <div className="w-full h-screen flex items-center justify-center">ham</div>
+  );
 }
 App.displayName = "App";
 

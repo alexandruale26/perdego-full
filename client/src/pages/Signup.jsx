@@ -53,7 +53,7 @@ const Signup = () => {
       <AuthHeader defaultValue="cont-nou" />
 
       <AuthParagraph className="text-md font-bold">
-        {step === 1 ? "Autentificare" : "Profil"}
+        {step === 1 ? "Contul tǎu" : "Profilul tǎu"}
       </AuthParagraph>
 
       <Form {...form}>
