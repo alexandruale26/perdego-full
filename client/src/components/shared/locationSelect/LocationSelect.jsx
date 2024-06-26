@@ -4,8 +4,11 @@ import AsyncSelect from "react-select/async";
 import { X, ChevronDown } from "lucide-react";
 import judete from "./judete";
 
+// TODO: put localitati alfabetic from localitati folder desktop - > or sort them here
+
 const LocationSelect = () => {
   const [cities, setCities] = useState(null);
+  const [latestOptions, setLatestOptions] = useState([]);
   const [debounceTimer, setDebounceTimer] = useState(null);
 
   useEffect(() => {
@@ -55,7 +58,7 @@ const LocationSelect = () => {
         return j.name.toLowerCase().includes(inputValue.toLowerCase());
       });
 
-      const localitatiResults = cities.filter((c) =>
+      const filteredLocalitati = cities.filter((c) =>
         c.name.toLowerCase().includes(inputValue.toLowerCase()),
       );
 
@@ -66,14 +69,19 @@ const LocationSelect = () => {
         },
         {
           label: "Localități",
-          options: localitatiResults.map((l) => ({
+          options: filteredLocalitati.map((l) => ({
             value: l.id,
             label: l.name,
           })),
         },
       ];
 
-      callback(options);
+      if (filteredLocalitati.length > 0 || filteredJudete.length > 0) {
+        setLatestOptions(options);
+        return callback(options);
+      }
+
+      callback(latestOptions);
     }, 300);
 
     setDebounceTimer(debounce);
