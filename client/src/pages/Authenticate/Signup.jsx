@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
-import * as Input from "../components/ui/input";
-import AuthHeader from "../components/authenticate/AuthHeader";
-import AuthFormBase from "../components/authenticate/AuthFormBase";
-import AuthButton from "../components/authenticate/AuthButton";
-import AuthParagraph from "../components/authenticate/AuthParagraph";
+import * as Input from "../../components/ui/input";
+import AuthHeader from "./components/AuthHeader";
+import AuthFormBase from "./components/AuthFormBase";
+import AuthButton from "./components/AuthButton";
+import AuthParagraph from "./components/AuthParagraph";
 
 import {
   Form,
@@ -11,14 +11,14 @@ import {
   FormField,
   FormItem,
   InputErrorMessage,
-} from "../components/ui/form";
+} from "../../components/ui/form.jsx";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
   signupProfileSchema,
   signupAccountSchema,
   defaultValues,
-} from "../schemas/signupSchema.js";
+} from "../../schemas/signupSchema.js";
 
 const Signup = () => {
   const [step, setStep] = useState(1);

@@ -1,5 +1,6 @@
 {
   "Alba": {
+    "id": "alba-judet",
     "localitati": [
       {
         "id": "abrud-j_alba",
@@ -289,10 +290,10 @@
         "id": "sugag-j_alba",
         "name": "Sugag"
       }
-    ],
-    "id": "alba-judet"
+    ]
   },
   "Arad": {
+    "id": "arad-judet",
     "localitati": [
       {
         "id": "almas-j_arad",
@@ -590,10 +591,10 @@
         "id": "sofronea-j_arad",
         "name": "Sofronea"
       }
-    ],
-    "id": "arad-judet"
+    ]
   },
   "Arges": {
+    "id": "arges-judet",
     "localitati": [
       {
         "id": "albota-j_arges",
@@ -959,10 +960,10 @@
         "id": "titesti-j_arges",
         "name": "Titesti"
       }
-    ],
-    "id": "arges-judet"
+    ]
   },
   "Bacau": {
+    "id": "bacau-judet",
     "localitati": [
       {
         "id": "agas-j_bacau",
@@ -1304,10 +1305,10 @@
         "id": "stefan-cel-mare-j_bacau",
         "name": "Stefan cel Mare"
       }
-    ],
-    "id": "bacau-judet"
+    ]
   },
   "Bihor": {
+    "id": "bihor-judet",
     "localitati": [
       {
         "id": "abram-j_bihor",
@@ -1709,10 +1710,10 @@
         "id": "tetchea-j_bihor",
         "name": "Tetchea"
       }
-    ],
-    "id": "bihor-judet"
+    ]
   },
   "Bistrita-Nasaud": {
+    "id": "bistrita-nasaud-judet",
     "localitati": [
       {
         "id": "beclean-j_bistrita-nasaud",
@@ -1934,10 +1935,10 @@
         "id": "sintereag-j_bistrita-nasaud",
         "name": "Sintereag"
       }
-    ],
-    "id": "bistrita-nasaud-judet"
+    ]
   },
   "Botosani": {
+    "id": "botosani-judet",
     "localitati": [
       {
         "id": "albesti-j_botosani",
@@ -2239,10 +2240,10 @@
         "id": "stiubieni-j_botosani",
         "name": "Stiubieni"
       }
-    ],
-    "id": "botosani-judet"
+    ]
   },
   "Braila": {
+    "id": "braila-judet",
     "localitati": [
       {
         "id": "bertestii-de-jos-j_braila",
@@ -2420,10 +2421,10 @@
         "id": "sutesti-j_braila",
         "name": "Sutesti"
       }
-    ],
-    "id": "braila-judet"
+    ]
   },
   "Brasov": {
+    "id": "brasov-judet",
     "localitati": [
       {
         "id": "apata-j_brasov",
@@ -2621,10 +2622,10 @@
         "id": "soars-j_brasov",
         "name": "Soars"
       }
-    ],
-    "id": "brasov-judet"
+    ]
   },
   "Bucuresti": {
+    "id": "bucuresti-judet",
     "localitati": [
       {
         "id": "sector-1-j_bucuresti",
@@ -2650,10 +2651,10 @@
         "id": "sector-6-j_bucuresti",
         "name": "Sector 6"
       }
-    ],
-    "id": "bucuresti-judet"
+    ]
   },
   "Buzau": {
+    "id": "buzau-judet",
     "localitati": [
       {
         "id": "amaru-j_buzau",
@@ -2987,10 +2988,10 @@
         "id": "tintesti-j_buzau",
         "name": "Tintesti"
       }
-    ],
-    "id": "buzau-judet"
+    ]
   },
   "Calarasi": {
+    "id": "calarasi-judet",
     "localitati": [
       {
         "id": "alexandru-odobescu-j_calarasi",
@@ -3200,10 +3201,10 @@
         "id": "stefan-cel-mare-j_calarasi",
         "name": "Stefan cel Mare"
       }
-    ],
-    "id": "calarasi-judet"
+    ]
   },
   "Caras-Severin": {
+    "id": "caras-severin-judet",
     "localitati": [
       {
         "id": "anina-j_caras-severin",
@@ -3509,10 +3510,10 @@
         "id": "sopotu-nou-j_caras-severin",
         "name": "Sopotu Nou"
       }
-    ],
-    "id": "caras-severin-judet"
+    ]
   },
   "Cluj": {
+    "id": "cluj-judet",
     "localitati": [
       {
         "id": "aghiresu-j_cluj",
@@ -3830,10 +3831,10 @@
         "id": "taga-j_cluj",
         "name": "Taga"
       }
-    ],
-    "id": "cluj-judet"
+    ]
   },
   "Constanta": {
+    "id": "constanta-judet",
     "localitati": [
       {
         "id": "23-august-j_constanta",
@@ -4091,10 +4092,10 @@
         "id": "vulturu-j_constanta",
         "name": "Vulturu"
       }
-    ],
-    "id": "constanta-judet"
+    ]
   },
   "Covasna": {
+    "id": "covasna-judet",
     "localitati": [
       {
         "id": "aita-mare-j_covasna",
@@ -4240,10 +4241,10 @@
         "id": "intorsura-buzaului-j_covasna",
         "name": "Intorsura Buzaului"
       }
-    ],
-    "id": "covasna-judet"
+    ]
   },
   "Dambovita": {
+    "id": "dambovita-judet",
     "localitati": [
       {
         "id": "aninoasa-j_dambovita",
@@ -4545,10 +4546,10 @@
         "id": "sotanga-j_dambovita",
         "name": "Sotanga"
       }
-    ],
-    "id": "dambovita-judet"
+    ]
   },
   "Dolj": {
+    "id": "dolj-judet",
     "localitati": [
       {
         "id": "afumati-j_dolj",
@@ -4934,10 +4935,10 @@
         "id": "tuglui-j_dolj",
         "name": "Tuglui"
       }
-    ],
-    "id": "dolj-judet"
+    ]
   },
   "Galati": {
+    "id": "galati-judet",
     "localitati": [
       {
         "id": "barcea-j_galati",
@@ -5179,10 +5180,10 @@
         "id": "tepu-j_galati",
         "name": "Tepu"
       }
-    ],
-    "id": "galati-judet"
+    ]
   },
   "Giurgiu": {
+    "id": "giurgiu-judet",
     "localitati": [
       {
         "id": "adunatii-copaceni-j_giurgiu",
@@ -5380,10 +5381,10 @@
         "id": "varasti-j_giurgiu",
         "name": "Varasti"
       }
-    ],
-    "id": "giurgiu-judet"
+    ]
   },
   "Gorj": {
+    "id": "gorj-judet",
     "localitati": [
       {
         "id": "albeni-j_gorj",
@@ -5653,10 +5654,10 @@
         "id": "tantareni-j_gorj",
         "name": "Tantareni"
       }
-    ],
-    "id": "gorj-judet"
+    ]
   },
   "Harghita": {
+    "id": "harghita-judet",
     "localitati": [
       {
         "id": "atid-j_harghita",
@@ -5898,10 +5899,10 @@
         "id": "simonesti-j_harghita",
         "name": "Simonesti"
       }
-    ],
-    "id": "harghita-judet"
+    ]
   },
   "Hunedoara": {
+    "id": "hunedoara-judet",
     "localitati": [
       {
         "id": "aninoasa-j_hunedoara",
@@ -6179,10 +6180,10 @@
         "id": "soimus-j_hunedoara",
         "name": "Soimus"
       }
-    ],
-    "id": "hunedoara-judet"
+    ]
   },
   "Ialomita": {
+    "id": "ialomita-judet",
     "localitati": [
       {
         "id": "adancata-j_ialomita",
@@ -6400,10 +6401,10 @@
         "id": "tandarei-j_ialomita",
         "name": "Tandarei"
       }
-    ],
-    "id": "ialomita-judet"
+    ]
   },
   "Iasi": {
+    "id": "iasi-judet",
     "localitati": [
       {
         "id": "alexandru-i.-cuza-j_iasi",
@@ -6777,10 +6778,10 @@
         "id": "tutora-j_iasi",
         "name": "Tutora"
       }
-    ],
-    "id": "iasi-judet"
+    ]
   },
   "Ilfov": {
+    "id": "ilfov-judet",
     "localitati": [
       {
         "id": "1-decembrie-j_ilfov",
@@ -6934,10 +6935,10 @@
         "id": "stefanestii-de-jos-j_ilfov",
         "name": "Stefanestii de Jos"
       }
-    ],
-    "id": "ilfov-judet"
+    ]
   },
   "Maramures": {
+    "id": "maramures-judet",
     "localitati": [
       {
         "id": "ardusat-j_maramures",
@@ -7227,10 +7228,10 @@
         "id": "somcuta-mare-j_maramures",
         "name": "Somcuta Mare"
       }
-    ],
-    "id": "maramures-judet"
+    ]
   },
   "Mehedinti": {
+    "id": "mehedinti-judet",
     "localitati": [
       {
         "id": "baia-de-arama-j_mehedinti",
@@ -7480,10 +7481,10 @@
         "id": "sovarna-j_mehedinti",
         "name": "Sovarna"
       }
-    ],
-    "id": "mehedinti-judet"
+    ]
   },
   "Mures": {
+    "id": "mures-judet",
     "localitati": [
       {
         "id": "acatari-j_mures",
@@ -7873,10 +7874,10 @@
         "id": "saulia-j_mures",
         "name": "Saulia"
       }
-    ],
-    "id": "mures-judet"
+    ]
   },
   "Neamt": {
+    "id": "neamt-judet",
     "localitati": [
       {
         "id": "agapia-j_neamt",
@@ -8174,10 +8175,10 @@
         "id": "tibucani-j_neamt",
         "name": "Tibucani"
       }
-    ],
-    "id": "neamt-judet"
+    ]
   },
   "Olt": {
+    "id": "olt-judet",
     "localitati": [
       {
         "id": "baldovinesti-j_olt",
@@ -8567,10 +8568,10 @@
         "id": "stefan-cel-mare-j_olt",
         "name": "Stefan cel Mare"
       }
-    ],
-    "id": "olt-judet"
+    ]
   },
   "Prahova": {
+    "id": "prahova-judet",
     "localitati": [
       {
         "id": "adunati-j_prahova",
@@ -8916,10 +8917,10 @@
         "id": "stefesti-j_prahova",
         "name": "Stefesti"
       }
-    ],
-    "id": "prahova-judet"
+    ]
   },
   "Salaj": {
+    "id": "salaj-judet",
     "localitati": [
       {
         "id": "agrij-j_salaj",
@@ -9161,10 +9162,10 @@
         "id": "sarmasag-j_salaj",
         "name": "Sarmasag"
       }
-    ],
-    "id": "salaj-judet"
+    ]
   },
   "Satu Mare": {
+    "id": "satu-mare-judet",
     "localitati": [
       {
         "id": "andrid-j_satu-mare",
@@ -9386,10 +9387,10 @@
         "id": "viile-satu-mare-j_satu-mare",
         "name": "Viile Satu Mare"
       }
-    ],
-    "id": "satu-mare-judet"
+    ]
   },
   "Sibiu": {
+    "id": "sibiu-judet",
     "localitati": [
       {
         "id": "agnita-j_sibiu",
@@ -9635,10 +9636,10 @@
         "id": "sura-mica-j_sibiu",
         "name": "Sura Mica"
       }
-    ],
-    "id": "sibiu-judet"
+    ]
   },
   "Suceava": {
+    "id": "suceava-judet",
     "localitati": [
       {
         "id": "adancata-j_suceava",
@@ -10052,10 +10053,10 @@
         "id": "serbauti-j_suceava",
         "name": "Serbauti"
       }
-    ],
-    "id": "suceava-judet"
+    ]
   },
   "Teleorman": {
+    "id": "teleorman-judet",
     "localitati": [
       {
         "id": "alexandria-j_teleorman",
@@ -10389,10 +10390,10 @@
         "id": "tiganesti-j_teleorman",
         "name": "Tiganesti"
       }
-    ],
-    "id": "teleorman-judet"
+    ]
   },
   "Timis": {
+    "id": "timis-judet",
     "localitati": [
       {
         "id": "balint-j_timis",
@@ -10722,10 +10723,10 @@
         "id": "stiuca-j_timis",
         "name": "Stiuca"
       }
-    ],
-    "id": "timis-judet"
+    ]
   },
   "Tulcea": {
+    "id": "tulcea-judet",
     "localitati": [
       {
         "id": "babadag-j_tulcea",
@@ -10923,10 +10924,10 @@
         "id": "vacareni-j_tulcea",
         "name": "Vacareni"
       }
-    ],
-    "id": "tulcea-judet"
+    ]
   },
   "Valcea": {
+    "id": "valcea-judet",
     "localitati": [
       {
         "id": "alunu-j_valcea",
@@ -11236,10 +11237,10 @@
         "id": "susani-j_valcea",
         "name": "Susani"
       }
-    ],
-    "id": "valcea-judet"
+    ]
   },
   "Vaslui": {
+    "id": "vaslui-judet",
     "localitati": [
       {
         "id": "albesti-j_vaslui",
@@ -11529,10 +11530,10 @@
         "id": "suletea-j_vaslui",
         "name": "Suletea"
       }
-    ],
-    "id": "vaslui-judet"
+    ]
   },
   "Vrancea": {
+    "id": "vrancea-judet",
     "localitati": [
       {
         "id": "adjud-j_vrancea",
@@ -11798,7 +11799,6 @@
         "id": "tifesti-j_vrancea",
         "name": "Tifesti"
       }
-    ],
-    "id": "vrancea-judet"
+    ]
   }
 }

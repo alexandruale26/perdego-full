@@ -31,6 +31,7 @@ export const HideSensibleData = ({ className, name, ...props }) => {
     <button
       type="button"
       onClick={handleClick}
+      tabIndex={-1}
       className={cn("size-7 p-0 rounded-full", className)}
       {...props}
     >

@@ -1,170 +1,170 @@
 const counties = [
   {
-    id: "alba",
+    id: "j_alba",
     name: "Alba",
   },
   {
-    id: "arad",
+    id: "j_arad",
     name: "Arad",
   },
   {
-    id: "arges",
+    id: "j_arges",
     name: "Arges",
   },
   {
-    id: "bacau",
+    id: "j_bacau",
     name: "Bacau",
   },
   {
-    id: "bihor",
+    id: "j_bihor",
     name: "Bihor",
   },
   {
-    id: "bistrita-nasaud",
+    id: "j_bistrita-nasaud",
     name: "Bistrita-Nasaud",
   },
   {
-    id: "botosani",
+    id: "j_botosani",
     name: "Botosani",
   },
   {
-    id: "braila",
+    id: "j_braila",
     name: "Braila",
   },
   {
-    id: "brasov",
+    id: "j_brasov",
     name: "Brasov",
   },
   {
-    id: "bucuresti",
+    id: "j_bucuresti",
     name: "Bucuresti",
   },
   {
-    id: "buzau",
+    id: "j_buzau",
     name: "Buzau",
   },
   {
-    id: "calarasi",
+    id: "j_calarasi",
     name: "Calarasi",
   },
   {
-    id: "caras-severin",
+    id: "j_caras-severin",
     name: "Caras-Severin",
   },
   {
-    id: "cluj",
+    id: "j_cluj",
     name: "Cluj",
   },
   {
-    id: "constanta",
+    id: "j_constanta",
     name: "Constanta",
   },
   {
-    id: "covasna",
+    id: "j_covasna",
     name: "Covasna",
   },
   {
-    id: "dambovita",
+    id: "j_dambovita",
     name: "Dambovita",
   },
   {
-    id: "dolj",
+    id: "j_dolj",
     name: "Dolj",
   },
   {
-    id: "galati",
+    id: "j_galati",
     name: "Galati",
   },
   {
-    id: "giurgiu",
+    id: "j_giurgiu",
     name: "Giurgiu",
   },
   {
-    id: "gorj",
+    id: "j_gorj",
     name: "Gorj",
   },
   {
-    id: "harghita",
+    id: "j_harghita",
     name: "Harghita",
   },
   {
-    id: "hunedoara",
+    id: "j_hunedoara",
     name: "Hunedoara",
   },
   {
-    id: "ialomita",
+    id: "j_ialomita",
     name: "Ialomita",
   },
   {
-    id: "iasi",
+    id: "j_iasi",
     name: "Iasi",
   },
   {
-    id: "ilfov",
+    id: "j_ilfov",
     name: "Ilfov",
   },
   {
-    id: "maramures",
+    id: "j_maramures",
     name: "Maramures",
   },
   {
-    id: "mehedinti",
+    id: "j_mehedinti",
     name: "Mehedinti",
   },
   {
-    id: "mures",
+    id: "j_mures",
     name: "Mures",
   },
   {
-    id: "neamt",
+    id: "j_neamt",
     name: "Neamt",
   },
   {
-    id: "olt",
+    id: "j_olt",
     name: "Olt",
   },
   {
-    id: "prahova",
+    id: "j_prahova",
     name: "Prahova",
   },
   {
-    id: "salaj",
+    id: "j_salaj",
     name: "Salaj",
   },
   {
-    id: "satu-mare",
+    id: "j_satu-mare",
     name: "Satu Mare",
   },
   {
-    id: "sibiu",
+    id: "j_sibiu",
     name: "Sibiu",
   },
   {
-    id: "suceava",
+    id: "j_suceava",
     name: "Suceava",
   },
   {
-    id: "teleorman",
+    id: "j_teleorman",
     name: "Teleorman",
   },
   {
-    id: "timis",
+    id: "j_timis",
     name: "Timis",
   },
   {
-    id: "tulcea",
+    id: "j_tulcea",
     name: "Tulcea",
   },
   {
-    id: "valcea",
+    id: "j_valcea",
     name: "Valcea",
   },
   {
-    id: "vaslui",
+    id: "j_vaslui",
     name: "Vaslui",
   },
   {
-    id: "vrancea",
+    id: "j_vrancea",
     name: "Vrancea",
   },
 ];

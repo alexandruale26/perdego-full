@@ -1,9 +1,9 @@
-import SearchBar from "../components/Home/SearchBar";
-import PostSteps from "../components/Home/PostSteps";
-import PerdegoTip from "../components/Home/PerdegoTip";
-import ObjectCategories from "../components/Home/ObjectCategories";
-import LatestPosts from "../components/Home/LatestPosts";
-import LeaveAReview from "../components/Home/LeaveAReview";
+import SearchBar from "./SearchBar";
+import PostSteps from "./PostSteps";
+import PerdegoTip from "./PerdegoTip";
+import ObjectCategories from "./ObjectCategories";
+import LatestPosts from "./LatestPosts";
+import LeaveAReview from "./LeaveAReview";
 
 const Home = () => {
   return (

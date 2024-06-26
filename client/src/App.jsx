@@ -1,16 +1,18 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Home from "./pages/Home";
+import Home from "./pages/Home/Home";
 import About from "./pages/About";
 import Dashboard from "./pages/Dashboard";
 import NewPost from "./pages/NewPost";
-import AuthenticateLayout from "./components/authenticate/AuthenticateLayout";
-import Login from "./pages/Login";
-import Signup from "./pages/Signup";
-import ForgotPassword from "./pages/ForgotPassword";
-import ChangePassword from "./pages/ChangePassword";
+import AuthenticateLayout from "./pages/Authenticate/components/AuthenticateLayout";
+import Login from "./pages/Authenticate/Login";
+import Signup from "./pages/Authenticate/Signup";
+import ForgotPassword from "./pages/Authenticate/ForgotPassword";
+import ChangePassword from "./pages/Authenticate/ChangePassword";
 import AppLayout from "./components/AppLayout";
 import RouteProtector from "./components/RouteProtector";
 import TermsAndConditions from "./pages/TermsAndConditions";
+
+import LocationSelect from "./components/ui/shared/LocationSelect";
 
 const router = createBrowserRouter([
   {
@@ -81,7 +83,11 @@ function App() {
   // return <RouterProvider router={router} />;
 
   return (
-    <div className="w-full h-screen flex items-center justify-center">ham</div>
+    <div className="w-full h-screen flex items-center justify-center">
+      <div className="w-[300px]">
+        <LocationSelect />
+      </div>
+    </div>
   );
 }
 App.displayName = "App";

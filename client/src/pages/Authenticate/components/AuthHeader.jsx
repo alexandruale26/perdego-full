@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
-import * as Selector from "../ui/selector";
+import * as Selector from "../../../components/ui/selector";
 
 const AuthHeader = ({ defaultValue }) => {
   return (

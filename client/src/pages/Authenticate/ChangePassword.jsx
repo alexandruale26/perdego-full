@@ -1,8 +1,8 @@
-import { Link } from "react-router-dom";
-import * as Input from "../components/ui/input";
-import AuthHeader from "../components/authenticate/AuthHeader";
-import AuthFormBase from "../components/authenticate/AuthFormBase";
-import AuthButton from "../components/authenticate/AuthButton";
+import * as Input from "../../components/ui/input";
+import BasicAuthHeader from "./components/BasicAuthHeader";
+import AuthFormBase from "./components/AuthFormBase";
+import AuthButton from "./components/AuthButton";
+import AuthParagraph from "./components/AuthParagraph";
 
 import {
   Form,
@@ -10,14 +10,17 @@ import {
   FormField,
   FormItem,
   InputErrorMessage,
-} from "../components/ui/form";
+} from "../../components/ui/form.jsx";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { loginSchema, defaultValues } from "../schemas/loginSchema";
+import {
+  changePasswordSchema,
+  defaultValues,
+} from "../../schemas/changePasswordSchema.js";
 
-const Login = () => {
+const ChangePassword = () => {
   const form = useForm({
-    resolver: zodResolver(loginSchema),
+    resolver: zodResolver(changePasswordSchema),
     defaultValues,
     mode: "onChange",
   });
@@ -28,25 +31,15 @@ const Login = () => {
 
   return (
     <div>
-      <AuthHeader defaultValue="autentificare" />
+      <BasicAuthHeader title="Parolǎ nouǎ" />
+
+      <AuthParagraph>
+        Te rugăm să introduci noua parolă pentru contul tău în câmpurile de mai
+        jos.
+      </AuthParagraph>
 
       <Form {...form}>
         <AuthFormBase handleSubmit={form.handleSubmit(onSubmit)}>
-          <FormField
-            control={form.control}
-            name="email"
-            render={({ field }) => (
-              <FormItem>
-                <FormControl>
-                  <Input.SuperRoot>
-                    <Input.Field placeholder="E-mail" {...field} />
-                  </Input.SuperRoot>
-                </FormControl>
-                <InputErrorMessage />
-              </FormItem>
-            )}
-          />
-
           <FormField
             control={form.control}
             name="password"
@@ -55,9 +48,9 @@ const Login = () => {
                 <FormControl>
                   <Input.SuperRoot addSensible>
                     <Input.Field
-                      placeholder="Parolǎ"
-                      type="password"
+                      placeholder="Creeazǎ o parolǎ"
                       {...field}
+                      type="password"
                     />
                   </Input.SuperRoot>
                 </FormControl>
@@ -66,18 +59,31 @@ const Login = () => {
             )}
           />
 
-          <span className="text-sm text-start ml-2 mt-4">
-            <strong className="font-semibold hover:border-b-2 hover:border-secondary transition-colors">
-              <Link to="/am-uitat-parola">Ai uitat parola?</Link>
-            </strong>
-          </span>
+          <FormField
+            control={form.control}
+            name="passwordConfirm"
+            render={({ field }) => (
+              <FormItem>
+                <FormControl>
+                  <Input.SuperRoot addSensible>
+                    <Input.Field
+                      placeholder="Confirmǎ parola"
+                      {...field}
+                      type="password"
+                    />
+                  </Input.SuperRoot>
+                </FormControl>
+                <InputErrorMessage />
+              </FormItem>
+            )}
+          />
 
-          <AuthButton title="Intrǎ în cont" />
+          <AuthButton title="Creeazǎ parolǎ nouǎ" />
         </AuthFormBase>
       </Form>
     </div>
   );
 };
-Login.displayName = "Login";
+ChangePassword.displayName = "ChangePassword";
 
-export default Login;
+export default ChangePassword;

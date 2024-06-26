@@ -23,6 +23,7 @@ export const ClearField = ({ className, ...props }) => {
 
   return (
     <button
+      tabIndex={-1}
       onClick={handleClick}
       className={cn(
         "size-7 flex items-center justify-center p-0 rounded-full absolute inset-y-0 right-2 shrink-0 top-1/2 -translate-y-1/2",

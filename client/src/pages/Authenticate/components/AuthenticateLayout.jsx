@@ -1,12 +1,12 @@
 import { Link, Outlet } from "react-router-dom";
 import { MoveLeft } from "lucide-react";
-import Button from "../ui/button";
+import Button from "../../../components/ui/button";
 import {
   Tooltip,
   TooltipTrigger,
   TooltipContent,
   TooltipProvider,
-} from "../ui/tooltip";
+} from "../../../components/ui/tooltip";
 
 // TODO: don't make it absolute. will overflow if taller than screen height
 const AuthenticateLayout = () => {

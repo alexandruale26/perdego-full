@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import Button from "../ui/button";
+import Button from "../../../components/ui/button";
 
 // TODO: add spinner later and deactivate on loading
 const AuthButton = ({ title, ...props }) => {
