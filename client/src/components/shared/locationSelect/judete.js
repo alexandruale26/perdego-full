@@ -1,4 +1,4 @@
-const counties = [
+export default [
   {
     id: "j_alba",
     name: "Alba",
@@ -168,51 +168,3 @@ const counties = [
     name: "Vrancea",
   },
 ];
-
-// commented composed counties for better search results ???
-export const countiesAsStrings = [
-  "alba",
-  "arad",
-  "arges",
-  "bacau",
-  "bihor",
-  // "bistrita-nasaud",
-  "botosani",
-  "braila",
-  "brasov",
-  "bucuresti",
-  "buzau",
-  "calarasi",
-  // "caras-severin",
-  "cluj",
-  "constanta",
-  "covasna",
-  "dambovita",
-  "dolj",
-  "galati",
-  "giurgiu",
-  "gorj",
-  "harghita",
-  "hunedoara",
-  "ialomita",
-  "iasi",
-  "ilfov",
-  "maramures",
-  "mehedinti",
-  "mures",
-  "neamt",
-  "olt",
-  "prahova",
-  "salaj",
-  // "satu-mare",
-  "sibiu",
-  "suceava",
-  "teleorman",
-  "timis",
-  "tulcea",
-  "vaslui",
-  "valcea",
-  "vrancea",
-];
-
-export default counties;

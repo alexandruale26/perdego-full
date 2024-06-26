@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import * as Input from "../../components/ui/input";
+import * as Input from "../../components/ui/input/Input";
 import AuthHeader from "./components/AuthHeader";
 import AuthFormBase from "./components/AuthFormBase";
 import AuthButton from "./components/AuthButton";
@@ -11,7 +11,7 @@ import {
   FormField,
   FormItem,
   InputErrorMessage,
-} from "../../components/ui/form.jsx";
+} from "../../components/ui/Form.jsx";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {

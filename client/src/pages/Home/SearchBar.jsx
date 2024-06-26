@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
-import * as Input from "../../components/ui/input";
-import Button from "../../components/ui/button";
+import * as Input from "../../components/ui/input/Input";
+import Button from "../../components/ui/Button";
 import { Search } from "lucide-react";
 
 const SearchBar = () => {

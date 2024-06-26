@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import * as Input from "../../components/ui/input";
+import * as Input from "../../components/ui/input/Input";
 import AuthHeader from "./components/AuthHeader";
 import AuthFormBase from "./components/AuthFormBase";
 import AuthButton from "./components/AuthButton";
@@ -10,7 +10,7 @@ import {
   FormField,
   FormItem,
   InputErrorMessage,
-} from "../../components/ui/form";
+} from "../../components/ui/Form";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { loginSchema, defaultValues } from "../../schemas/loginSchema";

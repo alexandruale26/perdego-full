@@ -6,6 +6,7 @@ import judete from "./judete";
 
 const LocationSelect = () => {
   const [cities, setCities] = useState(null);
+  const [debounceTimer, setDebounceTimer] = useState(null);
 
   useEffect(() => {
     const fetchJudeteData = async () => {
@@ -44,32 +45,38 @@ const LocationSelect = () => {
     }),
   };
 
-  const loadOptions = async (inputValue, callback) => {
-    if (inputValue.length < 2) callback([]);
+  const loadOptions = (inputValue, callback) => {
+    if (debounceTimer) clearTimeout(debounceTimer);
 
-    const filteredJudete = judete.filter((j) => {
-      return j.name.toLowerCase().includes(inputValue.toLowerCase());
-    });
+    const debounce = setTimeout(() => {
+      if (inputValue.length < 2) callback([]);
 
-    const localitatiResults = cities.filter((c) =>
-      c.name.toLowerCase().includes(inputValue.toLowerCase()),
-    );
+      const filteredJudete = judete.filter((j) => {
+        return j.name.toLowerCase().includes(inputValue.toLowerCase());
+      });
 
-    const options = [
-      {
-        label: "Județe",
-        options: filteredJudete.map((j) => ({ value: j.id, label: j.name })),
-      },
-      {
-        label: "Localități",
-        options: localitatiResults.map((l) => ({
-          value: l.id,
-          label: l.name,
-        })),
-      },
-    ];
+      const localitatiResults = cities.filter((c) =>
+        c.name.toLowerCase().includes(inputValue.toLowerCase()),
+      );
 
-    callback(options);
+      const options = [
+        {
+          label: "Județe",
+          options: filteredJudete.map((j) => ({ value: j.id, label: j.name })),
+        },
+        {
+          label: "Localități",
+          options: localitatiResults.map((l) => ({
+            value: l.id,
+            label: l.name,
+          })),
+        },
+      ];
+
+      callback(options);
+    }, 300);
+
+    setDebounceTimer(debounce);
   };
 
   return (

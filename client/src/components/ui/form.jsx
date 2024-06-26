@@ -4,7 +4,7 @@ import { Controller, FormProvider, useFormContext } from "react-hook-form";
 import PropTypes from "prop-types";
 
 import { cn } from "../../lib/utils.js";
-import Label from "./label";
+import Label from "./Label.jsx";
 
 // Root of <form> from RFH useFormContext/FormProvider
 export const Form = FormProvider;
