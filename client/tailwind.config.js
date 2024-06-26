@@ -33,7 +33,7 @@ module.exports = {
         18: "4.5rem", // 72px
       },
       colors: {
-        primary: "#0e332c",
+        primary: "var(--primary)",
         secondary: "#c6dd60",
         cta: "#e88e38",
         "btn-primary-hover": "#1d2028",
@@ -48,7 +48,7 @@ module.exports = {
         "black-light": "#282828",
 
         grey: "#333333",
-        "grey-2": "#4e4e4d",
+        "grey-2": "var(--grey2)",
         "grey-3": "#828282",
         "grey-4": "#bdbdbd",
         "grey-5": "#d9d9da",
