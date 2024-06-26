@@ -1,15 +1,13 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { components } from "react-select";
 import AsyncSelect from "react-select/async";
 import { X, ChevronDown } from "lucide-react";
 import judete from "./judete";
 
-// TODO: put localitati alfabetic from localitati folder desktop - > or sort them here
-
 const LocationSelect = () => {
   const [cities, setCities] = useState(null);
-  const [latestOptions, setLatestOptions] = useState([]);
-  const [debounceTimer, setDebounceTimer] = useState(null);
+  const debounceTimer = useRef(null);
+  const latestOptions = useRef([]);
 
   useEffect(() => {
     const fetchJudeteData = async () => {
@@ -49,18 +47,35 @@ const LocationSelect = () => {
   };
 
   const loadOptions = (inputValue, callback) => {
-    if (debounceTimer) clearTimeout(debounceTimer);
+    if (debounceTimer.current) clearTimeout(debounceTimer.current);
+
+    const searchValue = inputValue.trim();
+
+    if (searchValue.length < 2) {
+      latestOptions.current = [];
+      return callback([]);
+    }
 
     const debounce = setTimeout(() => {
-      if (inputValue.length < 2) callback([]);
+      const filteredJudete = judete
+        .filter((j) => j.name.toLowerCase().includes(searchValue.toLowerCase()))
+        .sort();
 
-      const filteredJudete = judete.filter((j) => {
-        return j.name.toLowerCase().includes(inputValue.toLowerCase());
-      });
+      const startingWithInput = cities
+        .filter((l) =>
+          l.name.toLowerCase().startsWith(searchValue.toLowerCase()),
+        )
+        .sort((a, b) => a.name.localeCompare(b.name));
 
-      const filteredLocalitati = cities.filter((c) =>
-        c.name.toLowerCase().includes(inputValue.toLowerCase()),
-      );
+      const containingInput = cities
+        .filter(
+          (l) =>
+            l.name.toLowerCase().includes(searchValue.toLowerCase()) &&
+            !l.name.toLowerCase().startsWith(searchValue.toLowerCase()),
+        )
+        .sort((a, b) => a.name.localeCompare(b.name));
+
+      const filteredLocalitati = [...startingWithInput, ...containingInput];
 
       const options = [
         {
@@ -77,14 +92,14 @@ const LocationSelect = () => {
       ];
 
       if (filteredLocalitati.length > 0 || filteredJudete.length > 0) {
-        setLatestOptions(options);
+        latestOptions.current = options;
         return callback(options);
       }
 
-      callback(latestOptions);
+      callback(latestOptions.current);
     }, 300);
 
-    setDebounceTimer(debounce);
+    debounceTimer.current = debounce;
   };
 
   return (
