@@ -1,28 +1,23 @@
 import { useEffect, useState } from "react";
-import Select, { components } from "react-select";
+import { components } from "react-select";
+import AsyncSelect from "react-select/async";
 import { X, ChevronDown } from "lucide-react";
 import judete from "./judete";
 
-const options = ["Apple", "Banana", "Cherry", "Date", "Elderberry"];
-
 const LocationSelect = () => {
   const [cities, setCities] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchJudeteData = async () => {
       try {
-        const response = await fetch("/localitati.json");
+        const response = await fetch("/localitati.js");
         if (!response.ok) {
           throw new Error("Failed to fetch data");
         }
         const data = await response.json();
         setCities(data);
-      } catch (error) {
-        setError(error.message);
-      } finally {
-        setLoading(false);
+      } catch {
+        console.log("error");
       }
     };
 
@@ -31,22 +26,6 @@ const LocationSelect = () => {
 
   const handleChange = (selectedOption) => {
     console.log(selectedOption?.value);
-  };
-
-  const ClearIndicator = (props) => {
-    return (
-      <components.ClearIndicator {...props}>
-        <X className="text-black" />
-      </components.ClearIndicator>
-    );
-  };
-
-  const DropdownIndicator = (props) => {
-    return (
-      <components.DropdownIndicator {...props}>
-        <ChevronDown className="text-black" />
-      </components.DropdownIndicator>
-    );
   };
 
   const customStyles = {
@@ -65,14 +44,44 @@ const LocationSelect = () => {
     }),
   };
 
+  const loadOptions = async (inputValue, callback) => {
+    if (inputValue.length < 2) callback([]);
+
+    const filteredJudete = judete.filter((j) => {
+      return j.name.toLowerCase().includes(inputValue.toLowerCase());
+    });
+
+    const localitatiResults = cities.filter((c) =>
+      c.name.toLowerCase().includes(inputValue.toLowerCase()),
+    );
+
+    const options = [
+      {
+        label: "Județe",
+        options: filteredJudete.map((j) => ({ value: j.id, label: j.name })),
+      },
+      {
+        label: "Localități",
+        options: localitatiResults.map((l) => ({
+          value: l.id,
+          label: l.name,
+        })),
+      },
+    ];
+
+    callback(options);
+  };
+
   return (
-    <Select
+    <AsyncSelect
       isClearable
       blurInputOnSelect
       styles={customStyles}
-      options={options.map((option) => ({ value: option, label: option }))}
+      noOptionsMessage={() => "Cautǎ dupǎ localitate sau județ"}
+      loadingMessage={() => "..."}
+      loadOptions={loadOptions}
       onChange={handleChange}
-      placeholder="Locație"
+      placeholder="Toatǎ țara"
       components={{
         ClearIndicator,
         DropdownIndicator,
@@ -82,3 +91,15 @@ const LocationSelect = () => {
 };
 
 export default LocationSelect;
+
+const ClearIndicator = (props) => {
+  return (
+    <components.ClearIndicator {...props}>
+      <X className="text-black" />
+    </components.ClearIndicator>
+  );
+};
+
+const DropdownIndicator = () => {
+  return <ChevronDown className="text-black" />;
+};
