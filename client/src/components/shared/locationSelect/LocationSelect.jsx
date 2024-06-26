@@ -115,12 +115,21 @@ const LocationSelect = () => {
       components={{
         ClearIndicator,
         DropdownIndicator,
+        // Option,
       }}
     />
   );
 };
 
 export default LocationSelect;
+
+const Option = (props) => {
+  return (
+    <components.ClearIndicator {...props}>
+      <X className="text-black" />
+    </components.ClearIndicator>
+  );
+};
 
 const ClearIndicator = (props) => {
   return (
