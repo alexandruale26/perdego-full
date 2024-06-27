@@ -34,7 +34,7 @@ module.exports = {
       },
       colors: {
         primary: "var(--primary)",
-        secondary: "#c6dd60",
+        secondary: "var(--secondary)",
         cta: "#e88e38",
         "btn-primary-hover": "#1d2028",
         "cta-hover": "#e5c07b",
@@ -47,7 +47,7 @@ module.exports = {
         "black-medium": "#1d1d1d",
         "black-light": "#282828",
 
-        grey: "#333333",
+        grey: "var(--grey)",
         "grey-2": "var(--grey2)",
         "grey-3": "#828282",
         "grey-4": "#bdbdbd",

@@ -12,7 +12,7 @@ import AppLayout from "./components/AppLayout";
 import RouteProtector from "./components/RouteProtector";
 import TermsAndConditions from "./pages/TermsAndConditions";
 
-import LocationSelect from "./components/shared/locationSelect/LocationSelect";
+import LocationSelect from "./components/locationSelect/LocationSelect";
 
 const router = createBrowserRouter([
   {
