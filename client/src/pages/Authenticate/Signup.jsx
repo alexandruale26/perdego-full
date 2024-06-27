@@ -11,7 +11,7 @@ import {
   FormField,
   FormItem,
   InputErrorMessage,
-} from "../../components/ui/Form.jsx";
+} from "../../components/ui/Form";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {

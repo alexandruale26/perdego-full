@@ -1,5 +1,7 @@
+import { Outlet } from "react-router-dom";
+
 const RouteProtector = () => {
-  return <div>RouteProtector</div>;
+  return <Outlet />;
 };
 RouteProtector.displayName = "RouteProtector";
 
