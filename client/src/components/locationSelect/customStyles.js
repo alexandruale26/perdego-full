@@ -1,7 +1,8 @@
 export default {
   control: (provided, state) => ({
     ...provided,
-    // height: "3.5rem",
+    height: "3.5rem",
+    borderRadius: "0.375rem",
     borderColor: state.isFocused ? "var(--primary)" : provided.borderColor,
     boxShadow: state.isFocused
       ? "0 0 0 1px var(--primary)"
@@ -9,6 +10,11 @@ export default {
     "&:hover": {
       borderColor: state.isFocused ? "var(--primary)" : provided.borderColor,
     },
+  }),
+  menu: (provided) => ({
+    ...provided,
+    borderRadius: "0.375rem",
+    overflow: "hidden",
   }),
   singleValue: (provided) => ({
     ...provided,
@@ -48,6 +54,7 @@ export default {
   }),
   noOptionsMessage: (provided) => ({
     ...provided,
+    color: "var(--primary)",
     fontSize: "0.875rem",
   }),
   loadingMessage: (provided) => ({

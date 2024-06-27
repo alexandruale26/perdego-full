@@ -1,11 +1,13 @@
 import { useEffect, useState, useRef } from "react";
+import PropTypes from "prop-types";
 import AsyncSelect from "react-select/async";
 import { Option, ClearIndicator, DropdownIndicator } from "./SelectComponents";
 import customStyles from "./customStyles";
+import { parseLocation, sortCities } from "./helpers.js";
 import judete from "./judete";
 
 // TODO: disable Search button in search bar
-const LocationSelect = () => {
+const LocationSelect = ({ name, ...props }) => {
   const [cities, setCities] = useState(null);
   const debounceTimer = useRef(null);
   const latestOptions = useRef([]);
@@ -27,10 +29,6 @@ const LocationSelect = () => {
 
     fetchJudeteData();
   }, []);
-
-  const handleChange = (selectedOption) => {
-    console.log(selectedOption);
-  };
 
   const loadOptions = (inputValue, callback) => {
     if (debounceTimer.current) clearTimeout(debounceTimer.current);
@@ -97,54 +95,26 @@ const LocationSelect = () => {
 
   return (
     <AsyncSelect
+      name={name}
       isClearable
       blurInputOnSelect
       styles={customStyles}
       noOptionsMessage={() => "Cautǎ dupǎ localitate sau județ"}
       loadingMessage={() => "..."}
       loadOptions={loadOptions}
-      onChange={handleChange}
       placeholder="Toatǎ țara"
       components={{
         ClearIndicator,
         DropdownIndicator,
         Option,
       }}
+      {...props}
     />
   );
 };
+LocationSelect.displayName = "LocationSelect";
+LocationSelect.propTypes = {
+  name: PropTypes.string.isRequired,
+};
 
 export default LocationSelect;
-
-const parseLocation = (location) => {
-  let name = "";
-  let commune = "";
-  let county = "";
-
-  const parts = location.split("-j_");
-  if (parts.length > 0) {
-    let nameAndCommune = parts[0];
-    const communeIndex = nameAndCommune.lastIndexOf("-c_");
-
-    if (communeIndex !== -1) {
-      commune = nameAndCommune.substring(communeIndex + 3);
-      name = nameAndCommune.substring(0, communeIndex);
-    } else {
-      name = nameAndCommune;
-    }
-
-    name = replaceDashAndPlus(name);
-    commune = replaceDashAndPlus(commune);
-  }
-
-  county = replaceDashAndPlus(parts[1]);
-
-  return { name, commune, county };
-};
-
-const replaceDashAndPlus = (string) =>
-  string.replace(/-/g, " ").replace(/\+/g, "-");
-
-const sortCities = (a, b) => {
-  return a.label.length - b.label.length || a.county.localeCompare(b.county);
-};

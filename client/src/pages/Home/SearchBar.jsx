@@ -1,15 +1,22 @@
-import { Link } from "react-router-dom";
+import { useRef } from "react";
 import * as Input from "../../components/ui/input/Input";
+import LocationSelect from "../../components/locationSelect/LocationSelect";
 import Button from "../../components/ui/Button";
 import { Search } from "lucide-react";
 
 const SearchBar = () => {
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const formRef = useRef(null);
+
+  const handleSubmit = () => {
+    const formData = new FormData(formRef.current);
+    const formObj = Object.fromEntries(formData.entries());
+
+    console.log(formObj);
   };
 
   return (
     <form
+      ref={formRef}
       onSubmit={handleSubmit}
       className={"w-full max-w-[1000px] flex mx-auto gap-2 px-10 pt-4"}
     >
@@ -19,7 +26,7 @@ const SearchBar = () => {
         </div>
 
         <Input.Field
-          id="search"
+          name="search"
           variant="search"
           size="search"
           placeholder="Cauți ceva anume?"
@@ -27,25 +34,19 @@ const SearchBar = () => {
         />
       </Input.Root>
 
-      <Input.Root addClear className="max-w-[250px]">
-        <Input.Field
-          id="location"
-          variant="search"
-          size="search"
-          placeholder="Locație"
-        />
-      </Input.Root>
+      <div className="w-full max-w-[250px] h-14">
+        <LocationSelect name="location" />
+      </div>
 
       <Button
+        type="button"
         variant="iconText"
         size="iconText"
         className="bg-grey-6 text-base"
-        asChild
+        onClick={handleSubmit}
       >
-        <Link to="/anunturi">
-          <span className="text-black">Cǎutare</span>
-          <Search />
-        </Link>
+        <span className="text-black">Cǎutare</span>
+        <Search />
       </Button>
     </form>
   );

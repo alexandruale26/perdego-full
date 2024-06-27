@@ -12,8 +12,6 @@ import AppLayout from "./components/AppLayout";
 import RouteProtector from "./components/RouteProtector";
 import TermsAndConditions from "./pages/TermsAndConditions";
 
-import LocationSelect from "./components/locationSelect/LocationSelect";
-
 const router = createBrowserRouter([
   {
     path: "/",
@@ -24,6 +22,7 @@ const router = createBrowserRouter([
     ),
   },
   {
+    // AUTHENTICATION
     element: <AuthenticateLayout />,
     children: [
       {
@@ -45,6 +44,7 @@ const router = createBrowserRouter([
     ],
   },
   {
+    // PROTECTED APP
     element: (
       <AppLayout>
         <RouteProtector />
@@ -80,15 +80,7 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
-  // return <RouterProvider router={router} />;
-
-  return (
-    <div className="w-full h-screen flex items-center justify-center">
-      <div className="w-[300px]">
-        <LocationSelect />
-      </div>
-    </div>
-  );
+  return <RouterProvider router={router} />;
 }
 App.displayName = "App";
 
