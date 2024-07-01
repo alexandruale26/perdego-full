@@ -1,5 +1,4 @@
 import * as Input from "../components/ui/input/Input";
-import * as Selector from "../components/ui/Selector";
 
 import {
   Form,
@@ -30,54 +29,49 @@ const NewPost = () => {
 
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)}>
-            {/* CATETORIE ANUNT */}
+            {/* CATETgORIE ANUNT */}
             <div>
-              <Selector.Group defaultValue={"Pierdute"}>
-                <Selector.Item value={"Pierdute"}>
-                  <FormField
-                    control={form.control}
-                    name="category"
-                    id="pierdute"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Pierdute</FormLabel>
-                        <FormControl>
-                          <Input.SuperRoot>
-                            <Input.Field
-                              type="radio"
-                              placeholder="Adresa ta de e-mail"
-                              {...field}
-                            />
-                          </Input.SuperRoot>
-                        </FormControl>
-                        <InputErrorMessage />
-                      </FormItem>
-                    )}
-                  />
-                </Selector.Item>
-                <Selector.Item value={"Gǎsite"}>
-                  <FormField
-                    control={form.control}
-                    name="category"
-                    id="gasite"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Gǎsite</FormLabel>
-                        <FormControl>
-                          <Input.SuperRoot>
-                            <Input.Field
-                              type="radio"
-                              placeholder="Adresa ta de e-mail"
-                              {...field}
-                            />
-                          </Input.SuperRoot>
-                        </FormControl>
-                        <InputErrorMessage />
-                      </FormItem>
-                    )}
-                  />
-                </Selector.Item>
-              </Selector.Group>
+              <FormField
+                control={form.control}
+                name="category"
+                id="pierdute"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Pierdute</FormLabel>
+                    <FormControl>
+                      <Input.SuperRoot>
+                        <Input.Field
+                          type="radio"
+                          placeholder="Adresa ta de e-mail"
+                          {...field}
+                        />
+                      </Input.SuperRoot>
+                    </FormControl>
+                    <InputErrorMessage />
+                  </FormItem>
+                )}
+              />
+
+              <FormField
+                control={form.control}
+                name="category"
+                id="gasite"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Gǎsite</FormLabel>
+                    <FormControl>
+                      <Input.SuperRoot>
+                        <Input.Field
+                          type="radio"
+                          placeholder="Adresa ta de e-mail"
+                          {...field}
+                        />
+                      </Input.SuperRoot>
+                    </FormControl>
+                    <InputErrorMessage />
+                  </FormItem>
+                )}
+              />
             </div>
             <button className="mt-40">Submit</button>
           </form>

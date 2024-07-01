@@ -50,7 +50,7 @@ const Signup = () => {
 
   return (
     <div>
-      <AuthHeader defaultValue="cont-nou" />
+      <AuthHeader defaultTab="/cont-nou" />
 
       <AuthParagraph className="text-md font-bold">
         {step === 1 ? "Contul tǎu" : "Profilul tǎu"}

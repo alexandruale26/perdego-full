@@ -28,7 +28,7 @@ const Login = () => {
 
   return (
     <div>
-      <AuthHeader defaultValue="autentificare" />
+      <AuthHeader defaultTab="/autentificare" />
 
       <Form {...form}>
         <AuthFormBase handleSubmit={form.handleSubmit(onSubmit)}>
