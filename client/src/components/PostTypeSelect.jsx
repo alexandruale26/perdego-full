@@ -1,5 +1,5 @@
-/* eslint-disable react/prop-types */
 import { forwardRef, useState, useRef, useEffect } from "react";
+import PropTypes from "prop-types";
 import * as RadioGroupPrimitive from "@radix-ui/react-radio-group";
 import { useFormField, FormField, FormItem, FormControl } from "./ui/Form";
 import { cn } from "../lib/utils";
@@ -9,7 +9,7 @@ const options = [
   { label: "Găsite", value: "gasite" },
 ];
 
-const RadioSelector = forwardRef(({ className, formControl }, ref) => {
+const PostTypeSelect = forwardRef(({ className, formControl }, ref) => {
   const [selected, setSelected] = useState(0);
   const parentRef = useRef(null);
 
@@ -18,8 +18,7 @@ const RadioSelector = forwardRef(({ className, formControl }, ref) => {
     const labels = parentRef.current.querySelectorAll("label");
 
     inputs.forEach((field, index) => {
-      const isChecked = field.hasAttribute("checked");
-      if (isChecked) {
+      if (field.hasAttribute("checked")) {
         labels[index].style.color = "var(--grey)";
         setSelected(index);
       } else {
@@ -43,12 +42,12 @@ const RadioSelector = forwardRef(({ className, formControl }, ref) => {
               defaultValue={field.value}
             >
               <div ref={parentRef} className="flex w-full">
-                {options.map((opt) => (
-                  <FormItem key={opt.value} className="w-full space-y-0">
+                {options.map((option) => (
+                  <FormItem key={option.value} className="w-full space-y-0">
                     <FormControl>
-                      <RadioSelectorItem value={opt.value} hidden />
+                      <Item value={option.value} hidden />
                     </FormControl>
-                    <RadioLabel value={opt.value}>{opt.label}</RadioLabel>
+                    <Label value={option.value}>{option.label}</Label>
                   </FormItem>
                 ))}
               </div>
@@ -68,27 +67,26 @@ const RadioSelector = forwardRef(({ className, formControl }, ref) => {
     />
   );
 });
-RadioSelector.displayName = "RadioSelector";
+PostTypeSelect.displayName = "PostTypeSelect";
+PostTypeSelect.propTypes = {
+  className: PropTypes.string,
+  formControl: PropTypes.object.isRequired,
+};
 
-const RadioSelectorItem = forwardRef((props, ref) => {
+const Item = forwardRef((props, ref) => {
   return <RadioGroupPrimitive.Item ref={ref} {...props} />;
 });
-RadioSelectorItem.displayName = "RadioSelector.Item";
+Item.displayName = "PostTypeSelect.Item";
 
-const RadioLabel = ({ value, ...props }) => {
+const Label = ({ value, ...props }) => {
   const { formItemId } = useFormField();
 
   const handleOnKeydown = (e) => {
     if (e.key === "Enter") {
       const fields = document.querySelectorAll('button[role="radio"]');
 
-      console.log(fields);
-
       fields.forEach((field) => {
-        const hasSameId = field.id === formItemId;
-        if (hasSameId) {
-          field.click();
-        }
+        if (field.id === formItemId) field.click();
       });
     }
   };
@@ -106,6 +104,9 @@ const RadioLabel = ({ value, ...props }) => {
     </div>
   );
 };
-RadioLabel.displayName = "RadioSelector.Label";
+Label.displayName = "PostTypeSelect.Label";
+Label.propTypes = {
+  value: PropTypes.string.isRequired,
+};
 
-export default RadioSelector;
+export default PostTypeSelect;

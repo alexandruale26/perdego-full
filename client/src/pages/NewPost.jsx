@@ -1,6 +1,6 @@
 import { useState, forwardRef } from "react";
 import * as Input from "../components/ui/input/Input";
-import RadioSelector from "../components/RadioSelector";
+import RadioSelector from "../components/PostTypeSelect";
 
 import {
   Form,
