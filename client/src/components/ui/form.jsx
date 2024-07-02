@@ -62,11 +62,11 @@ FormItem.propTypes = { className: PropTypes.string };
 
 // Input label
 export const FormLabel = ({ className, ...props }) => {
-  const { error, formItemId } = useFormField();
+  const { formItemId } = useFormField();
 
   return (
     <Label
-      className={cn(error && "text-destructive", className)}
+      className={cn("text-lg", className)}
       htmlFor={formItemId}
       {...props}
     />

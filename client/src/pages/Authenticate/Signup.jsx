@@ -20,6 +20,9 @@ import {
   defaultValues,
 } from "../../schemas/signupSchema.js";
 
+// TODO: create an array and map it to shorten the code: [{name:, placeholder:, addSensible:}]
+// TODO: the same to <Login>
+
 const Signup = () => {
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState({});

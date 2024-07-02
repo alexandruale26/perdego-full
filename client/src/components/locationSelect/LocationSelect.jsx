@@ -2,9 +2,9 @@ import { useEffect, useState, useRef } from "react";
 import PropTypes from "prop-types";
 import AsyncSelect from "react-select/async";
 import { Option, ClearIndicator, DropdownIndicator } from "./SelectComponents";
-import customStyles from "./customStyles";
-import { parseLocation, sortCities } from "./helpers.js";
-import judete from "./judete";
+import customStyles from "./js/customStyles";
+import { parseLocation, sortCities } from "./js/helpers.js";
+import judete from "./js/judete";
 
 // TODO: disable Search button in search bar
 const LocationSelect = ({ name, ...props }) => {
