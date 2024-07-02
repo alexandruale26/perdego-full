@@ -15,10 +15,16 @@ const RadioSelector = forwardRef(({ className, formControl }, ref) => {
 
   useEffect(() => {
     const inputs = parentRef.current.querySelectorAll("input");
+    const labels = parentRef.current.querySelectorAll("label");
+
     inputs.forEach((field, index) => {
       const isChecked = field.hasAttribute("checked");
-
-      if (isChecked) setSelected(index);
+      if (isChecked) {
+        labels[index].style.color = "var(--grey)";
+        setSelected(index);
+      } else {
+        labels[index].style.color = "var(--grey3)";
+      }
     });
   });
 
@@ -48,7 +54,7 @@ const RadioSelector = forwardRef(({ className, formControl }, ref) => {
                   <FormControl>
                     <RadioSelectorItem value="gasite" hidden />
                   </FormControl>
-                  <RadioLabel>Gasite</RadioLabel>
+                  <RadioLabel>Gǎsite</RadioLabel>
                 </FormItem>
               </div>
               <div className="relative w-full h-1 bg-grey-5">
@@ -81,8 +87,8 @@ const RadioLabel = (props) => {
     <div className="flex w-full h-full">
       <label
         htmlFor={formItemId}
-        className="w-full pb-1.5"
         tabIndex={0}
+        className="w-full pb-1.5 text-lg cursor-pointer select-none"
         {...props}
       />
     </div>
@@ -91,19 +97,3 @@ const RadioLabel = (props) => {
 RadioLabel.displayName = "RadioSelector.Label";
 
 export default RadioSelector;
-
-/*
-<FormItem className="w-full space-y-0">
-                      <FormControl>
-                        <RadioSelectorItem value="pierdute" hidden />
-                      </FormControl>
-                      <RadioLabel>Pierdute</RadioLabel>
-                    </FormItem>
-
-                    <FormItem className="w-full space-y-0">
-                      <FormControl>
-                        <RadioSelectorItem value="gasite" hidden />
-                      </FormControl>
-                      <RadioLabel>Gasite</RadioLabel>
-                    </FormItem>
-*/
