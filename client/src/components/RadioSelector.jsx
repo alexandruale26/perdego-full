@@ -43,19 +43,14 @@ const RadioSelector = forwardRef(({ className, formControl }, ref) => {
               defaultValue={field.value}
             >
               <div ref={parentRef} className="flex w-full">
-                <FormItem className="w-full space-y-0">
-                  <FormControl>
-                    <RadioSelectorItem value="pierdute" hidden />
-                  </FormControl>
-                  <RadioLabel>Pierdute</RadioLabel>
-                </FormItem>
-
-                <FormItem className="w-full space-y-0">
-                  <FormControl>
-                    <RadioSelectorItem value="gasite" hidden />
-                  </FormControl>
-                  <RadioLabel>Gǎsite</RadioLabel>
-                </FormItem>
+                {options.map((opt) => (
+                  <FormItem key={opt.value} className="w-full space-y-0">
+                    <FormControl>
+                      <RadioSelectorItem value={opt.value} hidden />
+                    </FormControl>
+                    <RadioLabel value={opt.value}>{opt.label}</RadioLabel>
+                  </FormItem>
+                ))}
               </div>
               <div className="relative w-full h-1 bg-grey-5">
                 <div
@@ -80,14 +75,31 @@ const RadioSelectorItem = forwardRef((props, ref) => {
 });
 RadioSelectorItem.displayName = "RadioSelector.Item";
 
-const RadioLabel = (props) => {
+const RadioLabel = ({ value, ...props }) => {
   const { formItemId } = useFormField();
+
+  const handleOnKeydown = (e) => {
+    if (e.key === "Enter") {
+      const fields = document.querySelectorAll('button[role="radio"]');
+
+      console.log(fields);
+
+      fields.forEach((field) => {
+        const hasSameId = field.id === formItemId;
+        if (hasSameId) {
+          field.click();
+        }
+      });
+    }
+  };
 
   return (
     <div className="flex w-full h-full">
       <label
         htmlFor={formItemId}
         tabIndex={0}
+        onKeyDown={handleOnKeydown}
+        data-value={value}
         className="w-full pb-1.5 text-lg cursor-pointer select-none"
         {...props}
       />
