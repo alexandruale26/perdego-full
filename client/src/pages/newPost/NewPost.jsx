@@ -106,7 +106,7 @@ const NewPost = () => {
                   )}
                 />
               </section>
-              <section className="h-full w-full p-8 border border-grey-6 rounded-lg shadow-md space-y-4">
+              <section className="h-full w-full p-8 border border-grey-6 rounded-lg shadow-xl space-y-4">
                 <FormField
                   control={form.control}
                   name="category"
