@@ -1,4 +1,4 @@
-import * as Input from "../../components/ui/input/Input";
+import * as Input from "../../components/ui/Input";
 import BasicAuthHeader from "./components/BasicAuthHeader";
 import AuthFormBase from "./components/AuthFormBase";
 import AuthButton from "./components/AuthButton";
@@ -10,7 +10,7 @@ import {
   FormField,
   FormItem,
   InputErrorMessage,
-} from "../../components/ui/Form.jsx";
+} from "../../components/ui/Form";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {

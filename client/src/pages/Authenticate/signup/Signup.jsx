@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
-import * as Input from "../../../components/ui/input/Input.jsx";
-import AuthHeader from "../components/AuthHeader.jsx";
-import AuthFormBase from "../components/AuthFormBase.jsx";
-import AuthButton from "../components/AuthButton.jsx";
-import AuthParagraph from "../components/AuthParagraph.jsx";
+import * as Input from "../../../components/ui/Input";
+import AuthHeader from "../components/AuthHeader";
+import AuthFormBase from "../components/AuthFormBase";
+import AuthButton from "../components/AuthButton";
+import AuthParagraph from "../components/AuthParagraph";
 
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -15,7 +15,7 @@ import {
   FormField,
   FormItem,
   InputErrorMessage,
-} from "../../../components/ui/Form.jsx";
+} from "../../../components/ui/Form";
 import {
   signupProfileSchema,
   signupAccountSchema,

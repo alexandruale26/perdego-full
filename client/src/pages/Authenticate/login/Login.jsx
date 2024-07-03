@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import * as Input from "../../../components/ui/input/Input";
+import * as Input from "../../../components/ui/Input";
 import AuthHeader from "../components/AuthHeader";
 import AuthFormBase from "../components/AuthFormBase";
 import AuthButton from "../components/AuthButton";

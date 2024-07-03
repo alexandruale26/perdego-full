@@ -1,11 +1,11 @@
 import { forwardRef } from "react";
 import PropTypes from "prop-types";
-import { cn } from "../../../lib/utils.js";
+import { cn } from "../../lib/utils.js";
 import { cva } from "class-variance-authority";
-import ClearField from "./ClearField.jsx";
-import HideSensibleData from "./HideSensibleData.jsx";
-import AddValidation from "./AddValidation.jsx";
-import { useFormField } from "../Form.jsx";
+import ClearField from "./helpers/ClearField.jsx";
+import HideSensibleData from "./helpers/HideSensibleData.jsx";
+import AddValidation from "./helpers/AddValidation.jsx";
+import { useFormField } from "./Form";
 
 const inputVariants = cva(
   "flex w-full border text-base border-grey-4 ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-grey-3 focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-ring focus-visible:ring-offset-0 disabled:cursor-not-allowed disabled:opacity-50",

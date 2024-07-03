@@ -1,5 +1,5 @@
 import { useState, forwardRef } from "react";
-import * as Input from "../../components/ui/input/Input";
+import * as Input from "../../components/ui/Input";
 import PostTypeSelect from "../../components/PostTypeSelect";
 import Button from "../../components/ui/Button";
 import Textarea from "../../components/ui/Textarea";
@@ -180,6 +180,6 @@ const NewPost = () => {
 };
 NewPost.displayName = "NewPost";
 
-// TODO: inputErrorMessage, Location, Category, Image, shadow, better organizing sections
+// TODO: inputErrorMessage, Location, Category, Image, better organized sections
 
 export default NewPost;

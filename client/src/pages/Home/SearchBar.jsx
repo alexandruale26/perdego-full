@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import * as Input from "../../components/ui/input/Input";
+import * as Input from "../../components/ui/Input";
 import LocationSelect from "../../components/locationSelect/LocationSelect";
 import Button from "../../components/ui/Button";
 import { Search } from "lucide-react";
