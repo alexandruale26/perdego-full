@@ -1,8 +1,9 @@
 import { useState, forwardRef } from "react";
 import * as Input from "../../components/ui/Input";
+import * as Textarea from "../../components/ui/Textarea";
 import PostTypeSelect from "../../components/PostTypeSelect";
 import Button from "../../components/ui/Button";
-import Textarea from "../../components/ui/Textarea";
+import LocationSelect from "../../components/locationSelect/LocationSelect";
 
 import {
   Form,
@@ -80,10 +81,12 @@ const NewPost = () => {
                   <FormItem>
                     <FormLabel>Descriere</FormLabel>
                     <FormControl>
-                      <Textarea
-                        placeholder="Oferǎ cât mai multe detalii"
-                        {...field}
-                      />
+                      <Textarea.Root>
+                        <Textarea.Field
+                          placeholder="Oferǎ cât mai multe detalii"
+                          {...field}
+                        />
+                      </Textarea.Root>
                     </FormControl>
                     <InputErrorMessage />
                   </FormItem>
@@ -130,7 +133,9 @@ const NewPost = () => {
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel>Localitate</FormLabel>
-                      <FormControl></FormControl>
+                      <FormControl>
+                        <LocationSelect name="location" />
+                      </FormControl>
                       <InputErrorMessage />
                     </FormItem>
                   )}
