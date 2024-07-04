@@ -1,4 +1,4 @@
-export const account = [
+export default [
   {
     name: "email",
     placeholder: "Adresa ta de e-mail",
@@ -15,15 +15,13 @@ export const account = [
     addSensible: true,
   },
 ];
-export const profile = [
+
+// TODO: move this to profile
+// eslint-disable-next-line no-unused-vars
+const profile = [
   {
     name: "name",
     placeholder: "Numele tǎu",
-    addSensible: false,
-  },
-  {
-    name: "location",
-    placeholder: "Localitate",
     addSensible: false,
   },
   {

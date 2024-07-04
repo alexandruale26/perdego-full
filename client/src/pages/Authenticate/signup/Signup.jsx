@@ -1,13 +1,12 @@
-import { useState, useEffect } from "react";
 import * as Input from "../../../components/ui/Input";
 import AuthHeader from "../components/AuthHeader";
 import AuthFormBase from "../components/AuthFormBase";
 import AuthButton from "../components/AuthButton";
-import AuthParagraph from "../components/AuthParagraph";
 
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { account, profile } from "./js/data.js";
+import { signupSchema, defaultValues } from "../../../schemas/signupSchema.js";
+import signup from "./js/data.js";
 
 import {
   Form,
@@ -16,104 +15,49 @@ import {
   FormItem,
   InputErrorMessage,
 } from "../../../components/ui/Form";
-import {
-  signupProfileSchema,
-  signupAccountSchema,
-  defaultValues,
-} from "../../../schemas/signupSchema.js";
 
 const Signup = () => {
-  const [step, setStep] = useState(1);
-  const [formData, setFormData] = useState({});
-
   const form = useForm({
-    resolver: zodResolver(
-      step === 1 ? signupAccountSchema : signupProfileSchema,
-    ),
+    resolver: zodResolver(signupSchema),
     defaultValues,
     mode: "onChange",
   });
 
-  const { reset } = form;
-
-  useEffect(() => {
-    if (step === 2) reset({ ...formData });
-  }, [step, reset, formData]);
-
   const onSubmit = (data) => {
-    if (step === 1) {
-      setFormData(data);
-      setStep(2);
-    } else {
-      const finalData = { ...formData, ...data };
-      console.log("Final data", finalData);
-    }
+    console.log(data);
   };
 
   return (
     <div>
       <AuthHeader defaultTab="/cont-nou" />
 
-      <AuthParagraph className="text-md font-bold">
-        {step === 1 ? "Contul tǎu" : "Profilul tǎu"}
-      </AuthParagraph>
-
       <Form {...form}>
         <AuthFormBase handleSubmit={form.handleSubmit(onSubmit)}>
-          {step === 1 && (
-            <>
-              {account.map((item) => (
-                <FormField
-                  key={item.name}
-                  control={form.control}
-                  name={item.name}
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormControl>
-                        <Input.SuperRoot addSensible={item.addSensible}>
-                          <Input.Field
-                            type={item.addSensible ? "password" : "text"}
-                            placeholder={item.placeholder}
-                            {...field}
-                          />
-                        </Input.SuperRoot>
-                      </FormControl>
-                      <InputErrorMessage />
-                    </FormItem>
-                  )}
-                />
-              ))}
-            </>
-          )}
+          <>
+            {signup.map((item) => (
+              <FormField
+                key={item.name}
+                control={form.control}
+                name={item.name}
+                render={({ field }) => (
+                  <FormItem>
+                    <FormControl>
+                      <Input.SuperRoot addSensible={item.addSensible}>
+                        <Input.Field
+                          type={item.addSensible ? "password" : "text"}
+                          placeholder={item.placeholder}
+                          {...field}
+                        />
+                      </Input.SuperRoot>
+                    </FormControl>
+                    <InputErrorMessage />
+                  </FormItem>
+                )}
+              />
+            ))}
+          </>
 
-          {step === 2 && (
-            <>
-              {profile.map((item) => (
-                <FormField
-                  key={item.name}
-                  control={form.control}
-                  name={item.name}
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormControl>
-                        <Input.SuperRoot addSensible={item.addSensible}>
-                          <Input.Field
-                            type={item.addSensible ? "password" : "text"}
-                            placeholder={item.placeholder}
-                            {...field}
-                          />
-                        </Input.SuperRoot>
-                      </FormControl>
-                      <InputErrorMessage />
-                    </FormItem>
-                  )}
-                />
-              ))}
-            </>
-          )}
-
-          {step === 1 && <AuthButton title="Continuǎ" />}
-          {step === 2 && <AuthButton title="Creeazǎ un cont" />}
+          <AuthButton title="Creeazǎ un cont" />
         </AuthFormBase>
       </Form>
     </div>
