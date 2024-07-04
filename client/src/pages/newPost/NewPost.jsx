@@ -54,8 +54,42 @@ const NewPost = () => {
               />
             </section>
 
+            {/* CATEGORIE OBIECT */}
+            <section className="mt-5 ml-8 max-w-[500px]">
+              <FormField
+                control={form.control}
+                name="category"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Categorie obiect</FormLabel>
+                    <FormControl>
+                      <LocationSelect name="location" />
+                    </FormControl>
+                    <InputErrorMessage />
+                  </FormItem>
+                )}
+              />
+            </section>
+
+            {/* LOCATIE */}
+            <section className="mt-5 ml-8 max-w-[500px]">
+              <FormField
+                control={form.control}
+                name="location"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Localitate</FormLabel>
+                    <FormControl>
+                      <LocationSelect name="location" />
+                    </FormControl>
+                    <InputErrorMessage />
+                  </FormItem>
+                )}
+              />
+            </section>
+
             {/* TITLU - DESCRIERE ANUNT */}
-            <section className="p-8 border border-grey-6 rounded-lg shadow-md space-y-4">
+            <section className="w-full p-8 border border-grey-6 rounded-lg shadow-md space-y-4">
               <FormField
                 control={form.control}
                 name="title"
@@ -94,8 +128,8 @@ const NewPost = () => {
               />
             </section>
 
-            {/* IMAGINE - CATEGORIE */}
-            <div className="h-[540px] w-full flex gap-6">
+            {/* IMAGINE */}
+            <div className="h-[450px] w-full flex gap-6">
               <section className="h-full w-full p-8 border border-grey-6 rounded-lg shadow-md space-y-4">
                 <FormField
                   control={form.control}
@@ -109,70 +143,40 @@ const NewPost = () => {
                   )}
                 />
               </section>
-              <section className="h-full w-full p-8 border border-grey-6 rounded-lg shadow-xl space-y-4">
-                <FormField
-                  control={form.control}
-                  name="category"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Categorie obiect</FormLabel>
-                      <FormControl></FormControl>
-                      <InputErrorMessage />
-                    </FormItem>
-                  )}
-                />
-              </section>
             </div>
 
-            {/* LOCATIE - CONTACT */}
-            <div className="h-[370px] w-full flex gap-6">
-              <section className="h-full w-full p-8 border border-grey-6 rounded-lg shadow-md space-y-4">
-                <FormField
-                  control={form.control}
-                  name="location"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Localitate</FormLabel>
-                      <FormControl>
-                        <LocationSelect name="location" />
-                      </FormControl>
-                      <InputErrorMessage />
-                    </FormItem>
-                  )}
-                />
-              </section>
-              <section className="h-full w-full p-8 border border-grey-6 rounded-lg shadow-md space-y-4">
-                <FormLabel>Informații de contact</FormLabel>
-                <FormField
-                  control={form.control}
-                  name="name"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormControl>
-                        <Input.SuperRoot>
-                          <Input.Field placeholder="Nume" {...field} />
-                        </Input.SuperRoot>
-                      </FormControl>
-                      <InputErrorMessage />
-                    </FormItem>
-                  )}
-                />
-                <FormField
-                  control={form.control}
-                  name="phone"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormControl>
-                        <Input.SuperRoot>
-                          <Input.Field placeholder="Telefon" {...field} />
-                        </Input.SuperRoot>
-                      </FormControl>
-                      <InputErrorMessage />
-                    </FormItem>
-                  )}
-                />
-              </section>
-            </div>
+            {/* CONTACT */}
+            <section className="h-full w-full p-8 border border-grey-6 rounded-lg shadow-md space-y-4">
+              <FormLabel>Informații de contact</FormLabel>
+              <FormField
+                control={form.control}
+                name="name"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormControl>
+                      <Input.SuperRoot>
+                        <Input.Field placeholder="Nume" {...field} />
+                      </Input.SuperRoot>
+                    </FormControl>
+                    <InputErrorMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="phone"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormControl>
+                      <Input.SuperRoot>
+                        <Input.Field placeholder="Telefon" {...field} />
+                      </Input.SuperRoot>
+                    </FormControl>
+                    <InputErrorMessage />
+                  </FormItem>
+                )}
+              />
+            </section>
 
             <Button className="w-full max-w-[320px] self-center">
               Publicǎ anunțul

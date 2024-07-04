@@ -13,7 +13,7 @@ const postSchema = new mongoose.Schema(
       type: String,
       required: [true, "Introdu o descriere."],
       minlength: [20, "Descrierea este prea scurta."],
-      maxlength: [300, "Descrierea este prea lunga."],
+      maxlength: [500, "Descrierea este prea lunga."],
     },
     location: {
       // TODO: check if location is correct not randomly by brute force

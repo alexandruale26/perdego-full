@@ -4,6 +4,7 @@ export default {
     height: "3.5rem",
     borderRadius: "0.375rem",
     borderColor: state.isFocused ? "var(--primary)" : provided.borderColor,
+    cursor: "pointer",
     boxShadow: state.isFocused
       ? "0 0 0 1px var(--primary)"
       : provided.boxShadow,
