@@ -6,10 +6,13 @@ import {
   ClearIndicator,
   DropdownIndicator,
   ValueContainer,
-} from "./SelectComponents";
-import customStyles from "./js/customStyles";
+} from "./Components";
+import customStyles from "./js/styles";
 import { parseLocation, sortCities } from "./js/helpers.js";
 import counties from "./js/judete";
+
+//TODO: move judete to data folder later
+//TODO: message if judete fetch has failed
 
 const LocationSelect = ({ name, isForm = false, ...props }) => {
   const [cities, setCities] = useState(null);
@@ -47,9 +50,7 @@ const LocationSelect = ({ name, isForm = false, ...props }) => {
     searchValue = searchValue.toLowerCase();
 
     const debounce = setTimeout(() => {
-      const filteredCounties = counties.filter((i) =>
-        i.name.toLowerCase().includes(searchValue),
-      );
+      let filteredCounties = [];
 
       const valueWithReplacements = searchValue
         .replace(/-/g, "+")
@@ -62,33 +63,54 @@ const LocationSelect = ({ name, isForm = false, ...props }) => {
         return cityPart.includes(valueWithReplacements);
       });
 
-      const options = [
-        {
-          label: "Județe",
-          options: filteredCounties.map((i) => ({
-            value: i.id,
-            label: i.name,
-          })),
-        },
-        {
-          label: filteredCounties.length > 0 ? "Localitǎți" : "",
-          options: filteredCities
-            .map((i) => {
-              const { name, commune, county } = parseLocation(i);
-              return {
-                value: i,
-                label: name,
-                commune,
-                county,
-              };
-            })
-            .sort(sortCities),
-        },
-      ];
+      // TODO: make separate function
+      const citiesOption = {
+        label: isForm
+          ? filteredCounties.length > 0
+            ? "Localitǎți"
+            : ""
+          : "Localitǎți",
+        options: filteredCities
+          .map((item) => {
+            const { name, commune, county } = parseLocation(item);
+            return {
+              value: item,
+              label: name,
+              commune,
+              county,
+            };
+          })
+          .sort(sortCities),
+      };
 
-      if (filteredCities.length > 0 || filteredCounties.length > 0) {
-        latestOptions.current = options;
-        return callback(options);
+      if (isForm) {
+        const options = [citiesOption];
+
+        if (filteredCities.length > 0) {
+          latestOptions.current = options;
+          return callback(options);
+        }
+      } else {
+        filteredCounties = counties.filter((i) =>
+          i.name.toLowerCase().includes(searchValue),
+        );
+
+        const options = [
+          // TODO: make separate function to this too
+          {
+            label: "Județe",
+            options: filteredCounties.map((item) => ({
+              value: item.id,
+              label: item.name,
+            })),
+          },
+          citiesOption,
+        ];
+
+        if (filteredCities.length > 0 || filteredCounties.length > 0) {
+          latestOptions.current = options;
+          return callback(options);
+        }
       }
 
       callback(latestOptions.current);

@@ -36,7 +36,7 @@ Option.propTypes = {
 export const ValueContainer = ({ isForm = false, children, ...props }) => {
   return (
     <components.ValueContainer {...props}>
-      {isForm && <Search size={20} className="text-black absolute ml-4" />}
+      {!isForm && <Search size={20} className="text-black absolute ml-4" />}
       {children}
     </components.ValueContainer>
   );

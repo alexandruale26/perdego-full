@@ -37,14 +37,14 @@ const SearchBar = () => {
       </Input.Root>
 
       <div className="w-full max-w-[350px] h-14">
-        <LocationSelect name="location" isForm />
+        <LocationSelect name="location" />
       </div>
 
       <Button
         type="button"
         variant="iconText"
         size="iconText"
-        className="bg-grey-6 text-base"
+        className="bg-white text-base"
         onClick={handleSubmit}
       >
         <span className="text-black">Cǎutare</span>

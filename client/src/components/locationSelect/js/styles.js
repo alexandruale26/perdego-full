@@ -1,7 +1,7 @@
-const padddingIsForm = "2.5rem";
-const padddingIsNotForm = "0.75rem";
+const padddingIsForm = "0.75rem";
+const padddingIsNotForm = "2.5rem";
 
-export default (hasIcon = false) => ({
+export default (isForm = false) => ({
   control: (provided, state) => ({
     ...provided,
     height: "3.5rem",
@@ -24,18 +24,18 @@ export default (hasIcon = false) => ({
     ...provided,
     color: "var(--grey2)",
     fontWeight: 700,
-    paddingLeft: hasIcon ? padddingIsForm : padddingIsNotForm,
+    paddingLeft: isForm ? padddingIsForm : padddingIsNotForm,
   }),
   placeholder: (provided) => ({
     ...provided,
     color: "var(--grey3)",
-    paddingLeft: hasIcon ? padddingIsForm : padddingIsNotForm,
+    paddingLeft: isForm ? padddingIsForm : padddingIsNotForm,
   }),
   input: (provided) => ({
     ...provided,
     color: "var(--black)",
     fontWeight: 700,
-    paddingLeft: hasIcon ? padddingIsForm : padddingIsNotForm,
+    paddingLeft: isForm ? padddingIsForm : padddingIsNotForm,
   }),
   option: (provided, { isFocused, isSelected }) => ({
     ...provided,

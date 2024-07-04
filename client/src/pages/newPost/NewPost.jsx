@@ -63,7 +63,7 @@ const NewPost = () => {
                   <FormItem>
                     <FormLabel>Categorie obiect</FormLabel>
                     <FormControl>
-                      <LocationSelect name="location" />
+                      <LocationSelect name="location" isForm />
                     </FormControl>
                     <InputErrorMessage />
                   </FormItem>
@@ -80,7 +80,7 @@ const NewPost = () => {
                   <FormItem>
                     <FormLabel>Localitate</FormLabel>
                     <FormControl>
-                      <LocationSelect name="location" />
+                      <LocationSelect name="location" isForm />
                     </FormControl>
                     <InputErrorMessage />
                   </FormItem>
