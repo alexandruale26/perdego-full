@@ -50,7 +50,7 @@ const NewPost = () => {
             <section className="mt-5 ml-8">
               <PostTypeSelect
                 formControl={form.control}
-                className="w-[200px]"
+                className="w-[300px]"
               />
             </section>
 

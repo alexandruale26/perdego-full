@@ -50,7 +50,7 @@ export default {
         grey: "var(--grey)",
         "grey-2": "var(--grey2)",
         "grey-3": "var(--grey3)",
-        "grey-4": "#bdbdbd",
+        "grey-4": "var(--grey4)",
         "grey-5": "#d9d9da",
         "grey-6": "#f5f5f5",
 

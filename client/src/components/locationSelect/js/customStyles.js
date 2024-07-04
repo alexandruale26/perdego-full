@@ -3,13 +3,13 @@ export default {
     ...provided,
     height: "3.5rem",
     borderRadius: "0.375rem",
-    borderColor: state.isFocused ? "var(--primary)" : provided.borderColor,
+    borderColor: state.isFocused ? "var(--primary)" : "var(--grey4)",
     cursor: "pointer",
     boxShadow: state.isFocused
       ? "0 0 0 1px var(--primary)"
       : provided.boxShadow,
     "&:hover": {
-      borderColor: state.isFocused ? "var(--primary)" : provided.borderColor,
+      borderColor: state.isFocused ? "var(--primary)" : "var(--grey4)",
     },
   }),
   menu: (provided) => ({
@@ -19,17 +19,20 @@ export default {
   }),
   singleValue: (provided) => ({
     ...provided,
-    color: "var(--black)",
-    fontWeight: "bold",
+    color: "var(--grey2)",
+    fontWeight: 700,
+    paddingLeft: "0.75rem",
   }),
   placeholder: (provided) => ({
     ...provided,
     color: "var(--grey2)",
+    paddingLeft: "0.75rem",
   }),
   input: (provided) => ({
     ...provided,
     color: "var(--black)",
     fontWeight: 700,
+    paddingLeft: "0.75rem",
   }),
   option: (provided, { isFocused, isSelected }) => ({
     ...provided,
@@ -65,5 +68,9 @@ export default {
   loadingIndicator: (provided) => ({
     ...provided,
     color: "var(--primary)",
+  }),
+  indicatorSeparator: (provided) => ({
+    ...provided,
+    backgroundColor: "var(--grey4)",
   }),
 };

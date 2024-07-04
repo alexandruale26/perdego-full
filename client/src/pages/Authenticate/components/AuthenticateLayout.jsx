@@ -13,7 +13,7 @@ const AuthenticateLayout = () => {
   return (
     <main className="min-w-full min-h-screen flex items-center bg-primary bg-authenticate bg-no-repeat bg-center bg-cover">
       <div className="absolute right-0 -translate-x-1/4">
-        <div className="w-[520px] h-[700px] flex flex-col justify-between bg-white bg-opacity-98 px-12 pt-12 rounded-lg">
+        <div className="w-[520px] h-[650px] flex flex-col justify-between bg-white bg-opacity-98 px-12 pt-12 rounded-lg">
           <Outlet />
 
           <span className="text-sm text-center mb-10">
