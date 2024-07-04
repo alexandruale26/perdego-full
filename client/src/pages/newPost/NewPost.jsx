@@ -3,7 +3,8 @@ import * as Input from "../../components/ui/Input";
 import * as Textarea from "../../components/ui/Textarea";
 import PostTypeSelect from "../../components/PostTypeSelect";
 import Button from "../../components/ui/Button";
-import LocationSelect from "../../components/locationSelect/LocationSelect";
+import LocationSelect from "../../components/selectors/location/LocationSelect";
+import CategorySelect from "../../components/selectors/category/CategorySelect";
 
 import {
   Form,
@@ -63,7 +64,7 @@ const NewPost = () => {
                   <FormItem>
                     <FormLabel>Categorie obiect</FormLabel>
                     <FormControl>
-                      <LocationSelect name="location" isForm />
+                      <CategorySelect name="category" isForm />
                     </FormControl>
                     <InputErrorMessage />
                   </FormItem>

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 const categories = [
   {
     name: "portofele_documente_carduri",
-    url: "/categories/portofele_documente_carduri.svg",
+    url: "/categories/portofele_documente_si_carduri.svg",
   },
   {
     name: "electronice",
@@ -43,7 +43,7 @@ const categories = [
   },
 ];
 
-const ObjectCategories = () => {
+const Categories = () => {
   return (
     <section className="w-full max-w-[1200px] flex flex-col items-center gap-8 pt-2 pb-10 px-6 mx-auto">
       <h2 className="text-lg font-bold">Categorii anunțuri</h2>
@@ -67,6 +67,6 @@ const ObjectCategories = () => {
     </section>
   );
 };
-ObjectCategories.displayName = "ObjectCategories";
+Categories.displayName = "Categories";
 
-export default ObjectCategories;
+export default Categories;

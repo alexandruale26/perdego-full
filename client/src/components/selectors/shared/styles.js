@@ -22,8 +22,8 @@ export default (isForm = false) => ({
   }),
   singleValue: (provided) => ({
     ...provided,
-    color: "var(--grey2)",
-    fontWeight: 700,
+    color: "var(--black)",
+    fontWeight: 600,
     paddingLeft: isForm ? padddingIsForm : padddingIsNotForm,
   }),
   placeholder: (provided) => ({
@@ -34,7 +34,7 @@ export default (isForm = false) => ({
   input: (provided) => ({
     ...provided,
     color: "var(--black)",
-    fontWeight: 700,
+    fontWeight: 600,
     paddingLeft: isForm ? padddingIsForm : padddingIsNotForm,
   }),
   option: (provided, { isFocused, isSelected }) => ({
@@ -56,7 +56,7 @@ export default (isForm = false) => ({
     ...provided,
     color: "var(--black)",
     fontSize: "0.75rem",
-    fontWeight: 700,
+    fontWeight: 600,
     textTransform: "none",
   }),
   noOptionsMessage: (provided) => ({
@@ -74,6 +74,7 @@ export default (isForm = false) => ({
   }),
   indicatorSeparator: (provided) => ({
     ...provided,
+    display: isForm ? "none" : "block",
     backgroundColor: "var(--grey4)",
   }),
 });

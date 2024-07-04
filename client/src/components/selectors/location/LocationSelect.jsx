@@ -6,10 +6,10 @@ import {
   ClearIndicator,
   DropdownIndicator,
   ValueContainer,
-} from "./Components";
-import customStyles from "./js/styles";
+} from "../shared/Components";
+import styles from "../shared/styles";
 import { parseLocation, sortCities } from "./js/helpers.js";
-import counties from "./js/judete";
+import counties from "./js/judete.js";
 
 //TODO: move judete to data folder later
 //TODO: message if judete fetch has failed
@@ -122,15 +122,15 @@ const LocationSelect = ({ name, isForm = false, ...props }) => {
   return (
     <AsyncSelect
       name={name}
-      isClearable
+      isClearable={!isForm}
       blurInputOnSelect
-      styles={customStyles(isForm)}
+      styles={styles(isForm)}
       noOptionsMessage={() =>
-        isForm ? "Cautǎ dupǎ localitate sau județ" : "Cautǎ dupǎ localitate"
+        isForm ? "Cautǎ dupǎ localitate" : "Cautǎ dupǎ localitate sau județ"
       }
       loadingMessage={() => "..."}
       loadOptions={loadOptions}
-      placeholder={isForm ? "Toatǎ țara" : "Cautǎ dupǎ localitate"}
+      placeholder={isForm ? "Cautǎ dupǎ localitate" : "Toatǎ țara"}
       components={{
         ValueContainer: (props) => {
           return <ValueContainer isForm={isForm} {...props} />;
