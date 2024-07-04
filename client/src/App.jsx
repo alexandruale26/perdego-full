@@ -8,7 +8,7 @@ import Login from "./pages/authenticate/login/Login";
 import Signup from "./pages/authenticate/signup/Signup";
 import ForgotPassword from "./pages/authenticate/ForgotPassword";
 import ChangePassword from "./pages/authenticate/ChangePassword";
-import AppLayout from "./components/AppLayout";
+import AppLayout from "./pages/layout/AppLayout";
 import RouteProtector from "./components/RouteProtector";
 import TermsAndConditions from "./pages/TermsAndConditions";
 
