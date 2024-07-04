@@ -13,7 +13,7 @@ const CategorySelect = ({ name, isForm = false, ...props }) => {
       isClearable={!isForm}
       isSearchable={false}
       styles={styles(isForm)}
-      placeholder={isForm ? "Toate categoriile" : "Alege o categorie"}
+      placeholder={isForm ? "Alege o categorie" : "Toate categoriile"}
       options={categories}
       components={{
         ClearIndicator,

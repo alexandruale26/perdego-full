@@ -1,11 +1,13 @@
 const padddingIsForm = "0.75rem";
 const padddingIsNotForm = "2.5rem";
+const radiusIsForm = "0.25rem";
+const radiusIsNotForm = "0.375rem";
 
 export default (isForm = false) => ({
   control: (provided, state) => ({
     ...provided,
     height: "3.5rem",
-    borderRadius: "0.375rem",
+    borderRadius: isForm ? radiusIsForm : radiusIsNotForm,
     borderColor: state.isFocused ? "var(--primary)" : "var(--grey4)",
     cursor: "pointer",
     boxShadow: state.isFocused
@@ -17,7 +19,7 @@ export default (isForm = false) => ({
   }),
   menu: (provided) => ({
     ...provided,
-    borderRadius: "0.375rem",
+    borderRadius: isForm ? radiusIsForm : radiusIsNotForm,
     overflow: "hidden",
   }),
   singleValue: (provided) => ({

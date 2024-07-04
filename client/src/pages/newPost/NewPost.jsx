@@ -1,4 +1,3 @@
-import { useState, forwardRef } from "react";
 import * as Input from "../../components/ui/Input";
 import * as Textarea from "../../components/ui/Textarea";
 import PostTypeSelect from "../../components/PostTypeSelect";
