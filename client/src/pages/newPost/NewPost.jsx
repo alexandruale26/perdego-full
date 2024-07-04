@@ -4,6 +4,7 @@ import PostTypeSelect from "../../components/PostTypeSelect";
 import Button from "../../components/ui/Button";
 import LocationSelect from "../../components/selectors/location/LocationSelect";
 import CategorySelect from "../../components/selectors/category/CategorySelect";
+import ImageSelect from "../../components/selectors/image/ImageSelect";
 
 import {
   Form,
@@ -129,7 +130,7 @@ const NewPost = () => {
             </section>
 
             {/* IMAGINE */}
-            <div className="h-[450px] w-full flex gap-6">
+            <div className="w-full flex gap-6">
               <section className="h-full w-full p-8 border border-grey-6 rounded-lg shadow-md space-y-4">
                 <FormField
                   control={form.control}
@@ -137,7 +138,12 @@ const NewPost = () => {
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel>Imagine</FormLabel>
-                      <FormControl></FormControl>
+                      <FormControl>
+                        <ImageSelect
+                          className="max-w-[450px]"
+                          onImageSelect={() => console.log("image selected")}
+                        />
+                      </FormControl>
                       <InputErrorMessage />
                     </FormItem>
                   )}
