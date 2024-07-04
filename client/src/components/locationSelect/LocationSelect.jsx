@@ -1,19 +1,23 @@
 import { useEffect, useState, useRef } from "react";
 import PropTypes from "prop-types";
 import AsyncSelect from "react-select/async";
-import { Option, ClearIndicator, DropdownIndicator } from "./SelectComponents";
+import {
+  Option,
+  ClearIndicator,
+  DropdownIndicator,
+  ValueContainer,
+} from "./SelectComponents";
 import customStyles from "./js/customStyles";
 import { parseLocation, sortCities } from "./js/helpers.js";
-import judete from "./js/judete";
+import counties from "./js/judete";
 
-// TODO: disable Search button in search bar
-const LocationSelect = ({ name, ...props }) => {
+const LocationSelect = ({ name, isForm = false, ...props }) => {
   const [cities, setCities] = useState(null);
   const debounceTimer = useRef(null);
   const latestOptions = useRef([]);
 
   useEffect(() => {
-    const fetchJudeteData = async () => {
+    const fetchCitiesData = async () => {
       try {
         const response = await fetch("/localitati.json");
         if (!response.ok) {
@@ -27,7 +31,7 @@ const LocationSelect = ({ name, ...props }) => {
       }
     };
 
-    fetchJudeteData();
+    fetchCitiesData();
   }, []);
 
   const loadOptions = (inputValue, callback) => {
@@ -43,7 +47,7 @@ const LocationSelect = ({ name, ...props }) => {
     searchValue = searchValue.toLowerCase();
 
     const debounce = setTimeout(() => {
-      const filteredCounties = judete.filter((i) =>
+      const filteredCounties = counties.filter((i) =>
         i.name.toLowerCase().includes(searchValue),
       );
 
@@ -98,12 +102,17 @@ const LocationSelect = ({ name, ...props }) => {
       name={name}
       isClearable
       blurInputOnSelect
-      styles={customStyles}
-      noOptionsMessage={() => "Cautǎ dupǎ localitate sau județ"}
+      styles={customStyles(isForm)}
+      noOptionsMessage={() =>
+        isForm ? "Cautǎ dupǎ localitate sau județ" : "Cautǎ dupǎ localitate"
+      }
       loadingMessage={() => "..."}
       loadOptions={loadOptions}
-      placeholder="Toatǎ țara"
+      placeholder={isForm ? "Toatǎ țara" : "Cautǎ dupǎ localitate"}
       components={{
+        ValueContainer: (props) => {
+          return <ValueContainer isForm={isForm} {...props} />;
+        },
         ClearIndicator,
         DropdownIndicator,
         Option,
@@ -115,6 +124,7 @@ const LocationSelect = ({ name, ...props }) => {
 LocationSelect.displayName = "LocationSelect";
 LocationSelect.propTypes = {
   name: PropTypes.string.isRequired,
+  isForm: PropTypes.bool,
 };
 
 export default LocationSelect;

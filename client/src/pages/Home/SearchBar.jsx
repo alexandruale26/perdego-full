@@ -4,6 +4,8 @@ import LocationSelect from "../../components/locationSelect/LocationSelect";
 import Button from "../../components/ui/Button";
 import { Search } from "lucide-react";
 
+// TODO: disable Search button in search bar
+
 const SearchBar = () => {
   const formRef = useRef(null);
 
@@ -18,7 +20,7 @@ const SearchBar = () => {
     <form
       ref={formRef}
       onSubmit={handleSubmit}
-      className={"w-full max-w-[1000px] flex mx-auto gap-2 px-10 pt-4"}
+      className={"w-full max-w-[1200px] flex mx-auto gap-2 px-10 pt-4"}
     >
       <Input.Root addClear className="flex">
         <div className="size-5 p-0 rounded-full absolute inset-y-0 left-4 shrink-0 top-1/2 -translate-y-1/2">
@@ -34,8 +36,8 @@ const SearchBar = () => {
         />
       </Input.Root>
 
-      <div className="w-full max-w-[250px] h-14">
-        <LocationSelect name="location" />
+      <div className="w-full max-w-[350px] h-14">
+        <LocationSelect name="location" isForm />
       </div>
 
       <Button

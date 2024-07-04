@@ -1,4 +1,7 @@
-export default {
+const padddingIsForm = "2.5rem";
+const padddingIsNotForm = "0.75rem";
+
+export default (hasIcon = false) => ({
   control: (provided, state) => ({
     ...provided,
     height: "3.5rem",
@@ -21,18 +24,18 @@ export default {
     ...provided,
     color: "var(--grey2)",
     fontWeight: 700,
-    paddingLeft: "0.75rem",
+    paddingLeft: hasIcon ? padddingIsForm : padddingIsNotForm,
   }),
   placeholder: (provided) => ({
     ...provided,
-    color: "var(--grey2)",
-    paddingLeft: "0.75rem",
+    color: "var(--grey3)",
+    paddingLeft: hasIcon ? padddingIsForm : padddingIsNotForm,
   }),
   input: (provided) => ({
     ...provided,
     color: "var(--black)",
     fontWeight: 700,
-    paddingLeft: "0.75rem",
+    paddingLeft: hasIcon ? padddingIsForm : padddingIsNotForm,
   }),
   option: (provided, { isFocused, isSelected }) => ({
     ...provided,
@@ -73,4 +76,4 @@ export default {
     ...provided,
     backgroundColor: "var(--grey4)",
   }),
-};
+});

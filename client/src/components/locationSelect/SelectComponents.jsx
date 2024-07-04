@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import { components } from "react-select";
-import { X, ChevronDown } from "lucide-react";
+import { X, Search, ChevronDown } from "lucide-react";
 
 export const Option = (props) => {
   const { data } = props;
@@ -31,6 +31,20 @@ Option.propTypes = {
     label: PropTypes.string,
     commune: PropTypes.string,
   }).isRequired,
+};
+
+export const ValueContainer = ({ isForm = false, children, ...props }) => {
+  return (
+    <components.ValueContainer {...props}>
+      {isForm && <Search size={20} className="text-black absolute ml-4" />}
+      {children}
+    </components.ValueContainer>
+  );
+};
+ValueContainer.displayName = "Select.ValueContainer";
+ValueContainer.propTypes = {
+  isForm: PropTypes.bool,
+  children: PropTypes.node,
 };
 
 export const ClearIndicator = (props) => {
