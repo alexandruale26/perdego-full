@@ -1,6 +1,5 @@
 import Resizer from "react-image-file-resizer";
 
-// TODO: object with options, beside file
 const resizeImage = (file, maxWidth, maxHeight, compressFormat, quality) => {
   return new Promise((resolve) => {
     Resizer.imageFileResizer(

@@ -14,7 +14,7 @@ const buttonVariants = cva(
         iconText: "text-primary font-semibold rounded-md",
         icon: "bg-transparent text-primary rounded-full hover:bg-grey-5 transition-colors",
         ghost: "hover:bg-accent hover:text-accent-foreground",
-        destructive: "bg-destructive text-white hover:bg-red-700",
+        destructive: "bg-destructive text-white hover:bg-red-600",
       },
       size: {
         primary: "h-14 px-16",

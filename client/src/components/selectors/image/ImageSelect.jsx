@@ -2,9 +2,9 @@ import { useState, useRef } from "react";
 import PropTypes from "prop-types";
 import Spinner from "../../ui/Spinner";
 import { getImageUrl, deleteImages } from "../../../services/imageApi";
-import { isImageAndValidSize, convertImage } from "./js/helpers.js";
+import { isImageAndValidSize, convertImage } from "./js/imageUploader.js";
 import { imageUploader } from "./js/imageUploader.js";
-import ImageDeleteButton from "./ImageDeleteButton";
+import DeleteImage from "./DeleteImage";
 import { cn } from "../../../lib/utils";
 
 const ImageSelect = ({ onImageSelect }) => {
@@ -13,35 +13,41 @@ const ImageSelect = ({ onImageSelect }) => {
   const [isLoading, setIsLoading] = useState(false);
   const inputRef = useRef(null);
 
-  //TODO: style it to match other inputs - border-color
+  //TODO: style it to match other inputs - focus...
 
-  const handleImageChange = async (event) => {
+  const handleImageSelect = async (event) => {
+    console.log("called");
     // if an image is already selected and the user wants to select
     // another image and cancels the action this function will be called
     const file = event.target.files && event.target.files[0];
     if (!file) return;
     setIsLoading(true);
+
     const { isImageType, isValidSize } = isImageAndValidSize(file);
     if (isImageType === false) {
       return setIsLoading(false);
     } else if (isValidSize === false) {
       return setIsLoading(false);
     }
+
     // converting the image to small and large variants
     const converterResponse = await convertImage(file);
     if (converterResponse.error) {
       return setIsLoading(false);
     }
+
     // uploading the image variants to storage
     const { data: imagePaths, error: uploaderError } = await imageUploader(
       converterResponse.data,
     );
+
     if (uploaderError) {
       return setIsLoading(false);
     }
     setImgPaths(imagePaths);
     setImageUrl(getImageUrl(imagePaths[1]));
     onImageSelect(imagePaths);
+
     if (imgPaths !== null) await deleteImages(imgPaths);
   };
 
@@ -54,6 +60,8 @@ const ImageSelect = ({ onImageSelect }) => {
   const handleClearImage = async () => {
     setImageUrl(null);
     onImageSelect(null); // remove the image from the form
+
+    // delete image from storage
     if (imgPaths !== null) await deleteImages(imgPaths);
     if (inputRef.current) inputRef.current.value = "";
     setImgPaths(null);
@@ -67,7 +75,7 @@ const ImageSelect = ({ onImageSelect }) => {
           onKeyDown={openImageInput}
           type="button"
           className={cn(
-            "h-full border border-grey-4 rounded-md focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-grey-950 group-has-[:disabled]:focus-visible:ring-grey-300 group-has-[:disabled]:cursor-not-allowed overflow-hidden transition-colors cursor-pointer",
+            "h-full border border-grey-4 rounded-sm focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-grey-950 group-has-[:disabled]:focus-visible:ring-grey-300 group-has-[:disabled]:cursor-not-allowed overflow-hidden transition-colors cursor-pointer",
             {
               "hover:bg-gray-100": imageUrl === null && isLoading === false,
             },
@@ -79,7 +87,7 @@ const ImageSelect = ({ onImageSelect }) => {
             accept="image/*"
             ref={inputRef}
             disabled={isLoading}
-            onChange={handleImageChange}
+            onChange={handleImageSelect}
           />
 
           <Spinner size="large" show={isLoading} />
@@ -105,7 +113,7 @@ const ImageSelect = ({ onImageSelect }) => {
           />
         </label>
 
-        <ImageDeleteButton
+        <DeleteImage
           show={imageUrl !== null && isLoading === false}
           onClick={handleClearImage}
           className="shrink-0"
@@ -114,7 +122,7 @@ const ImageSelect = ({ onImageSelect }) => {
           }}
         >
           Eliminǎ imaginea
-        </ImageDeleteButton>
+        </DeleteImage>
       </div>
     </div>
   );
