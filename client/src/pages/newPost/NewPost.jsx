@@ -5,6 +5,7 @@ import Button from "../../components/ui/Button";
 import LocationSelect from "../../components/selectors/location/LocationSelect";
 import CategorySelect from "../../components/selectors/category/CategorySelect";
 import ImageSelect from "../../components/selectors/image/ImageSelect";
+import Section from "./Section";
 
 import {
   Form,
@@ -22,9 +23,15 @@ const typeSchema = z.object({
   type: z.enum(["pierdute", "gasite"], {
     required_error: "Tip anunt.",
   }),
+  file: z.instanceof(FileList).optional(),
 });
 
-const defaultValues = { type: "pierdute", title: "", description: "" };
+const defaultValues = {
+  type: "pierdute",
+  title: "",
+  description: "",
+  file: undefined,
+};
 
 const NewPost = () => {
   const form = useForm({
@@ -32,6 +39,8 @@ const NewPost = () => {
     defaultValues,
     mode: "onChange",
   });
+
+  const fileRef = form.register("file");
 
   const onSubmit = (data) => {
     console.log(data);
@@ -47,21 +56,19 @@ const NewPost = () => {
             onSubmit={form.handleSubmit(onSubmit)}
             className="flex flex-col gap-6"
           >
-            {/* CATEGORIE ANUNT */}
-            <section className="mt-5 ml-8">
+            <section className="mt-5 ml-8 space-y-4">
+              {/* CATEGORIE ANUNT */}
               <PostTypeSelect
                 formControl={form.control}
                 className="w-[300px]"
               />
-            </section>
 
-            {/* CATEGORIE OBIECT */}
-            <section className="mt-5 ml-8 max-w-[500px]">
+              {/* CATEGORIE OBIECT */}
               <FormField
                 control={form.control}
                 name="category"
                 render={({ field }) => (
-                  <FormItem>
+                  <FormItem className="max-w-[500px]">
                     <FormLabel>Categorie obiect</FormLabel>
                     <FormControl>
                       <CategorySelect name="category" isForm />
@@ -70,15 +77,13 @@ const NewPost = () => {
                   </FormItem>
                 )}
               />
-            </section>
 
-            {/* LOCATIE */}
-            <section className="mt-5 ml-8 max-w-[500px]">
+              {/* LOCATIE */}
               <FormField
                 control={form.control}
                 name="location"
                 render={({ field }) => (
-                  <FormItem>
+                  <FormItem className="max-w-[500px]">
                     <FormLabel>Localitate</FormLabel>
                     <FormControl>
                       <LocationSelect name="location" isForm />
@@ -90,7 +95,7 @@ const NewPost = () => {
             </section>
 
             {/* TITLU - DESCRIERE ANUNT */}
-            <section className="w-full p-8 border border-grey-6 rounded-lg shadow-md space-y-4">
+            <Section>
               <FormField
                 control={form.control}
                 name="title"
@@ -127,29 +132,27 @@ const NewPost = () => {
                   </FormItem>
                 )}
               />
-            </section>
+            </Section>
 
             {/* IMAGINE */}
-            <div className="w-full flex gap-6">
-              <section className="h-full w-full p-8 border border-grey-6 rounded-lg shadow-md space-y-4">
-                <FormField
-                  control={form.control}
-                  name="image"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Imagine</FormLabel>
-                      <FormControl>
-                        <ImageSelect />
-                      </FormControl>
-                      <InputErrorMessage />
-                    </FormItem>
-                  )}
-                />
-              </section>
-            </div>
+            <Section>
+              <FormField
+                control={form.control}
+                name="file"
+                render={({ field }) => (
+                  <FormItem>
+                    {/* <FormLabel>Imagine</FormLabel> */}
+                    <FormControl>
+                      <ImageSelect {...fileRef} />
+                    </FormControl>
+                    <InputErrorMessage />
+                  </FormItem>
+                )}
+              />
+            </Section>
 
             {/* CONTACT */}
-            <section className="h-full w-full p-8 border border-grey-6 rounded-lg shadow-md space-y-4">
+            <Section>
               <FormLabel>Informații de contact</FormLabel>
               <FormField
                 control={form.control}
@@ -179,7 +182,7 @@ const NewPost = () => {
                   </FormItem>
                 )}
               />
-            </section>
+            </Section>
 
             <Button className="w-full max-w-[320px] self-center">
               Publicǎ anunțul

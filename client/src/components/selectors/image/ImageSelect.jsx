@@ -1,14 +1,14 @@
-import { useState, useRef } from "react";
+import { useState, useRef, forwardRef } from "react";
 import PropTypes from "prop-types";
 import DeleteImage from "./DeleteImage";
 import { cn } from "../../../lib/utils";
 
-const ImageSelect = () => {
+const ImageSelect = forwardRef((props, ref) => {
   const [previewUrl, setPreviewUrl] = useState(null);
   const [message, setMessage] = useState(null);
   const inputRef = useRef(null);
 
-  const handleImageSelect = async (event) => {
+  const handleImageSelect = (event) => {
     const file = event.target.files && event.target.files[0];
 
     if (!file || !isValidImage(file.type, file.size)) {
@@ -19,6 +19,7 @@ const ImageSelect = () => {
 
     setPreviewUrl(URL.createObjectURL(file));
     setMessage(null);
+    // onChange(event.target?.files?.[0] ?? undefined);
   };
 
   // TODO: later clear using input by type and free ref to Form controller
@@ -33,6 +34,12 @@ const ImageSelect = () => {
     inputRef.current.value = "";
     setPreviewUrl(null);
   };
+
+  //
+  // TODO: vezi ca merge in consola. Rezolva problema
+  // TODO: trebuie sa folosesti ref
+  // TODO: merge doar cu fileRef in newPost
+  //
 
   return (
     <div className="w-full h-full flex justify-center">
@@ -52,8 +59,11 @@ const ImageSelect = () => {
             hidden
             type="file"
             accept="image/*"
-            ref={inputRef}
-            onChange={handleImageSelect}
+            ref={ref}
+            onChange={(event) => {
+              props.onChange(event.target?.files?.[0] ?? undefined);
+            }}
+            {...props}
           />
 
           {previewUrl === null ? (
@@ -89,7 +99,7 @@ const ImageSelect = () => {
       </div>
     </div>
   );
-};
+});
 ImageSelect.displayName = "ImageSelect";
 ImageSelect.propTypes = {};
 

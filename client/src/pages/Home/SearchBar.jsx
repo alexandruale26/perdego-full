@@ -4,12 +4,13 @@ import LocationSelect from "../../components/selectors/location/LocationSelect";
 import Button from "../../components/ui/Button";
 import { Search } from "lucide-react";
 
-// TODO: disable Search button in search bar
+// TODO: disable Search button in search bar on Posts page
 
 const SearchBar = () => {
   const formRef = useRef(null);
 
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
     const formData = new FormData(formRef.current);
     const formObj = Object.fromEntries(formData.entries());
 
@@ -42,7 +43,7 @@ const SearchBar = () => {
 
       <Button
         type="submit"
-        className="bg-white text-base px-6"
+        className="bg-white text-base px-6 hover:bg-current"
         onClick={handleSubmit}
       >
         <span className="text-black">Cǎutare</span>
