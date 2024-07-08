@@ -1,7 +1,6 @@
 import { useState, useRef } from "react";
 import PropTypes from "prop-types";
-// import Spinner from "@/shared/Spinner";
-import { Camera } from "lucide-react";
+import Spinner from "../../ui/Spinner";
 import { getImageUrl, deleteImages } from "../../../services/imageApi";
 import { isImageAndValidSize, convertImage } from "./js/helpers.js";
 import { imageUploader } from "./js/imageUploader.js";
@@ -14,7 +13,7 @@ const ImageSelect = ({ onImageSelect }) => {
   const [isLoading, setIsLoading] = useState(false);
   const inputRef = useRef(null);
 
-  //TODO: style it to match other inputs
+  //TODO: style it to match other inputs - border-color
 
   const handleImageChange = async (event) => {
     // if an image is already selected and the user wants to select
@@ -62,13 +61,13 @@ const ImageSelect = ({ onImageSelect }) => {
 
   return (
     <div className="w-full h-full flex justify-center">
-      <div className="h-[400px] w-[600px] flex flex-col gap-2">
+      <div className="h-[400px] w-[600px] flex flex-col gap-2 group">
         <label
           tabIndex={0}
           onKeyDown={openImageInput}
           type="button"
           className={cn(
-            "h-full border border-grey-300 rounded-md focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-grey-950 group-has-[:disabled]:focus-visible:ring-grey-300 group-has-[:disabled]:cursor-not-allowed overflow-hidden transition-colors cursor-pointer",
+            "h-full border border-grey-4 rounded-md focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-grey-950 group-has-[:disabled]:focus-visible:ring-grey-300 group-has-[:disabled]:cursor-not-allowed overflow-hidden transition-colors cursor-pointer",
             {
               "hover:bg-gray-100": imageUrl === null && isLoading === false,
             },
@@ -83,17 +82,11 @@ const ImageSelect = ({ onImageSelect }) => {
             onChange={handleImageChange}
           />
 
-          {isLoading && (
-            <div className="w-full h-full flex items-center justify-center">
-              {/* <Spinner /> */}
-              Se incarcǎ....
-            </div>
-          )}
+          <Spinner size="large" show={isLoading} />
 
-          {imageUrl === null && isLoading === false && (
+          {imageUrl === null && (
             <div className="h-full w-full flex items-center justify-center flex-col gap-3">
               <p className="text-base text-black">Adaugǎ o imagine</p>
-              <Camera width={60} height={60} strokeWidth={0.8} />
             </div>
           )}
 
