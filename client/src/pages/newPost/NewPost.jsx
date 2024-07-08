@@ -139,10 +139,7 @@ const NewPost = () => {
                     <FormItem>
                       <FormLabel>Imagine</FormLabel>
                       <FormControl>
-                        <ImageSelect
-                          // className="max-w-[450px]"
-                          onImageSelect={() => console.log("image selected")}
-                        />
+                        <ImageSelect />
                       </FormControl>
                       <InputErrorMessage />
                     </FormItem>

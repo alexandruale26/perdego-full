@@ -11,9 +11,9 @@ export const uploadImage = async (imageFile, imageName) => {
         upsert: false,
       });
 
-    if (data === null) throw new Error("Received data from storage is null");
+    if (data === null) throw new Error("Received path is null");
     return data.path;
-  } catch (error) {
+  } catch {
     console.log("Uploading failed");
     throw new Error("Uploading failed");
   }
