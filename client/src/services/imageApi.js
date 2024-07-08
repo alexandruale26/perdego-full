@@ -19,7 +19,7 @@ export const uploadImage = async (imageFile, imageName) => {
   }
 };
 
-export const deleteImages = async (paths) => {
+export const deleteImage = async (paths) => {
   try {
     const data = await supabase.storage.from(bucket).remove(paths);
 

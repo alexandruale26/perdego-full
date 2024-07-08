@@ -1,54 +1,44 @@
 import { useState, useRef } from "react";
 import PropTypes from "prop-types";
 import Spinner from "../../ui/Spinner";
-import { getImageUrl, deleteImages } from "../../../services/imageApi";
-import { isImageAndValidSize, convertImage } from "./js/imageUploader.js";
-import { imageUploader } from "./js/imageUploader.js";
+import { getImageUrl, deleteImage } from "../../../services/imageApi";
+import { isValidImage, convertImage } from "./js/imageUploader.js";
+import { uploadImage } from "./js/imageUploader.js";
 import DeleteImage from "./DeleteImage";
 import { cn } from "../../../lib/utils";
 
 const ImageSelect = ({ onImageSelect }) => {
   const [imageUrl, setImageUrl] = useState(null);
-  const [imgPaths, setImgPaths] = useState(null);
+  const [imgPath, setImgPath] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const inputRef = useRef(null);
 
-  //TODO: style it to match other inputs - focus...
-
   const handleImageSelect = async (event) => {
-    console.log("called");
-    // if an image is already selected and the user wants to select
-    // another image and cancels the action this function will be called
     const file = event.target.files && event.target.files[0];
     if (!file) return;
     setIsLoading(true);
 
-    const { isImageType, isValidSize } = isImageAndValidSize(file);
-    if (isImageType === false) {
-      return setIsLoading(false);
-    } else if (isValidSize === false) {
+    const imageIsValid = isValidImage(file.type, file.size);
+    if (imageIsValid === false) return setIsLoading(false);
+
+    const converted = await convertImage(file);
+
+    if (converted.error) {
+      console.log("error after converting");
       return setIsLoading(false);
     }
 
-    // converting the image to small and large variants
-    const converterResponse = await convertImage(file);
-    if (converterResponse.error) {
-      return setIsLoading(false);
-    }
-
-    // uploading the image variants to storage
-    const { data: imagePaths, error: uploaderError } = await imageUploader(
-      converterResponse.data,
-    );
+    const { data: imagePath, error: uploaderError } =
+      await uploadImage(converted);
 
     if (uploaderError) {
       return setIsLoading(false);
     }
-    setImgPaths(imagePaths);
-    setImageUrl(getImageUrl(imagePaths[1]));
-    onImageSelect(imagePaths);
+    setImgPath(imagePath);
+    setImageUrl(getImageUrl(imagePath));
+    onImageSelect(imagePath);
 
-    if (imgPaths !== null) await deleteImages(imgPaths);
+    if (imgPath !== null) await deleteImage(imgPath);
   };
 
   const openImageInput = (event) => {
@@ -62,9 +52,9 @@ const ImageSelect = ({ onImageSelect }) => {
     onImageSelect(null); // remove the image from the form
 
     // delete image from storage
-    if (imgPaths !== null) await deleteImages(imgPaths);
+    if (imgPath !== null) await deleteImage(imgPath);
     if (inputRef.current) inputRef.current.value = "";
-    setImgPaths(null);
+    setImgPath(null);
   };
 
   return (
