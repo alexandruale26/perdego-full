@@ -41,7 +41,7 @@ export default {
         accessibility: "#31ccec",
         success: "#21ba45",
         warning: "#f2c037",
-        error: "#ff001c",
+        destructive: "#ff001c", // see if is used
 
         black: "var(--black)",
         "black-medium": "#1d1d1d",
@@ -59,10 +59,6 @@ export default {
         ring: "hsl(var(--ring))",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
-        destructive: {
-          DEFAULT: "hsl(var(--destructive))",
-          foreground: "hsl(var(--destructive-foreground))",
-        },
 
         muted: {
           DEFAULT: "hsl(var(--muted))",

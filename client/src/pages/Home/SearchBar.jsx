@@ -24,7 +24,7 @@ const SearchBar = () => {
     >
       <Input.Root addClear className="flex">
         <div className="size-5 p-0 rounded-full absolute inset-y-0 left-4 shrink-0 top-1/2 -translate-y-1/2">
-          <Search width={20} height={20} />
+          <Search />
         </div>
 
         <Input.Field
@@ -41,14 +41,11 @@ const SearchBar = () => {
       </div>
 
       <Button
-        type="button"
-        variant="iconText"
-        size="iconText"
-        className="bg-white text-base"
+        type="submit"
+        className="bg-white text-base px-6"
         onClick={handleSubmit}
       >
         <span className="text-black">Cǎutare</span>
-        <Search />
       </Button>
     </form>
   );

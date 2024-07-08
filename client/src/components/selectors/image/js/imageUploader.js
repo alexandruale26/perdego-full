@@ -1,12 +1,9 @@
-// import { uploadImage } from "@/services/imageApi";
+import { uploadImage } from "../../../../services/imageApi";
 import { IMAGE_EXTENSION } from "./consts";
 
-const uploadImage = async () => console.log("set image uploader api");
-
-const imageRandomName = () => {
+export const imageRandomName = () => {
   return `${Math.floor(Math.random() * 99999999)}-${Math.floor(Math.random() * 99999999)}`;
 };
-
 export const imageUploader = async (files) => {
   const imageUniqueName = imageRandomName();
   const small = `${imageUniqueName}-small.${IMAGE_EXTENSION}`;

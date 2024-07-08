@@ -4,25 +4,21 @@ import { Trash2 } from "lucide-react";
 import Button from "../../ui/Button";
 import { cn } from "../../../lib/utils";
 
-// TODO: button variant destructive if makes sense
-
 const ImageDeleteButton = forwardRef(
   ({ show = false, className, children, ...props }, ref) => {
     if (!show) return null;
 
     return (
-      <div>
-        <Button
-          // variant="destructive"
-          ref={ref}
-          type="button"
-          className={cn("w-full flex gap-2 items-center", className)}
-          {...props}
-        >
-          <Trash2 width={18} height={18} />
-          {children}
-        </Button>
-      </div>
+      <Button
+        variant="destructive"
+        ref={ref}
+        type="button"
+        className={cn("w-full flex gap-2 items-center", className)}
+        {...props}
+      >
+        <Trash2 width={20} height={20} />
+        <span>{children}</span>
+      </Button>
     );
   },
 );

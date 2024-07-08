@@ -2,8 +2,6 @@ import PropTypes from "prop-types";
 import { cn } from "../../../lib/utils.js";
 import { X } from "lucide-react";
 
-const iconSize = 24;
-
 export const ClearField = ({ className, ...props }) => {
   const handleClick = (e) => {
     const parent = e.currentTarget.parentNode;
@@ -24,6 +22,7 @@ export const ClearField = ({ className, ...props }) => {
   return (
     <button
       tabIndex={-1}
+      type="button"
       onClick={handleClick}
       className={cn(
         "size-7 flex items-center justify-center p-0 rounded-full absolute inset-y-0 right-2 shrink-0 top-1/2 -translate-y-1/2",
@@ -31,7 +30,7 @@ export const ClearField = ({ className, ...props }) => {
       )}
       {...props}
     >
-      <X size={iconSize} />
+      <X />
     </button>
   );
 };

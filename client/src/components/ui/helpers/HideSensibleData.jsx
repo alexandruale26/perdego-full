@@ -3,8 +3,6 @@ import PropTypes from "prop-types";
 import { cn } from "../../../lib/utils.js";
 import { Eye, EyeOff } from "lucide-react";
 
-const iconSize = 24;
-
 export const HideSensibleData = ({ className, name, ...props }) => {
   const [hidden, setHidden] = useState(true);
 
@@ -35,7 +33,7 @@ export const HideSensibleData = ({ className, name, ...props }) => {
       className={cn("size-7 p-0 rounded-full", className)}
       {...props}
     >
-      {hidden ? <EyeOff size={iconSize} /> : <Eye size={iconSize} />}
+      {hidden ? <EyeOff /> : <Eye />}
     </button>
   );
 };

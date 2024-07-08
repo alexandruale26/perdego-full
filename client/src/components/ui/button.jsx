@@ -14,11 +14,12 @@ const buttonVariants = cva(
         iconText: "text-primary font-semibold rounded-md",
         icon: "bg-transparent text-primary rounded-full hover:bg-grey-5 transition-colors",
         ghost: "hover:bg-accent hover:text-accent-foreground",
+        destructive: "bg-destructive text-white hover:bg-red-700",
       },
       size: {
         primary: "h-14 px-16",
         cta: "h-14 px-8",
-        iconText: "h-14 gap-1.5 px-4",
+        iconText: "h-14 gap-2 px-4",
         icon: "size-10",
       },
     },
@@ -45,7 +46,7 @@ Button.displayName = "Button";
 Button.propTypes = {
   className: PropTypes.string,
   // TODO: remove unuses variants or sizes
-  variant: PropTypes.oneOf(["primary", "cta", "iconText", "ghost", "icon"]),
+  variant: PropTypes.oneOf(["primary", "cta", "ghost", "icon", "destructive"]),
   size: PropTypes.oneOf(["primary", "cta", "iconText", "icon"]),
   asChild: PropTypes.bool,
 };

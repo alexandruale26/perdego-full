@@ -1,15 +1,13 @@
 import PropTypes from "prop-types";
 import { Check, CircleAlert } from "lucide-react";
 
-const iconSize = 24;
-
 const AddValidation = ({ fieldValidity: { error, invalid, isDirty } }) => {
   if (!invalid && !isDirty) return null;
 
   return error ? (
-    <CircleAlert size={iconSize} className="text-error" />
+    <CircleAlert className="text-destructive" />
   ) : (
-    <Check size={iconSize} className="text-success" />
+    <Check className="text-success" />
   );
 };
 AddValidation.displayName = "AddValidation";
