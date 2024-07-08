@@ -46,7 +46,14 @@ Button.displayName = "Button";
 Button.propTypes = {
   className: PropTypes.string,
   // TODO: remove unuses variants or sizes
-  variant: PropTypes.oneOf(["primary", "cta", "ghost", "icon", "destructive"]),
+  variant: PropTypes.oneOf([
+    "primary",
+    "cta",
+    "ghost",
+    "iconText",
+    "icon",
+    "destructive",
+  ]),
   size: PropTypes.oneOf(["primary", "cta", "iconText", "icon"]),
   asChild: PropTypes.bool,
 };

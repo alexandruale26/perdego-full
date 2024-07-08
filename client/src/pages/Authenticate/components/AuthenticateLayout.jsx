@@ -31,7 +31,7 @@ const AuthenticateLayout = () => {
                   asChild
                   variant="icon"
                   size="icon"
-                  className="absolute top-2 left-2"
+                  className="absolute top-2 left-2 text-black"
                   tabIndex={1}
                 >
                   <Link to="/">

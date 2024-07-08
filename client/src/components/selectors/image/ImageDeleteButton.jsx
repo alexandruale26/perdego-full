@@ -16,7 +16,7 @@ const ImageDeleteButton = forwardRef(
         className={cn("w-full flex gap-2 items-center", className)}
         {...props}
       >
-        <Trash2 width={20} height={20} />
+        <Trash2 />
         <span>{children}</span>
       </Button>
     );

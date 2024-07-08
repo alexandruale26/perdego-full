@@ -61,73 +61,68 @@ const ImageSelect = ({ onImageSelect }) => {
   };
 
   return (
-    <div className="w-full h-full flex flex-col justify-center items-center gap-2">
-      <label
-        tabIndex={0}
-        onKeyDown={openImageInput}
-        type="button"
-        className={cn(
-          "h-[400px] w-[600px] border border-grey-300 rounded-md focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-grey-950 group-has-[:disabled]:focus-visible:ring-grey-300 group-has-[:disabled]:cursor-not-allowed overflow-hidden transition-colors cursor-pointer",
-          {
-            "hover:bg-gray-100": imageUrl === null && isLoading === false,
-          },
-        )}
-      >
-        <input
-          hidden
-          type="file"
-          accept="image/*"
-          ref={inputRef}
-          disabled={isLoading}
-          onChange={handleImageChange}
-        />
-
-        {isLoading && (
-          <div className="w-full h-full flex items-center justify-center">
-            {/* <Spinner /> */}
-            Se incarcǎ....
-          </div>
-        )}
-
-        {imageUrl === null && isLoading === false && (
-          <div className="h-full w-full flex items-center justify-center flex-col gap-3">
-            <p className="text-sm xs:text-base text-grey-800">
-              Adaugǎ o imagine
-            </p>
-            <Camera
-              width={40}
-              height={40}
-              strokeWidth={0.6}
-              className="max-w-[70px] xsm:max-w-[80px] max-h-[70px] xsm:max-h-[80px]"
-            />
-          </div>
-        )}
-
-        <img
-          src={imageUrl}
-          onLoad={() => setIsLoading(false)}
-          onError={() => setIsLoading(false)}
-          alt="post image"
-          draggable="false"
+    <div className="w-full h-full flex justify-center">
+      <div className="h-[400px] w-[600px] flex flex-col gap-2">
+        <label
+          tabIndex={0}
+          onKeyDown={openImageInput}
+          type="button"
           className={cn(
-            "w-full h-full object-cover opacity-0 hover:brightness-[0.5] transition-opacity hover:transition duration-500 ease-out",
+            "h-full border border-grey-300 rounded-md focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-grey-950 group-has-[:disabled]:focus-visible:ring-grey-300 group-has-[:disabled]:cursor-not-allowed overflow-hidden transition-colors cursor-pointer",
             {
-              "opacity-100": isLoading === false && imageUrl !== null,
+              "hover:bg-gray-100": imageUrl === null && isLoading === false,
             },
           )}
-        />
-      </label>
+        >
+          <input
+            hidden
+            type="file"
+            accept="image/*"
+            ref={inputRef}
+            disabled={isLoading}
+            onChange={handleImageChange}
+          />
 
-      <ImageDeleteButton
-        show={imageUrl !== null && isLoading === false}
-        onClick={handleClearImage}
-        // className="w-full"
-        style={{
-          opacity: imageUrl !== null && isLoading === false ? 100 : 0,
-        }}
-      >
-        Eliminǎ imaginea
-      </ImageDeleteButton>
+          {isLoading && (
+            <div className="w-full h-full flex items-center justify-center">
+              {/* <Spinner /> */}
+              Se incarcǎ....
+            </div>
+          )}
+
+          {imageUrl === null && isLoading === false && (
+            <div className="h-full w-full flex items-center justify-center flex-col gap-3">
+              <p className="text-base text-black">Adaugǎ o imagine</p>
+              <Camera width={60} height={60} strokeWidth={0.8} />
+            </div>
+          )}
+
+          <img
+            src={imageUrl}
+            onLoad={() => setIsLoading(false)}
+            onError={() => setIsLoading(false)}
+            alt="post image"
+            draggable="false"
+            className={cn(
+              "w-full h-full object-cover opacity-0 hover:brightness-[0.5] transition-opacity hover:transition duration-500 ease-out",
+              {
+                "opacity-100": isLoading === false && imageUrl !== null,
+              },
+            )}
+          />
+        </label>
+
+        <ImageDeleteButton
+          show={imageUrl !== null && isLoading === false}
+          onClick={handleClearImage}
+          className="shrink-0"
+          style={{
+            opacity: imageUrl !== null && isLoading === false ? 100 : 0,
+          }}
+        >
+          Eliminǎ imaginea
+        </ImageDeleteButton>
+      </div>
     </div>
   );
 };

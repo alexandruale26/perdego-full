@@ -12,7 +12,7 @@ import { parseLocation, sortCities } from "./js/helpers.js";
 import counties from "./js/judete.js";
 
 //TODO: move judete to data folder later
-//TODO: message if judete fetch has failed
+//TODO: message if judete fetch has failed/ change judete name
 
 const LocationSelect = ({ name, isForm = false, ...props }) => {
   const [cities, setCities] = useState(null);
