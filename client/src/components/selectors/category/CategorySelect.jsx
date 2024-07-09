@@ -1,32 +1,41 @@
+import { forwardRef } from "react";
 import PropTypes from "prop-types";
 import Select from "react-select";
 import { ClearIndicator, DropdownIndicator } from "../shared/Components";
 import styles from "../shared/styles";
 import categories from "./js/categories";
 
-const CategorySelect = ({ name, isForm = false, ...props }) => {
-  return (
-    <Select
-      name={name}
-      defaultValue={"Electronice"}
-      blurInputOnSelect
-      isClearable={!isForm}
-      isSearchable={false}
-      styles={styles(isForm)}
-      placeholder={isForm ? "Alege o categorie" : "Toate categoriile"}
-      options={categories}
-      components={{
-        ClearIndicator,
-        DropdownIndicator,
-      }}
-      {...props}
-    />
-  );
-};
+const CategorySelect = forwardRef(
+  ({ name, isInPostForm = false, ...props }, ref) => {
+    delete props.value;
+
+    return (
+      <Select
+        name={name}
+        defaultValue={"Electronice"}
+        blurInputOnSelect
+        isClearable={!isInPostForm}
+        isSearchable={false}
+        styles={styles(isInPostForm)}
+        placeholder={isInPostForm ? "Alege o categorie" : "Toate categoriile"}
+        options={categories}
+        components={{
+          ClearIndicator,
+          DropdownIndicator,
+        }}
+        ref={ref}
+        {...props}
+        onChange={({ value }) => props.onChange(value)}
+      />
+    );
+  },
+);
 CategorySelect.displayName = "CategorySelect";
 CategorySelect.propTypes = {
   name: PropTypes.string.isRequired,
-  isForm: PropTypes.bool,
+  isInPostForm: PropTypes.bool,
+  value: PropTypes.any,
+  onChange: PropTypes.func,
 };
 
 export default CategorySelect;

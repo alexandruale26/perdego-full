@@ -1,13 +1,13 @@
-const padddingIsForm = "0.75rem";
+const padddingIsForm = "1rem";
 const padddingIsNotForm = "2.5rem";
 const radiusIsForm = "0.25rem";
 const radiusIsNotForm = "0.375rem";
 
-export default (isForm = false) => ({
+export default (isInPostForm = false) => ({
   control: (provided, state) => ({
     ...provided,
     height: "3.5rem",
-    borderRadius: isForm ? radiusIsForm : radiusIsNotForm,
+    borderRadius: isInPostForm ? radiusIsForm : radiusIsNotForm,
     borderColor: state.isFocused ? "var(--primary)" : "var(--grey4)",
     cursor: "pointer",
     boxShadow: state.isFocused
@@ -19,25 +19,25 @@ export default (isForm = false) => ({
   }),
   menu: (provided) => ({
     ...provided,
-    borderRadius: isForm ? radiusIsForm : radiusIsNotForm,
+    borderRadius: isInPostForm ? radiusIsForm : radiusIsNotForm,
     overflow: "hidden",
   }),
   singleValue: (provided) => ({
     ...provided,
     color: "var(--black)",
     fontWeight: 600,
-    paddingLeft: isForm ? padddingIsForm : padddingIsNotForm,
+    paddingLeft: isInPostForm ? padddingIsForm : padddingIsNotForm,
   }),
   placeholder: (provided) => ({
     ...provided,
     color: "var(--grey3)",
-    paddingLeft: isForm ? padddingIsForm : padddingIsNotForm,
+    paddingLeft: isInPostForm ? padddingIsForm : padddingIsNotForm,
   }),
   input: (provided) => ({
     ...provided,
     color: "var(--black)",
     fontWeight: 600,
-    paddingLeft: isForm ? padddingIsForm : padddingIsNotForm,
+    paddingLeft: isInPostForm ? padddingIsForm : padddingIsNotForm,
   }),
   option: (provided, { isFocused, isSelected }) => ({
     ...provided,
@@ -76,7 +76,7 @@ export default (isForm = false) => ({
   }),
   indicatorSeparator: (provided) => ({
     ...provided,
-    display: isForm ? "none" : "block",
+    display: isInPostForm ? "none" : "block",
     backgroundColor: "var(--grey4)",
   }),
 });

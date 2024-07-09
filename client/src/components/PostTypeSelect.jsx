@@ -34,11 +34,7 @@ const PostTypeSelect = forwardRef(
         name="type"
         render={({ field }) => (
           <FormItem>
-            {showLabel && (
-              <div className="mb-4">
-                <p className="text-lg">Categorie anunț</p>
-              </div>
-            )}
+            {showLabel && <p className="text-lg">Categorie anunț</p>}
             <FormControl>
               <RadioGroupPrimitive.Root
                 className={cn("flex flex-col items-center w-full", className)}
@@ -100,7 +96,7 @@ const Label = ({ value, ...props }) => {
   };
 
   return (
-    <div className="flex w-full h-full">
+    <div className="flex w-full">
       <label
         htmlFor={formItemId}
         tabIndex={0}

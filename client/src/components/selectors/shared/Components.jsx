@@ -33,17 +33,21 @@ Option.propTypes = {
   }).isRequired,
 };
 
-export const ValueContainer = ({ isForm = false, children, ...props }) => {
+export const ValueContainer = ({
+  isInPostForm = false,
+  children,
+  ...props
+}) => {
   return (
     <components.ValueContainer {...props}>
-      {!isForm && <MapPin className="text-black absolute ml-4" />}
+      {!isInPostForm && <MapPin className="text-black absolute ml-4" />}
       {children}
     </components.ValueContainer>
   );
 };
 ValueContainer.displayName = "Select.ValueContainer";
 ValueContainer.propTypes = {
-  isForm: PropTypes.bool,
+  isInPostForm: PropTypes.bool,
   children: PropTypes.node,
 };
 

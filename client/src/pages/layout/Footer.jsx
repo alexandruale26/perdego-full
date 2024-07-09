@@ -58,7 +58,7 @@ const Footer = () => {
         <div className="grid grid-rows-6 grid-cols-2 gap-y-4 flex-grow">
           {links.map((link) => {
             return (
-              <Link key={link.name} to={link.url}>
+              <Link key={link.name} to={link.url} className="w-fit">
                 {link.name}
               </Link>
             );

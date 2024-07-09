@@ -1,11 +1,11 @@
 import * as Input from "../../components/ui/Input";
 import * as Textarea from "../../components/ui/Textarea";
+import Section from "./Section";
 import PostTypeSelect from "../../components/PostTypeSelect";
 import Button from "../../components/ui/Button";
 import LocationSelect from "../../components/selectors/location/LocationSelect";
 import CategorySelect from "../../components/selectors/category/CategorySelect";
 import ImageSelect from "../../components/selectors/image/ImageSelect";
-import Section from "./Section";
 
 import {
   Form,
@@ -20,16 +20,21 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 
 const typeSchema = z.object({
+  // TODO: manage this on backend
   type: z.enum(["pierdute", "gasite"], {
-    required_error: "Tip anunt.",
+    required_error: "Alege tipul de anunț",
   }),
+  category: z.string({ required_error: "Alege o categorie" }),
+  location: z.string({ required_error: "Alege o localitate" }),
   image: z.any(),
 });
 
 const defaultValues = {
   type: "pierdute",
   title: "",
-  description: "",
+  category: undefined,
+  description: undefined,
+  location: undefined,
   image: undefined,
 };
 
@@ -58,7 +63,7 @@ const NewPost = () => {
               {/* CATEGORIE ANUNT */}
               <PostTypeSelect
                 formControl={form.control}
-                className="w-[300px]"
+                className="max-w-[300px]"
               />
 
               {/* CATEGORIE OBIECT */}
@@ -67,9 +72,9 @@ const NewPost = () => {
                 name="category"
                 render={({ field }) => (
                   <FormItem className="max-w-[500px]">
-                    <FormLabel>Categorie obiect</FormLabel>
+                    <p className="text-lg">Categorie obiect</p>
                     <FormControl>
-                      <CategorySelect name="category" isForm />
+                      <CategorySelect name="category" isInPostForm {...field} />
                     </FormControl>
                     <InputErrorMessage />
                   </FormItem>
@@ -82,9 +87,9 @@ const NewPost = () => {
                 name="location"
                 render={({ field }) => (
                   <FormItem className="max-w-[500px]">
-                    <FormLabel>Localitate</FormLabel>
+                    <p className="text-lg">Localitate</p>
                     <FormControl>
-                      <LocationSelect name="location" isForm />
+                      <LocationSelect name="location" isInPostForm {...field} />
                     </FormControl>
                     <InputErrorMessage />
                   </FormItem>
@@ -99,7 +104,7 @@ const NewPost = () => {
                 name="title"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Titlu</FormLabel>
+                    <p className="text-lg">Titlu</p>
                     <FormControl>
                       <Input.SuperRoot>
                         <Input.Field
@@ -117,7 +122,7 @@ const NewPost = () => {
                 name="description"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Descriere</FormLabel>
+                    <p className="text-lg">Descriere</p>
                     <FormControl>
                       <Textarea.Root>
                         <Textarea.Field
@@ -138,14 +143,17 @@ const NewPost = () => {
                 control={form.control}
                 name="image"
                 render={({ field: { onChange, ...rest } }) => (
-                  <ImageSelect onChange={onChange} {...rest} />
+                  <FormItem>
+                    <p className="text-lg">Imagine</p>
+                    <ImageSelect onChange={onChange} {...rest} />
+                  </FormItem>
                 )}
               />
             </Section>
 
             {/* CONTACT */}
             <Section>
-              <FormLabel>Informații de contact</FormLabel>
+              <p className="text-lg">Informații de contact</p>
               <FormField
                 control={form.control}
                 name="name"
