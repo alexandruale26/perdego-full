@@ -1,12 +1,11 @@
-import { useState, useRef, forwardRef } from "react";
+import { useState, forwardRef } from "react";
 import PropTypes from "prop-types";
 import DeleteImage from "./DeleteImage";
 import { cn } from "../../../lib/utils";
 
-const ImageSelect = forwardRef((props, ref) => {
+const ImageSelect = forwardRef(({ onChange, ...props }, ref) => {
   const [previewUrl, setPreviewUrl] = useState(null);
   const [message, setMessage] = useState(null);
-  const inputRef = useRef(null);
 
   const handleImageSelect = (event) => {
     const file = event.target.files && event.target.files[0];
@@ -19,27 +18,23 @@ const ImageSelect = forwardRef((props, ref) => {
 
     setPreviewUrl(URL.createObjectURL(file));
     setMessage(null);
-    // onChange(event.target?.files?.[0] ?? undefined);
+
+    console.log("here");
+    onChange(event.target?.files?.[0] ?? undefined);
   };
 
-  // TODO: later clear using input by type and free ref to Form controller
   const openImageInput = (event) => {
     if (event.key === "Enter" || event.key === " ") {
-      inputRef.current.click();
+      const input = document.querySelector("input[type=file]");
+      input.click();
     }
   };
 
-  // TODO: later clear using input by type and free ref to Form controller
   const handleClearImage = () => {
-    inputRef.current.value = "";
+    const input = document.querySelector("input[type=file]");
+    input.value = "";
     setPreviewUrl(null);
   };
-
-  //
-  // TODO: vezi ca merge in consola. Rezolva problema
-  // TODO: trebuie sa folosesti ref
-  // TODO: merge doar cu fileRef in newPost
-  //
 
   return (
     <div className="w-full h-full flex justify-center">
@@ -58,11 +53,10 @@ const ImageSelect = forwardRef((props, ref) => {
           <input
             hidden
             type="file"
+            name="image"
             accept="image/*"
             ref={ref}
-            onChange={(event) => {
-              props.onChange(event.target?.files?.[0] ?? undefined);
-            }}
+            onChange={handleImageSelect}
             {...props}
           />
 
@@ -101,7 +95,7 @@ const ImageSelect = forwardRef((props, ref) => {
   );
 });
 ImageSelect.displayName = "ImageSelect";
-ImageSelect.propTypes = {};
+ImageSelect.propTypes = { onChange: PropTypes.func };
 
 const isValidImage = (type, size) => {
   const isImageType = type.startsWith("image/");

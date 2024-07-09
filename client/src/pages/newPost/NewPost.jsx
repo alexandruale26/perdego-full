@@ -23,14 +23,14 @@ const typeSchema = z.object({
   type: z.enum(["pierdute", "gasite"], {
     required_error: "Tip anunt.",
   }),
-  file: z.instanceof(FileList).optional(),
+  image: z.any(),
 });
 
 const defaultValues = {
   type: "pierdute",
   title: "",
   description: "",
-  file: undefined,
+  image: undefined,
 };
 
 const NewPost = () => {
@@ -39,8 +39,6 @@ const NewPost = () => {
     defaultValues,
     mode: "onChange",
   });
-
-  const fileRef = form.register("file");
 
   const onSubmit = (data) => {
     console.log(data);
@@ -138,12 +136,12 @@ const NewPost = () => {
             <Section>
               <FormField
                 control={form.control}
-                name="file"
-                render={({ field }) => (
+                name="image"
+                render={({ field: { onChange, value, ...rest } }) => (
                   <FormItem>
-                    {/* <FormLabel>Imagine</FormLabel> */}
+                    <FormLabel>Imagine</FormLabel>
                     <FormControl>
-                      <ImageSelect {...fileRef} />
+                      <ImageSelect onChange={onChange} {...rest} />
                     </FormControl>
                     <InputErrorMessage />
                   </FormItem>
