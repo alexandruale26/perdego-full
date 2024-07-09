@@ -7,20 +7,24 @@ const ImageSelect = forwardRef(({ onChange, ...props }, ref) => {
   const [previewUrl, setPreviewUrl] = useState(null);
   const [message, setMessage] = useState(null);
 
+  delete props.value;
+
+  const reset = () => {
+    onChange(undefined);
+    setPreviewUrl(null);
+  };
+
   const handleImageSelect = (event) => {
     const file = event.target.files && event.target.files[0];
 
     if (!file || !isValidImage(file.type, file.size)) {
-      setPreviewUrl(null);
-      setMessage("Alege o imagine validǎ");
-      return;
+      reset();
+      return setMessage("Alege o imagine validǎ");
     }
 
+    onChange(file);
     setPreviewUrl(URL.createObjectURL(file));
     setMessage(null);
-
-    console.log("here");
-    onChange(event.target?.files?.[0] ?? undefined);
   };
 
   const openImageInput = (event) => {
@@ -30,11 +34,7 @@ const ImageSelect = forwardRef(({ onChange, ...props }, ref) => {
     }
   };
 
-  const handleClearImage = () => {
-    const input = document.querySelector("input[type=file]");
-    input.value = "";
-    setPreviewUrl(null);
-  };
+  const handleClearImage = () => reset();
 
   return (
     <div className="w-full h-full flex justify-center">
@@ -53,7 +53,6 @@ const ImageSelect = forwardRef(({ onChange, ...props }, ref) => {
           <input
             hidden
             type="file"
-            name="image"
             accept="image/*"
             ref={ref}
             onChange={handleImageSelect}
@@ -95,7 +94,7 @@ const ImageSelect = forwardRef(({ onChange, ...props }, ref) => {
   );
 });
 ImageSelect.displayName = "ImageSelect";
-ImageSelect.propTypes = { onChange: PropTypes.func };
+ImageSelect.propTypes = { onChange: PropTypes.func, value: PropTypes.any };
 
 const isValidImage = (type, size) => {
   const isImageType = type.startsWith("image/");

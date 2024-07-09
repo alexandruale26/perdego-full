@@ -137,14 +137,8 @@ const NewPost = () => {
               <FormField
                 control={form.control}
                 name="image"
-                render={({ field: { onChange, value, ...rest } }) => (
-                  <FormItem>
-                    <FormLabel>Imagine</FormLabel>
-                    <FormControl>
-                      <ImageSelect onChange={onChange} {...rest} />
-                    </FormControl>
-                    <InputErrorMessage />
-                  </FormItem>
+                render={({ field: { onChange, ...rest } }) => (
+                  <ImageSelect onChange={onChange} {...rest} />
                 )}
               />
             </Section>
