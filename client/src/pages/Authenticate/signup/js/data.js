@@ -1,7 +1,7 @@
 export default [
   {
     name: "email",
-    placeholder: "Adresa ta de e-mail",
+    placeholder: "Adresa ta de email",
     addSensible: false,
   },
   {

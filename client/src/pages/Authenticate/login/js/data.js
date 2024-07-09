@@ -1,7 +1,7 @@
 export default [
   {
     name: "email",
-    placeholder: "E-mail",
+    placeholder: "Email",
     addSensible: false,
   },
   {

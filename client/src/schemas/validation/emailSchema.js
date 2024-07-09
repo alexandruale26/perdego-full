@@ -6,6 +6,8 @@ const emailRegex =
 export default z
   .string()
   .regex(emailRegex, {
-    message: "Introdu o adresǎ de e-mail validǎ",
+    message: "Introdu o adresǎ de email validǎ",
   })
   .trim();
+
+// TODO: reia de aici

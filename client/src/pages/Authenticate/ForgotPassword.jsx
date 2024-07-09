@@ -34,7 +34,7 @@ const ForgotPassword = () => {
       <BasicAuthHeader title="Ai uitat parola?" />
 
       <AuthParagraph>
-        Introdu adresa de e-mail a contului tău pentru a primi instrucțiunile de
+        Introdu adresa de email a contului tău pentru a primi instrucțiunile de
         schimbare a parolei.
       </AuthParagraph>
 
@@ -47,7 +47,7 @@ const ForgotPassword = () => {
               <FormItem>
                 <FormControl>
                   <Input.SuperRoot>
-                    <Input.Field placeholder="E-mail" {...field} />
+                    <Input.Field placeholder="Email" {...field} />
                   </Input.SuperRoot>
                 </FormControl>
                 <InputErrorMessage />
