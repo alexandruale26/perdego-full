@@ -9,6 +9,7 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: [true, "Introdu numele tau."],
       minLength: 3,
+      maxLength: 32,
       trim: true,
     },
     email: {
@@ -24,6 +25,7 @@ const userSchema = new mongoose.Schema(
       required: [true, "Introdu parola ta."],
       // TODO: change to 12 in production
       minLength: 4,
+      maxLength: 30,
       trim: true,
       select: false,
     },
@@ -42,9 +44,10 @@ const userSchema = new mongoose.Schema(
     },
     phone: {
       // TODO: convert input to a phone number. eliminate spaces and dashes
+      // TODO: use schema from frontend
       type: String,
       required: [true, "Introdu numarul tau de telefon."],
-      match: [/^07\d{8}$/, "Introdu un numar de telefon valid."],
+      match: [/^07\d{8}$/, "Introdu un numar de telefon valid."], // !!! this is not good
     },
 
     // TODO: solve location issues

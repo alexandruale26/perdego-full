@@ -66,7 +66,6 @@ const LocationSelect = forwardRef(
           return cityPart.includes(valueWithReplacements);
         });
 
-        // TODO: make separate function
         const citiesOption = {
           label: isInPostForm
             ? filteredCounties.length > 0

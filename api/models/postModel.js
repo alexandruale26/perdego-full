@@ -3,20 +3,21 @@ import slugify from "../utils/slugify.js";
 
 const postSchema = new mongoose.Schema(
   {
+    // TODO: add trim to all strings
     title: {
       type: String,
       required: [true, "Introdu un titlu"],
-      minlength: [10, "Titlul este prea scurt."],
-      maxlength: [60, "Titlul este prea lung."],
+      minLength: [15, "Titlul este prea scurt."],
+      maxLength: [70, "Titlul este prea lung."],
     },
     description: {
       type: String,
       required: [true, "Introdu o descriere."],
-      minlength: [20, "Descrierea este prea scurta."],
-      maxlength: [500, "Descrierea este prea lunga."],
+      minLength: [20, "Descrierea este prea scurta."],
+      maxLength: [500, "Descrierea este prea lunga."],
     },
     location: {
-      // TODO: check if location is correct not randomly by brute force
+      // TODO: check if location is correct to avoid brute force - to all selectors
       type: String,
       required: [true, "Alege o locatie."],
     },

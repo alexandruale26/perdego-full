@@ -18,29 +18,11 @@ import {
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-
-const typeSchema = z.object({
-  // TODO: manage this on backend
-  type: z.enum(["pierdute", "gasite"], {
-    required_error: "Alege tipul de anunț",
-  }),
-  category: z.string({ required_error: "Alege o categorie" }),
-  location: z.string({ required_error: "Alege o localitate" }),
-  image: z.any(),
-});
-
-const defaultValues = {
-  type: "pierdute",
-  title: "",
-  category: undefined,
-  description: undefined,
-  location: undefined,
-  image: undefined,
-};
+import { defaultValues, newPostSchema } from "../../schemas/newPostSchema";
 
 const NewPost = () => {
   const form = useForm({
-    resolver: zodResolver(typeSchema),
+    resolver: zodResolver(newPostSchema),
     defaultValues,
     mode: "onChange",
   });
