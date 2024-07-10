@@ -12,12 +12,10 @@ import {
   FormControl,
   FormField,
   FormItem,
-  FormLabel,
   InputErrorMessage,
 } from "../../components/ui/Form";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
 import { defaultValues, newPostSchema } from "../../schemas/newPostSchema";
 
 const NewPost = () => {

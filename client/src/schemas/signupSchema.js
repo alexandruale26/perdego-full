@@ -8,14 +8,9 @@ export const signupSchema = z
     password: passwordSchema,
     passwordConfirm: z.string().trim().min(1, { message: "Confirmǎ parola" }),
   })
-  .superRefine(({ password, passwordConfirm }, ctx) => {
-    if (password !== passwordConfirm) {
-      ctx.addIssue({
-        code: z.ZodIssueCode.custom,
-        message: "Parolele nu se potrivesc",
-        path: ["passwordConfirm"],
-      });
-    }
+  .refine((data) => data.password === data.passwordConfirm, {
+    message: "Parolele nu se potrivesc",
+    path: ["passwordConfirm"],
   });
 
 export const defaultValues = {

@@ -1,11 +1,11 @@
 import { useState, forwardRef } from "react";
 import PropTypes from "prop-types";
-import DeleteImage from "./DeleteImage";
+import RemoveImageButton from "./RemoveImageButton";
 import { cn } from "../../../lib/utils";
 
 const ImageSelect = forwardRef(({ onChange, ...props }, ref) => {
   const [previewUrl, setPreviewUrl] = useState(null);
-  const [message, setMessage] = useState(null);
+  const [invalidImageFile, setInvalidImageFile] = useState(false);
 
   delete props.value;
 
@@ -15,16 +15,17 @@ const ImageSelect = forwardRef(({ onChange, ...props }, ref) => {
   };
 
   const handleImageSelect = (event) => {
-    const file = event.target.files && event.target.files[0];
+    if (event.target.files.length === 0) return setInvalidImageFile(false);
 
-    if (!file || !isValidImage(file.type, file.size)) {
+    const file = event.target.files[0];
+    if (!isValidImage(file.type, file.size)) {
       reset();
-      return setMessage("Alege o imagine validǎ");
+      return setInvalidImageFile(true);
     }
 
     onChange(file);
     setPreviewUrl(URL.createObjectURL(file));
-    setMessage(null);
+    setInvalidImageFile(false);
   };
 
   const openImageInput = (event) => {
@@ -34,7 +35,11 @@ const ImageSelect = forwardRef(({ onChange, ...props }, ref) => {
     }
   };
 
-  const handleClearImage = () => reset();
+  const handleClearImage = () => {
+    const input = document.querySelector("input[type=file]");
+    input.value = null;
+    reset();
+  };
 
   return (
     <div className="w-full h-full flex justify-center">
@@ -61,15 +66,12 @@ const ImageSelect = forwardRef(({ onChange, ...props }, ref) => {
 
           {previewUrl === null ? (
             <div className="h-full w-full flex items-center justify-center flex-col gap-3 text-black">
-              {!message ? (
-                <p className="text-base">
-                  Adaugǎ o imagine (
-                  <span className="font-semibold">max 8 MB</span>)
-                </p>
-              ) : (
-                <p className="text-destructive">
-                  {message} (<span className="font-semibold">max 8 MB</span>)
-                </p>
+              <p className="text-base">
+                Adaugǎ o imagine (
+                <span className="font-semibold">max 8 MB</span>)
+              </p>
+              {invalidImageFile && (
+                <p className="text-sm text-destructive">Imagine invalidǎ</p>
               )}
             </div>
           ) : (
@@ -82,13 +84,13 @@ const ImageSelect = forwardRef(({ onChange, ...props }, ref) => {
           )}
         </label>
 
-        <DeleteImage
+        <RemoveImageButton
           show={!!previewUrl}
           onClick={handleClearImage}
           className="shrink-0"
         >
           Eliminǎ imaginea
-        </DeleteImage>
+        </RemoveImageButton>
       </div>
     </div>
   );

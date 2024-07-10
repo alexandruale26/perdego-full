@@ -4,7 +4,7 @@ import { Trash2 } from "lucide-react";
 import Button from "../../ui/Button";
 import { cn } from "../../../lib/utils";
 
-const DeleteImage = forwardRef(
+const RemoveImageButton = forwardRef(
   ({ show = false, className, children, ...props }, ref) => {
     if (!show) return null;
 
@@ -22,11 +22,11 @@ const DeleteImage = forwardRef(
     );
   },
 );
-DeleteImage.displayName = "DeleteImage";
-DeleteImage.propTypes = {
+RemoveImageButton.displayName = "ImageSelect.RemoveImageButton";
+RemoveImageButton.propTypes = {
   show: PropTypes.bool.isRequired,
   className: PropTypes.string,
   children: PropTypes.node,
 };
 
-export default DeleteImage;
+export default RemoveImageButton;

@@ -34,7 +34,7 @@ export const defaultValues = {
   type: "pierdute",
   category: undefined,
   title: "",
-  description: undefined,
+  description: "",
   location: undefined,
   image: undefined,
   name: "",
