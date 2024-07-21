@@ -1,4 +1,5 @@
-import NewPostSection from "./NewPostSection";
+import PropTypes from "prop-types";
+import FormCard from "./FormCard";
 import * as Input from "../../components/ui/Input";
 import {
   FormField,
@@ -9,7 +10,7 @@ import {
 
 const ContactSection = ({ formControl }) => {
   return (
-    <NewPostSection>
+    <FormCard>
       <p className="text-lg">Informații de contact</p>
       <FormField
         control={formControl}
@@ -39,8 +40,12 @@ const ContactSection = ({ formControl }) => {
           </FormItem>
         )}
       />
-    </NewPostSection>
+    </FormCard>
   );
+};
+ContactSection.displayName = "NewPost.ContactSection";
+ContactSection.propTypes = {
+  formControl: PropTypes.any.isRequired,
 };
 
 export default ContactSection;
