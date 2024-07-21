@@ -1,12 +1,12 @@
 import { Link } from "react-router-dom";
-import * as Input from "../../../components/ui/Input";
-import AuthHeader from "../components/AuthHeader";
-import AuthFormBase from "../components/AuthFormBase";
-import AuthButton from "../components/AuthButton";
+import * as Input from "../../../components/ui/Input.jsx";
+import AuthHeader from "../components/AuthHeader.jsx";
+import AuthFormBase from "../components/AuthFormBase.jsx";
+import AuthButton from "../components/AuthButton.jsx";
 
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { loginSchema, defaultValues } from "../../../schemas/loginSchema";
+import { loginSchema, defaultValues } from "../../../schemas/loginSchema.js";
 import login from "./js/data.js";
 
 import {
@@ -15,9 +15,9 @@ import {
   FormField,
   FormItem,
   InputErrorMessage,
-} from "../../../components/ui/Form";
+} from "../../../components/ui/Form.jsx";
 
-const Login = () => {
+const LoginPage = () => {
   const form = useForm({
     resolver: zodResolver(loginSchema),
     defaultValues,
@@ -68,6 +68,6 @@ const Login = () => {
     </div>
   );
 };
-Login.displayName = "Login";
+LoginPage.displayName = "Login";
 
-export default Login;
+export default LoginPage;

@@ -1,12 +1,11 @@
 import * as Input from "../../components/ui/Input";
 import * as Textarea from "../../components/ui/Textarea";
-import Section from "./Section";
+import NewPostSection from "./NewPostSection";
 import PostTypeSelect from "../../components/PostTypeSelect";
 import Button from "../../components/ui/Button";
 import LocationSelect from "../../components/selectors/location/LocationSelect";
 import CategorySelect from "../../components/selectors/category/CategorySelect";
 import ImageSelect from "../../components/selectors/image/ImageSelect";
-
 import {
   Form,
   FormControl,
@@ -14,11 +13,12 @@ import {
   FormItem,
   InputErrorMessage,
 } from "../../components/ui/Form";
+
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { defaultValues, newPostSchema } from "../../schemas/newPostSchema";
 
-const NewPost = () => {
+const NewPostPage = () => {
   const form = useForm({
     resolver: zodResolver(newPostSchema),
     defaultValues,
@@ -78,7 +78,7 @@ const NewPost = () => {
             </section>
 
             {/* TITLU - DESCRIERE ANUNT */}
-            <Section>
+            <NewPostSection>
               <FormField
                 control={form.control}
                 name="title"
@@ -115,10 +115,10 @@ const NewPost = () => {
                   </FormItem>
                 )}
               />
-            </Section>
+            </NewPostSection>
 
             {/* IMAGINE */}
-            <Section>
+            <NewPostSection>
               <FormField
                 control={form.control}
                 name="image"
@@ -129,10 +129,10 @@ const NewPost = () => {
                   </FormItem>
                 )}
               />
-            </Section>
+            </NewPostSection>
 
             {/* CONTACT */}
-            <Section>
+            <NewPostSection>
               <p className="text-lg">Informații de contact</p>
               <FormField
                 control={form.control}
@@ -162,7 +162,7 @@ const NewPost = () => {
                   </FormItem>
                 )}
               />
-            </Section>
+            </NewPostSection>
 
             <Button className="w-full max-w-[320px] self-center">
               Publicǎ anunțul
@@ -173,8 +173,8 @@ const NewPost = () => {
     </main>
   );
 };
-NewPost.displayName = "NewPost";
+NewPostPage.displayName = "NewPost";
 
 // TODO: inputErrorMessage, Location, Category, Image, better organized sections
 
-export default NewPost;
+export default NewPostPage;

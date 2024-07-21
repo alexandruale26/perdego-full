@@ -2,7 +2,7 @@ import supabase from "./supabase";
 
 const bucket = "posts-images";
 
-export const uploadImage = async (imageFile, imageName) => {
+export const uploadToStorage = async (imageFile, imageName) => {
   try {
     const { data } = await supabase.storage
       .from(bucket)

@@ -2,8 +2,8 @@ import { z } from "zod";
 import nameSchema from "./validation/nameSchema";
 import phoneSchema from "./validation/phoneSchema";
 
+// TODO: manage this on backend too
 export const newPostSchema = z.object({
-  // TODO: manage this on backend
   type: z.enum(["pierdute", "gasite"], {
     required_error: "Alege tipul de anunț",
   }),
@@ -12,12 +12,12 @@ export const newPostSchema = z.object({
   title: z
     .string()
     .trim()
-    .min(15, { message: "Introdu un titlu" })
+    .min(15, { message: "Introdu un titlu mai lung" })
     .max(70, { message: "Introdu un titlu mai scurt" }),
   description: z
     .string()
     .trim()
-    .min(20, { message: "Introdu o descriere" })
+    .min(20, { message: "Introdu o descriere mai lungǎ" })
     .max(500, {
       message: "Introdu o descriere mai scurtǎ",
     }),
@@ -25,10 +25,6 @@ export const newPostSchema = z.object({
   name: nameSchema,
   phone: phoneSchema,
 });
-
-// location: z.string().refine((value) => locationOptions.includes(value), {
-//   message: "Alege o locație",
-// }),
 
 export const defaultValues = {
   type: "pierdute",

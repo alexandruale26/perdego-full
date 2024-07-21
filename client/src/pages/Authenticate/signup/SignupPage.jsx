@@ -1,7 +1,7 @@
-import * as Input from "../../../components/ui/Input";
-import AuthHeader from "../components/AuthHeader";
-import AuthFormBase from "../components/AuthFormBase";
-import AuthButton from "../components/AuthButton";
+import * as Input from "../../../components/ui/Input.jsx";
+import AuthHeader from "../components/AuthHeader.jsx";
+import AuthFormBase from "../components/AuthFormBase.jsx";
+import AuthButton from "../components/AuthButton.jsx";
 
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -14,9 +14,9 @@ import {
   FormField,
   FormItem,
   InputErrorMessage,
-} from "../../../components/ui/Form";
+} from "../../../components/ui/Form.jsx";
 
-const Signup = () => {
+const SignupPage = () => {
   const form = useForm({
     resolver: zodResolver(signupSchema),
     defaultValues,
@@ -63,6 +63,6 @@ const Signup = () => {
     </div>
   );
 };
-Signup.displayName = "Signup";
+SignupPage.displayName = "Signup";
 
-export default Signup;
+export default SignupPage;

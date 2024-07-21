@@ -1,8 +1,8 @@
-import * as Input from "../../components/ui/Input";
-import BasicAuthHeader from "./components/BasicAuthHeader";
-import AuthFormBase from "./components/AuthFormBase";
-import AuthButton from "./components/AuthButton";
-import AuthParagraph from "./components/AuthParagraph";
+import * as Input from "../../components/ui/Input.jsx";
+import BasicAuthHeader from "./components/BasicAuthHeader.jsx";
+import AuthFormBase from "./components/AuthFormBase.jsx";
+import AuthButton from "./components/AuthButton.jsx";
+import AuthParagraph from "./components/AuthParagraph.jsx";
 
 import {
   Form,
@@ -10,7 +10,7 @@ import {
   FormField,
   FormItem,
   InputErrorMessage,
-} from "../../components/ui/Form";
+} from "../../components/ui/Form.jsx";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
@@ -18,7 +18,7 @@ import {
   defaultValues,
 } from "../../schemas/forgotPasswordSchema.js";
 
-const ForgotPassword = () => {
+const ForgotPasswordPage = () => {
   const form = useForm({
     resolver: zodResolver(forgotPasswordSchema),
     defaultValues,
@@ -61,5 +61,6 @@ const ForgotPassword = () => {
     </div>
   );
 };
+ForgotPasswordPage.displayName = "ForgotPassword";
 
-export default ForgotPassword;
+export default ForgotPasswordPage;

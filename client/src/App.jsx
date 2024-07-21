@@ -1,23 +1,23 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Home from "./pages/home/Home";
-import About from "./pages/About";
-import Dashboard from "./pages/Dashboard";
-import NewPost from "./pages/newPost/NewPost";
+import HomePage from "./pages/home/HomePage";
+import AboutPage from "./pages/AboutPage";
+import DashboardPage from "./pages/DashboardPage";
+import NewPostPage from "./pages/newPost/NewPostPage";
 import AuthenticateLayout from "./pages/authenticate/components/AuthenticateLayout";
-import Login from "./pages/authenticate/login/Login";
-import Signup from "./pages/authenticate/signup/Signup";
-import ForgotPassword from "./pages/authenticate/ForgotPassword";
-import ChangePassword from "./pages/authenticate/ChangePassword";
+import LoginPage from "./pages/authenticate/login/LoginPage";
+import SignupPage from "./pages/authenticate/signup/SignupPage";
+import ForgotPasswordPage from "./pages/authenticate/ForgotPasswordPage";
+import ChangePasswordPage from "./pages/authenticate/ChangePasswordPage";
 import AppLayout from "./pages/layout/AppLayout";
 import RouteProtector from "./components/RouteProtector";
-import TermsAndConditions from "./pages/TermsAndConditions";
+import TermsAndConditionsPage from "./pages/TermsAndConditionsPage";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: (
       <AppLayout>
-        <Home />
+        <HomePage />
       </AppLayout>
     ),
   },
@@ -27,19 +27,19 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/cont-nou",
-        element: <Signup />,
+        element: <SignupPage />,
       },
       {
         path: "/autentificare",
-        element: <Login />,
+        element: <LoginPage />,
       },
       {
         path: "/am-uitat-parola",
-        element: <ForgotPassword />,
+        element: <ForgotPasswordPage />,
       },
       {
         path: "/schimba-parola",
-        element: <ChangePassword />,
+        element: <ChangePasswordPage />,
       },
     ],
   },
@@ -53,11 +53,11 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/administrare",
-        element: <Dashboard />,
+        element: <DashboardPage />,
       },
       {
         path: "/anunturi/nou",
-        element: <NewPost />,
+        element: <NewPostPage />,
       },
     ],
   },
@@ -65,7 +65,7 @@ const router = createBrowserRouter([
     path: "/despre-noi",
     element: (
       <AppLayout>
-        <About />
+        <AboutPage />
       </AppLayout>
     ),
   },
@@ -73,7 +73,7 @@ const router = createBrowserRouter([
     path: "/termeni-si-conditii",
     element: (
       <AppLayout>
-        <TermsAndConditions />
+        <TermsAndConditionsPage />
       </AppLayout>
     ),
   },

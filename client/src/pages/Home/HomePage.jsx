@@ -5,7 +5,7 @@ import Categories from "./Categories";
 import LatestPosts from "./LatestPosts";
 import LeaveAReview from "./LeaveAReview";
 
-const Home = () => {
+const HomePage = () => {
   return (
     <main className="w-full">
       {/* HERO SECTION */}
@@ -32,6 +32,6 @@ const Home = () => {
     </main>
   );
 };
-Home.displayName = "Home";
+HomePage.displayName = "Home";
 
-export default Home;
+export default HomePage;
