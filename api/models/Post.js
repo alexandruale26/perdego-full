@@ -21,6 +21,20 @@ const postSchema = new mongoose.Schema(
       type: String,
       required: [true, "Alege o locatie."],
     },
+    name: {
+      // TODO: username
+      type: String,
+      required: [true, "Introdu numele tau."],
+      minLength: 3,
+      maxLength: 32,
+      trim: true,
+    },
+    phone: {
+      // TODO: use schema from frontend
+      type: String,
+      required: [true, "Introdu numarul tau de telefon."],
+      match: [/^07\d{8}$/, "Introdu un numar de telefon valid."], // !!! this is not good
+    },
     category: {
       type: String,
       required: [true, "Alege o categorie."],

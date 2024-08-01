@@ -12,7 +12,7 @@ const router = express.Router();
 
 router.get("/", getAll);
 router.get("/:urlSlug", getPost);
-router.delete("/:id", deletePost);
+router.delete("/:id", deletePost); // ???? de ce e aici
 
 router.use(protect);
 router.get("/myPosts", getMyPosts);

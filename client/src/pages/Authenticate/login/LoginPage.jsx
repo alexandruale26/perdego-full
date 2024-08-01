@@ -3,11 +3,12 @@ import * as Input from "../../../components/ui/Input.jsx";
 import AuthHeader from "../components/AuthHeader.jsx";
 import AuthFormBase from "../components/AuthFormBase.jsx";
 import AuthButton from "../components/AuthButton.jsx";
+import axios from "axios";
 
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { loginSchema, defaultValues } from "../../../schemas/loginSchema.js";
-import login from "./js/data.js";
+import loginFieldsData from "./loginFieldsData.js";
 
 import {
   Form,
@@ -24,9 +25,18 @@ const LoginPage = () => {
     mode: "onChange",
   });
 
-  function onSubmit(values) {
-    console.log(values);
-  }
+  const onSubmit = (credentials) => {
+    const processRequest = async () => {
+      const response = await axios.post(
+        "http://localhost:3000/api/v1/users/login",
+        credentials,
+      );
+
+      console.log(response);
+    };
+
+    processRequest();
+  };
 
   return (
     <div>
@@ -34,7 +44,7 @@ const LoginPage = () => {
 
       <Form {...form}>
         <AuthFormBase handleSubmit={form.handleSubmit(onSubmit)}>
-          {login.map((item) => (
+          {loginFieldsData.map((item) => (
             <FormField
               key={item.name}
               control={form.control}

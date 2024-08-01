@@ -15,18 +15,3 @@ export default [
     addSensible: true,
   },
 ];
-
-// TODO: move this to profile
-// eslint-disable-next-line no-unused-vars
-const profile = [
-  {
-    name: "name",
-    placeholder: "Numele tǎu",
-    addSensible: false,
-  },
-  {
-    name: "phone",
-    placeholder: "Telefon",
-    addSensible: false,
-  },
-];

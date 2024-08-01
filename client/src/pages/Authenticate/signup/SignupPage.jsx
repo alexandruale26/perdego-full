@@ -6,7 +6,9 @@ import AuthButton from "../components/AuthButton.jsx";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { signupSchema, defaultValues } from "../../../schemas/signupSchema.js";
-import signup from "./js/data.js";
+import signupFieldsData from "./signupFieldsData.js";
+import axios from "axios";
+// import { signup } from "../../../services/userApi.js";
 
 import {
   Form,
@@ -23,8 +25,17 @@ const SignupPage = () => {
     mode: "onChange",
   });
 
-  const onSubmit = (data) => {
-    console.log(data);
+  const onSubmit = ({ email, password }) => {
+    const processRequest = async () => {
+      const response = await axios.post(
+        "http://localhost:3000/api/v1/users/signup",
+        { email, password },
+      );
+
+      console.log(response);
+    };
+
+    processRequest();
   };
 
   return (
@@ -34,7 +45,7 @@ const SignupPage = () => {
       <Form {...form}>
         <AuthFormBase handleSubmit={form.handleSubmit(onSubmit)}>
           <>
-            {signup.map((item) => (
+            {signupFieldsData.map((item) => (
               <FormField
                 key={item.name}
                 control={form.control}

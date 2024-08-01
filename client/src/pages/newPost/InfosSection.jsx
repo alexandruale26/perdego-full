@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import FormCard from "./FormCard";
+import SectionCard from "../../components/SectionCard";
 import * as Input from "../../components/ui/Input";
 import * as Textarea from "../../components/ui/Textarea";
 import {
@@ -12,7 +12,7 @@ import {
 const InfosSection = ({ formControl }) => {
   return (
     <>
-      <FormCard>
+      <SectionCard>
         <FormField
           control={formControl}
           name="title"
@@ -49,7 +49,7 @@ const InfosSection = ({ formControl }) => {
             </FormItem>
           )}
         />
-      </FormCard>
+      </SectionCard>
     </>
   );
 };

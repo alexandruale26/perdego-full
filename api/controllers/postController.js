@@ -1,4 +1,4 @@
-import Post from "../models/postModel.js";
+import Post from "../models/Post.js";
 import AppError from "../utils/appError.js";
 import catchAsync from "../utils/catchAsync.js";
 

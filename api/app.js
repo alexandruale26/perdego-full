@@ -1,6 +1,9 @@
+import "./config/dotenvConfig.js";
 import express from "express";
 import morgan from "morgan";
-
+import cookieParser from "cookie-parser";
+import cors from "cors";
+import corsOptions from "./config/corsOptions.js";
 import AppError from "./utils/appError.js";
 
 import userRouter from "./routes/userRoutes.js";
@@ -9,14 +12,14 @@ import globalErrorHandler from "./controllers/errorController.js";
 
 const app = express();
 
-// Development logging
 if (process.env.NODE_ENV === "development") {
   app.use(morgan("dev"));
 }
 
+app.use(cors(corsOptions));
 app.use(express.json({ limit: "10kb" }));
+app.use(cookieParser());
 
-// API ROUTES
 app.use("/api/v1/users", userRouter);
 app.use("/api/v1/posts", postRouter);
 

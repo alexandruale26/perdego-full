@@ -1,8 +1,8 @@
 import { createClient } from "@supabase/supabase-js";
 
-const supabaseUrl = "https://qmuiviehgtbgqimgrjak.supabase.co";
+const supabaseUrl = "https://asmcrxdpkgfqurghvgkv.supabase.co";
 const supabaseKey =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFtdWl2aWVoZ3RiZ3FpbWdyamFrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjAxMDMzMDYsImV4cCI6MjAzNTY3OTMwNn0.t-bvTPPx_kJKp5YtjAI4_IMQKmXzFokPmPzn1l8H-4U"; // is safe to expose the Public Key
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFzbWNyeGRwa2dmcXVyZ2h2Z2t2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDIwMjY2OTIsImV4cCI6MjAxNzYwMjY5Mn0.XyAnlzZ9TZM2EvrrGE7G4w4MFB9DjXJpK8ENmsY9TAQ"; // is safe to expose the Public Key
 const supabase = createClient(supabaseUrl, supabaseKey);
 
 export default supabase;

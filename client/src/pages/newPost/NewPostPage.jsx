@@ -1,4 +1,4 @@
-import FormCard from "./FormCard";
+import SectionCard from "../../components/SectionCard";
 import Button from "../../components/ui/Button";
 import ImageSelect from "../../components/selectors/image/ImageSelect";
 import ContactSection from "./ContactSection";
@@ -34,7 +34,7 @@ const NewPostPage = () => {
             <SelectsSection formControl={form.control} />
             <InfosSection formControl={form.control} />
 
-            <FormCard>
+            <SectionCard>
               <FormField
                 control={form.control}
                 name="image"
@@ -45,7 +45,7 @@ const NewPostPage = () => {
                   </FormItem>
                 )}
               />
-            </FormCard>
+            </SectionCard>
 
             <ContactSection formControl={form.control} />
             <Button className="w-full max-w-[320px] self-center">
