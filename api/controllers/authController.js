@@ -1,33 +1,28 @@
 import { promisify } from "util";
 import jwt from "jsonwebtoken";
 import User from "../models/User.js";
+import Token from "../models/Token.js";
 import catchAsync from "../utils/catchAsync.js";
 import AppError from "../utils/appError.js";
 
-const generateAccessToken = (id) =>
-  jwt.sign({ id }, process.env.ACCESS_TOKEN_SECRET, {
-    expiresIn: process.env.ACCESS_TOKEN_EXPIRES_IN,
-  });
-
-const generateRefreshToken = (id) =>
-  jwt.sign({ id }, process.env.REFRESH_TOKEN_SECRET, {
-    expiresIn: process.env.REFRESH_TOKEN_EXPIRES_IN,
-  });
-
 const cookieOptions = {
-  maxAge: process.env.REFRESH_COOKIE_EXPIRES_IN * 24 * 60 * 60 * 1000,
+  maxAge: 2 * 24 * 60 * 60 * 1000, // 2 days
   httpOnly: true,
   secure: process.env.NODE_ENV === "production",
   sameSite: "None",
 };
 
-const createAndSendToken = (user, statusCode, res) => {
-  const accessToken = generateAccessToken(user.id);
-  const refreshToken = generateRefreshToken(user.id);
+const generateAccessToken = (id) =>
+  jwt.sign({ id }, process.env.ACCESS_TOKEN_SECRET, {
+    expiresIn: "15m",
+  });
 
-  res.cookie("jwt", refreshToken, cookieOptions);
-  res.status(statusCode).json({ status: "success", token: accessToken });
-};
+const generateRefreshToken = (id) =>
+  jwt.sign({ id }, process.env.REFRESH_TOKEN_SECRET, {
+    expiresIn: "2d",
+  });
+
+const createAndSendTokens = (id, statusCode, res) => {};
 
 export const signup = catchAsync(async (req, res, next) => {
   const { email, password } = req.body;
@@ -36,7 +31,7 @@ export const signup = catchAsync(async (req, res, next) => {
 
   res.status(201).json({
     status: "success",
-    data: { message: "User registered successfully" },
+    message: "User registered successfully",
   });
 });
 
@@ -55,7 +50,16 @@ export const login = catchAsync(async (req, res, next) => {
     );
   }
 
-  createAndSendToken(user, 200, res);
+  const accessToken = generateAccessToken(user.id);
+  const refreshToken = generateRefreshToken(user.id);
+
+  await Token.create({
+    userId: user.id,
+    refreshToken,
+  });
+
+  res.cookie("refreshToken", refreshToken, cookieOptions);
+  res.json({ status: "success", accessToken });
 });
 
 export const updatePassword = catchAsync(async (req, res, next) => {
@@ -68,9 +72,8 @@ export const updatePassword = catchAsync(async (req, res, next) => {
 
   user.password = currentPassword;
 
-  // TODO: see if should send dilutedUser
   await user.save();
-  createAndSendToken(user, 200, res); // Send token
+  createAndSendTokens(user.id, 200, res);
 });
 
 // TODO: think if protect should keep all user data
@@ -117,30 +120,38 @@ export const protect = catchAsync(async (req, res, next) => {
   next();
 });
 
-export const refresh = catchAsync(async (req, res, next) => {
-  const { cookies } = req;
+export const refreshToken = catchAsync(async (req, res, next) => {
+  const { cookies } = req; // uses refresh token
 
-  if (!cookies?.jwt) return next(new AppError("Unauthorized", 401));
+  if (!cookies?.refreshToken) return next(new AppError("Unauthorized", 401));
 
   const decoded = await promisify(jwt.verify)(
-    cookies.jwt,
+    cookies.refreshToken,
     process.env.REFRESH_TOKEN_SECRET,
   );
 
-  const currentUser = await User.findById(decoded.id);
+  const currentUser = await User.findById(decoded.id).lean();
 
   if (!currentUser) {
     return next(new AppError("Utilizatorul nu exista", 401));
   }
 
   const accessToken = generateAccessToken(currentUser.id);
-  res.status(200).json({ status: "success", token: accessToken });
+  res.json({ status: "success", accessToken });
 });
 
-export const logout = (req, res) => {
+export const logout = catchAsync(async (req, res, next) => {
   const { cookies } = req;
-  if (!cookies?.jwt) return res.sendStatus(204);
 
-  res.clearCookie("jwt", cookieOptions);
-  res.status(200).json({ status: "success", message: "Cookie cleared" });
-};
+  if (cookies?.refreshToken) {
+    await Token.findOneAndDelete({
+      refreshToken: cookies.refreshToken,
+    });
+
+    res.clearCookie("refreshToken", cookieOptions);
+  }
+
+  res
+    .status(204)
+    .json({ status: "success", message: "User logged out successfully" });
+});
