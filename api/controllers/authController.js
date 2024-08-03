@@ -8,13 +8,13 @@ import AppError from "../utils/appError.js";
 const cookieOptions = {
   maxAge: 2 * 24 * 60 * 60 * 1000, // 2 days
   httpOnly: true,
-  secure: process.env.NODE_ENV === "production",
+  secure: true,
   sameSite: "None",
 };
 
 const generateAccessToken = (id) =>
   jwt.sign({ id }, process.env.ACCESS_TOKEN_SECRET, {
-    expiresIn: "15m",
+    expiresIn: "10s",
   });
 
 const generateRefreshToken = (id) =>
@@ -130,13 +130,16 @@ export const refreshToken = catchAsync(async (req, res, next) => {
     process.env.REFRESH_TOKEN_SECRET,
   );
 
+  //TODO: check if token exists in Tokens daca are sens
+  // poate utilizatorul a dorit eliminarea tokenului de refresh, dar mai tarziu
   const currentUser = await User.findById(decoded.id).lean();
 
   if (!currentUser) {
     return next(new AppError("Utilizatorul nu exista", 401));
   }
 
-  const accessToken = generateAccessToken(currentUser.id);
+  // TODO: Peste tot foloseste ._id nu .id
+  const accessToken = generateAccessToken(currentUser._id);
   res.json({ status: "success", accessToken });
 });
 

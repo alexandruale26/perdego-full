@@ -3,7 +3,8 @@ import * as Input from "../../../components/ui/Input.jsx";
 import AuthHeader from "../components/AuthHeader.jsx";
 import AuthFormBase from "../components/AuthFormBase.jsx";
 import AuthButton from "../components/AuthButton.jsx";
-import axios from "axios";
+
+import api from "../../../services/api.js";
 
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -17,6 +18,7 @@ import {
   FormItem,
   InputErrorMessage,
 } from "../../../components/ui/Form.jsx";
+import Button from "../../../components/ui/Button.jsx";
 
 const LoginPage = () => {
   const form = useForm({
@@ -25,17 +27,27 @@ const LoginPage = () => {
     mode: "onChange",
   });
 
-  const onSubmit = (credentials) => {
-    const processRequest = async () => {
-      const response = await axios.post(
-        "http://localhost:3000/api/v1/users/login",
-        credentials,
-      );
+  const onSubmit = async (credentials) => {
+    try {
+      const response = await api.post("/users/login", credentials);
+      const { accessToken } = response.data;
 
-      console.log(response);
-    };
+      api.defaults.headers.common["Authorization"] = `Bearer ${accessToken}`;
+      console.log(accessToken);
+    } catch (error) {
+      console.error("Login failed:", error);
+    }
+  };
 
-    processRequest();
+  const getMe = async () => {
+    try {
+      const response = await api.get("/users/profile");
+      const { data } = response.data;
+
+      console.log(data);
+    } catch (error) {
+      console.error("Get me failed:", error);
+    }
   };
 
   return (
@@ -73,6 +85,9 @@ const LoginPage = () => {
           </span>
 
           <AuthButton title="Intrǎ în cont" />
+          <Button type="button" onClick={getMe}>
+            Get me
+          </Button>
         </AuthFormBase>
       </Form>
     </div>
