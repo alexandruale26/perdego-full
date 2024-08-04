@@ -4,7 +4,8 @@ import AuthHeader from "../components/AuthHeader.jsx";
 import AuthFormBase from "../components/AuthFormBase.jsx";
 import AuthButton from "../components/AuthButton.jsx";
 
-import api from "../../../services/api.js";
+import { api, setApiAccessToken } from "../../../services/api.js";
+import login from "../../../services/loginApi.js";
 
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -28,15 +29,14 @@ const LoginPage = () => {
   });
 
   const onSubmit = async (credentials) => {
-    try {
-      const response = await api.post("/users/login", credentials);
-      const { accessToken } = response.data;
+    const response = await login(credentials);
 
-      api.defaults.headers.common["Authorization"] = `Bearer ${accessToken}`;
-      console.log(accessToken);
-    } catch (error) {
-      console.error("Login failed:", error);
+    if (response.status !== "success") {
+      // user notification
+      return console.log(response);
     }
+
+    setApiAccessToken(response.accessToken);
   };
 
   const getMe = async () => {

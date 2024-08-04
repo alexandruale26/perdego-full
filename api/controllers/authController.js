@@ -50,11 +50,11 @@ export const login = catchAsync(async (req, res, next) => {
     );
   }
 
-  const accessToken = generateAccessToken(user.id);
-  const refreshToken = generateRefreshToken(user.id);
+  const accessToken = generateAccessToken(user._id);
+  const refreshToken = generateRefreshToken(user._id);
 
   await Token.create({
-    userId: user.id,
+    userId: user._id,
     refreshToken,
   });
 
@@ -79,6 +79,7 @@ export const updatePassword = catchAsync(async (req, res, next) => {
 // TODO: think if protect should keep all user data
 export const protect = catchAsync(async (req, res, next) => {
   let token;
+  // console.log("XXXXX refresh token in request", req.cookies);
 
   if (
     req.headers.authorization &&
@@ -104,7 +105,7 @@ export const protect = catchAsync(async (req, res, next) => {
     return next(new AppError("Utilizatorul nu exista", 401));
   }
 
-  // 4. Check if user changed passwords after token was issued
+  // Check if user changed passwords after token was issued
   // thus forcing the user to log in if using multiple devices
   if (currentUser.changedPasswordAfter(decoded.iat)) {
     return next(
@@ -114,24 +115,27 @@ export const protect = catchAsync(async (req, res, next) => {
       ),
     );
   }
-
-  // 5. Grant access to protected route
+  // Grant access to protected route
   req.user = currentUser;
   next();
 });
 
 export const refreshToken = catchAsync(async (req, res, next) => {
-  const { cookies } = req; // uses refresh token
+  const { cookies } = req;
 
   if (!cookies?.refreshToken) return next(new AppError("Unauthorized", 401));
 
+  const dbRefreshToken = await Token.findOne({
+    refreshToken: cookies.refreshToken,
+  }).lean();
+
+  if (!dbRefreshToken) return next(new AppError("Unauthorized", 401));
+
   const decoded = await promisify(jwt.verify)(
-    cookies.refreshToken,
+    dbRefreshToken.refreshToken,
     process.env.REFRESH_TOKEN_SECRET,
   );
 
-  //TODO: check if token exists in Tokens daca are sens
-  // poate utilizatorul a dorit eliminarea tokenului de refresh, dar mai tarziu
   const currentUser = await User.findById(decoded.id).lean();
 
   if (!currentUser) {

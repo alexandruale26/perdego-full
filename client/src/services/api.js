@@ -2,7 +2,6 @@ import axios from "axios";
 
 const api = axios.create({
   baseURL: "http://localhost:3000/api/v1",
-  withCredentials: true,
 });
 
 api.interceptors.request.use(
@@ -24,8 +23,6 @@ api.interceptors.response.use(
 
     if (error.response.status === 401 && !originalRequest._retry) {
       originalRequest._retry = true;
-
-      // TODO: separate the login function into a separate  axios instance/api, to avoid trying fetching new access token
 
       try {
         const response = await axios.post(
@@ -52,4 +49,8 @@ api.interceptors.response.use(
   },
 );
 
-export default api;
+const setApiAccessToken = (accessToken) => {
+  api.defaults.headers.common["Authorization"] = `Bearer ${accessToken}`;
+};
+
+export { api, setApiAccessToken };

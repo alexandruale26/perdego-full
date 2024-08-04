@@ -28,5 +28,6 @@ export const deleteMe = catchAsync(async (req, res, next) => {
 
   res.status(204).json({ status: "success", data: null });
   // TODO: eliminate cookieRefreshAt from tokens collection if user is deleted
+  // TODO: eliminate refreshTokens fron Tokens if user is deleted
   // TODO: delete posts and messages from his side or maybe not...
 });
