@@ -3,9 +3,9 @@ import * as Input from "../../../components/ui/Input";
 import AuthHeader from "../components/AuthHeader";
 import AuthFormBase from "../components/AuthFormBase";
 import AuthButton from "../components/AuthButton";
-import { useAppContext } from "../../../useAppContext";
+import { useAppContext } from "../../../app/useAppContext";
 
-import { api, setApiAccessToken } from "../../../services/api.js";
+import { setApiAccessToken } from "../../../services/api.js";
 import login from "../../../services/login.js";
 
 import { useForm } from "react-hook-form";
@@ -20,7 +20,6 @@ import {
   FormItem,
   InputErrorMessage,
 } from "../../../components/ui/Form.jsx";
-import Button from "../../../components/ui/Button.jsx";
 
 const LoginPage = () => {
   const navigate = useNavigate();
@@ -42,17 +41,6 @@ const LoginPage = () => {
     setApiAccessToken(response.accessToken);
     setAuthenticated(true);
     navigate("/");
-  };
-
-  const getMe = async () => {
-    try {
-      const response = await api.get("/users/profile");
-      const { data } = response.data;
-
-      console.log(data);
-    } catch (error) {
-      console.error("Get me failed:", error); //! or maybe redirect to login if code gets here
-    }
   };
 
   return (
@@ -90,9 +78,6 @@ const LoginPage = () => {
           </span>
 
           <AuthButton title="Intrǎ în cont" />
-          <Button type="button" onClick={getMe}>
-            Get me
-          </Button>
         </AuthFormBase>
       </Form>
     </div>
