@@ -1,8 +1,7 @@
 import axios from "axios";
+import { BASE_URL } from "./config";
 
-const api = axios.create({
-  baseURL: "http://localhost:3000/api/v1",
-});
+const api = axios.create({ baseURL: BASE_URL });
 
 api.interceptors.request.use(
   (config) => {
@@ -25,18 +24,7 @@ api.interceptors.response.use(
       originalRequest._retry = true;
 
       try {
-        const response = await axios.post(
-          "http://localhost:3000/api/v1/users/refresh-token",
-          null,
-          {
-            withCredentials: true,
-          },
-        );
-
-        const { accessToken } = response.data;
-
-        api.defaults.headers.common["Authorization"] = `Bearer ${accessToken}`;
-
+        await requestAccessToken();
         return api(originalRequest);
       } catch (err) {
         console.error("Refresh token error:", err);
@@ -44,10 +32,19 @@ api.interceptors.response.use(
           window.location.href = "/autentificare";
       }
     }
-    console.error("Request failed:", error);
+    console.error("Request failed - BAD:", error); // maybe redirect to login if code gets here
     return Promise.reject(error);
   },
 );
+
+const requestAccessToken = async () => {
+  const response = await axios.post(`${BASE_URL}/users/refresh-token`, null, {
+    withCredentials: true,
+  });
+
+  const { accessToken } = response.data;
+  setApiAccessToken(accessToken);
+};
 
 const setApiAccessToken = (accessToken) => {
   api.defaults.headers.common["Authorization"] = `Bearer ${accessToken}`;

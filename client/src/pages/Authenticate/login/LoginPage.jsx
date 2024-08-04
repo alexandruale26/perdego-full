@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom";
-import * as Input from "../../../components/ui/Input.jsx";
-import AuthHeader from "../components/AuthHeader.jsx";
-import AuthFormBase from "../components/AuthFormBase.jsx";
-import AuthButton from "../components/AuthButton.jsx";
+import * as Input from "../../../components/ui/Input";
+import AuthHeader from "../components/AuthHeader";
+import AuthFormBase from "../components/AuthFormBase";
+import AuthButton from "../components/AuthButton";
 
 import { api, setApiAccessToken } from "../../../services/api.js";
-import login from "../../../services/loginApi.js";
+import login from "../../../services/login.js";
 
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -32,11 +32,10 @@ const LoginPage = () => {
     const response = await login(credentials);
 
     if (response.status !== "success") {
-      // user notification
-      return console.log(response);
+      return console.log(response); // user notification
     }
 
-    setApiAccessToken(response.accessToken);
+    setApiAccessToken(response.accessToken); // redirect user
   };
 
   const getMe = async () => {
@@ -46,7 +45,7 @@ const LoginPage = () => {
 
       console.log(data);
     } catch (error) {
-      console.error("Get me failed:", error);
+      console.error("Get me failed:", error); //! or maybe redirect to login if code gets here
     }
   };
 
