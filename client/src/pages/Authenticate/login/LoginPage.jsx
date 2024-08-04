@@ -1,8 +1,9 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import * as Input from "../../../components/ui/Input";
 import AuthHeader from "../components/AuthHeader";
 import AuthFormBase from "../components/AuthFormBase";
 import AuthButton from "../components/AuthButton";
+import { useAppContext } from "../../../useAppContext";
 
 import { api, setApiAccessToken } from "../../../services/api.js";
 import login from "../../../services/login.js";
@@ -22,6 +23,9 @@ import {
 import Button from "../../../components/ui/Button.jsx";
 
 const LoginPage = () => {
+  const navigate = useNavigate();
+  const { setAuthenticated } = useAppContext();
+
   const form = useForm({
     resolver: zodResolver(loginSchema),
     defaultValues,
@@ -35,7 +39,9 @@ const LoginPage = () => {
       return console.log(response); // user notification
     }
 
-    setApiAccessToken(response.accessToken); // redirect user
+    setApiAccessToken(response.accessToken);
+    setAuthenticated(true);
+    navigate("/");
   };
 
   const getMe = async () => {

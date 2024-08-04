@@ -1,6 +1,8 @@
-import { Link, Outlet } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Link, Outlet, useNavigate } from "react-router-dom";
 import { MoveLeft } from "lucide-react";
 import Button from "../../../components/ui/Button";
+import { useAppContext } from "../../../useAppContext";
 import {
   Tooltip,
   TooltipTrigger,
@@ -10,7 +12,23 @@ import {
 
 // TODO: don't make it absolute. will overflow if taller than screen height
 const AuthenticateLayout = () => {
-  return (
+  const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
+  const { authenticated } = useAppContext();
+  console.log(authenticated);
+
+  useEffect(() => {
+    console.log("before redirect");
+    if (authenticated) navigate("/", { replace: false });
+    // if (authenticated) console.log("should navigate");
+    else setLoading(false);
+    console.log("after redirect");
+  }, [authenticated]);
+
+  // TODO: spinner or loading page (Perdego logo on full screen)
+  return loading ? (
+    <div>Loading...</div>
+  ) : (
     <main className="min-w-full min-h-screen flex items-center bg-primary bg-authenticate bg-no-repeat bg-center bg-cover">
       <div className="absolute right-0 -translate-x-1/4">
         <div className="w-[520px] h-[650px] flex flex-col justify-between bg-white bg-opacity-98 px-12 pt-12 rounded-lg">

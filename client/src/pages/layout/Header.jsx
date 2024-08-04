@@ -1,8 +1,11 @@
 import { Link } from "react-router-dom";
 import Button from "../../components/ui/Button";
 import { UserRound } from "lucide-react";
+import { useAppContext } from "../../useAppContext";
 
 const Header = () => {
+  const { authenticated } = useAppContext();
+
   return (
     <header className="sticky top-0 w-full flex justify-between items-center bg-white pl-9 pr-10 py-1 shadow-[0_2px_10px_1px_rgba(0,0,0,0.1)] z-10">
       <Link to="/">
@@ -10,7 +13,7 @@ const Header = () => {
       </Link>
       <nav className="flex items-center gap-10">
         <Button asChild variant="iconText" size="iconText">
-          <Link to="/autentificare">
+          <Link to={authenticated ? "/despre-noi" : "/autentificare"}>
             <UserRound />
             <span className="text-black">Contul tǎu</span>
           </Link>

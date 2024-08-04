@@ -44,10 +44,11 @@ const requestAccessToken = async () => {
 
   const { accessToken } = response.data;
   setApiAccessToken(accessToken);
+  return response.data;
 };
 
 const setApiAccessToken = (accessToken) => {
   api.defaults.headers.common["Authorization"] = `Bearer ${accessToken}`;
 };
 
-export { api, setApiAccessToken };
+export { api, setApiAccessToken, requestAccessToken };
