@@ -5,13 +5,10 @@ import { api } from "../../services/api.js";
 
 const Header = () => {
   const getMe = async () => {
-    try {
-      const response = await api.get("/users/profile");
-      const { data } = response.data;
+    const response = await api.get("/users/profile");
 
-      console.log(data);
-    } catch (error) {
-      console.error("Get me failed:", error); //! or maybe redirect to login if code gets here
+    if (response?.data.data) {
+      console.log(response.data.data);
     }
   };
 

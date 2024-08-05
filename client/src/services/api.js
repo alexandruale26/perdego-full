@@ -1,6 +1,6 @@
 import axios from "axios";
 import { BASE_URL } from "./config";
-import { getAuthCookie, setAuthCookie, deleteAuthCookie } from "./authCookie";
+import { setAuthCookie, deleteAuthCookie } from "./authCookie";
 
 const api = axios.create({ baseURL: BASE_URL });
 
@@ -28,25 +28,37 @@ api.interceptors.response.use(
         await requestAccessToken();
         return api(originalRequest);
       } catch (err) {
-        console.error("Refresh token error:", err);
-        if (window.location.pathname !== "/autentificare")
-          window.location.href = "/autentificare";
+        console.log("Refresh token error:", err);
+        if (window.location.pathname !== "/autentificare") {
+          console.log("automatically redirected to login");
+          window.history.replaceState(null, "", "/autentificare"); // test some restricted access routes
+          window.location.assign("/autentificare");
+        }
       }
     }
-    console.error("Request failed - BAD:", error); // maybe redirect to login if code gets here
-    return Promise.reject(error);
   },
 );
 
 const requestAccessToken = async () => {
-  const response = await axios.post(`${BASE_URL}/users/refresh-token`, null, {
-    withCredentials: true,
-  });
+  try {
+    const response = await axios.post(`${BASE_URL}/users/refresh-token`, null, {
+      withCredentials: true,
+    });
 
-  const { accessToken } = response.data;
-  setApiAccessToken(accessToken);
-  console.log("new access token generated");
-  return { status: "success" };
+    if (response.data.status === "success") {
+      const { accessToken } = response.data;
+      setAuthCookie();
+      setApiAccessToken(accessToken);
+
+      console.log("new access token generated");
+      return { status: "success" };
+    }
+  } catch (error) {
+    console.log(error);
+    deleteAuthCookie();
+
+    throw new Error(error);
+  }
 };
 
 const setApiAccessToken = (accessToken) => {

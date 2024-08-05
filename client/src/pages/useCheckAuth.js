@@ -1,10 +1,6 @@
 import { useState, useEffect } from "react";
 import { requestAccessToken } from "../services/api";
-import {
-  getAuthCookie,
-  setAuthCookie,
-  deleteAuthCookie,
-} from "../services/authCookie";
+import { getAuthCookie } from "../services/authCookie";
 
 const useCheckAuth = () => {
   const [authenticated, setAuthenticated] = useState(false);
@@ -20,17 +16,12 @@ const useCheckAuth = () => {
 
       try {
         const response = await requestAccessToken();
-        console.log("authenticated from server refresh token");
 
         if (response.status === "success") {
           setAuthenticated(true);
-          setAuthCookie();
           setIsLoading(false);
         }
-      } catch (error) {
-        console.log(error);
-        deleteAuthCookie();
-        setAuthenticated(false);
+      } catch {
         setIsLoading(false);
       }
     };
