@@ -3,7 +3,6 @@ import * as Input from "../../../components/ui/Input";
 import AuthHeader from "../components/AuthHeader";
 import AuthFormBase from "../components/AuthFormBase";
 import AuthButton from "../components/AuthButton";
-import { useAppContext } from "../../../app/useAppContext";
 
 import { setApiAccessToken } from "../../../services/api.js";
 import login from "../../../services/login.js";
@@ -23,7 +22,6 @@ import {
 
 const LoginPage = () => {
   const navigate = useNavigate();
-  const { setAuthenticated } = useAppContext();
 
   const form = useForm({
     resolver: zodResolver(loginSchema),
@@ -39,7 +37,6 @@ const LoginPage = () => {
     }
 
     setApiAccessToken(response.accessToken);
-    setAuthenticated(true);
     navigate("/");
   };
 

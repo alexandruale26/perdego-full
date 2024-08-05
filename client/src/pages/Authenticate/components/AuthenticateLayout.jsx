@@ -2,7 +2,6 @@ import { useEffect } from "react";
 import { Link, Outlet, useNavigate } from "react-router-dom";
 import { MoveLeft } from "lucide-react";
 import Button from "../../../components/ui/Button";
-import { useAppContext } from "../../../app/useAppContext";
 import {
   Tooltip,
   TooltipTrigger,
@@ -13,11 +12,10 @@ import {
 // TODO: don't make it absolute. will overflow if taller than screen height
 const AuthenticateLayout = () => {
   const navigate = useNavigate();
-  const { authenticated } = useAppContext();
 
   useEffect(() => {
-    if (authenticated) navigate("/", { replace: false });
-  }, [authenticated]);
+    // if (authenticated) navigate("/", { replace: false });
+  }, []); // see if can eliminate dependency
 
   return (
     <main className="min-w-full min-h-screen flex items-center bg-primary bg-authenticate bg-no-repeat bg-center bg-cover">

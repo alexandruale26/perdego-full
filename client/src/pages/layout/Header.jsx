@@ -1,12 +1,9 @@
 import { Link } from "react-router-dom";
 import Button from "../../components/ui/Button";
 import { UserRound } from "lucide-react";
-import { useAppContext } from "../../app/useAppContext";
 import { api } from "../../services/api.js";
 
 const Header = () => {
-  const { authenticated } = useAppContext();
-
   const getMe = async () => {
     try {
       const response = await api.get("/users/profile");
@@ -28,7 +25,7 @@ const Header = () => {
           Get me
         </Button>
         <Button asChild variant="iconText" size="iconText">
-          <Link to={authenticated ? "/despre-noi" : "/autentificare"}>
+          <Link to="/autentificare">
             <UserRound />
             <span className="text-black">Contul tǎu</span>
           </Link>

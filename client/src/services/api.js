@@ -1,5 +1,6 @@
 import axios from "axios";
 import { BASE_URL } from "./config";
+import { getAuthCookie, setAuthCookie, deleteAuthCookie } from "./authCookie";
 
 const api = axios.create({ baseURL: BASE_URL });
 
@@ -44,7 +45,8 @@ const requestAccessToken = async () => {
 
   const { accessToken } = response.data;
   setApiAccessToken(accessToken);
-  return response.data;
+  console.log("new access token generated");
+  return { status: "success" };
 };
 
 const setApiAccessToken = (accessToken) => {
