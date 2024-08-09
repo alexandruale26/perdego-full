@@ -27,7 +27,7 @@ api.interceptors.response.use(
       try {
         await requestAccessToken();
         return api(originalRequest);
-      } catch (err) {
+      } catch {
         if (window.location.pathname !== "/autentificare") {
           console.log("automatically redirected to login");
           // window.history.replaceState(null, "", "/"); // test some restricted access routes
@@ -36,6 +36,8 @@ api.interceptors.response.use(
         }
       }
     }
+
+    return { status: "error", message: "Something went very wrong!" };
   },
 );
 
@@ -55,7 +57,9 @@ const requestAccessToken = async () => {
     }
   } catch (error) {
     console.log(error);
-    deleteAuthCookie(); // aici nu ar fi cazul dar ramane asa
+    // deleteAuthCookie e bun. Daca userul inca e autentificat "isAuth" dar in DB refreshToken
+    // nu mai exista atunci (cand face alt request decat login) nu ii mai oferi acces la aplicatie
+    deleteAuthCookie();
 
     throw new Error(error);
   }

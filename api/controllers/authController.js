@@ -15,7 +15,7 @@ const cookieOptions = {
 
 const generateAccessToken = (id) =>
   jwt.sign({ id }, process.env.ACCESS_TOKEN_SECRET, {
-    expiresIn: "900s",
+    expiresIn: "10s",
   });
 
 const generateRefreshToken = (id) =>

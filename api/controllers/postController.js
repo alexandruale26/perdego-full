@@ -28,20 +28,24 @@ export const getPost = catchAsync(async (req, res, next) => {
 });
 
 export const createPost = catchAsync(async (req, res, next) => {
-  const { title, description, location, category, type, postedBy, image } =
+  const { type, category, location, title, description, image, name, phone } =
     req.body;
 
   const newPost = await Post.create({
+    type,
+    category,
+    location,
     title,
     description,
-    location,
-    category,
-    type,
-    postedBy,
     image,
+    name,
+    phone,
+    postedBy: req.user._id,
   });
 
-  res.status(201).json({ statud: "success", data: { post: newPost } });
+  console.log(newPost);
+
+  res.status(201).json({ status: "success", data: newPost });
 });
 
 export const deletePost = catchAsync(async (req, res, next) => {

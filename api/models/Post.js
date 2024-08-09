@@ -33,7 +33,8 @@ const postSchema = new mongoose.Schema(
       // TODO: use schema from frontend
       type: String,
       required: [true, "Introdu numarul tau de telefon."],
-      match: [/^07\d{8}$/, "Introdu un numar de telefon valid."], // !!! this is not good
+      // !!! this is not good
+      // match: [/^07\d{8}$/, "Introdu un numar de telefon valid."],
     },
     category: {
       type: String,
@@ -42,10 +43,6 @@ const postSchema = new mongoose.Schema(
     type: {
       type: String,
       required: [true, "Alege tipul anuntului."],
-    },
-    active: {
-      type: Boolean,
-      default: true,
     },
     postedBy: {
       type: mongoose.Schema.ObjectId,
@@ -64,8 +61,9 @@ const postSchema = new mongoose.Schema(
   { timestamps: true },
 );
 
-//TODO: watch if slug changes if title changes
-//TODO: add expireAfterSeconds
+postSchema.index({ createdAt: 1 }, { expireAfterSeconds: 5 * 24 * 60 * 60 });
+
+//TODO: watch if slug changes if title changes on user post update
 postSchema.pre("save", function (next) {
   if (!this.isNew) return next();
   this.urlSlug = slugify(this.title.toLowerCase(), 4);

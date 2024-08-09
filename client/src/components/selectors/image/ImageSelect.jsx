@@ -79,7 +79,7 @@ const ImageSelect = forwardRef(({ onChange, ...props }, ref) => {
               src={previewUrl}
               alt="post image"
               draggable="false"
-              className="w-full h-full object-cover hover:brightness-[0.7] transition-brightness duration-200"
+              className="w-full h-full object-cover hover:brightness-[0.7]"
             />
           )}
         </label>

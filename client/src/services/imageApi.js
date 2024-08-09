@@ -11,23 +11,15 @@ export const uploadToStorage = async (imageFile, imageName) => {
         upsert: false,
       });
 
-    if (data === null) throw new Error("Received path is null");
+    if (data === null) throw new Error("Image uploading failed");
     return data.path;
-  } catch {
-    console.log("Uploading failed");
-    throw new Error("Uploading failed");
+  } catch (error) {
+    throw new Error(error.message);
   }
 };
 
-export const deleteImage = async (paths) => {
-  try {
-    const data = await supabase.storage.from(bucket).remove(paths);
-
-    console.log("removed - images");
-    return data;
-  } catch (error) {
-    console.log(error);
-  }
+export const deleteImage = async (path) => {
+  await supabase.storage.from(bucket).remove(path);
 };
 
 export const getImageUrl = (path) => {

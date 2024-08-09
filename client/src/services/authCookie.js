@@ -1,5 +1,5 @@
 const setAuthCookie = () => {
-  document.cookie = `isAuth=-1;max-age=${15 * 60};path=/`;
+  document.cookie = `isAuth=-1;max-age=${10};path=/`;
 };
 
 const getAuthCookie = () => {
