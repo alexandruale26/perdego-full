@@ -8,12 +8,13 @@ import AddValidation from "./helpers/AddValidation";
 import { useFormField } from "./Form";
 
 const inputVariants = cva(
-  "flex w-full border text-base font-semibold border-grey-4 ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-grey-3 placeholder:font-normal focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-ring focus-visible:ring-offset-0 disabled:cursor-not-allowed disabled:opacity-50",
+  "flex w-full border text-base rounded-md font-semibold border-grey-4 ring-offset-primary placeholder:text-grey-3 placeholder:font-normal focus-visible:outline-0 focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50",
   {
     variants: {
       variant: {
-        form: "bg-transparent rounded-sm",
-        search: "bg-grey-6 rounded-md",
+        form: "bg-transparent focus-visible:border-primary focus-visible:ring-primary",
+        search:
+          "bg-grey-6 focus-visible:border-secondary focus-visible:ring-secondary",
       },
       size: {
         form: " h-14 pl-6 pr-22",

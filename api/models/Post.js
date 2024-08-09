@@ -3,7 +3,7 @@ import slugify from "../utils/slugify.js";
 
 const postSchema = new mongoose.Schema(
   {
-    // TODO: add trim to all strings
+    // TODO: add trim to all strings or use zod validation
     title: {
       type: String,
       required: [true, "Introdu un titlu"],
@@ -55,10 +55,6 @@ const postSchema = new mongoose.Schema(
     image: {
       type: String,
     },
-    views: {
-      type: Number,
-      default: 0,
-    },
     idSlug: {
       type: String,
       default: slugify(null, 10),
@@ -72,26 +68,18 @@ const postSchema = new mongoose.Schema(
 //TODO: add expireAfterSeconds
 postSchema.pre("save", function (next) {
   if (!this.isNew) return next();
-
   this.urlSlug = slugify(this.title.toLowerCase(), 4);
+
   next();
 });
 
 postSchema.pre("findOne", function (next) {
   this.populate({
     path: "postedBy",
-    select: "name phone createdAt -_id",
+    select: "name phone createdAt -_id", // TODO: phone should not come by default, only when requested
   });
 
   next();
-});
-
-postSchema.post("findOne", async (doc) => {
-  // TODO: should implement a mechanism that doesn't increment on user refresh or re-viewing
-  if (doc) {
-    doc.views += 1;
-    await doc.save();
-  }
 });
 
 const Post = mongoose.model("Post", postSchema);

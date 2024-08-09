@@ -1,7 +1,5 @@
 const setAuthCookie = () => {
-  // const maxAge = 24 * 60 * 60; // ! think of a good duration
-  const maxAge = 10;
-  document.cookie = `isAuth=-1;max-age=${maxAge};path=/`;
+  document.cookie = `isAuth=-1;max-age=${15 * 60};path=/`;
 };
 
 const getAuthCookie = () => {

@@ -18,8 +18,8 @@ export default {
     },
     extend: {
       backgroundImage: {
-        hero: "url('/banners/banner_orange.svg')",
-        authenticate: "url('/banners/banner_green.svg')",
+        hero: "url(/banners/banner_orange.svg)",
+        authenticate: "url(/banners/banner_green.svg)",
       },
       fontFamily: {
         sans: ["Fira Sans", "sans-serif"],
@@ -76,9 +76,6 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-      },
-      borderRadius: {
-        sm: "0.25rem", // 4px
       },
       padding: {
         22: "5.5rem", // 88px

@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import Select from "react-select";
 import { ClearIndicator, DropdownIndicator } from "../shared/Components";
 import styles from "../shared/styles";
-import categories from "./js/categories";
+import categories from "./categories";
 
 const CategorySelect = forwardRef(
   ({ name, isInPostForm = false, ...props }, ref) => {

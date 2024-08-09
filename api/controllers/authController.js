@@ -5,6 +5,7 @@ import Token from "../models/Token.js";
 import catchAsync from "../utils/catchAsync.js";
 import AppError from "../utils/appError.js";
 
+// TODO - implement tight ip restrictions to auth routes
 const cookieOptions = {
   maxAge: 2 * 24 * 60 * 60 * 1000, // 2 days
   httpOnly: true,
@@ -14,7 +15,7 @@ const cookieOptions = {
 
 const generateAccessToken = (id) =>
   jwt.sign({ id }, process.env.ACCESS_TOKEN_SECRET, {
-    expiresIn: "10s",
+    expiresIn: "900s",
   });
 
 const generateRefreshToken = (id) =>

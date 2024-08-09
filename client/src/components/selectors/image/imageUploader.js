@@ -1,5 +1,5 @@
 import imageResizer from "./imageResizer";
-import { uploadToStorage } from "../../../../services/imageApi";
+import { uploadToStorage } from "../../../services/imageApi";
 
 const randomName = () => {
   return `${Math.floor(Math.random() * 99999999)}-${Math.floor(Math.random() * 99999999)}`;

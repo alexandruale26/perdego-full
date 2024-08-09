@@ -4,6 +4,7 @@ import { UserRound } from "lucide-react";
 import { api } from "../../services/api.js";
 
 const Header = () => {
+  // TODO: de sters
   const getMe = async () => {
     const response = await api.get("/users/profile");
 

@@ -10,6 +10,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { defaultValues, newPostSchema } from "../../schemas/newPostSchema";
 import InfosSection from "./InfosSection";
 
+// TODO - focus styling on normal inputs, textarea, image, category, buttons
 const NewPostPage = () => {
   const form = useForm({
     resolver: zodResolver(newPostSchema),

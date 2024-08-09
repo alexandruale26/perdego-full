@@ -1,15 +1,15 @@
 import { useEffect, useState, useRef, forwardRef } from "react";
 import PropTypes from "prop-types";
 import AsyncSelect from "react-select/async";
+import styles from "../shared/styles";
+import { parseLocation, sortCities } from "./helpers.js";
+import counties from "./judete.js";
 import {
   Option,
   ClearIndicator,
   DropdownIndicator,
   ValueContainer,
 } from "../shared/Components";
-import styles from "../shared/styles";
-import { parseLocation, sortCities } from "./js/helpers.js";
-import counties from "./js/judete.js";
 
 //TODO: move judete to data folder later
 //TODO: message if judete fetch has failed/ change judete name

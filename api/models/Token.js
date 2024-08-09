@@ -16,6 +16,7 @@ const tokenSchema = new mongoose.Schema(
   { timestamps: true },
 );
 
-tokenSchema.index({ createdAt: 1 }, { expireAfterSeconds: 60 * 60 }); // 7 * 24 * 60 * 60
+// TODO: put a real TTL
+tokenSchema.index({ createdAt: 1 }, { expireAfterSeconds: 5 * 60 * 60 }); // 7 * 24 * 60 * 60
 
 export default mongoose.model("Token", tokenSchema);

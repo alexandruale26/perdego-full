@@ -49,7 +49,7 @@ const ImageSelect = forwardRef(({ onChange, ...props }, ref) => {
           onKeyDown={openImageInput}
           type="button"
           className={cn(
-            "h-full border border-grey-4 rounded-sm focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-grey-950 overflow-hidden transition-colors duration-200 cursor-pointer",
+            "h-full border border-grey-4 rounded-md focus-visible:outline-0 focus-visible:ring-1 focus-visible:border-primary focus-visible:ring-primary overflow-hidden transition-colors duration-200 cursor-pointer",
             {
               "hover:bg-gray-100": !previewUrl,
             },

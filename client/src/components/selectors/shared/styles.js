@@ -1,13 +1,11 @@
 const padddingIsForm = "1rem";
 const padddingIsNotForm = "2.5rem";
-const radiusIsForm = "0.25rem";
-const radiusIsNotForm = "0.375rem";
 
 export default (isInPostForm = false) => ({
   control: (provided, state) => ({
     ...provided,
     height: "3.5rem",
-    borderRadius: isInPostForm ? radiusIsForm : radiusIsNotForm,
+    borderRadius: "0.375rem",
     borderColor: state.isFocused ? "var(--primary)" : "var(--grey4)",
     cursor: "pointer",
     boxShadow: state.isFocused
@@ -19,7 +17,7 @@ export default (isInPostForm = false) => ({
   }),
   menu: (provided) => ({
     ...provided,
-    borderRadius: isInPostForm ? radiusIsForm : radiusIsNotForm,
+    borderRadius: "0.375rem",
     overflow: "hidden",
   }),
   singleValue: (provided) => ({

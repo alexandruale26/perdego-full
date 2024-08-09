@@ -6,6 +6,7 @@ import AuthButton from "../components/AuthButton";
 
 import { setApiAccessToken } from "../../../services/api.js";
 import login from "../../../services/login.js";
+import { setAuthCookie } from "../../../services/authCookie";
 
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -37,6 +38,7 @@ const LoginPage = () => {
     }
 
     setApiAccessToken(response.accessToken);
+    setAuthCookie();
     navigate("/");
   };
 
