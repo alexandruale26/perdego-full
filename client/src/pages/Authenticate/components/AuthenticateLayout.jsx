@@ -1,7 +1,7 @@
-import { useEffect } from "react";
-import { Link, Outlet, useNavigate } from "react-router-dom";
+import { Link, Outlet, Navigate } from "react-router-dom";
 import { MoveLeft } from "lucide-react";
 import Button from "../../../components/ui/Button";
+import useCheckAuth from "../../useCheckAuth";
 import {
   Tooltip,
   TooltipTrigger,
@@ -11,11 +11,10 @@ import {
 
 // TODO: don't make it absolute. will overflow if taller than screen height
 const AuthenticateLayout = () => {
-  const navigate = useNavigate();
+  const { authenticated, isLoading } = useCheckAuth();
 
-  useEffect(() => {
-    // if (authenticated) navigate("/", { replace: false });
-  }, []); // see if can eliminate dependency
+  if (isLoading) return <div>Loading...</div>;
+  if (authenticated) return <Navigate to="/" replace />;
 
   return (
     <main className="min-w-full min-h-screen flex items-center bg-primary bg-authenticate bg-no-repeat bg-center bg-cover">

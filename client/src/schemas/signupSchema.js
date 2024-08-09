@@ -8,7 +8,7 @@ export const signupSchema = z
     password: passwordSchema,
     passwordConfirm: z.string().trim().min(1, { message: "Confirmǎ parola" }),
   })
-  .refine((data) => data.password === data.passwordConfirm, {
+  .refine(({ password, passwordConfirm }) => password === passwordConfirm, {
     message: "Parolele nu se potrivesc",
     path: ["passwordConfirm"],
   });

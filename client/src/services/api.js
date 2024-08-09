@@ -28,11 +28,11 @@ api.interceptors.response.use(
         await requestAccessToken();
         return api(originalRequest);
       } catch (err) {
-        console.log("Refresh token error:", err);
         if (window.location.pathname !== "/autentificare") {
           console.log("automatically redirected to login");
-          window.history.replaceState(null, "", "/autentificare"); // test some restricted access routes
-          window.location.assign("/autentificare");
+          // window.history.replaceState(null, "", "/"); // test some restricted access routes
+          // window.location.assign("/autentificare");
+          window.location.href = "/autentificare";
         }
       }
     }
@@ -55,7 +55,7 @@ const requestAccessToken = async () => {
     }
   } catch (error) {
     console.log(error);
-    deleteAuthCookie();
+    deleteAuthCookie(); // aici nu ar fi cazul dar ramane asa
 
     throw new Error(error);
   }

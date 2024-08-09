@@ -6,17 +6,12 @@ export const changePasswordSchema = z
     password: passwordSchema,
     passwordConfirm: z
       .string()
-      .min(1, { message: "Confirmǎ noua parolǎ" })
-      .trim(),
+      .trim()
+      .min(1, { message: "Confirmǎ noua parolǎ" }),
   })
-  .superRefine(({ password, passwordConfirm }, ctx) => {
-    if (password !== passwordConfirm) {
-      ctx.addIssue({
-        code: z.ZodIssueCode.custom,
-        message: "Parolele nu se potrivesc",
-        path: ["passwordConfirm"],
-      });
-    }
+  .refine(({ password, passwordConfirm }) => password === passwordConfirm, {
+    message: "Parolele nu se potrivesc",
+    path: ["passwordConfirm"],
   });
 
 export const defaultValues = {

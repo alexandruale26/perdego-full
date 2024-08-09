@@ -11,8 +11,7 @@ export default z
   .string()
   .trim()
   .min(12, {
-    message:
-      "Introdu cel puțin 12 caractere. Nu sunt permise caractere speciale.",
+    message: "Introduceți minimum 12 caractere, fără caractere speciale.",
   })
   .max(30, { message: "Parola este prea lungǎ" })
   .refine((val) => lowercasePattern.test(val), {

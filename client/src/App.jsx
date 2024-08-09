@@ -12,6 +12,7 @@ import AppLayout from "./pages/layout/AppLayout";
 import RouteProtector from "./pages/RouteProtector";
 import TermsAndConditionsPage from "./pages/TermsAndConditionsPage";
 
+// TODO: reorganize router
 const router = createBrowserRouter([
   {
     path: "/",
