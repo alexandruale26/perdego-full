@@ -2,6 +2,7 @@ import mongoose from "mongoose";
 import slugify from "../utils/slugify.js";
 
 const postSchema = new mongoose.Schema(
+  // TODO: ZOD schema validation urgent
   {
     // TODO: add trim to all strings or use zod validation
     title: {

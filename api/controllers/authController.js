@@ -5,9 +5,10 @@ import Token from "../models/Token.js";
 import catchAsync from "../utils/catchAsync.js";
 import AppError from "../utils/appError.js";
 
-// TODO - implement tight ip restrictions to auth routes
+// TODO - implement tight ip restrictions to auth routes and cookie lifespan
 const cookieOptions = {
-  maxAge: 2 * 24 * 60 * 60 * 1000, // 2 days
+  // maxAge: 2 * 24 * 60 * 60 * 1000, // 2 days
+  maxAge: 5 * 60 * 60 * 1000,
   httpOnly: true,
   secure: true,
   sameSite: "None",

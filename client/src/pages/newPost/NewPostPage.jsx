@@ -1,3 +1,4 @@
+import { useState } from "react";
 import SectionCard from "../../components/SectionCard";
 import Button from "../../components/ui/Button";
 import ImageSelect from "../../components/selectors/image/ImageSelect";
@@ -15,7 +16,10 @@ import { api } from "../../services/api";
 
 // TODO: alert if user refreshes or closes this page (beforeunloading event)
 // TODO - focus styling on normal inputs, textarea, image, category, buttons
+// TODO: Disable submit button, or modal and redirect to my posts
 const NewPostPage = () => {
+  const [isLoading, setIsLoading] = useState(false);
+
   const form = useForm({
     resolver: zodResolver(newPostSchema),
     defaultValues,
@@ -26,13 +30,18 @@ const NewPostPage = () => {
     console.log(fields);
     let imagePath = null;
 
+    setIsLoading(true);
+
     if (fields.image) {
       try {
         const { success, data } = await uploadImage(fields.image);
 
         if (success === false) throw new Error(data);
+
         imagePath = data;
+        setIsLoading(false);
       } catch ({ message }) {
+        setIsLoading(false); // maybe not if redirecting???
         return console.log(message); // user notification
       }
     }
@@ -44,10 +53,12 @@ const NewPostPage = () => {
       });
 
       if (response?.data?.status !== "success") {
+        // TODO: Admin access only to .env to delete files
         await deleteImage(imagePath);
         throw new Error(response.message);
       }
     } catch ({ message }) {
+      setIsLoading(false); // maybe not if redirecting???
       console.log(message); // user notification or 404
     }
   };
