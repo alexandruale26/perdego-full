@@ -43,6 +43,7 @@ const LocationSelect = forwardRef(
     const loadOptions = (inputValue, callback) => {
       if (debounceTimer.current) clearTimeout(debounceTimer.current);
 
+      // TODO: urgent -> no diacritics, search in old project
       let searchValue = inputValue.trim();
 
       if (searchValue.length < 3) {

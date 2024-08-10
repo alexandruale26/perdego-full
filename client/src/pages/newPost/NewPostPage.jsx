@@ -5,6 +5,7 @@ import ImageSelect from "../../components/selectors/image/ImageSelect";
 import ContactSection from "./ContactSection";
 import SelectsSection from "./SelectsSection";
 import { Form, FormField, FormItem } from "../../components/ui/Form";
+import Spinner from "../../components/ui/Spinner";
 
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -28,25 +29,18 @@ const NewPostPage = () => {
 
   const onSubmit = async (fields) => {
     console.log(fields);
-    let imagePath = null;
 
-    setIsLoading(true);
+    try {
+      let imagePath = null;
+      setIsLoading(true);
 
-    if (fields.image) {
-      try {
+      if (fields.image) {
         const { success, data } = await uploadImage(fields.image);
 
         if (success === false) throw new Error(data);
-
         imagePath = data;
-        setIsLoading(false);
-      } catch ({ message }) {
-        setIsLoading(false); // maybe not if redirecting???
-        return console.log(message); // user notification
       }
-    }
 
-    try {
       const response = await api.post("/posts", {
         ...fields,
         image: imagePath,
@@ -57,8 +51,10 @@ const NewPostPage = () => {
         await deleteImage(imagePath);
         throw new Error(response.message);
       }
+
+      setIsLoading(false); // redirectionare myPosts
     } catch ({ message }) {
-      setIsLoading(false); // maybe not if redirecting???
+      setIsLoading(false);
       console.log(message); // user notification or 404
     }
   };
@@ -90,8 +86,18 @@ const NewPostPage = () => {
             </SectionCard>
 
             <ContactSection formControl={form.control} />
-            <Button className="w-full max-w-[320px] self-center">
-              Publicǎ anunțul
+            <Button
+              disabled={isLoading}
+              className="w-full max-w-[320px] gap-4 self-center"
+            >
+              {isLoading ? (
+                <>
+                  Se proceseazǎ
+                  <Spinner className="text-white" />
+                </>
+              ) : (
+                "Publicǎ anunțul"
+              )}
             </Button>
           </form>
         </Form>
