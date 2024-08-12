@@ -1,4 +1,4 @@
-import SearchBar from "./SearchBar";
+import SearchBar from "../../components/SearchBar";
 import PostSteps from "./PostSteps";
 import PerdegoTip from "./PerdegoTip";
 import Categories from "./Categories";

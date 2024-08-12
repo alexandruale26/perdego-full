@@ -58,7 +58,7 @@ const NewPostPage = () => {
       console.log(message); // user notification or 404
     }
   };
-
+  // TODO: maybe a main component for all
   return (
     <main className="max-w-[1200px] my-10 px-6 mx-auto">
       <div>

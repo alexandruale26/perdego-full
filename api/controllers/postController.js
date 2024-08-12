@@ -17,14 +17,15 @@ export const getAll = catchAsync(async (req, res, next) => {
 });
 
 export const getPost = catchAsync(async (req, res, next) => {
+  console.log(req.params);
+
   const post = await Post.findOne({
     urlSlug: req.params.urlSlug,
-    active: true,
-  }).select("-updatedAt -active -__v");
+  }).select("-updatedAt -_id -__v");
 
   if (!post) return next(new AppError("Anuntul nu exista.", 404));
 
-  res.status(200).json({ status: "success", data: { post } });
+  res.status(200).json({ status: "success", data: post });
 });
 
 export const createPost = catchAsync(async (req, res, next) => {

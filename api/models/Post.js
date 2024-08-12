@@ -75,7 +75,7 @@ postSchema.pre("save", function (next) {
 postSchema.pre("findOne", function (next) {
   this.populate({
     path: "postedBy",
-    select: "name phone createdAt -_id", // TODO: phone should not come by default, only when requested
+    select: "createdAt -_id", // TODO: phone should not come by default, only when requested
   });
 
   next();

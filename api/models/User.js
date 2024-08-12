@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 import bcrypt from "bcryptjs";
 import validator from "validator";
+import slugify from "../utils/slugify.js";
 
 const userSchema = new mongoose.Schema(
   {
@@ -8,7 +9,6 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: [true, "Introdu adresa ta de email."],
       unique: true,
-      // lowercase: true,
       trim: true,
       validate: [validator.isEmail, "Introdu o adresǎ de email validǎ."],
     },
@@ -19,6 +19,10 @@ const userSchema = new mongoose.Schema(
       maxLength: 30,
       trim: true,
       select: false,
+    },
+    userSlug: {
+      type: String, // daca o sa implementez chat
+      default: slugify(null, 4),
     },
     passwordChangedAt: Date,
     passwordResetToken: String,

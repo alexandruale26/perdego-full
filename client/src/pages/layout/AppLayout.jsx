@@ -3,6 +3,7 @@ import Header from "./Header";
 import Footer from "./Footer";
 
 const AppLayout = ({ children }) => {
+  // TODO: Maybe a main component here if makes sense
   return (
     <div>
       <Header />

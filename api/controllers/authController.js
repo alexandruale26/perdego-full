@@ -27,6 +27,7 @@ const generateRefreshToken = (id) =>
 const createAndSendTokens = (id, statusCode, res) => {};
 
 export const signup = catchAsync(async (req, res, next) => {
+  // daca datele nu vin ca in schema o sa fie eroare 500
   const { email, password } = req.body;
 
   await User.create({ email, password });
@@ -81,7 +82,6 @@ export const updatePassword = catchAsync(async (req, res, next) => {
 // TODO: think if protect should keep all user data
 export const protect = catchAsync(async (req, res, next) => {
   let token;
-  // console.log("XXXXX refresh token in request", req.cookies);
 
   if (
     req.headers.authorization &&

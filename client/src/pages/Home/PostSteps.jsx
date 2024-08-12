@@ -12,7 +12,7 @@ const icons = [
   {
     id: "Backpack",
     icon: Backpack,
-    description: "Ai pierdut sau ai gǎsit ceva.",
+    description: "Ai pierdut sau ai gǎsit un obiect.",
   },
   {
     id: "UserRound",
@@ -22,7 +22,7 @@ const icons = [
   {
     id: "FilePenLine",
     icon: FilePenLine,
-    description: "Publici anunțul cu detaliile necesare.",
+    description: "Publici un anunț nou.",
   },
   {
     id: "Handshake",

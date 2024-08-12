@@ -3,6 +3,7 @@ import HomePage from "./pages/home/HomePage";
 import AboutPage from "./pages/AboutPage";
 import DashboardPage from "./pages/DashboardPage";
 import NewPostPage from "./pages/newPost/NewPostPage";
+import PostPage from "./pages/post/PostPage";
 import AuthenticateLayout from "./pages/authenticate/components/AuthenticateLayout";
 import LoginPage from "./pages/authenticate/login/LoginPage";
 import SignupPage from "./pages/authenticate/signup/SignupPage";
@@ -61,6 +62,14 @@ const router = createBrowserRouter([
         element: <NewPostPage />,
       },
     ],
+  },
+  {
+    path: "/anunturi/:urlSlug",
+    element: (
+      <AppLayout>
+        <PostPage />
+      </AppLayout>
+    ),
   },
   {
     path: "/despre-noi",

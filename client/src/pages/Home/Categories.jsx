@@ -43,10 +43,12 @@ const categories = [
   },
 ];
 
+// TODO: link the cards with a search parameter
 const Categories = () => {
   return (
     <section className="w-full max-w-[1200px] flex flex-col items-center gap-8 pt-2 pb-10 px-6 mx-auto">
       <h2 className="text-lg font-bold">Categorii anunțuri</h2>
+      {/* <div className="w-full grid grid-cols-5 justify-items-center gap-y-8"> */}
       <div className="w-full grid grid-cols-5 justify-items-center gap-y-8">
         {categories.map((category) => {
           return (

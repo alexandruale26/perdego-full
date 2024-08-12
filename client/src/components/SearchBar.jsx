@@ -1,12 +1,12 @@
 import { useRef } from "react";
-import * as Input from "../../components/ui/Input";
-import LocationSelect from "../../components/selectors/location/LocationSelect";
-import Button from "../../components/ui/Button";
+import PropTypes from "prop-types";
+import * as Input from "./ui/Input";
+import { cn } from "../lib/utils";
+import LocationSelect from "./selectors/location/LocationSelect";
+import Button from "./ui/Button";
 import { Search } from "lucide-react";
 
-// TODO: disable Search button in search bar on Posts page
-
-const SearchBar = () => {
+const SearchBar = ({ className }) => {
   const formRef = useRef(null);
 
   const handleSubmit = (e) => {
@@ -21,10 +21,13 @@ const SearchBar = () => {
     <form
       ref={formRef}
       onSubmit={handleSubmit}
-      className={"w-full max-w-[1200px] flex mx-auto gap-2 px-10 pt-4"}
+      className={cn(
+        "w-full max-w-[1200px] flex mx-auto gap-2 px-6 pt-10",
+        className,
+      )}
     >
       <Input.Root addClear className="flex">
-        <div className="size-5 p-0 rounded-full absolute inset-y-0 left-4 shrink-0 top-1/2 -translate-y-1/2">
+        <div className="size-6 p-0 rounded-full absolute left-4 shrink-0 top-1/2 -translate-y-1/2">
           <Search />
         </div>
 
@@ -50,6 +53,10 @@ const SearchBar = () => {
       </Button>
     </form>
   );
+};
+SearchBar.displayName = "SearchBar";
+SearchBar.propTypes = {
+  className: PropTypes.string,
 };
 
 export default SearchBar;

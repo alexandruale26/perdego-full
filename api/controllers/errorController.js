@@ -5,6 +5,7 @@ const handleCastErrorDB = (err) => {
   return new AppError(message, 400);
 };
 
+// TODO: this is not working now - > will give code 500
 const handleDuplicateFieldsDB = (err) => {
   const value = err.errmsg.match(/(["'])(\\?.)*?\1/)[0];
   console.log(value);
