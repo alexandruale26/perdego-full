@@ -2,7 +2,7 @@ import { forwardRef } from "react";
 import PropTypes from "prop-types";
 import { Trash2 } from "lucide-react";
 import Button from "../../ui/Button";
-import { cn } from "../../../lib/utils";
+import { cn } from "../../../utils/cn";
 
 const RemoveImageButton = forwardRef(
   ({ show = false, className, children, ...props }, ref) => {

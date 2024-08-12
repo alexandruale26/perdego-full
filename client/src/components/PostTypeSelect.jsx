@@ -2,7 +2,7 @@ import { forwardRef, useState, useRef, useEffect } from "react";
 import PropTypes from "prop-types";
 import * as RadioGroupPrimitive from "@radix-ui/react-radio-group";
 import { useFormField, FormField, FormItem, FormControl } from "./ui/Form";
-import { cn } from "../lib/utils";
+import { cn } from "../utils/cn";
 
 const options = [
   { label: "Pierdute", value: "pierdute" },

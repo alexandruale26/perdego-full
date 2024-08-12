@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
-import { cn } from "../../lib/utils";
+import { cn } from "../../utils/cn";
 
 const TabSelect = ({
   className,

@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import { cn } from "../../../lib/utils.js";
+import { cn } from "../../../utils/cn";
 
 const AuthParagraph = ({ className, ...props }) => {
   return (

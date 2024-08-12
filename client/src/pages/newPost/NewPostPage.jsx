@@ -3,7 +3,7 @@ import SectionCard from "../../components/SectionCard";
 import Button from "../../components/ui/Button";
 import ImageSelect from "../../components/selectors/image/ImageSelect";
 import ContactSection from "./ContactSection";
-import SelectsSection from "./SelectsSection";
+import SelectorsSection from "./SelectorsSection";
 import { Form, FormField, FormItem } from "../../components/ui/Form";
 import Spinner from "../../components/ui/Spinner";
 
@@ -70,7 +70,7 @@ const NewPostPage = () => {
             onSubmit={form.handleSubmit(onSubmit)}
             className="flex flex-col gap-6"
           >
-            <SelectsSection formControl={form.control} />
+            <SelectorsSection formControl={form.control} />
             <InfosSection formControl={form.control} />
 
             <SectionCard>

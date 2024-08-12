@@ -1,6 +1,6 @@
 import { forwardRef } from "react";
 import PropTypes from "prop-types";
-import { cn } from "../../lib/utils.js";
+import { cn } from "../../utils/cn";
 import { cva } from "class-variance-authority";
 import ClearField from "./helpers/ClearField";
 import HideSensibleData from "./helpers/HideSensibleData";
@@ -17,8 +17,8 @@ const inputVariants = cva(
           "bg-grey-6 focus-visible:border-secondary focus-visible:ring-secondary",
       },
       size: {
-        form: " h-14 pl-6 pr-22",
-        search: " h-14 px-12",
+        form: "h-14 pl-6 pr-22",
+        search: "h-14 px-12",
       },
     },
     defaultVariants: {

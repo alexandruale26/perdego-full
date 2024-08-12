@@ -72,15 +72,6 @@ postSchema.pre("save", function (next) {
   next();
 });
 
-postSchema.pre("findOne", function (next) {
-  this.populate({
-    path: "postedBy",
-    select: "createdAt -_id", // TODO: phone should not come by default, only when requested
-  });
-
-  next();
-});
-
 const Post = mongoose.model("Post", postSchema);
 
 export default Post;

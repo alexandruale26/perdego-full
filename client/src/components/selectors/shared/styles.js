@@ -5,6 +5,7 @@ export default (isInPostForm = false) => ({
   control: (provided, state) => ({
     ...provided,
     height: "3.5rem",
+    backgroundColor: isInPostForm ? "transparent" : "var(--grey6)",
     borderRadius: "0.375rem",
     borderColor: state.isFocused ? "var(--primary)" : "var(--grey4)",
     cursor: "pointer",

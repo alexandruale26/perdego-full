@@ -1,6 +1,6 @@
 import { useState } from "react";
 import PropTypes from "prop-types";
-import { cn } from "../../../lib/utils.js";
+import { cn } from "../../../utils/cn";
 import { Eye, EyeOff } from "lucide-react";
 
 export const HideSensibleData = ({ className, name, ...props }) => {

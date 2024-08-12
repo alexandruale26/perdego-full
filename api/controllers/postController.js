@@ -20,7 +20,20 @@ export const getPost = catchAsync(async (req, res, next) => {
   const post = await Post.findOne({
     urlSlug: req.params.urlSlug,
   })
-    .select("-updatedAt -_id -__v")
+    .select("-updatedAt -urlSlug -phone -_id -__v")
+    .populate({ path: "postedBy", select: "createdAt -_id" })
+    .lean();
+
+  if (!post) return next(new AppError("Anuntul nu exista.", 404));
+
+  res.status(200).json({ status: "success", data: post });
+});
+
+export const getPostPhone = catchAsync(async (req, res, next) => {
+  const post = await Post.findOne({
+    urlSlug: req.params.urlSlug,
+  })
+    .select("phone -_id")
     .lean();
 
   if (!post) return next(new AppError("Anuntul nu exista.", 404));

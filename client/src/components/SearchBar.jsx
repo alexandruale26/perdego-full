@@ -1,8 +1,8 @@
 import { useRef } from "react";
 import PropTypes from "prop-types";
 import * as Input from "./ui/Input";
-import { cn } from "../lib/utils";
-import LocationSelect from "./selectors/location/LocationSelect";
+import { cn } from "../utils/cn";
+import LocationSelect from "./selectors/LocationSelect";
 import Button from "./ui/Button";
 import { Search } from "lucide-react";
 

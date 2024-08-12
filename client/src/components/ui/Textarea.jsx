@@ -1,6 +1,6 @@
 import { forwardRef } from "react";
 import PropTypes from "prop-types";
-import { cn } from "../../lib/utils";
+import { cn } from "../../utils/cn";
 import AddValidation from "./helpers/AddValidation";
 import { useFormField } from "./Form";
 

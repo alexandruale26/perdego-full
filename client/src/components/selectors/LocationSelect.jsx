@@ -1,18 +1,17 @@
 import { useEffect, useState, useRef, forwardRef } from "react";
 import PropTypes from "prop-types";
 import AsyncSelect from "react-select/async";
-import styles from "../shared/styles";
-import { parseLocation, sortCities } from "./helpers.js";
-import counties from "./judete.js";
+import styles from "./shared/styles";
+import { parseLocation, sortCities } from "../../utils/citiesHelpers";
+import counties from "../../sharedData/counties";
 import {
   Option,
   ClearIndicator,
   DropdownIndicator,
   ValueContainer,
-} from "../shared/Components";
+} from "./shared/Components";
 
-//TODO: move judete to data folder later
-//TODO: message if judete fetch has failed/ change judete name
+//TODO: message if cities fetch has failed
 
 const LocationSelect = forwardRef(
   ({ name, isInPostForm = false, ...props }, ref) => {
@@ -26,7 +25,7 @@ const LocationSelect = forwardRef(
     useEffect(() => {
       const fetchCitiesData = async () => {
         try {
-          const response = await fetch("/localitati.json");
+          const response = await fetch("/cities.json");
           if (!response.ok) {
             throw new Error("Failed to fetch data");
           }

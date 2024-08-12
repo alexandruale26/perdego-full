@@ -1,7 +1,7 @@
 import { useState, forwardRef } from "react";
 import PropTypes from "prop-types";
 import RemoveImageButton from "./RemoveImageButton";
-import { cn } from "../../../lib/utils";
+import { cn } from "../../../utils/cn";
 
 const ImageSelect = forwardRef(({ onChange, ...props }, ref) => {
   const [previewUrl, setPreviewUrl] = useState(null);

@@ -5,6 +5,7 @@ import {
   getAll,
   createPost,
   getPost,
+  getPostPhone,
   updatePost,
   deletePost,
 } from "../controllers/postController.js";
@@ -13,6 +14,7 @@ const router = express.Router();
 
 router.get("/", getAll);
 router.get("/:urlSlug", getPost);
+router.get("/getPhone/:urlSlug", getPostPhone);
 
 router.use(protect);
 router.get("/myPosts", getMyPosts);

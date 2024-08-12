@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
-import LocationSelect from "../../components/selectors/location/LocationSelect";
-import CategorySelect from "../../components/selectors/category/CategorySelect";
+import LocationSelect from "../../components/selectors/LocationSelect";
+import CategorySelect from "../../components/selectors/CategorySelect";
 import PostTypeSelect from "../../components/PostTypeSelect";
 import {
   FormField,
@@ -9,7 +9,7 @@ import {
   InputErrorMessage,
 } from "../../components/ui/Form";
 
-const SelectsSection = ({ formControl }) => {
+const SelectorsSection = ({ formControl }) => {
   return (
     <section className="mt-5 ml-8 space-y-4">
       <PostTypeSelect formControl={formControl} className="max-w-[300px]" />
@@ -44,9 +44,9 @@ const SelectsSection = ({ formControl }) => {
     </section>
   );
 };
-SelectsSection.displayName = "NewPost.SelectsSection";
-SelectsSection.propTypes = {
+SelectorsSection.displayName = "NewPost.SelectorsSection";
+SelectorsSection.propTypes = {
   formControl: PropTypes.any.isRequired,
 };
 
-export default SelectsSection;
+export default SelectorsSection;
