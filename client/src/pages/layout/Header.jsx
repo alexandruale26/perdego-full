@@ -6,10 +6,10 @@ import { api } from "../../services/api.js";
 const Header = () => {
   // TODO: de sters
   const getMe = async () => {
-    const response = await api.get("/users/profile");
+    const { data } = await api.get("/users/profile");
 
-    if (response?.data.data) {
-      console.log(response.data.data);
+    if (data.status === "success") {
+      console.log(data.data);
     }
   };
 

@@ -17,11 +17,11 @@ export const getAll = catchAsync(async (req, res, next) => {
 });
 
 export const getPost = catchAsync(async (req, res, next) => {
-  console.log(req.params);
-
   const post = await Post.findOne({
     urlSlug: req.params.urlSlug,
-  }).select("-updatedAt -_id -__v");
+  })
+    .select("-updatedAt -_id -__v")
+    .lean();
 
   if (!post) return next(new AppError("Anuntul nu exista.", 404));
 
@@ -29,12 +29,14 @@ export const getPost = catchAsync(async (req, res, next) => {
 });
 
 export const createPost = catchAsync(async (req, res, next) => {
-  const newPost = await Post.create({
+  await Post.create({
     ...req.body,
     postedBy: req.user._id,
   });
 
-  res.status(201).json({ status: "success", data: newPost });
+  res
+    .status(201)
+    .json({ status: "success", message: "Post successfully created" });
 });
 
 export const updatePost = catchAsync(async (req, res, next) => {});

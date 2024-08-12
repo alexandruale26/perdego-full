@@ -18,10 +18,11 @@ api.interceptors.request.use(
 
 api.interceptors.response.use(
   (response) => response,
-  async (error) => {
-    const originalRequest = error.config;
+  // error object
+  async ({ config, response }) => {
+    const originalRequest = config;
 
-    if (error.response.status === 401 && !originalRequest._retry) {
+    if (response.status === 401 && !originalRequest._retry) {
       originalRequest._retry = true;
 
       try {
@@ -37,7 +38,7 @@ api.interceptors.response.use(
       }
     }
 
-    return { status: "error", message: "Something went very wrong!" };
+    return { data: generateErrorResponseData(response) };
   },
 );
 
@@ -67,6 +68,16 @@ const requestAccessToken = async () => {
 
 const setApiAccessToken = (accessToken) => {
   api.defaults.headers.common["Authorization"] = `Bearer ${accessToken}`;
+};
+
+const generateErrorResponseData = (response) => {
+  const isClientError = `${response.status}`.startsWith("4");
+  const status = isClientError ? "fail" : "error";
+  const message = isClientError
+    ? response.data.message
+    : "Something went very wrong!";
+
+  return { status, message };
 };
 
 export { api, setApiAccessToken, requestAccessToken };

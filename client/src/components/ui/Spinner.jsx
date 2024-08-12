@@ -28,7 +28,7 @@ const loaderVariants = cva("animate-spin text-primary", {
   },
 });
 
-const Spinner = ({ size, show, className }) => {
+const Spinner = ({ size, show = true, className }) => {
   return (
     <span className={spinnerVariants({ show })}>
       <Loader2 className={cn(loaderVariants({ size }), className)} />
@@ -38,7 +38,7 @@ const Spinner = ({ size, show, className }) => {
 Spinner.displayName = "Spinner";
 Spinner.propTypes = {
   size: PropTypes.oneOf(["small", "medium", "large"]),
-  show: PropTypes.bool.isRequired,
+  show: PropTypes.bool,
   className: PropTypes.string,
 };
 

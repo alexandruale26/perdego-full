@@ -41,21 +41,22 @@ const NewPostPage = () => {
         imagePath = data;
       }
 
-      const response = await api.post("/posts", {
+      const { data } = await api.post("/posts", {
         ...fields,
         image: imagePath,
       });
 
-      if (response?.data?.status !== "success") {
-        // TODO: Admin access only to .env to delete files
-        await deleteImage(imagePath);
-        throw new Error(response.message);
+      console.log(data);
+
+      if (data.status !== "success") {
+        await deleteImage(imagePath); // TODO: Admin access only to .env to delete files
+        throw new Error(data.message);
       }
 
-      setIsLoading(false); // redirectionare myPosts
+      setIsLoading(false); // ! redirectionare myPosts
     } catch ({ message }) {
       setIsLoading(false);
-      console.log(message); // user notification or 404
+      console.log(message); // ! user notification or 404
     }
   };
   // TODO: maybe a main component for all
