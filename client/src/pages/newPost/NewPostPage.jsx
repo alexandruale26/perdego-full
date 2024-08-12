@@ -59,9 +59,9 @@ const NewPostPage = () => {
       console.log(message); // ! user notification or 404
     }
   };
-  // TODO: maybe a main component for all
+
   return (
-    <main className="max-w-[1200px] my-10 px-6 mx-auto">
+    <main className="max-w-[1200px] mt-10 mb-12 px-6 mx-auto">
       <div>
         <h3 className="text-lg text-primary font-bold">Publicǎ un anunț</h3>
 

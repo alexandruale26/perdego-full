@@ -19,9 +19,9 @@ const Header = () => {
         <img src="/logo.png" alt="logo" className="w-[253px] h-[60px]" />
       </Link>
       <nav className="flex items-center gap-10">
-        <Button type="button" onClick={getMe}>
+        {/* <Button type="button" onClick={getMe}>
           Get me
-        </Button>
+        </Button> */}
         <Button asChild variant="iconText" size="iconText">
           <Link to="/autentificare">
             <UserRound />

@@ -26,7 +26,7 @@ const HomePage = () => {
       <Categories />
       <LatestPosts />
 
-      <section className="w-full max-w-[1200px] pt-2 pb-10 px-6 mx-auto">
+      <section className="w-full max-w-[1200px] pt-2 pb-14 px-6 mx-auto">
         <LeaveAReview />
       </section>
     </main>

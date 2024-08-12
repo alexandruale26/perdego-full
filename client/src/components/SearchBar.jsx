@@ -6,7 +6,7 @@ import LocationSelect from "./selectors/LocationSelect";
 import Button from "./ui/Button";
 import { Search } from "lucide-react";
 
-const SearchBar = ({ className }) => {
+const SearchBar = ({ className, buttonStyling }) => {
   const formRef = useRef(null);
 
   const handleSubmit = (e) => {
@@ -46,10 +46,13 @@ const SearchBar = ({ className }) => {
 
       <Button
         type="submit"
-        className="bg-white text-base px-6 hover:bg-current"
+        className={cn(
+          "bg-white text-base text-black px-6 hover:bg-current",
+          buttonStyling,
+        )}
         onClick={handleSubmit}
       >
-        <span className="text-black">Cǎutare</span>
+        <span className="text-inherit">Cǎutare</span>
       </Button>
     </form>
   );
@@ -57,6 +60,7 @@ const SearchBar = ({ className }) => {
 SearchBar.displayName = "SearchBar";
 SearchBar.propTypes = {
   className: PropTypes.string,
+  buttonStyling: PropTypes.string,
 };
 
 export default SearchBar;

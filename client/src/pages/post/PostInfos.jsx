@@ -20,7 +20,7 @@ const PostInfos = ({ post }) => {
       if (data.status !== "success") throw new Error(data.message);
       setPhone(data.data.phone);
     } catch ({ message }) {
-      console.log(message); // ! 404
+      console.log(message); // TODO: 404
     }
   };
 

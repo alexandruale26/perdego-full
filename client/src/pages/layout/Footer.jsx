@@ -53,8 +53,8 @@ const links = [
 
 const Footer = () => {
   return (
-    <footer className="w-full h-[370px] flex items-center justify-center text-md bg-grey-6 mt-4 rounded-lg shadow-[0_-2px_6px_rgba(0,0,0,0.4)]">
-      <div className="w-full max-w-[1200px] flex items-start justify-between pt-2 pb-10 px-6 mx-auto">
+    <footer className="w-full h-[370px] flex items-center justify-center self-end text-md bg-grey-6 rounded-lg shadow-[0_-2px_6px_rgba(0,0,0,0.4)]">
+      <div className="w-full max-w-[1200px] flex items-start justify-between pb-6 px-6">
         <div className="grid grid-rows-6 grid-cols-2 gap-y-4 flex-grow">
           {links.map((link) => {
             return (
