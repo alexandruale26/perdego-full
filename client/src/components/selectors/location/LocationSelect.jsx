@@ -22,6 +22,7 @@ const LocationSelect = forwardRef(
 
     delete props.value;
 
+    // TODO: better data import
     useEffect(() => {
       const fetchCitiesData = async () => {
         try {
@@ -40,11 +41,17 @@ const LocationSelect = forwardRef(
       fetchCitiesData();
     }, []);
 
+    const handleSelectValueChange = () => {
+      return isInPostForm
+        ? ({ value }) => props.onChange(value)
+        : (value) => value;
+    };
+
     const loadOptions = (inputValue, callback) => {
       if (debounceTimer.current) clearTimeout(debounceTimer.current);
 
-      // TODO: urgent -> no diacritics, search in old project
-      let searchValue = inputValue.trim();
+      let searchValue = removeDiacritics(inputValue.trim());
+      // let searchValue = inputValue.trim();
 
       if (searchValue.length < 3) {
         latestOptions.current = [];
@@ -99,7 +106,7 @@ const LocationSelect = forwardRef(
           );
 
           const options = [
-            // TODO: make separate function to this too
+            // TODO: think if need to make a separate function to this too
             {
               label: "Județe",
               options: filteredCounties.map((item) => ({
@@ -146,7 +153,7 @@ const LocationSelect = forwardRef(
         }}
         ref={ref}
         {...props}
-        onChange={({ value }) => props.onChange(value)}
+        onChange={handleSelectValueChange()}
       />
     );
   },
@@ -160,3 +167,7 @@ LocationSelect.propTypes = {
 };
 
 export default LocationSelect;
+
+const removeDiacritics = (str) => {
+  return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+};
