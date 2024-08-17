@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import PropTypes from "prop-types";
 import LocationSelect from "../../components/selectors/LocationSelect";
 import CategorySelect from "../../components/selectors/CategorySelect";
@@ -13,14 +13,12 @@ import {
 } from "../../components/ui/Form";
 
 const SelectorsSection = ({ form: { formControl, getValues, resetField } }) => {
-  const [toAuthorities, setToAuthorities] = useState(false);
-
   const postType = getValues("type");
 
   useEffect(() => {
     if (postType === "pierdute") {
       resetField("authorities");
-      setToAuthorities(false);
+      resetField("sendToAuthorities");
     } else {
       resetField("reward");
     }
@@ -72,18 +70,28 @@ const SelectorsSection = ({ form: { formControl, getValues, resetField } }) => {
             </FormItem>
           )}
         />
-      ) : null}
-
-      {postType === "gasite" ? (
+      ) : (
         <>
-          <div className="space-y-2">
-            <p className="text-lg">Obiect predat autoritǎților</p>
-            <Switch
-              checked={toAuthorities}
-              onCheckedChange={setToAuthorities}
-            />
-          </div>
-          {toAuthorities ? (
+          <FormField
+            control={formControl}
+            name="sendToAuthorities"
+            render={({ field: { value, onChange } }) => (
+              <FormItem className="max-w-[500px]">
+                <p className="text-lg">Obiect predat autoritǎților</p>
+                <FormControl>
+                  <Switch
+                    checked={value}
+                    onCheckedChange={(checked) => {
+                      resetField("authorities");
+                      onChange(checked);
+                    }}
+                  />
+                </FormControl>
+                <InputErrorMessage />
+              </FormItem>
+            )}
+          />
+          {getValues("sendToAuthorities") ? (
             <FormField
               control={formControl}
               name="authorities"
@@ -103,7 +111,7 @@ const SelectorsSection = ({ form: { formControl, getValues, resetField } }) => {
             />
           ) : null}
         </>
-      ) : null}
+      )}
     </section>
   );
 };

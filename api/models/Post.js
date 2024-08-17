@@ -48,6 +48,7 @@ const postSchema = new mongoose.Schema(
     reward: { type: Boolean },
     authorities: {
       type: String,
+      // minLength: [5, "Introdu un nume de politie mai lung"],
       maxLength: [70, "Introdu un nume de politie mai scurt."],
       trim: true,
     },

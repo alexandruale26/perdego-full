@@ -28,34 +28,35 @@ const NewPostPage = () => {
   });
 
   const onSubmit = async (fields) => {
-    try {
-      let imagePath = null;
-      setIsLoading(true);
+    console.log(fields);
+    // try {
+    //   let imagePath = null;
+    //   setIsLoading(true);
 
-      if (fields.image) {
-        const { success, data } = await uploadImage(fields.image);
+    //   if (fields.image) {
+    //     const { success, data } = await uploadImage(fields.image);
 
-        if (success === false) throw new Error(data);
-        imagePath = data;
-      }
+    //     if (success === false) throw new Error(data);
+    //     imagePath = data;
+    //   }
 
-      const { data } = await api.post("/posts", {
-        ...fields,
-        image: imagePath,
-      });
+    //   const { data } = await api.post("/posts", {
+    //     ...fields,
+    //     image: imagePath,
+    //   });
 
-      console.log(data);
+    //   console.log(data);
 
-      if (data.status !== "success") {
-        await deleteImage(imagePath); // TODO: Admin access only to .env to delete files
-        throw new Error(data.message);
-      }
+    //   if (data.status !== "success") {
+    //     await deleteImage(imagePath); // TODO: Admin access only to .env to delete files
+    //     throw new Error(data.message);
+    //   }
 
-      setIsLoading(false); // ! redirectionare myPosts
-    } catch ({ message }) {
-      setIsLoading(false);
-      console.log(message); // ! user notification or 404
-    }
+    //   setIsLoading(false); // ! redirectionare myPosts
+    // } catch ({ message }) {
+    //   setIsLoading(false);
+    //   console.log(message); // ! user notification or 404
+    // }
   };
 
   return (
