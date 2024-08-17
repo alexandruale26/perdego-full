@@ -11,10 +11,11 @@ import { cn } from "../../utils/cn";
 const PostInfos = ({ post }) => {
   const [phone, setPhone] = useState(null);
 
+  // TODO: fix getPhone
   const handleGetPhone = async () => {
     try {
       const { data } = await api.get(
-        `posts/getPhone/iphone-14-albastru-78951c0f`,
+        `posts/getPhone/pierdut-poza-de-familie-in-fata-primariei-baicoi-c62c26bf`,
       );
 
       if (data.status !== "success") throw new Error(data.message);
@@ -38,13 +39,17 @@ const PostInfos = ({ post }) => {
         <p>{getLocationLabel(post.location)}</p>
       </PostInfoCard>
 
-      <PostInfoCard title="Obiect predat autoritǎților">
-        <p>Sectia 9 Bacau</p>
-      </PostInfoCard>
+      {post.authorities.length > 0 ? (
+        <PostInfoCard title="Obiect predat autoritǎților">
+          <p>{post.authorities}</p>
+        </PostInfoCard>
+      ) : null}
 
-      <PostInfoCard title="Recompensă oferită">
-        <p>Se oferǎ recompensǎ</p>
-      </PostInfoCard>
+      {post.reward ? (
+        <PostInfoCard title="Recompensă oferită">
+          <p>Se oferǎ recompensǎ</p>
+        </PostInfoCard>
+      ) : null}
 
       <PostInfoCard title="Informații de contact" className="space-y-3">
         <div className="flex gap-3">
@@ -68,7 +73,6 @@ const PostInfos = ({ post }) => {
             </Button>
           )}
         </div>
-        {/* <p>Recompensă pentru restituirea obiectului</p> */}
         <p className="text-sm">
           Membru din {formatDateToRoumanian(post.postedBy.createdAt, false)}
         </p>
@@ -82,6 +86,8 @@ PostInfos.propTypes = {
     title: PropTypes.string,
     description: PropTypes.string,
     location: PropTypes.string,
+    reward: PropTypes.bool,
+    authorities: PropTypes.string,
     name: PropTypes.string,
     category: PropTypes.string,
     type: PropTypes.string,

@@ -12,7 +12,7 @@ export const newPostSchema = z
     location: z.string({ required_error: "Alege o localitate" }),
     reward: z.boolean(),
     sendToAuthorities: z.boolean(),
-    authorities: z.string().trim().nullable(),
+    authorities: z.string().trim(),
     title: z
       .string()
       .trim()

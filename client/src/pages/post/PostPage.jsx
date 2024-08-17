@@ -17,9 +17,10 @@ const PostPage = () => {
   useEffect(() => {
     const fetchPost = async () => {
       try {
-        // const { data } = await api.get(`posts/poza-familie-pierduta-8909d769`);
         const { data } = await api.get(
-          `posts/pierdut-poza-de-familie-in-fata-primariei-baicoi-1f61bc33`,
+          // `posts/pierdut-poza-de-familie-in-fata-primariei-baicoi-c62c26bf`,
+          `posts/pierdut-poza-de-familie-in-fata-primariei-baicoi-b1a2b875`,
+          // `posts/pierdut-poza-de-familie-in-fata-primariei-baicoi-371b54cd`,
         );
 
         if (data.status !== "success") throw new Error(data.message);
