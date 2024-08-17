@@ -17,11 +17,9 @@ const PostPage = () => {
   useEffect(() => {
     const fetchPost = async () => {
       try {
-        const { data } = await api.get(
-          // `posts/pierdut-poza-de-familie-in-fata-primariei-baicoi-c62c26bf`,
-          `posts/pierdut-poza-de-familie-in-fata-primariei-baicoi-b1a2b875`,
-          // `posts/pierdut-poza-de-familie-in-fata-primariei-baicoi-371b54cd`,
-        );
+        // const { data } = await api.get(`posts/ssdsdsdsdsdsdsdsdds-672c6145`);
+        // const { data } = await api.get(`posts/ssdsdsdsdsdsdsdsdds-2768e1fe`);
+        const { data } = await api.get(`posts/ssdsdsdsdsdsdsdsdds-55355c12`);
 
         if (data.status !== "success") throw new Error(data.message);
         setPost(data.data);
@@ -70,10 +68,10 @@ const PostPage = () => {
         </Link>
       </div>
       <div className="flex gap-10">
-        <div className="w-[55%] flex items-start justify-center">
+        <div className="w-[55%] flex items-center justify-center">
           {/* try with no image */}
           <img
-            className="h-full rounded-lg"
+            className="rounded-lg"
             src={getImageUrl(post.image)}
             alt={post.title}
           />
@@ -85,7 +83,7 @@ const PostPage = () => {
         <div className="max-w-[55%] space-y-6">
           <p>{post.description}</p>
           <p className="font-semibold">
-            Publicat pe {formatPostDate(post.createdAt)}
+            Publicat {formatPostDate(post.createdAt, "pe ")}
           </p>
 
           <Link className="w-fit flex items-center gap-3 text-lg underline">

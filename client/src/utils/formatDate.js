@@ -12,7 +12,7 @@ export const formatDateToRoumanian = (dateInput, hasDay = true) => {
   return new Intl.DateTimeFormat("ro-RO", options).format(date);
 };
 
-export const formatPostDate = (timestamp) => {
+export const formatPostDate = (timestamp, prefix = "") => {
   const postDate = new Date(timestamp);
   const today = new Date();
 
@@ -25,10 +25,10 @@ export const formatPostDate = (timestamp) => {
   const addZeroBefore = (number) => (number < 10 ? "0" + number : number);
 
   if (postDay === todayDay) {
-    return `Azi la ${addZeroBefore(hours)}:${addZeroBefore(minutes)}`;
+    return `azi la ${addZeroBefore(hours)}:${addZeroBefore(minutes)}`;
   } else if (postDay === todayDay - 1) {
-    return `Ieri la ${addZeroBefore(hours)}:${addZeroBefore(minutes)}`;
+    return `ieri la ${addZeroBefore(hours)}:${addZeroBefore(minutes)}`;
   } else {
-    return formatDateToRoumanian(postDate);
+    return `${prefix}${formatDateToRoumanian(postDate)}`;
   }
 };
