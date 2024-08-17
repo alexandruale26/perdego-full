@@ -13,12 +13,13 @@ const PostPage = () => {
   const { urlSlug } = useParams();
 
   // TODO: no image placeholder
+  // TODO: Image height
   useEffect(() => {
     const fetchPost = async () => {
       try {
         // const { data } = await api.get(`posts/poza-familie-pierduta-8909d769`);
         const { data } = await api.get(
-          `posts/pierdu-chei-apartament-cu-breloc-5ef1fb7d`,
+          `posts/pierdut-poza-de-familie-in-fata-primariei-baicoi-1f61bc33`,
         );
 
         if (data.status !== "success") throw new Error(data.message);

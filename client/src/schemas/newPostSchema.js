@@ -9,6 +9,11 @@ export const newPostSchema = z.object({
   }),
   category: z.string({ required_error: "Alege o categorie" }),
   location: z.string({ required_error: "Alege o localitate" }),
+  reward: z.boolean(),
+  authorities: z
+    .string()
+    .trim()
+    .max(70, { message: "Introdu un nume mai scurt" }),
   title: z
     .string()
     .trim()
@@ -29,9 +34,11 @@ export const newPostSchema = z.object({
 export const defaultValues = {
   type: "pierdute",
   category: undefined,
+  location: undefined,
+  reward: false,
+  authorities: "",
   title: "",
   description: "",
-  location: undefined,
   image: undefined,
   name: "",
   phone: "",

@@ -27,15 +27,23 @@ const PostInfos = ({ post }) => {
   return (
     <section className="flex-grow space-y-6">
       <PostInfoCard title="Tip anunț">
-        <p className="">{getTypeLabel(post.type)}</p>
+        <p>{getTypeLabel(post.type)}</p>
       </PostInfoCard>
 
       <PostInfoCard title="Categorie">
-        <p className="">{getCategoryLabel(post.category)}</p>
+        <p>{getCategoryLabel(post.category)}</p>
       </PostInfoCard>
 
       <PostInfoCard title="Locație">
-        <p className="">{getLocationLabel(post.location)}</p>
+        <p>{getLocationLabel(post.location)}</p>
+      </PostInfoCard>
+
+      <PostInfoCard title="Obiect predat autoritǎților">
+        <p>Sectia 9 Bacau</p>
+      </PostInfoCard>
+
+      <PostInfoCard title="Recompensă oferită">
+        <p>Se oferǎ recompensǎ</p>
       </PostInfoCard>
 
       <PostInfoCard title="Informații de contact" className="space-y-3">
@@ -60,6 +68,7 @@ const PostInfos = ({ post }) => {
             </Button>
           )}
         </div>
+        {/* <p>Recompensă pentru restituirea obiectului</p> */}
         <p className="text-sm">
           Membru din {formatDateToRoumanian(post.postedBy.createdAt, false)}
         </p>

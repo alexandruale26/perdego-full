@@ -1,7 +1,10 @@
+import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import LocationSelect from "../../components/selectors/LocationSelect";
 import CategorySelect from "../../components/selectors/CategorySelect";
 import PostTypeSelect from "../../components/PostTypeSelect";
+import * as Input from "../../components/ui/Input";
+import Switch from "../../components/ui/Switch";
 import {
   FormField,
   FormItem,
@@ -9,7 +12,20 @@ import {
   InputErrorMessage,
 } from "../../components/ui/Form";
 
-const SelectorsSection = ({ formControl }) => {
+const SelectorsSection = ({ form: { formControl, getValues, resetField } }) => {
+  const [toAuthorities, setToAuthorities] = useState(false);
+
+  const postType = getValues("type");
+
+  useEffect(() => {
+    if (postType === "pierdute") {
+      resetField("authorities");
+      setToAuthorities(false);
+    } else {
+      resetField("reward");
+    }
+  }, [postType]);
+
   return (
     <section className="mt-5 ml-8 space-y-4">
       <PostTypeSelect formControl={formControl} className="max-w-[300px]" />
@@ -41,12 +57,63 @@ const SelectorsSection = ({ formControl }) => {
           </FormItem>
         )}
       />
+
+      {postType === "pierdute" ? (
+        <FormField
+          control={formControl}
+          name="reward"
+          render={({ field: { value, onChange } }) => (
+            <FormItem className="max-w-[500px]">
+              <p className="text-lg">Oferǎ recompensǎ</p>
+              <FormControl>
+                <Switch checked={value} onCheckedChange={onChange} />
+              </FormControl>
+              <InputErrorMessage />
+            </FormItem>
+          )}
+        />
+      ) : null}
+
+      {postType === "gasite" ? (
+        <>
+          <div className="space-y-2">
+            <p className="text-lg">Obiect predat autoritǎților</p>
+            <Switch
+              checked={toAuthorities}
+              onCheckedChange={setToAuthorities}
+            />
+          </div>
+          {toAuthorities ? (
+            <FormField
+              control={formControl}
+              name="authorities"
+              render={({ field }) => (
+                <FormItem className="max-w-[500px]">
+                  <FormControl>
+                    <Input.SuperRoot>
+                      <Input.Field
+                        placeholder="Nume secție de poliție"
+                        {...field}
+                      />
+                    </Input.SuperRoot>
+                  </FormControl>
+                  <InputErrorMessage />
+                </FormItem>
+              )}
+            />
+          ) : null}
+        </>
+      ) : null}
     </section>
   );
 };
 SelectorsSection.displayName = "NewPost.SelectorsSection";
 SelectorsSection.propTypes = {
-  formControl: PropTypes.any.isRequired,
+  form: PropTypes.shape({
+    formControl: PropTypes.func,
+    getValues: PropTypes.func,
+    resetField: PropTypes.func,
+  }).isRequired,
 };
 
 export default SelectorsSection;

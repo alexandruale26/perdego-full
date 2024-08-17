@@ -45,6 +45,12 @@ const postSchema = new mongoose.Schema(
       type: String,
       required: [true, "Alege tipul anuntului."],
     },
+    reward: { type: Boolean },
+    authorities: {
+      type: String,
+      maxLength: [70, "Introdu un nume de politie mai scurt."],
+      trim: true,
+    },
     postedBy: {
       type: mongoose.Schema.ObjectId,
       ref: "User",

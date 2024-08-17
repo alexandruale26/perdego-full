@@ -28,8 +28,6 @@ const NewPostPage = () => {
   });
 
   const onSubmit = async (fields) => {
-    console.log(fields);
-
     try {
       let imagePath = null;
       setIsLoading(true);
@@ -70,7 +68,7 @@ const NewPostPage = () => {
             onSubmit={form.handleSubmit(onSubmit)}
             className="flex flex-col gap-6"
           >
-            <SelectorsSection formControl={form.control} />
+            <SelectorsSection form={form} />
             <InfosSection formControl={form.control} />
 
             <SectionCard>

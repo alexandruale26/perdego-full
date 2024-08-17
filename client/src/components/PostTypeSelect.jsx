@@ -73,7 +73,7 @@ const PostTypeSelect = forwardRef(
 PostTypeSelect.displayName = "PostTypeSelect";
 PostTypeSelect.propTypes = {
   className: PropTypes.string,
-  formControl: PropTypes.object.isRequired,
+  formControl: PropTypes.object,
   showLabel: PropTypes.bool,
 };
 
