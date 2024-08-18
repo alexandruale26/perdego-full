@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import * as Input from "../../../components/ui/Input";
 import AuthHeader from "../components/AuthHeader";
 import AuthFormBase from "../components/AuthFormBase";
@@ -23,6 +23,9 @@ import {
 
 const LoginPage = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+
+  const searchParams = new URLSearchParams(location.search);
 
   const form = useForm({
     resolver: zodResolver(loginSchema),
@@ -39,7 +42,7 @@ const LoginPage = () => {
 
     setApiAccessToken(response.accessToken);
     setAuthCookie();
-    navigate("/");
+    navigate(searchParams.get("redirect"));
   };
 
   return (

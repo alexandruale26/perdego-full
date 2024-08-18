@@ -74,6 +74,7 @@ const PostPage = () => {
             className="rounded-lg"
             src={getImageUrl(post.image)}
             alt={post.title}
+            onError={(e) => (e.currentTarget.src = "/img-placeholder.jpg")}
           />
         </div>
 

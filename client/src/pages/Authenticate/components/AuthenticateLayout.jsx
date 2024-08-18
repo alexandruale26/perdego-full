@@ -26,7 +26,7 @@ const AuthenticateLayout = () => {
             Intrând în cont, accepți{" "}
             <strong className="font-semibold hover:border-b-2 hover:border-secondary transition-colors">
               <Link to="/termeni-si-conditii">Termenii și Condițiile</Link>
-            </strong>{" "}
+            </strong>
             site-ului nostru.
           </span>
 
