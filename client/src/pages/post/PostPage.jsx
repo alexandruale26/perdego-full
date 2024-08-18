@@ -13,8 +13,6 @@ const PostPage = () => {
   const [post, setPost] = useState(null);
   const { urlSlug } = useParams();
 
-  // TODO: no image placeholder
-  // TODO: Image height
   useEffect(() => {
     const fetchPost = async () => {
       try {
