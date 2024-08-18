@@ -61,7 +61,7 @@ const NewPostPage = () => {
   return (
     <main className="max-w-[1200px] mt-10 mb-12 px-6 mx-auto">
       <div>
-        <h3 className="text-lg text-primary font-bold">Publicǎ un anunț</h3>
+        <h3 className="text-xl text-primary font-bold">Publicǎ un anunț</h3>
 
         <Form {...form}>
           <form
@@ -77,7 +77,7 @@ const NewPostPage = () => {
                 name="image"
                 render={({ field: { onChange, ...rest } }) => (
                   <FormItem>
-                    <p className="text-lg">Imagine</p>
+                    <p className="text-xl">Imagine</p>
                     <ImageSelect onChange={onChange} {...rest} />
                   </FormItem>
                 )}

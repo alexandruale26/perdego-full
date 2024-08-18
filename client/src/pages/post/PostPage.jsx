@@ -3,7 +3,8 @@ import { Link, useParams } from "react-router-dom";
 import SearchBar from "../../components/SearchBar";
 import Button from "../../components/ui/Button";
 import PostInfos from "./PostInfos";
-import { Star, Flag, MoveLeft } from "lucide-react";
+import { Star, Flag } from "lucide-react";
+import BackButton from "../../components/BackButton";
 import { api } from "../../services/api";
 import { getImageUrl } from "../../services/imageApi";
 import { formatPostDate } from "../../utils/formatDate";
@@ -45,31 +46,30 @@ const PostPage = () => {
       />
       {/* // TODO: finish here - breadcrumbs */}
       <div className="flex flex-row">
-        <span className="text-lg mt-10 cursor-pointer">
+        <span className="text-xl mt-10 cursor-pointer">
           <span className="underline">Acasǎ</span> /
-          <span className="text-lg mt-10 cursor-pointer">
+          <span className="text-xl mt-10 cursor-pointer">
             <span className="underline"> Anunțuri</span> /
           </span>
         </span>
-        <span className="text-lg mt-10 cursor-pointer">
+        <span className="text-xl mt-10 cursor-pointer">
           <span className="underline"> Obiecte personale</span> /
         </span>
-        <span className="text-lg mt-10 cursor-pointer">
+        <span className="text-xl mt-10 cursor-pointer">
           <span className="underline"> Cioroiasi, județul Dolj</span>
         </span>
       </div>
       <div className="flex justify-between py-8">
-        <p className="font-bold text-lg">{post.title}</p>
+        <p className="font-bold text-xl">{post.title}</p>
 
         {/* // TODO: button here */}
-        <Link className="flex items-start gap-2 font-bold text-lg underline">
+        <Link className="flex items-start gap-2 font-bold text-xl underline">
           <Star size={28} />
           Salveazǎ anunțul
         </Link>
       </div>
       <div className="flex gap-10">
         <div className="w-[55%] flex items-center justify-center">
-          {/* try with no image */}
           <img
             className="rounded-lg"
             src={getImageUrl(post.image)}
@@ -87,9 +87,7 @@ const PostPage = () => {
             Publicat {formatPostDate(post.createdAt, "pe ")}
           </p>
 
-          <Link className="w-fit flex items-center gap-3 text-lg underline">
-            <MoveLeft /> <span>Înapoi</span>
-          </Link>
+          <BackButton />
         </div>
 
         <div className="flex-1 flex justify-end">

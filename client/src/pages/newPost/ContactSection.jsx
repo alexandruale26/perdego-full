@@ -11,7 +11,7 @@ import {
 const ContactSection = ({ formControl }) => {
   return (
     <SectionCard>
-      <p className="text-lg">Informații de contact</p>
+      <p className="text-xl">Informații de contact</p>
       <FormField
         control={formControl}
         name="name"

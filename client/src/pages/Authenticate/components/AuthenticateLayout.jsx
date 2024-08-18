@@ -1,13 +1,6 @@
 import { Link, Outlet, Navigate } from "react-router-dom";
-import { MoveLeft } from "lucide-react";
-import Button from "../../../components/ui/Button";
 import useCheckAuth from "../../useCheckAuth";
-import {
-  Tooltip,
-  TooltipTrigger,
-  TooltipContent,
-  TooltipProvider,
-} from "../../../components/ui/Tooltip";
+import BackButton from "../../../components/BackButton";
 
 // TODO: don't make it absolute. will overflow if taller than screen height
 const AuthenticateLayout = () => {
@@ -19,7 +12,12 @@ const AuthenticateLayout = () => {
   return (
     <main className="min-w-full min-h-screen flex items-center bg-primary bg-authenticate bg-no-repeat bg-center bg-cover">
       <div className="absolute right-0 -translate-x-1/4">
-        <div className="w-[520px] h-[650px] flex flex-col justify-between bg-white bg-opacity-98 px-12 pt-12 rounded-lg">
+        <div className="w-[520px] h-[650px] flex flex-col justify-between bg-white bg-opacity-98 px-12 pt-20 rounded-lg">
+          <BackButton
+            to="/"
+            name="Acasǎ"
+            className="absolute top-6 left-6 text-xl"
+          />
           <Outlet />
 
           <span className="text-sm text-center mb-10">
@@ -29,27 +27,6 @@ const AuthenticateLayout = () => {
             </strong>
             site-ului nostru.
           </span>
-
-          <TooltipProvider>
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <Button
-                  asChild
-                  variant="icon"
-                  size="icon"
-                  className="absolute top-2 left-2 text-black"
-                  tabIndex={1}
-                >
-                  <Link to="/">
-                    <MoveLeft />
-                  </Link>
-                </Button>
-              </TooltipTrigger>
-              <TooltipContent side="right">
-                <p>Pagina principalǎ</p>
-              </TooltipContent>
-            </Tooltip>
-          </TooltipProvider>
         </div>
       </div>
     </main>

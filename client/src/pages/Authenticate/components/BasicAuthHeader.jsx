@@ -5,7 +5,7 @@ const BasicAuthHeader = ({ title = undefined }) => {
 
   return (
     <div className="w-full h-14 flex items-start border-b border-b-primary">
-      <h3 className="w-full h-full text-lg pl-4  border-b-0">{title}</h3>
+      <h3 className="w-full h-full text-xl pl-4  border-b-0">{title}</h3>
     </div>
   );
 };

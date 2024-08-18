@@ -18,7 +18,7 @@ const InfosSection = ({ formControl }) => {
           name="title"
           render={({ field }) => (
             <FormItem>
-              <p className="text-lg">Titlu</p>
+              <p className="text-xl">Titlu</p>
               <FormControl>
                 <Input.SuperRoot>
                   <Input.Field
@@ -36,7 +36,7 @@ const InfosSection = ({ formControl }) => {
           name="description"
           render={({ field }) => (
             <FormItem>
-              <p className="text-lg">Descriere</p>
+              <p className="text-xl">Descriere</p>
               <FormControl>
                 <Textarea.Root>
                   <Textarea.Field

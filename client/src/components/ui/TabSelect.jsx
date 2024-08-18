@@ -41,7 +41,7 @@ TabSelect.propTypes = {
 const TabItem = ({ tab, className }) => {
   return (
     <li
-      className={cn("flex w-full h-full text-lg border-b-primary", className)}
+      className={cn("flex w-full h-full text-xl border-b-primary", className)}
     >
       <Link to={tab.linkTo} className="w-full h-full">
         {tab.title}

@@ -53,7 +53,7 @@ PostStepsCard.propTypes = {
 const PostSteps = () => {
   return (
     <div className="flex flex-col items-center gap-8">
-      <h2 className="text-lg font-bold">Cum funcționeazǎ PERDEGO</h2>
+      <h2 className="text-xl font-bold">Cum funcționeazǎ PERDEGO</h2>
       <div className="w-full flex">
         {icons.map((item, i) => {
           if (i === icons.length - 1) {

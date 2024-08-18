@@ -66,7 +66,7 @@ export const FormLabel = ({ className, ...props }) => {
 
   return (
     <Label
-      className={cn("text-lg", className)}
+      className={cn("text-xl", className)}
       htmlFor={formItemId}
       {...props}
     />

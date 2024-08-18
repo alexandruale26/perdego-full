@@ -33,7 +33,7 @@ const SelectorsSection = ({ form: { formControl, getValues, resetField } }) => {
         name="category"
         render={({ field }) => (
           <FormItem className="max-w-[500px]">
-            <p className="text-lg">Categorie obiect</p>
+            <p className="text-xl">Categorie obiect</p>
             <FormControl>
               <CategorySelect name="category" isInPostForm {...field} />
             </FormControl>
@@ -47,7 +47,7 @@ const SelectorsSection = ({ form: { formControl, getValues, resetField } }) => {
         name="location"
         render={({ field }) => (
           <FormItem className="max-w-[500px]">
-            <p className="text-lg">Localitate</p>
+            <p className="text-xl">Localitate</p>
             <FormControl>
               <LocationSelect name="location" isInPostForm {...field} />
             </FormControl>
@@ -62,7 +62,7 @@ const SelectorsSection = ({ form: { formControl, getValues, resetField } }) => {
           name="reward"
           render={({ field: { value, onChange } }) => (
             <FormItem className="max-w-[500px]">
-              <p className="text-lg">Oferǎ recompensǎ</p>
+              <p className="text-xl">Oferǎ recompensǎ</p>
               <FormControl>
                 <Switch checked={value} onCheckedChange={onChange} />
               </FormControl>
@@ -77,7 +77,7 @@ const SelectorsSection = ({ form: { formControl, getValues, resetField } }) => {
             name="sendToAuthorities"
             render={({ field: { value, onChange } }) => (
               <FormItem className="max-w-[500px]">
-                <p className="text-lg">Obiect predat autoritǎților</p>
+                <p className="text-xl">Obiect predat autoritǎților</p>
                 <FormControl>
                   <Switch
                     checked={value}
