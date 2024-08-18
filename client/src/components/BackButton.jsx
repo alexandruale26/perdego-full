@@ -5,6 +5,8 @@ import { cn } from "../utils/cn";
 
 // TODO: add state to Link when user accesses a post to check if can go back in app
 // <Link to="new-path" state={{ some: "value" }} />
+
+// TODO: if make sense to keep props
 const BackButton = ({ to, name, className }) => {
   return (
     <Link

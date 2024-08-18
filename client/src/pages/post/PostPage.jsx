@@ -8,6 +8,14 @@ import BackButton from "../../components/BackButton";
 import { api } from "../../services/api";
 import { getImageUrl } from "../../services/imageApi";
 import { formatPostDate } from "../../utils/formatDate";
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from "../../components/ui/Breadcrumb";
 
 const PostPage = () => {
   const [post, setPost] = useState(null);
@@ -42,29 +50,43 @@ const PostPage = () => {
         className="p-0"
         buttonStyling="bg-primary text-white hover:bg-btn-primary-hover"
       />
-      {/* // TODO: finish here - breadcrumbs */}
-      <div className="flex flex-row">
-        <span className="text-xl mt-10 cursor-pointer">
-          <span className="underline">Acasǎ</span> /
-          <span className="text-xl mt-10 cursor-pointer">
-            <span className="underline"> Anunțuri</span> /
-          </span>
-        </span>
-        <span className="text-xl mt-10 cursor-pointer">
-          <span className="underline"> Obiecte personale</span> /
-        </span>
-        <span className="text-xl mt-10 cursor-pointer">
-          <span className="underline"> Cioroiasi, județul Dolj</span>
-        </span>
-      </div>
+
+      <Breadcrumb>
+        <BreadcrumbList>
+          <BreadcrumbItem>
+            <BreadcrumbLink asChild>
+              <Link>Acasǎ</Link>
+            </BreadcrumbLink>
+          </BreadcrumbItem>
+          <BreadcrumbSeparator />
+          <BreadcrumbItem>
+            <BreadcrumbLink asChild>
+              <Link>Anunțuri</Link>
+            </BreadcrumbLink>
+          </BreadcrumbItem>
+          <BreadcrumbSeparator />
+          <BreadcrumbItem>
+            <BreadcrumbLink asChild>
+              <Link>Pierdute</Link>
+            </BreadcrumbLink>
+          </BreadcrumbItem>
+          <BreadcrumbSeparator />
+          <BreadcrumbItem>
+            <BreadcrumbPage>București</BreadcrumbPage>
+          </BreadcrumbItem>
+        </BreadcrumbList>
+      </Breadcrumb>
+
       <div className="flex justify-between py-8">
         <p className="font-bold text-xl">{post.title}</p>
 
-        {/* // TODO: button here */}
-        <Link className="flex items-start gap-2 font-bold text-xl underline">
+        <Button
+          variant="iconText"
+          className="h-fit flex gap-2 p-0 mr-0.5 text-xl text-black underline"
+        >
           <Star size={28} />
           Salveazǎ anunțul
-        </Link>
+        </Button>
       </div>
       <div className="flex gap-10">
         <div className="w-[55%] flex items-center justify-center">
