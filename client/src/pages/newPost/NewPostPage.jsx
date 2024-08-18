@@ -6,6 +6,7 @@ import ContactSection from "./ContactSection";
 import SelectorsSection from "./SelectorsSection";
 import { Form, FormField, FormItem } from "../../components/ui/Form";
 import Spinner from "../../components/ui/Spinner";
+import BreadrumbsNav from "../../components/BreadrumbsNav";
 
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -60,8 +61,9 @@ const NewPostPage = () => {
 
   return (
     <main className="max-w-[1200px] mt-10 mb-12 px-6 mx-auto">
+      <BreadrumbsNav />
       <div>
-        <h3 className="text-xl text-primary font-bold">Publicǎ un anunț</h3>
+        <h1 className="text-xl text-primary font-bold">Publicǎ un anunț</h1>
 
         <Form {...form}>
           <form

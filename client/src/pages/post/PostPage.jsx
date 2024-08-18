@@ -8,15 +8,9 @@ import BackButton from "../../components/BackButton";
 import { api } from "../../services/api";
 import { getImageUrl } from "../../services/imageApi";
 import { formatPostDate } from "../../utils/formatDate";
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbList,
-  BreadcrumbPage,
-  BreadcrumbSeparator,
-} from "../../components/ui/Breadcrumb";
+import BreadrumbsNav from "../../components/BreadrumbsNav";
 
+// TODO: id user sees his's post, could be redirected to edit it from here
 const PostPage = () => {
   const [post, setPost] = useState(null);
   const { urlSlug } = useParams();
@@ -43,7 +37,7 @@ const PostPage = () => {
   };
 
   if (post === null) return <div>Loading...</div>;
-
+  // TODO: fix below title margin -> urgent
   return (
     <main className="w-full max-w-[1200px] my-10 px-6 mx-auto">
       <SearchBar
@@ -51,34 +45,10 @@ const PostPage = () => {
         buttonStyling="bg-primary text-white hover:bg-btn-primary-hover"
       />
 
-      <Breadcrumb>
-        <BreadcrumbList>
-          <BreadcrumbItem>
-            <BreadcrumbLink asChild>
-              <Link>Acasǎ</Link>
-            </BreadcrumbLink>
-          </BreadcrumbItem>
-          <BreadcrumbSeparator />
-          <BreadcrumbItem>
-            <BreadcrumbLink asChild>
-              <Link>Anunțuri</Link>
-            </BreadcrumbLink>
-          </BreadcrumbItem>
-          <BreadcrumbSeparator />
-          <BreadcrumbItem>
-            <BreadcrumbLink asChild>
-              <Link>Pierdute</Link>
-            </BreadcrumbLink>
-          </BreadcrumbItem>
-          <BreadcrumbSeparator />
-          <BreadcrumbItem>
-            <BreadcrumbPage>București</BreadcrumbPage>
-          </BreadcrumbItem>
-        </BreadcrumbList>
-      </Breadcrumb>
+      <BreadrumbsNav />
 
       <div className="flex justify-between py-8">
-        <p className="font-bold text-xl">{post.title}</p>
+        <h1 className="font-bold text-xl">{post.title}</h1>
 
         <Button
           variant="iconText"
@@ -88,6 +58,7 @@ const PostPage = () => {
           Salveazǎ anunțul
         </Button>
       </div>
+
       <div className="flex gap-10">
         <div className="w-[55%] flex items-center justify-center">
           <img
@@ -100,6 +71,7 @@ const PostPage = () => {
 
         <PostInfos post={post} />
       </div>
+
       <section className="flex gap-6 my-6">
         <div className="max-w-[55%] space-y-6">
           <p>{post.description}</p>
@@ -109,7 +81,6 @@ const PostPage = () => {
 
           <BackButton />
         </div>
-
         <div className="flex-1 flex justify-end">
           <Button
             onClick={handleReportPost}

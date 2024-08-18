@@ -55,7 +55,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/administrare",
-        element: <DashboardPage />,
+        element: <DashboardPage />, // !! more children pages here
       },
       {
         path: "/anunturi/nou",

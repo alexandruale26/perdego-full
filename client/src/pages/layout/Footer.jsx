@@ -51,6 +51,7 @@ const links = [
   },
 ];
 
+// TODO: redo the urls before publishing the app
 const Footer = () => {
   return (
     <footer className="w-full h-[370px] flex items-center justify-center self-end text-lg bg-grey-6 rounded-lg shadow-[0_-2px_6px_rgba(0,0,0,0.4)]">
