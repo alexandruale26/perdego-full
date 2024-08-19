@@ -5,7 +5,7 @@ import ImageSelect from "../../components/selectors/image/ImageSelect";
 import ContactSection from "./ContactSection";
 import SelectorsSection from "./SelectorsSection";
 import { Form, FormField, FormItem } from "../../components/ui/Form";
-import Spinner from "../../components/ui/Spinner";
+import Spinner from "../../components/Spinner";
 import BreadrumbsNav from "../../components/breadrumbs/BreadrumbsNav";
 
 import { useForm } from "react-hook-form";

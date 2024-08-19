@@ -28,7 +28,7 @@ const PostPage = () => {
       try {
         // const { data } = await api.get(`posts/ssdsdsdsdsdsdsdsdds-672c6145`);
         // const { data } = await api.get(`posts/ssdsdsdsdsdsdsdsdds-2768e1fe`);
-        const { data } = await api.get(`posts/ssdsdsdsdsdsdsdsdds-55355c12x`);
+        const { data } = await api.get(`posts/ssdsdsdsdsdsdsdsdds-55355c12`);
 
         if (data.status !== "success") throw new Error(data.message);
         setPost(data.data);

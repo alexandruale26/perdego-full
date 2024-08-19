@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import { cn } from "../../utils/cn";
+import { cn } from "../utils/cn";
 import { cva } from "class-variance-authority";
 import { Loader2 } from "lucide-react";
 
