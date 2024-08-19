@@ -45,7 +45,7 @@ const PostTypeSelect = forwardRef(
               >
                 <div ref={parentRef} className="flex w-full">
                   {options.map((option) => (
-                    <FormItem key={option.value} className="w-full space-y-0">
+                    <FormItem key={option.value} className="w-full space-y-1">
                       <FormControl>
                         <Item value={option.value} hidden />
                       </FormControl>
@@ -102,7 +102,7 @@ const Label = ({ value, ...props }) => {
         tabIndex={0}
         onKeyDown={handleOnKeydown}
         data-value={value}
-        className="w-full pb-1.5 text-xl cursor-pointer select-none"
+        className="w-full pb-1.5 text-lg font-medium cursor-pointer select-none"
         {...props}
       />
     </div>

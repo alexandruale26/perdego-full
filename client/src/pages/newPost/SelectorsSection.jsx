@@ -26,7 +26,7 @@ const SelectorsSection = ({ form: { formControl, getValues, resetField } }) => {
 
   return (
     <section className="mt-5 ml-8 space-y-4">
-      <PostTypeSelect formControl={formControl} className="max-w-[300px]" />
+      <PostTypeSelect formControl={formControl} className="max-w-[250px]" />
 
       <FormField
         control={formControl}

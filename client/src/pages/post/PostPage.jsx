@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import SearchBar from "../../components/SearchBar";
 import Button from "../../components/ui/Button";
 import PostInfos from "./PostInfos";
@@ -8,7 +8,12 @@ import BackButton from "../../components/BackButton";
 import { api } from "../../services/api";
 import { getImageUrl } from "../../services/imageApi";
 import { formatPostDate } from "../../utils/formatDate";
-import BreadrumbsNav from "../../components/BreadrumbsNav";
+import BreadrumbsNav from "../../components/breadrumbs/BreadrumbsNav";
+import {
+  getTypeLabel,
+  getCategoryLabel,
+  getLocationLabel,
+} from "../../utils/postDataHelpers";
 
 // TODO: id user sees his's post, could be redirected to edit it from here
 const PostPage = () => {
@@ -37,7 +42,7 @@ const PostPage = () => {
   };
 
   if (post === null) return <div>Loading...</div>;
-  // TODO: fix below title margin -> urgent
+
   return (
     <main className="w-full max-w-[1200px] my-10 px-6 mx-auto">
       <SearchBar
@@ -45,7 +50,10 @@ const PostPage = () => {
         buttonStyling="bg-primary text-white hover:bg-btn-primary-hover"
       />
 
-      <BreadrumbsNav />
+      <BreadrumbsNav
+        crumbsExtension={getCrumbsExtension(post)}
+        className="mt-10"
+      />
 
       <div className="flex justify-between py-8">
         <h1 className="font-bold text-xl">{post.title}</h1>
@@ -98,3 +106,22 @@ const PostPage = () => {
 PostPage.displayName = "Post";
 
 export default PostPage;
+
+const getCrumbsExtension = (post) => [
+  {
+    url: `type=${post.type}`,
+    crumb: getTypeLabel(post.type),
+  },
+  {
+    url: `category=${post.category}`,
+    crumb: getCategoryLabel(post.category),
+  },
+  {
+    url: `location=${post.location}`,
+    crumb: getLocationLabel(post.location),
+  },
+  {
+    url: "",
+    crumb: post.title,
+  },
+];

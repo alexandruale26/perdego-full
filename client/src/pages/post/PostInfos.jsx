@@ -2,11 +2,14 @@ import { useState } from "react";
 import PropTypes from "prop-types";
 import Button from "../../components/ui/Button";
 import { UserCircle2, Phone } from "lucide-react";
-import categories from "../../sharedData/categories";
-import { parseLocation } from "../../utils/citiesHelpers";
 import { formatDateToRoumanian } from "../../utils/formatDate";
+import PostInfoCard from "./PostInfoCard";
 import { api } from "../../services/api";
-import { cn } from "../../utils/cn";
+import {
+  getTypeLabel,
+  getCategoryLabel,
+  getLocationLabel,
+} from "../../utils/postDataHelpers";
 
 const PostInfos = ({ post }) => {
   const [phone, setPhone] = useState(null);
@@ -99,38 +102,3 @@ PostInfos.propTypes = {
 };
 
 export default PostInfos;
-
-const getTypeLabel = (string) => {
-  return string === "gasite" ? "Gǎsite" : "Pierdute";
-};
-
-const getCategoryLabel = (string) => {
-  return categories.filter((item) => item.value === string)[0].label;
-};
-
-const getLocationLabel = (string) => {
-  const location = parseLocation(string);
-  return location.commune
-    ? `${location.name}, comuna ${location.commune}, județul ${location.county}`
-    : `${location.name}, județul ${location.county}`;
-};
-
-const PostInfoCard = ({ title, children, className }) => {
-  return (
-    <div
-      className={cn(
-        "w-full py-4 px-6 border border-grey-6 rounded-lg shadow-md space-y-2",
-        className,
-      )}
-    >
-      <p className="font-bold">{title}</p>
-      {children}
-    </div>
-  );
-};
-PostInfoCard.displayName = "PostInfoCard";
-PostInfoCard.propTypes = {
-  title: PropTypes.string,
-  children: PropTypes.node,
-  className: PropTypes.string,
-};

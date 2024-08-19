@@ -1,5 +1,7 @@
+import { Fragment } from "react";
 import { Link, useLocation } from "react-router-dom";
 import PropTypes from "prop-types";
+import generateCrumbs from "./generateCrumbs";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -7,56 +9,13 @@ import {
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
-} from "./breadrumbs/Breadcrumb";
-import { Fragment } from "react";
+} from "./Breadcrumb";
 
 const BreadrumbsNav = ({ crumbsExtension, className }) => {
   const location = useLocation();
   const paths = location.pathname.slice(1).split("/");
 
-  const generateCrumbs = () => {
-    let baseBreadcrumbs = [];
-
-    if (paths[0] === "anunturi") {
-      let baseUrl = "/anunturi";
-
-      baseBreadcrumbs = paths.reduce((acc, path) => {
-        if (path === "anunturi") {
-          acc.push({ url: baseUrl, crumb: "Anunțuri" });
-        } else if (path === "nou") {
-          baseUrl += "/nou";
-          acc.push({ url: baseUrl, crumb: "Anunț nou" });
-        }
-
-        return acc;
-      }, []);
-
-      let additionalCrumbs = [];
-
-      if (crumbsExtension) {
-        baseUrl += "?";
-        additionalCrumbs = crumbsExtension.reduce((acc, path, i) => {
-          if (i === 0) {
-            baseUrl += path.url;
-            acc.push({ url: baseUrl, crumb: path.crumb });
-          } else if (path.url === "") {
-            acc.push({ url: "/", crumb: path.crumb });
-          } else {
-            baseUrl += `&${path.url}`;
-            acc.push({ url: baseUrl, crumb: path.crumb });
-          }
-
-          return acc;
-        }, []);
-
-        baseBreadcrumbs.push(...additionalCrumbs);
-      }
-    }
-
-    return baseBreadcrumbs;
-  };
-
-  const breadcrumbs = generateCrumbs();
+  const breadcrumbs = generateCrumbs(paths, crumbsExtension);
 
   return (
     <Breadcrumb>
