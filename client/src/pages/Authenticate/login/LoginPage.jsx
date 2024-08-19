@@ -42,7 +42,7 @@ const LoginPage = () => {
 
     setApiAccessToken(response.accessToken);
     setAuthCookie();
-    navigate(searchParams.get("redirect"), { replace: true });
+    navigate(searchParams.get("redirect") ?? "/", { replace: true });
   };
 
   return (

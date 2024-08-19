@@ -55,24 +55,30 @@ const links = [
 const Footer = () => {
   return (
     <footer className="w-full h-[370px] flex items-center justify-center self-end text-lg bg-grey-6 rounded-lg shadow-[0_-2px_6px_rgba(0,0,0,0.4)]">
-      <div className="w-full max-w-[1200px] flex items-start justify-between pb-6 px-6">
-        <div className="grid grid-rows-6 grid-cols-2 gap-y-4 flex-grow">
+      <nav className="w-full max-w-[1200px] flex items-start justify-between pb-6 px-6">
+        <ul className="grid grid-rows-6 grid-cols-2 gap-y-4 flex-grow">
           {links.map((link) => {
             return (
-              <Link key={link.name} to={link.url} className="w-fit">
-                {link.name}
-              </Link>
+              <li key={link.name}>
+                <Link to={link.url} className="w-fit">
+                  {link.name}
+                </Link>
+              </li>
             );
           })}
-        </div>
+        </ul>
         <div className="flex flex-col gap-4">
           <span>Descarcǎ aplicația pentru mobil:</span>
-          <div className="w-full flex gap-4">
-            <img src="/stores/g_play.png" alt="google play store" />
-            <img src="/stores/a_store.png" alt="apple store" />
-          </div>
+          <ul className="w-full flex gap-4">
+            <li>
+              <img src="/stores/g_play.png" alt="google play store" />
+            </li>
+            <li>
+              <img src="/stores/a_store.png" alt="apple store" />
+            </li>
+          </ul>
         </div>
-      </div>
+      </nav>
     </footer>
   );
 };
