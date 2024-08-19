@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import SearchBar from "../../components/SearchBar";
 import Button from "../../components/ui/Button";
 import PostInfos from "./PostInfos";
@@ -9,6 +9,7 @@ import { api } from "../../services/api";
 import { getImageUrl } from "../../services/imageApi";
 import { formatPostDate } from "../../utils/formatDate";
 import BreadrumbsNav from "../../components/breadrumbs/BreadrumbsNav";
+
 import {
   getTypeLabel,
   getCategoryLabel,
@@ -18,6 +19,8 @@ import {
 // TODO: id user sees his's post, could be redirected to edit it from here
 const PostPage = () => {
   const [post, setPost] = useState(null);
+  const navigate = useNavigate();
+
   const { urlSlug } = useParams();
 
   useEffect(() => {
@@ -25,12 +28,12 @@ const PostPage = () => {
       try {
         // const { data } = await api.get(`posts/ssdsdsdsdsdsdsdsdds-672c6145`);
         // const { data } = await api.get(`posts/ssdsdsdsdsdsdsdsdds-2768e1fe`);
-        const { data } = await api.get(`posts/ssdsdsdsdsdsdsdsdds-55355c12`);
+        const { data } = await api.get(`posts/ssdsdsdsdsdsdsdsdds-55355c12x`);
 
         if (data.status !== "success") throw new Error(data.message);
         setPost(data.data);
       } catch ({ message }) {
-        console.log(message); // ! 404
+        navigate("/404", { replace: true });
       }
     };
 

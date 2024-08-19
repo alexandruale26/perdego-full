@@ -11,6 +11,7 @@ import ForgotPasswordPage from "./pages/authenticate/ForgotPasswordPage";
 import ChangePasswordPage from "./pages/authenticate/ChangePasswordPage";
 import AppLayout from "./pages/layout/AppLayout";
 import RouteProtector from "./pages/RouteProtector";
+import NotFoundPage from "./pages/404";
 import TermsAndConditionsPage from "./pages/TermsAndConditionsPage";
 
 // TODO: reorganize router
@@ -28,19 +29,19 @@ const router = createBrowserRouter([
     element: <AuthenticateLayout />,
     children: [
       {
-        path: "/cont-nou",
+        path: "cont-nou",
         element: <SignupPage />,
       },
       {
-        path: "/autentificare",
+        path: "autentificare",
         element: <LoginPage />,
       },
       {
-        path: "/am-uitat-parola",
+        path: "am-uitat-parola",
         element: <ForgotPasswordPage />,
       },
       {
-        path: "/schimba-parola",
+        path: "schimba-parola",
         element: <ChangePasswordPage />,
       },
     ],
@@ -54,17 +55,17 @@ const router = createBrowserRouter([
     ),
     children: [
       {
-        path: "/administrare",
+        path: "administrare",
         element: <DashboardPage />, // !! more children pages here
       },
       {
-        path: "/anunturi/nou",
+        path: "anunturi/nou",
         element: <NewPostPage />,
       },
     ],
   },
   {
-    path: "/anunturi/:urlSlug",
+    path: "anunturi/:urlSlug",
     element: (
       <AppLayout>
         <PostPage />
@@ -72,7 +73,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/despre-noi",
+    path: "despre-noi",
     element: (
       <AppLayout>
         <AboutPage />
@@ -80,12 +81,16 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/termeni-si-conditii",
+    path: "termeni-si-conditii",
     element: (
       <AppLayout>
         <TermsAndConditionsPage />
       </AppLayout>
     ),
+  },
+  {
+    path: "*",
+    element: <NotFoundPage />,
   },
 ]);
 

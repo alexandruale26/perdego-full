@@ -55,7 +55,7 @@ const NewPostPage = () => {
       setIsLoading(false); // ! redirectionare myPosts
     } catch ({ message }) {
       setIsLoading(false);
-      console.log(message); // ! user notification or 404
+      console.log(message); // ! user notification
     }
   };
 
