@@ -1,15 +1,16 @@
+import Cookies from "js-cookie";
+
 const setAuthCookie = () => {
-  document.cookie = `isAuth=-1;max-age=${10};path=/`;
+  const newDate = new Date(new Date().getTime() + 10 * 1000);
+  Cookies.set("isAuth", -1, { expires: newDate, path: "/" });
 };
 
 const getAuthCookie = () => {
-  const value = `; ${document.cookie}`;
-  const parts = value.split(`; isAuth=`);
-  if (parts.length === 2) return parts.pop().split(";").shift();
+  return Cookies.get("isAuth");
 };
 
 const deleteAuthCookie = () => {
-  document.cookie = "isAuth=;max-age=0;path=/";
+  Cookies.remove("isAuth", { path: "/" });
 };
 
 export { setAuthCookie, getAuthCookie, deleteAuthCookie };

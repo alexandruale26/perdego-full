@@ -7,6 +7,7 @@ const RouteProtector = () => {
 
   // !! se repeta in mai multe locuri. poate o componenta care se ocupa de asta
   const { authenticated, isLoading } = useCheckAuth();
+  console.log(isLoading);
   const location = useLocation();
 
   if (isLoading) return <div>Loading...</div>;
@@ -19,3 +20,5 @@ const RouteProtector = () => {
 RouteProtector.displayName = "RouteProtector";
 
 export default RouteProtector;
+
+// TODO: React Query + loading indicator global/specific -> testat

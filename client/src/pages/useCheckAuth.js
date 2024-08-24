@@ -7,13 +7,15 @@ const useCheckAuth = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   // TODO: implement here Tanstack Query
+  // da ,aici trebuie implementat mai intai
+  // always stale data
 
   useEffect(() => {
     const checkAuth = async () => {
       const isAuth = getAuthCookie();
       if (isAuth === "-1") {
         setAuthenticated(true);
-        return setIsLoading(false);
+        return setTimeout(() => setIsLoading(false), 2000);
       }
 
       try {
@@ -21,9 +23,10 @@ const useCheckAuth = () => {
 
         if (response.status === "success") {
           setAuthenticated(true);
-          setIsLoading(false);
+          setTimeout(() => setIsLoading(false), 2000);
         }
       } catch {
+        // TODO: when it will get in catch??
         setIsLoading(false);
       }
     };
