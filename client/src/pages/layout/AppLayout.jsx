@@ -1,13 +1,14 @@
 import PropTypes from "prop-types";
 import Header from "./Header";
 import Footer from "./Footer";
+import { Outlet } from "react-router-dom";
 
-const AppLayout = ({ children }) => {
+const AppLayout = () => {
   return (
     <div className="min-h-screen flex flex-col justify-between">
       <div>
         <Header />
-        {children}
+        <Outlet />
       </div>
       <Footer />
     </div>

@@ -14,15 +14,41 @@ import RouteProtector from "./pages/RouteProtector";
 import NotFoundPage from "./pages/404";
 import TermsAndConditionsPage from "./pages/TermsAndConditionsPage";
 
-// TODO: reorganize router
 const router = createBrowserRouter([
   {
-    path: "/",
-    element: (
-      <AppLayout>
-        <HomePage />
-      </AppLayout>
-    ),
+    element: <AppLayout />,
+    children: [
+      {
+        path: "/",
+        element: <HomePage />,
+      },
+      {
+        path: "anunturi/:urlSlug",
+        element: <PostPage />,
+      },
+      {
+        path: "despre-noi",
+        element: <AboutPage />,
+      },
+      {
+        path: "termeni-si-conditii",
+        element: <TermsAndConditionsPage />,
+      },
+      {
+        // PROTECTED APP
+        element: <RouteProtector />,
+        children: [
+          {
+            path: "administrare",
+            element: <DashboardPage />, // !! more children pages here
+          },
+          {
+            path: "anunturi/nou",
+            element: <NewPostPage />,
+          },
+        ],
+      },
+    ],
   },
   {
     // AUTHENTICATION
@@ -45,48 +71,6 @@ const router = createBrowserRouter([
         element: <ChangePasswordPage />,
       },
     ],
-  },
-  {
-    // PROTECTED APP
-    element: (
-      <AppLayout>
-        <RouteProtector />
-      </AppLayout>
-    ),
-    children: [
-      {
-        path: "administrare",
-        element: <DashboardPage />, // !! more children pages here
-      },
-      {
-        path: "anunturi/nou",
-        element: <NewPostPage />,
-      },
-    ],
-  },
-  {
-    path: "anunturi/:urlSlug",
-    element: (
-      <AppLayout>
-        <PostPage />
-      </AppLayout>
-    ),
-  },
-  {
-    path: "despre-noi",
-    element: (
-      <AppLayout>
-        <AboutPage />
-      </AppLayout>
-    ),
-  },
-  {
-    path: "termeni-si-conditii",
-    element: (
-      <AppLayout>
-        <TermsAndConditionsPage />
-      </AppLayout>
-    ),
   },
   {
     path: "*",

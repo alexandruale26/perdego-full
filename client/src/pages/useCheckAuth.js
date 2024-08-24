@@ -6,6 +6,8 @@ const useCheckAuth = () => {
   const [authenticated, setAuthenticated] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
+  // TODO: implement here Tanstack Query
+
   useEffect(() => {
     const checkAuth = async () => {
       const isAuth = getAuthCookie();
