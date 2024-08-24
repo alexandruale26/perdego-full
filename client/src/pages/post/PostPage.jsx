@@ -26,13 +26,12 @@ const PostPage = () => {
   useEffect(() => {
     const fetchPost = async () => {
       try {
-        // const { data } = await api.get(`posts/ssdsdsdsdsdsdsdsdds-672c6145`);
-        // const { data } = await api.get(`posts/ssdsdsdsdsdsdsdsdds-2768e1fe`);
-        const { data } = await api.get(`posts/ssdsdsdsdsdsdsdsdds-55355c12`);
+        // const { data } = await api.get(`posts/pierdut-catel-adorabil-d921edd9`);
+        const { data } = await api.get(`posts/pierdut-catel-adorabil-b484c6bd`);
 
         if (data.status !== "success") throw new Error(data.message);
         setPost(data.data);
-      } catch ({ message }) {
+      } catch {
         navigate("/404", { replace: true });
       }
     };

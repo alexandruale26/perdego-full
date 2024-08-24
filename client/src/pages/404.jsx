@@ -1,6 +1,10 @@
 import { Link } from "react-router-dom";
 import Button from "../components/ui/Button";
 
+// TODO: verifica mai bine codul de 404
+// TODO: spinner la continut in paginile din layout cand nu cere token nou + ProtectedRoute
+// TODO: loading indicator la Homepage
+// TODO: skeletons la PostPage si Anunturi
 const NotFoundPage = () => {
   return (
     <main className="h-screen flex flex-col items-center justify-center gap-4 md:gap-6 p-5 text-center mx-auto">

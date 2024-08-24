@@ -43,7 +43,7 @@ const ImageSelect = forwardRef(({ onChange, ...props }, ref) => {
 
   return (
     <div className="w-full h-full flex justify-center">
-      <div className="h-[400px] w-[600px] flex flex-col gap-2">
+      <div className="h-[450px] w-[550px] flex flex-col gap-2">
         <label
           tabIndex={0}
           onKeyDown={openImageInput}

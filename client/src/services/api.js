@@ -1,6 +1,6 @@
 import axios from "axios";
 import { BASE_URL } from "./config";
-import { setAuthCookie, deleteAuthCookie } from "./authCookie";
+import { setAuthCookie, deleteAuthCookie } from "../utils/authCookie";
 
 const api = axios.create({ baseURL: BASE_URL });
 
@@ -18,7 +18,6 @@ api.interceptors.request.use(
 
 api.interceptors.response.use(
   (response) => response,
-  // error object
   async ({ config, response }) => {
     const originalRequest = config;
 
@@ -29,11 +28,10 @@ api.interceptors.response.use(
         await requestAccessToken();
         return api(originalRequest);
       } catch {
+        // nici cont-nou | am-uitat-parola | schimba-parola nu trebuiesc permise
+        // nu cred ca aici terbuie pusa conditie noua
         if (window.location.pathname !== "/autentificare") {
-          console.log("automatically redirected to login");
-          // window.history.replaceState(null, "", "/"); // test some restricted access routes
-          // window.location.assign("/autentificare");
-          window.location.href = "/autentificare";
+          window.location.replace("/autentificare");
         }
       }
     }
@@ -57,7 +55,6 @@ const requestAccessToken = async () => {
       return { status: "success" };
     }
   } catch (error) {
-    console.log(error);
     // deleteAuthCookie e bun. Daca userul inca e autentificat "isAuth" dar in DB refreshToken
     // nu mai exista atunci (cand face alt request decat login) nu ii mai oferi acces la aplicatie
     deleteAuthCookie();

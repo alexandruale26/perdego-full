@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { MoveLeft } from "lucide-react";
 import { cn } from "../utils/cn";
 
-// TODO: add state to Link when user accesses a post to check if can go back in app
+// TODO: add state to Link when user access a post to check if can go back in app
 // <Link to="new-path" state={{ some: "value" }} />
 
 // TODO: if make sense to keep props

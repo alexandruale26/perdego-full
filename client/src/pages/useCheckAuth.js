@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { requestAccessToken } from "../services/api";
-import { getAuthCookie } from "../services/authCookie";
+import { getAuthCookie } from "../utils/authCookie";
 
 const useCheckAuth = () => {
   const [authenticated, setAuthenticated] = useState(false);

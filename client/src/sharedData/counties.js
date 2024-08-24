@@ -1,5 +1,3 @@
-// TODO: judete capitalize or other modifications if necessary
-
 export default [
   {
     id: "-j_alba",
