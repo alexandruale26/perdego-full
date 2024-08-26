@@ -4,9 +4,8 @@ import BackButton from "../../../components/BackButton";
 
 // TODO: don't make it absolute. will overflow if taller than screen height
 const AuthenticateLayout = () => {
-  const { authenticated, isLoading } = useCheckAuth();
+  const { authenticated } = useCheckAuth();
 
-  if (isLoading) return <div>Loading...</div>;
   if (authenticated) return <Navigate to="/" replace />;
 
   return (

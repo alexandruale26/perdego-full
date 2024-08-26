@@ -28,11 +28,8 @@ api.interceptors.response.use(
         await requestAccessToken();
         return api(originalRequest);
       } catch {
-        // nici cont-nou | am-uitat-parola | schimba-parola nu trebuiesc permise
-        // nu cred ca aici terbuie pusa conditie noua
-        if (window.location.pathname !== "/autentificare") {
-          window.location.replace("/autentificare");
-        }
+        // aici cand se cere o resursa sau se trimite ceva in DB (din buton), nu catre o cale protejata
+        window.location.replace("/autentificare");
       }
     }
 
@@ -56,7 +53,7 @@ const requestAccessToken = async () => {
     }
   } catch (error) {
     // deleteAuthCookie e bun. Daca userul inca e autentificat "isAuth" dar in DB refreshToken
-    // nu mai exista atunci (cand face alt request decat login) nu ii mai oferi acces la aplicatie
+    // nu mai exista atunci (cand face alt request decat login) nu mai oferi acces la aplicatie
     deleteAuthCookie();
 
     throw new Error(error);

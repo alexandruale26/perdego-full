@@ -14,19 +14,24 @@ const useCheckAuth = () => {
     const checkAuth = async () => {
       const isAuth = getAuthCookie();
       if (isAuth === "-1") {
-        setAuthenticated(true);
-        return setTimeout(() => setIsLoading(false), 2000);
+        return setTimeout(() => {
+          setAuthenticated(true);
+          setIsLoading(false);
+        }, 800);
       }
 
       try {
         const response = await requestAccessToken();
 
         if (response.status === "success") {
-          setAuthenticated(true);
-          setTimeout(() => setIsLoading(false), 2000);
+          setTimeout(() => {
+            setAuthenticated(true);
+            setIsLoading(false);
+          }, 800);
         }
       } catch {
         // TODO: when it will get in catch??
+        console.log("useCheckAuth is in catch -> why??");
         setIsLoading(false);
       }
     };
