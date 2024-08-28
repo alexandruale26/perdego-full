@@ -4,7 +4,8 @@ import { MoveLeft } from "lucide-react";
 import { cn } from "../utils/cn";
 
 // TODO: add state to Link when user access a post to check if can go back in app
-// <Link to="new-path" state={{ some: "value" }} /> -> this works tested
+// TODO: pune manual in fiecare pagina catre ce redirectioneaza -> asae cel mai corect
+// TODO: verifica si daca link-ul redirectioneaza corect la hover jos stanga
 
 // TODO: if make sense to keep props
 const BackButton = ({ to, name, className }) => {

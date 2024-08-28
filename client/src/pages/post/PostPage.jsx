@@ -26,8 +26,8 @@ const PostPage = () => {
   useEffect(() => {
     const fetchPost = async () => {
       try {
-        // const { data } = await api.get(`posts/pierdut-catel-adorabil-d921edd9`);
-        const { data } = await api.get(`posts/pierdut-catel-adorabil-b484c6bd`);
+        const { data } = await api.get(`posts/pierdut-catel-adorabil-d921edd9`);
+        // const { data } = await api.get(`posts/pierdut-catel-adorabil-b484c6bd`);
 
         if (data.status !== "success") throw new Error(data.message);
         setPost(data.data);

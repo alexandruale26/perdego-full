@@ -3,7 +3,7 @@ import emailSchema from "./validation/emailSchema";
 
 export const loginSchema = z.object({
   email: emailSchema,
-  password: z.string().trim().min(6, { message: "Introdu parola" }),
+  password: z.string().trim().min(6, "Introdu parola"),
 });
 
 export const defaultValues = {

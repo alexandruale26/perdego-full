@@ -6,7 +6,7 @@ export const signupSchema = z
   .object({
     email: emailSchema,
     password: passwordSchema,
-    passwordConfirm: z.string().trim().min(1, { message: "Confirmǎ parola" }),
+    passwordConfirm: z.string().trim().min(1, "Confirmǎ parola"),
   })
   .refine(({ password, passwordConfirm }) => password === passwordConfirm, {
     message: "Parolele nu se potrivesc",

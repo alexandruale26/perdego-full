@@ -53,7 +53,7 @@ const Categories = () => {
         {categories.map((category) => {
           return (
             <Link
-              to={`/anunturi/?cat=${category.name}`}
+              to={`/anunturi/?category=${category.name}`}
               key={category.name}
               className="size-44 bg-primary rounded-lg overflow-hidden"
             >
