@@ -1,12 +1,12 @@
 import { Link, Outlet, Navigate } from "react-router-dom";
-import useCheckAuth from "../../useCheckAuth";
+import { getAuthToken } from "../../../utils/authCookie";
 import BackButton from "../../../components/BackButton";
 
 // TODO: don't make it absolute. will overflow if taller than screen height
 const AuthenticateLayout = () => {
-  const { authenticated } = useCheckAuth();
+  const isAuth = getAuthToken();
 
-  if (authenticated) return <Navigate to="/" replace />;
+  if (isAuth) return <Navigate to="/" replace />;
 
   return (
     <main className="min-w-full min-h-screen flex items-center bg-primary bg-authenticate bg-no-repeat bg-center bg-cover">

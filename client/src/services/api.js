@@ -1,6 +1,6 @@
 import axios from "axios";
 import { BASE_URL } from "./config";
-import { setAuthCookie, deleteAuthCookie } from "../utils/authCookie";
+import { deleteAuthToken } from "../utils/authCookie";
 
 const api = axios.create({ baseURL: BASE_URL });
 
@@ -25,10 +25,25 @@ api.interceptors.response.use(
       originalRequest._retry = true;
 
       try {
-        await requestAccessToken();
+        const response = await axios.post(
+          `${BASE_URL}/users/refresh-token`,
+          null,
+          { withCredentials: true },
+        );
+
+        if (response.data.status === "success") {
+          const { accessToken } = response.data;
+          setApiAccessToken(accessToken);
+
+          console.log("new access token generated");
+        }
+
         return api(originalRequest);
       } catch {
-        // aici cand se cere o resursa sau se trimite ceva in DB (din buton), nu catre o cale protejata
+        // deleteAuthToken e bun. Daca userul inca e autentificat "isAuth" dar in DB refreshToken
+        // nu mai exista atunci (cand face alt request decat login) nu mai oferi acces la aplicatie
+        deleteAuthToken();
+        // !! mai redirectionez ??
         window.location.replace("/autentificare");
       }
     }
@@ -36,29 +51,6 @@ api.interceptors.response.use(
     return { data: generateErrorResponseData(response) };
   },
 );
-
-const requestAccessToken = async () => {
-  try {
-    const response = await axios.post(`${BASE_URL}/users/refresh-token`, null, {
-      withCredentials: true,
-    });
-
-    if (response.data.status === "success") {
-      const { accessToken } = response.data;
-      setAuthCookie();
-      setApiAccessToken(accessToken);
-
-      console.log("new access token generated");
-      return { status: "success" };
-    }
-  } catch (error) {
-    // deleteAuthCookie e bun. Daca userul inca e autentificat "isAuth" dar in DB refreshToken
-    // nu mai exista atunci (cand face alt request decat login) nu mai oferi acces la aplicatie
-    deleteAuthCookie();
-
-    throw new Error(error);
-  }
-};
 
 const setApiAccessToken = (accessToken) => {
   api.defaults.headers.common["Authorization"] = `Bearer ${accessToken}`;
@@ -74,4 +66,4 @@ const generateErrorResponseData = (response) => {
   return { status, message };
 };
 
-export { api, setApiAccessToken, requestAccessToken };
+export { api, setApiAccessToken };

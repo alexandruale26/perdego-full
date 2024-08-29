@@ -1,16 +1,17 @@
 import Cookies from "js-cookie";
 
-const setAuthCookie = () => {
-  const newDate = new Date(new Date().getTime() + 10 * 1000);
-  Cookies.set("isAuth", -1, { expires: newDate, path: "/" });
+const authToken = "isAuth";
+
+const setAuthToken = (expiresAfterDays) => {
+  Cookies.set(authToken, -1, { expires: expiresAfterDays, path: "/" });
 };
 
-const getAuthCookie = () => {
-  return Cookies.get("isAuth");
+const getAuthToken = () => {
+  return Cookies.get(authToken);
 };
 
-const deleteAuthCookie = () => {
-  Cookies.remove("isAuth", { path: "/" });
+const deleteAuthToken = () => {
+  Cookies.remove(authToken, { path: "/" });
 };
 
-export { setAuthCookie, getAuthCookie, deleteAuthCookie };
+export { setAuthToken, getAuthToken, deleteAuthToken };

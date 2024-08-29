@@ -6,9 +6,10 @@ import catchAsync from "../utils/catchAsync.js";
 import AppError from "../utils/appError.js";
 
 // TODO - implement tight ip restrictions to auth routes and cookie lifespan
+const cookieMaxDays = 1;
 const cookieOptions = {
-  // maxAge: 2 * 24 * 60 * 60 * 1000, // 2 days
-  maxAge: 5 * 60 * 60 * 1000,
+  maxAge: cookieMaxDays * 24 * 60 * 60 * 1000,
+  // maxAge: 5 * 60 * 60 * 1000,
   httpOnly: true,
   secure: true,
   sameSite: "None",
@@ -27,7 +28,7 @@ const generateRefreshToken = (id) =>
 const createAndSendTokens = (id, statusCode, res) => {};
 
 export const signup = catchAsync(async (req, res, next) => {
-  // daca datele nu vin ca in schema o sa fie eroare 500
+  // daca datele nu vin ca in schema o sa fie eroare 500 -> fix it
   const { email, password } = req.body;
 
   await User.create({ email, password });
@@ -62,7 +63,7 @@ export const login = catchAsync(async (req, res, next) => {
   });
 
   res.cookie("refreshToken", refreshToken, cookieOptions);
-  res.json({ status: "success", accessToken });
+  res.json({ status: "success", accessToken, cookieMaxDays });
 });
 
 export const updatePassword = catchAsync(async (req, res, next) => {

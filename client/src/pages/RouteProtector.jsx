@@ -1,15 +1,13 @@
 import { Outlet, Navigate, useLocation } from "react-router-dom";
-import useCheckAuth from "./useCheckAuth";
-import PageLoader from "../components/PageLoader";
+import { getAuthToken } from "../utils/authCookie";
 
 const RouteProtector = () => {
-  // !! se repeta in mai multe locuri. poate o componenta care se ocupa de asta
-  const { authenticated, isLoading } = useCheckAuth();
+  const isAuth = getAuthToken();
   const location = useLocation();
 
-  if (isLoading) return <PageLoader />;
-  if (!authenticated)
+  if (!isAuth)
     return (
+      // TODO: check if need search params here
       <Navigate to={`/autentificare?redirect=${location.pathname}`} replace />
     );
   return <Outlet />;
@@ -17,5 +15,3 @@ const RouteProtector = () => {
 RouteProtector.displayName = "RouteProtector";
 
 export default RouteProtector;
-
-// TODO: React Query + loading indicator global/specific -> testat
