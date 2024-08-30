@@ -1,8 +1,8 @@
+import { lazy, Suspense } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import HomePage from "./pages/home/HomePage";
 import AboutPage from "./pages/AboutPage";
 import DashboardPage from "./pages/DashboardPage";
-import NewPostPage from "./pages/newPost/NewPostPage";
 import PostPage from "./pages/post/PostPage";
 import AuthenticateLayout from "./pages/authenticate/components/AuthenticateLayout";
 import LoginPage from "./pages/authenticate/login/LoginPage";
@@ -13,6 +13,13 @@ import AppLayout from "./pages/layout/AppLayout";
 import RouteProtector from "./pages/RouteProtector";
 import NotFoundPage from "./pages/404";
 import TermsAndConditionsPage from "./pages/TermsAndConditionsPage";
+import PageLoader from "./components/PageLoader";
+
+const NewPostPage = lazy(() => {
+  return new Promise((resolve) => {
+    setTimeout(() => resolve(import("./pages/newPost/NewPostPage")), 800);
+  });
+});
 
 const router = createBrowserRouter([
   {
@@ -44,7 +51,11 @@ const router = createBrowserRouter([
           },
           {
             path: "anunturi/nou",
-            element: <NewPostPage />,
+            element: (
+              <Suspense fallback={<PageLoader />}>
+                <NewPostPage />
+              </Suspense>
+            ),
           },
         ],
       },
@@ -78,8 +89,8 @@ const router = createBrowserRouter([
   },
 ]);
 
+// TODO: no network handler
 function App() {
-  // TODO: urgent add a loading screen
   return <RouterProvider router={router} />;
 }
 App.displayName = "App";

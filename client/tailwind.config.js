@@ -33,7 +33,7 @@ export default {
       colors: {
         primary: "var(--primary)",
         secondary: "var(--secondary)",
-        cta: "#e88e38",
+        cta: "var(--cta)",
         "btn-primary-hover": "#1d2028",
         "cta-hover": "#e5c07b",
         accessibility: "#31ccec",
