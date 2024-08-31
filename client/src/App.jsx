@@ -14,6 +14,7 @@ import RouteProtector from "./pages/RouteProtector";
 import NotFoundPage from "./pages/404";
 import TermsAndConditionsPage from "./pages/TermsAndConditionsPage";
 import PageLoader from "./components/PageLoader";
+import NetworkToast from "./components/NetworkToast";
 
 const NewPostPage = lazy(() => {
   return new Promise((resolve) => {
@@ -89,9 +90,14 @@ const router = createBrowserRouter([
   },
 ]);
 
-// TODO: no network handler
+// TODO: no network handler and a new page with something was gone wrong
 function App() {
-  return <RouterProvider router={router} />;
+  return (
+    <>
+      <NetworkToast />
+      <RouterProvider router={router} />
+    </>
+  );
 }
 App.displayName = "App";
 

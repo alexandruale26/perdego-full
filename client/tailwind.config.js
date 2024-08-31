@@ -81,6 +81,7 @@ export default {
       boxShadow: {
         md: "rgba(0, 0, 0, 0.24) 0px 3px 8px",
         lg: "6px 10px 15px rgba(0, 0, 0, 0.3)",
+        toast: "rgba(0, 0, 0, 0.35) 0px 5px 30px 2px",
       },
       backgroundOpacity: {
         98: "0.98",
