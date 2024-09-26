@@ -90,15 +90,15 @@ const router = createBrowserRouter([
   },
 ]);
 
-// TODO: no network handler and a new page with something was gone wrong
-function App() {
+// TODO: new page with something was gone wrong
+const App = () => {
   return (
     <>
       <NetworkToast />
       <RouterProvider router={router} />
     </>
   );
-}
+};
 App.displayName = "App";
 
 export default App;

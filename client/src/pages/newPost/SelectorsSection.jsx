@@ -12,6 +12,9 @@ import {
   InputErrorMessage,
 } from "../../components/ui/Form";
 
+const formItemClass = { className: "max-w-[500px]" };
+const paragraphClass = { className: "text-xl" };
+
 const SelectorsSection = ({ form: { formControl, getValues, resetField } }) => {
   const postType = getValues("type");
 
@@ -32,8 +35,8 @@ const SelectorsSection = ({ form: { formControl, getValues, resetField } }) => {
         control={formControl}
         name="category"
         render={({ field }) => (
-          <FormItem className="max-w-[500px]">
-            <p className="text-xl">Categorie obiect</p>
+          <FormItem {...formItemClass}>
+            <p {...paragraphClass}>Categorie obiect</p>
             <FormControl>
               <CategorySelect name="category" isInPostForm {...field} />
             </FormControl>
@@ -46,8 +49,8 @@ const SelectorsSection = ({ form: { formControl, getValues, resetField } }) => {
         control={formControl}
         name="location"
         render={({ field }) => (
-          <FormItem className="max-w-[500px]">
-            <p className="text-xl">Localitate</p>
+          <FormItem {...formItemClass}>
+            <p {...paragraphClass}>Localitate</p>
             <FormControl>
               <LocationSelect name="location" isInPostForm {...field} />
             </FormControl>
@@ -61,8 +64,8 @@ const SelectorsSection = ({ form: { formControl, getValues, resetField } }) => {
           control={formControl}
           name="reward"
           render={({ field: { value, onChange } }) => (
-            <FormItem className="max-w-[500px]">
-              <p className="text-xl">Oferǎ recompensǎ</p>
+            <FormItem {...formItemClass}>
+              <p {...paragraphClass}>Oferǎ recompensǎ</p>
               <FormControl>
                 <Switch checked={value} onCheckedChange={onChange} />
               </FormControl>
@@ -76,8 +79,8 @@ const SelectorsSection = ({ form: { formControl, getValues, resetField } }) => {
             control={formControl}
             name="sendToAuthorities"
             render={({ field: { value, onChange } }) => (
-              <FormItem className="max-w-[500px]">
-                <p className="text-xl">Obiect predat autoritǎților</p>
+              <FormItem {...formItemClass}>
+                <p {...paragraphClass}>Obiect predat autoritǎților</p>
                 <FormControl>
                   <Switch
                     checked={value}
@@ -96,7 +99,7 @@ const SelectorsSection = ({ form: { formControl, getValues, resetField } }) => {
               control={formControl}
               name="authorities"
               render={({ field }) => (
-                <FormItem className="max-w-[500px]">
+                <FormItem {...formItemClass}>
                   <FormControl>
                     <Input.SuperRoot>
                       <Input.Field

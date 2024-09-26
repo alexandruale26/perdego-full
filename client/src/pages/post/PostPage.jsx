@@ -17,6 +17,7 @@ import {
 } from "../../utils/postDataHelpers";
 
 // TODO: id user sees his's post, could be redirected to edit it from here
+// TODO: PageLoader merge instant aici -> aduga delay
 const PostPage = () => {
   const [post, setPost] = useState(null);
   const navigate = useNavigate();
@@ -26,8 +27,8 @@ const PostPage = () => {
   useEffect(() => {
     const fetchPost = async () => {
       try {
-        const { data } = await api.get(`posts/pierdut-catel-adorabil-d921edd9`);
-        // const { data } = await api.get(`posts/pierdut-catel-adorabil-b484c6bd`);
+        // const { data } = await api.get(`posts/gasit-ceas-de-aur-90444222`);
+        const { data } = await api.get(`posts/pierdut-ceas-de-aur-74dfbf3c`);
 
         if (data.status !== "success") throw new Error(data.message);
         setPost(data.data);

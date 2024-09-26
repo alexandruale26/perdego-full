@@ -10,7 +10,7 @@ const HomePage = () => {
     <main className="w-full">
       {/* HERO SECTION */}
       <header className="w-full flex flex-col items-center justify-between bg-primary bg-hero bg-auto bg-no-repeat bg-center h-[500px] lg:bg-cover 2xl:h-[650px]">
-        <SearchBar />
+        <SearchBar buttonStyling="bg-grey-6 hover:text-white hover:bg-secondary hover:text-black" />
 
         <h1 className="w-full h-18 flex items-center justify-center bg-white/90 text-xl text-center font-bold px-6">
           Ai pierdut un lucru important pentru tine sau ai găsit un obiect

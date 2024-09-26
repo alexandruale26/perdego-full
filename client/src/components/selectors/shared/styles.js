@@ -7,13 +7,23 @@ export default (isInPostForm = false) => ({
     height: "3.5rem",
     backgroundColor: isInPostForm ? "transparent" : "var(--grey6)",
     borderRadius: "0.375rem",
-    borderColor: state.isFocused ? "var(--primary)" : "var(--grey4)",
+    borderColor: state.isFocused
+      ? isInPostForm
+        ? "var(--primary)"
+        : "var(--secondary)"
+      : "var(--grey4)",
     cursor: "pointer",
     boxShadow: state.isFocused
-      ? "0 0 0 1px var(--primary)"
+      ? isInPostForm
+        ? "0 0 0 1px var(--primary)"
+        : "0 0 0 1px var(--secondary)"
       : provided.boxShadow,
     "&:hover": {
-      borderColor: state.isFocused ? "var(--primary)" : "var(--grey4)",
+      borderColor: state.isFocused
+        ? isInPostForm
+          ? "var(--primary)"
+          : "var(--secondary)"
+        : "var(--grey4)",
     },
   }),
   menu: (provided) => ({

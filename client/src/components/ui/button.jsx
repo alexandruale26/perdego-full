@@ -5,7 +5,7 @@ import { cva } from "class-variance-authority";
 import { cn } from "../../utils/cn";
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center whitespace-nowrap rounded-lg text-sm font-bold tracking-wide transition-colors focus-visible:outline-none focus-visible:bg-secondary disabled:pointer-events-none",
+  "inline-flex items-center justify-center whitespace-nowrap rounded-lg text-sm font-bold tracking-wide transition-colors focus-visible:outline-none focus-visible:bg-secondary focus-visible:text-black disabled:pointer-events-none",
   {
     variants: {
       variant: {
@@ -16,6 +16,7 @@ const buttonVariants = cva(
         text: "bg-transparent text-base font-normal underline",
         ghost: "hover:bg-accent hover:text-accent-foreground",
         destructive: "bg-destructive text-white hover:bg-red-600",
+        link: "", // TODO: add link styling
       },
       size: {
         primary: "h-14 px-16",

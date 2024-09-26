@@ -18,7 +18,7 @@ const PostInfos = ({ post }) => {
   const handleGetPhone = async () => {
     try {
       const { data } = await api.get(
-        `posts/getPhone/pierdut-poza-de-familie-in-fata-primariei-baicoi-c62c26bf`,
+        `posts/getPhone/pierdut-iphone-13-albastrru-906251ce`,
       );
 
       if (data.status !== "success") throw new Error(data.message);
