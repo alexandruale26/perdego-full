@@ -4,7 +4,7 @@ import SearchBar from "../../components/SearchBar";
 import Button from "../../components/ui/Button";
 import PostInfos from "./PostInfos";
 import { Star, Flag } from "lucide-react";
-import BackButton from "../../components/BackButton";
+import Link from "../../components/Link";
 import { api } from "../../services/api";
 import { getImageUrl } from "../../services/imageApi";
 import { formatPostDate } from "../../utils/formatDate";
@@ -47,7 +47,7 @@ const PostPage = () => {
   if (post === null) return <div>Loading...</div>;
 
   return (
-    <main className="w-full max-w-[1200px] my-10 px-6 mx-auto">
+    <main className="max-w-[1200px] my-10 px-6 mx-auto">
       <SearchBar
         className="p-0"
         buttonStyling="bg-primary text-white hover:bg-btn-primary-hover"
@@ -90,7 +90,7 @@ const PostPage = () => {
             Publicat {formatPostDate(post.createdAt, "pe ")}
           </p>
 
-          <BackButton />
+          <Link hasArrow>Înapoi</Link>
         </div>
         <div className="flex-1 flex justify-end">
           <Button

@@ -55,7 +55,7 @@ const Categories = () => {
             <Link
               to={`/anunturi/?category=${category.name}`}
               key={category.name}
-              className="size-44 bg-primary rounded-lg overflow-hidden"
+              className="size-44 bg-primary rounded-lg overflow-hidden focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-primary focus-visible:outline-none"
             >
               <img
                 src={category.url}

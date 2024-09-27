@@ -102,7 +102,7 @@ const Label = ({ value, ...props }) => {
         tabIndex={0}
         onKeyDown={handleOnKeydown}
         data-value={value}
-        className="w-full pb-1.5 text-lg font-medium cursor-pointer select-none"
+        className="w-full pb-1.5 px-1 text-lg font-medium cursor-pointer select-none focus-visible:outline-primary"
         {...props}
       />
     </div>

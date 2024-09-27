@@ -1,4 +1,5 @@
-import { Link, useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
+import Link from "../../../components/Link";
 import * as Input from "../../../components/ui/Input";
 import AuthHeader from "../components/AuthHeader";
 import AuthFormBase from "../components/AuthFormBase";
@@ -73,9 +74,14 @@ const LoginPage = () => {
             />
           ))}
 
-          <span className="text-sm text-start ml-2 mt-4">
+          <span className="text-sm text-start ml-0 mt-4">
             <strong className="font-semibold hover:border-b-2 hover:border-secondary transition-colors">
-              <Link to="/am-uitat-parola">Ai uitat parola?</Link>
+              <Link
+                to="/am-uitat-parola"
+                className="inline text-base p-1 no-underline"
+              >
+                Ai uitat parola?
+              </Link>
             </strong>
           </span>
 

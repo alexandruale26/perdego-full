@@ -15,6 +15,7 @@ import NotFoundPage from "./pages/404";
 import TermsAndConditionsPage from "./pages/TermsAndConditionsPage";
 import PageLoader from "./components/PageLoader";
 import NetworkToast from "./components/NetworkToast";
+import PostCreatedPage from "./pages/newPost/PostCreatedPage";
 
 const NewPostPage = lazy(() => {
   return new Promise((resolve) => {
@@ -46,15 +47,25 @@ const router = createBrowserRouter([
         // PROTECTED APP
         element: <RouteProtector />,
         children: [
+          // !! more children pages here
           {
             path: "administrare",
-            element: <DashboardPage />, // !! more children pages here
+            element: <DashboardPage />,
           },
           {
             path: "anunturi/nou",
             element: (
               <Suspense fallback={<PageLoader />}>
                 <NewPostPage />
+              </Suspense>
+            ),
+          },
+          // !! adaug loader sau nu??
+          {
+            path: "anunturi/creat/:urlSlug",
+            element: (
+              <Suspense fallback={<PageLoader />}>
+                <PostCreatedPage />
               </Suspense>
             ),
           },

@@ -43,7 +43,10 @@ const TabItem = ({ tab, className }) => {
     <li
       className={cn("flex w-full h-full text-xl border-b-primary", className)}
     >
-      <Link to={tab.linkTo} className="w-full h-full">
+      <Link
+        to={tab.linkTo}
+        className="w-full h-full px-1 focus-visible:outline-secondary"
+      >
         {tab.title}
       </Link>
     </li>

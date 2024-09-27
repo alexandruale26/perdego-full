@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import SectionCard from "../../components/SectionCard";
 import Button from "../../components/ui/Button";
 import ImageSelect from "../../components/selectors/image/ImageSelect";
@@ -21,6 +22,7 @@ import { api } from "../../services/api";
 // TODO: Disable submit button, or modal and redirect to my posts
 const NewPostPage = () => {
   const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
 
   const form = useForm({
     resolver: zodResolver(newPostSchema),
@@ -45,14 +47,14 @@ const NewPostPage = () => {
         image: imagePath,
       });
 
-      console.log(data);
+      console.log(data.urlSlug);
 
       if (data.status !== "success") {
         await deleteImage(imagePath); // TODO: Admin access only to .env to delete files
         throw new Error(data.message);
       }
 
-      setIsLoading(false); // ! redirectionare myPosts
+      navigate(`/anunturi/creat/${data.urlSlug}`, { replace: true });
     } catch ({ message }) {
       setIsLoading(false);
       console.log(message); // ! user notification

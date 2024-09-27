@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link as RouterLink } from "react-router-dom";
 import PropTypes from "prop-types";
 import { MoveLeft } from "lucide-react";
 import { cn } from "../utils/cn";
@@ -7,25 +7,26 @@ import { cn } from "../utils/cn";
 // TODO: pune manual in fiecare pagina catre ce redirectioneaza -> asae cel mai corect
 // TODO: verifica si daca link-ul redirectioneaza corect la hover jos stanga
 
-// TODO: if make sense to keep props
-const BackButton = ({ to, name, className }) => {
+const Link = ({ to, hasArrow = false, children, className, ...props }) => {
   return (
-    <Link
+    <RouterLink
       to={to ?? -1}
       className={cn(
-        "w-fit flex items-center gap-3 text-xl underline",
+        "w-fit flex items-center gap-2 text-xl px-1 underline focus-visible:outline-secondary",
         className,
       )}
+      {...props}
     >
-      <MoveLeft /> <span>{name ?? "Înapoi"}</span>
-    </Link>
+      {hasArrow ? <MoveLeft /> : null} <span>{children}</span>
+    </RouterLink>
   );
 };
-BackButton.displayName = "BackButton";
-BackButton.propTypes = {
+Link.displayName = "Link";
+Link.propTypes = {
   className: PropTypes.string,
-  name: PropTypes.string,
+  hasArrow: PropTypes.bool,
+  children: PropTypes.node,
   to: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 };
 
-export default BackButton;
+export default Link;

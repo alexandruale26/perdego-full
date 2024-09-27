@@ -1,17 +1,7 @@
 import { Link } from "react-router-dom";
 import Button from "../../components/ui/Button";
 
-const latestPosts = [
-  {
-    id: "1",
-  },
-  {
-    id: "2",
-  },
-  {
-    id: "3",
-  },
-];
+const latestPosts = [{ id: "1" }, { id: "2" }, { id: "3" }];
 
 const LatestPosts = () => {
   return (
@@ -23,7 +13,7 @@ const LatestPosts = () => {
             <Link
               to={`/anunturi/${post.id}`}
               key={post.id}
-              className="w-[390px] h-[490px] bg-grey-6 rounded-lg shadow-md overflow-hidden"
+              className="w-[390px] h-[490px] bg-grey-6 rounded-lg shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary overflow-hidden"
             ></Link>
           );
         })}

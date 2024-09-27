@@ -42,14 +42,16 @@ export const getPostPhone = catchAsync(async (req, res, next) => {
 });
 
 export const createPost = catchAsync(async (req, res, next) => {
-  await Post.create({
+  const newPost = await Post.create({
     ...req.body,
     postedBy: req.user._id,
   });
 
-  res
-    .status(201)
-    .json({ status: "success", message: "Post successfully created" });
+  res.status(201).json({
+    status: "success",
+    message: "Post successfully created",
+    urlSlug: newPost.urlSlug,
+  });
 });
 
 export const updatePost = catchAsync(async (req, res, next) => {});

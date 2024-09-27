@@ -1,4 +1,5 @@
-import { Link } from "react-router-dom";
+import { Link as RouterLink } from "react-router-dom";
+import Link from "../../components/Link";
 import Button from "../../components/ui/Button";
 import { UserRound } from "lucide-react";
 import { api } from "../../services/api.js";
@@ -15,7 +16,7 @@ const Header = () => {
 
   // TODO: make logo a shared component
   return (
-    <header className="sticky top-0 w-full flex justify-between items-center bg-white pl-9 pr-10 py-1 shadow-[0_2px_10px_1px_rgba(0,0,0,0.1)] z-10">
+    <header className="sticky top-0 w-full flex justify-between items-center bg-white pl-7 pr-10 py-1 shadow-[0_2px_10px_1px_rgba(0,0,0,0.1)] z-10">
       <Link to="/">
         <img
           src="/logo.png"
@@ -28,13 +29,13 @@ const Header = () => {
           Get me
         </Button> */}
         <Button asChild variant="iconText" size="iconText">
-          <Link to="/autentificare">
+          <RouterLink to="/autentificare">
             <UserRound />
             <span className="text-black">Contul tǎu</span>
-          </Link>
+          </RouterLink>
         </Button>
         <Button asChild className="h-12">
-          <Link to="/anunturi/nou">Adaugǎ anunț nou</Link>
+          <RouterLink to="/anunturi/nou">Adaugǎ anunț nou</RouterLink>
         </Button>
       </nav>
     </header>

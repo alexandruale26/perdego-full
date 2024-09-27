@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import Link from "../../components/Link";
 
 const links = [
   {
@@ -54,13 +54,13 @@ const links = [
 // TODO: redo the urls before publishing the app
 const Footer = () => {
   return (
-    <footer className="w-full h-[370px] flex items-center justify-center self-end text-lg bg-grey-6 rounded-lg shadow-[0_-2px_6px_rgba(0,0,0,0.4)]">
+    <footer className="w-full h-[370px] flex items-center justify-center self-end bg-grey-6 rounded-lg shadow-[0_-2px_8px_rgba(0,0,0,0.3)]">
       <nav className="w-full max-w-[1200px] flex items-start justify-between pb-6 px-6">
         <ul className="grid grid-rows-6 grid-cols-2 gap-y-4 flex-grow">
           {links.map((link) => {
             return (
               <li key={link.name}>
-                <Link to={link.url} className="w-fit">
+                <Link to={link.url} className="w-fit text-lg no-underline">
                   {link.name}
                 </Link>
               </li>
