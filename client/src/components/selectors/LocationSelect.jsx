@@ -50,7 +50,6 @@ const LocationSelect = forwardRef(
       if (debounceTimer.current) clearTimeout(debounceTimer.current);
 
       let searchValue = removeDiacritics(inputValue.trim());
-      // let searchValue = inputValue.trim();
 
       if (searchValue.length < 3) {
         latestOptions.current = [];

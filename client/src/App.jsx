@@ -16,6 +16,7 @@ import TermsAndConditionsPage from "./pages/TermsAndConditionsPage";
 import PageLoader from "./components/PageLoader";
 import NetworkToast from "./components/NetworkToast";
 import PostCreatedPage from "./pages/newPost/PostCreatedPage";
+import PostsPage from "./pages/homePosts/PostsPage";
 
 const NewPostPage = lazy(() => {
   return new Promise((resolve) => {
@@ -30,6 +31,10 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <HomePage />,
+      },
+      {
+        path: "/anunturi",
+        element: <PostsPage />,
       },
       {
         path: "anunturi/:urlSlug",

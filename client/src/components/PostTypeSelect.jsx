@@ -9,72 +9,69 @@ const options = [
   { label: "Găsite", value: "gasite" },
 ];
 
-const PostTypeSelect = forwardRef(
-  ({ className, showLabel = true, formControl }, ref) => {
-    const [selected, setSelected] = useState(0);
-    const parentRef = useRef(null);
+const PostTypeSelect = forwardRef(({ className, formControl }, ref) => {
+  const [selected, setSelected] = useState(0);
+  const parentRef = useRef(null);
 
-    useEffect(() => {
-      const inputs = parentRef.current.querySelectorAll("input");
-      const labels = parentRef.current.querySelectorAll("label");
+  useEffect(() => {
+    const inputs = parentRef.current.querySelectorAll("input");
+    const labels = parentRef.current.querySelectorAll("label");
 
-      inputs.forEach((field, index) => {
-        if (field.hasAttribute("checked")) {
-          labels[index].style.color = "var(--grey)";
-          setSelected(index);
-        } else {
-          labels[index].style.color = "var(--grey3)";
-        }
-      });
+    inputs.forEach((field, index) => {
+      if (field.hasAttribute("checked")) {
+        labels[index].style.color = "var(--grey)";
+        setSelected(index);
+      } else {
+        labels[index].style.color = "var(--grey3)";
+      }
     });
+  });
 
-    return (
-      <FormField
-        control={formControl}
-        name="type"
-        render={({ field }) => (
-          <FormItem>
-            {showLabel && <p className="text-xl">Categorie anunț</p>}
-            <FormControl>
-              <RadioGroupPrimitive.Root
-                className={cn("flex flex-col items-center w-full", className)}
-                tabIndex={-1}
-                ref={ref}
-                onValueChange={field.onChange}
-                defaultValue={field.value}
-              >
-                <div ref={parentRef} className="flex w-full">
-                  {options.map((option) => (
-                    <FormItem key={option.value} className="w-full space-y-1">
-                      <FormControl>
-                        <Item value={option.value} hidden />
-                      </FormControl>
-                      <Label value={option.value}>{option.label}</Label>
-                    </FormItem>
-                  ))}
-                </div>
-                <div className="relative w-full h-1 bg-grey-5">
-                  <div
-                    className="absolute top-0 h-1 transition-all duration-200 ease-in-out bg-primary"
-                    style={{
-                      width: `${100 / options.length}%`,
-                      left: `${(100 / options.length) * selected}%`,
-                    }}
-                  />
-                </div>
-              </RadioGroupPrimitive.Root>
-            </FormControl>
-          </FormItem>
-        )}
-      />
-    );
-  },
-);
+  return (
+    <FormField
+      control={formControl}
+      name="type"
+      render={({ field }) => (
+        <FormItem>
+          <p className="text-xl">Categorie anunț</p>
+          <FormControl>
+            <RadioGroupPrimitive.Root
+              className={cn("flex flex-col items-center w-full", className)}
+              tabIndex={-1}
+              ref={ref}
+              onValueChange={field.onChange}
+              defaultValue={field.value}
+            >
+              <div ref={parentRef} className="flex w-full">
+                {options.map((option) => (
+                  <FormItem key={option.value} className="w-full space-y-1">
+                    <FormControl>
+                      <Item value={option.value} hidden />
+                    </FormControl>
+                    <Label value={option.value}>{option.label}</Label>
+                  </FormItem>
+                ))}
+              </div>
+              <div className="relative w-full h-1 bg-grey-5">
+                <div
+                  className="absolute top-0 h-1 transition-all duration-200 ease-in-out bg-primary"
+                  style={{
+                    width: `${100 / options.length}%`,
+                    left: `${(100 / options.length) * selected}%`,
+                  }}
+                />
+              </div>
+            </RadioGroupPrimitive.Root>
+          </FormControl>
+        </FormItem>
+      )}
+    />
+  );
+});
 PostTypeSelect.displayName = "PostTypeSelect";
 PostTypeSelect.propTypes = {
   className: PropTypes.string,
   formControl: PropTypes.object,
-  showLabel: PropTypes.bool,
 };
 
 const Item = forwardRef((props, ref) => {

@@ -1,9 +1,9 @@
 import { useRef } from "react";
 import PropTypes from "prop-types";
-import * as Input from "./ui/Input";
-import { cn } from "../utils/cn";
-import LocationSelect from "./selectors/LocationSelect";
-import Button from "./ui/Button";
+import * as Input from "../ui/Input";
+import { cn } from "../../utils/cn";
+import LocationSelect from "../selectors/LocationSelect";
+import Button from "../ui/Button";
 import { Search } from "lucide-react";
 
 const SearchBar = ({ className, buttonStyling }) => {

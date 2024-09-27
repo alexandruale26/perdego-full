@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import SearchBar from "../../components/SearchBar";
+import SearchBar from "../../components/search/SearchBar";
 import Button from "../../components/ui/Button";
 import PostInfos from "./PostInfos";
 import { Star, Flag } from "lucide-react";
@@ -63,7 +63,7 @@ const PostPage = () => {
 
         <Button
           variant="iconText"
-          className="h-fit flex gap-2 p-0 mr-0.5 text-xl text-black underline"
+          className="h-fit flex gap-2 p-1 -mt-1 text-xl text-black underline"
         >
           <Star size={28} />
           Salveazǎ anunțul

@@ -50,9 +50,13 @@ export default (isInPostForm = false) => ({
   }),
   option: (provided, { isFocused, isSelected }) => ({
     ...provided,
-    backgroundColor: isFocused ? "var(--primary)" : "transparent",
+    backgroundColor: isFocused
+      ? isInPostForm
+        ? "var(--primary)"
+        : "var(--secondary)"
+      : "transparent",
     borderBottom: "1px solid #eee",
-    color: isFocused ? "#fff" : "var(--grey)",
+    color: isFocused ? (isInPostForm ? "#fff" : "var(--black)") : "var(--grey)",
     cursor: "pointer",
     ":active": {
       backgroundColor: isFocused

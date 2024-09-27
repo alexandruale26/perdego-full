@@ -68,7 +68,7 @@ const PostInfos = ({ post }) => {
           ) : (
             <Button
               onClick={handleGetPhone}
-              className="-mt-0.5"
+              className="p-1 -mt-1 -ml-1"
               variant="text"
               size="text"
             >
