@@ -10,10 +10,13 @@ const RemoveImageButton = forwardRef(
 
     return (
       <Button
-        variant="destructive"
+        variant="ghost"
         ref={ref}
         type="button"
-        className={cn("w-full flex gap-2 items-center", className)}
+        className={cn(
+          "w-full flex gap-2 items-center border-2 border-primary",
+          className,
+        )}
         {...props}
       >
         <Trash2 />

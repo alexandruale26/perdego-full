@@ -50,9 +50,7 @@ const ImageSelect = forwardRef(({ onChange, ...props }, ref) => {
           type="button"
           className={cn(
             "h-full border border-grey-4 rounded-md focus-visible:outline-0 focus-visible:ring-1 focus-visible:border-primary focus-visible:ring-primary overflow-hidden transition-colors duration-200 cursor-pointer",
-            {
-              "hover:bg-gray-100": !previewUrl,
-            },
+            { "hover:bg-[#c6dd604d]": !previewUrl },
           )}
         >
           <input
@@ -66,10 +64,17 @@ const ImageSelect = forwardRef(({ onChange, ...props }, ref) => {
 
           {previewUrl === null ? (
             <div className="h-full w-full flex items-center justify-center flex-col gap-3 text-black">
-              <p className="text-base">
-                Adaugǎ o imagine (
-                <span className="font-semibold">max 8 MB</span>)
-              </p>
+              <div className="flex flex-col justify-center gap-2">
+                <div className="w-full flex justify-center">
+                  <img
+                    width="80px"
+                    src="/cameraIcon.png"
+                    alt="camera icon"
+                    className="contrast-[0.7]"
+                  />
+                </div>
+                <span>Adaugǎ o imagine (max 8 MB)</span>
+              </div>
               {invalidImageFile && (
                 <p className="text-sm text-destructive">Imagine invalidǎ</p>
               )}
