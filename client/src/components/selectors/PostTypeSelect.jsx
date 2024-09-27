@@ -1,15 +1,15 @@
 import { forwardRef, useState, useRef, useEffect } from "react";
 import PropTypes from "prop-types";
 import * as RadioGroupPrimitive from "@radix-ui/react-radio-group";
-import { useFormField, FormField, FormItem, FormControl } from "./ui/Form";
-import { cn } from "../utils/cn";
+import { useFormField, FormField, FormItem, FormControl } from "../ui/Form";
+import { cn } from "../../utils/cn";
 
 const options = [
   { label: "Pierdute", value: "pierdute" },
   { label: "Găsite", value: "gasite" },
 ];
 
-const PostTypeSelect = forwardRef(({ className, formControl }, ref) => {
+const PostTypeSelect = forwardRef(({ className, control }, ref) => {
   const [selected, setSelected] = useState(0);
   const parentRef = useRef(null);
 
@@ -29,7 +29,7 @@ const PostTypeSelect = forwardRef(({ className, formControl }, ref) => {
 
   return (
     <FormField
-      control={formControl}
+      control={control}
       name="type"
       render={({ field }) => (
         <FormItem>
@@ -43,12 +43,12 @@ const PostTypeSelect = forwardRef(({ className, formControl }, ref) => {
               defaultValue={field.value}
             >
               <div ref={parentRef} className="flex w-full">
-                {options.map((option) => (
-                  <FormItem key={option.value} className="w-full space-y-1">
+                {options.map(({ value, label }) => (
+                  <FormItem key={value} className="w-full space-y-1">
                     <FormControl>
-                      <Item value={option.value} hidden />
+                      <RadioGroupPrimitive.Item value={value} hidden />
                     </FormControl>
-                    <Label value={option.value}>{option.label}</Label>
+                    <Label>{label}</Label>
                   </FormItem>
                 ))}
               </div>
@@ -71,15 +71,10 @@ const PostTypeSelect = forwardRef(({ className, formControl }, ref) => {
 PostTypeSelect.displayName = "PostTypeSelect";
 PostTypeSelect.propTypes = {
   className: PropTypes.string,
-  formControl: PropTypes.object,
+  control: PropTypes.object,
 };
 
-const Item = forwardRef((props, ref) => {
-  return <RadioGroupPrimitive.Item ref={ref} {...props} />;
-});
-Item.displayName = "PostTypeSelect.Item";
-
-const Label = ({ value, ...props }) => {
+const Label = ({ children }) => {
   const { formItemId } = useFormField();
 
   const handleOnKeydown = (e) => {
@@ -98,14 +93,16 @@ const Label = ({ value, ...props }) => {
         htmlFor={formItemId}
         tabIndex={0}
         onKeyDown={handleOnKeydown}
-        data-value={value}
         className="w-full pb-1.5 px-1 text-lg font-medium cursor-pointer select-none focus-visible:outline-primary"
-        {...props}
-      />
+      >
+        {children}
+      </label>
     </div>
   );
 };
 Label.displayName = "PostTypeSelect.Label";
-Label.propTypes = { value: PropTypes.string.isRequired };
+Label.propTypes = {
+  children: PropTypes.node,
+};
 
 export default PostTypeSelect;

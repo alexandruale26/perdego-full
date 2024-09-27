@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import PropTypes from "prop-types";
 import LocationSelect from "../../components/selectors/LocationSelect";
 import CategorySelect from "../../components/selectors/CategorySelect";
-import PostTypeSelect from "../../components/PostTypeSelect";
+import PostTypeSelect from "../../components/selectors/PostTypeSelect";
 import * as Input from "../../components/ui/Input";
 import Switch from "../../components/ui/Switch";
 import {
@@ -15,7 +15,7 @@ import {
 const formItemClass = { className: "max-w-[500px]" };
 const paragraphClass = { className: "text-xl" };
 
-const SelectorsSection = ({ form: { formControl, getValues, resetField } }) => {
+const SelectorsSection = ({ form: { control, getValues, resetField } }) => {
   const postType = getValues("type");
 
   useEffect(() => {
@@ -29,10 +29,10 @@ const SelectorsSection = ({ form: { formControl, getValues, resetField } }) => {
 
   return (
     <section className="mt-5 ml-8 space-y-4">
-      <PostTypeSelect formControl={formControl} className="max-w-[250px]" />
+      <PostTypeSelect control={control} className="max-w-[250px]" />
 
       <FormField
-        control={formControl}
+        control={control}
         name="category"
         render={({ field }) => (
           <FormItem {...formItemClass}>
@@ -46,7 +46,7 @@ const SelectorsSection = ({ form: { formControl, getValues, resetField } }) => {
       />
 
       <FormField
-        control={formControl}
+        control={control}
         name="location"
         render={({ field }) => (
           <FormItem {...formItemClass}>
@@ -61,7 +61,7 @@ const SelectorsSection = ({ form: { formControl, getValues, resetField } }) => {
 
       {postType === "pierdute" ? (
         <FormField
-          control={formControl}
+          control={control}
           name="reward"
           render={({ field: { value, onChange } }) => (
             <FormItem {...formItemClass}>
@@ -76,7 +76,7 @@ const SelectorsSection = ({ form: { formControl, getValues, resetField } }) => {
       ) : (
         <>
           <FormField
-            control={formControl}
+            control={control}
             name="sendToAuthorities"
             render={({ field: { value, onChange } }) => (
               <FormItem {...formItemClass}>
@@ -96,7 +96,7 @@ const SelectorsSection = ({ form: { formControl, getValues, resetField } }) => {
           />
           {getValues("sendToAuthorities") ? (
             <FormField
-              control={formControl}
+              control={control}
               name="authorities"
               render={({ field }) => (
                 <FormItem {...formItemClass}>
@@ -121,7 +121,7 @@ const SelectorsSection = ({ form: { formControl, getValues, resetField } }) => {
 SelectorsSection.displayName = "NewPost.SelectorsSection";
 SelectorsSection.propTypes = {
   form: PropTypes.shape({
-    formControl: PropTypes.func,
+    control: PropTypes.object,
     getValues: PropTypes.func,
     resetField: PropTypes.func,
   }).isRequired,
