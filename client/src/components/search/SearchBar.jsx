@@ -3,12 +3,12 @@ import * as Input from "../ui/Input";
 import { cn } from "../../utils/cn";
 import LocationSelect from "../selectors/LocationSelect";
 import Button from "../ui/Button";
-import { Search } from "lucide-react";
+import { Pencil, Search } from "lucide-react";
 
 import { useForm } from "react-hook-form";
 import { Form, FormControl, FormField, FormItem } from "../ui/Form";
 
-const formItemLocationClass = { className: "w-full max-w-[350px]" };
+const formItemLocationClass = { className: "w-full max-w-[400px]" };
 const defaultValues = {
   search: "",
   location: "",
@@ -41,7 +41,7 @@ const SearchBar = ({ className, buttonStyling, options = {} }) => {
               <FormControl>
                 <Input.Root clearField={() => form.resetField(field.name)}>
                   <div className="size-6 p-0 rounded-full absolute left-4 shrink-0 top-1/2 -translate-y-1/2">
-                    <Search />
+                    <Pencil />
                   </div>
 
                   <Input.Field
@@ -87,10 +87,11 @@ const SearchBar = ({ className, buttonStyling, options = {} }) => {
         <Button
           type="submit"
           className={cn(
-            "bg-white text-base text-black px-6 hover:bg-current",
+            "gap-3 text-black text-lg font-semibold px-7 hover:bg-current",
             buttonStyling,
           )}
         >
+          <Search />
           <span className="text-inherit">Cǎutare</span>
         </Button>
       </form>

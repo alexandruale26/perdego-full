@@ -14,7 +14,7 @@ const buttonVariants = cva(
         iconText: "text-primary font-semibold rounded-md",
         icon: "bg-transparent text-primary rounded-full hover:bg-grey-5 transition-colors",
         text: "bg-transparent text-base font-normal underline",
-        ghost: "hover:bg-accent hover:text-accent-foreground",
+        ghost: "hover:bg-grey-6",
         destructive: "bg-destructive text-white hover:bg-red-600",
         link: "", // TODO: add link styling
       },
