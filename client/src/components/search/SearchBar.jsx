@@ -25,7 +25,7 @@ const SearchBar = ({ className, buttonStyling, options = {} }) => {
   });
 
   return (
-    <Form {...form}>
+    <Form getFieldState={form.getFieldState}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
         className={cn(
@@ -39,7 +39,7 @@ const SearchBar = ({ className, buttonStyling, options = {} }) => {
           render={({ field }) => (
             <FormItem className="w-full">
               <FormControl>
-                <Input.Root addClear className="flex">
+                <Input.Root clearField={() => form.resetField(field.name)}>
                   <div className="size-6 p-0 rounded-full absolute left-4 shrink-0 top-1/2 -translate-y-1/2">
                     <Search />
                   </div>

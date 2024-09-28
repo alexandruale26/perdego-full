@@ -18,7 +18,6 @@ const defaultValues = {
   location: "",
 };
 
-//TODO: check the focused hidden element if is in usedInPostCreate
 // TODO: make validations for when get searchParams from url to location, type, category
 const ExpandedSearchBar = ({ className }) => {
   const onSubmit = async (fields) => {
@@ -31,7 +30,7 @@ const ExpandedSearchBar = ({ className }) => {
   });
 
   return (
-    <Form {...form}>
+    <Form getFieldState={form.getFieldState}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
         className={cn(
@@ -45,7 +44,7 @@ const ExpandedSearchBar = ({ className }) => {
           render={({ field }) => (
             <FormItem>
               <FormControl>
-                <Input.Root addClear className="flex">
+                <Input.Root clearField={() => form.resetField(field.name)}>
                   <div className="size-6 p-0 rounded-full absolute left-4 shrink-0 top-1/2 -translate-y-1/2">
                     <Search />
                   </div>
@@ -67,23 +66,6 @@ const ExpandedSearchBar = ({ className }) => {
 
         <FormField
           control={form.control}
-          name="category"
-          render={({ field }) => (
-            <FormItem {...formItemClass}>
-              <FormControl>
-                <CategorySelect
-                  isClearable
-                  usedInPostCreate={false}
-                  options={getSelectorOptions("category")}
-                  {...field}
-                />
-              </FormControl>
-            </FormItem>
-          )}
-        />
-
-        <FormField
-          control={form.control}
           name="location"
           render={({ field }) => (
             <FormItem {...formItemClass}>
@@ -95,6 +77,21 @@ const ExpandedSearchBar = ({ className }) => {
                   {...field}
                 />
               </FormControl>
+            </FormItem>
+          )}
+        />
+
+        <FormField
+          control={form.control}
+          name="category"
+          render={({ field }) => (
+            <FormItem {...formItemClass}>
+              <CategorySelect
+                isClearable
+                usedInPostCreate={false}
+                options={getSelectorOptions("category")}
+                {...field}
+              />
             </FormItem>
           )}
         />

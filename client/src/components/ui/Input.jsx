@@ -28,7 +28,7 @@ const inputVariants = cva(
   },
 );
 
-export const Root = ({ children, addClear = false, className }) => {
+export const Root = ({ children, clearField, className }) => {
   return (
     <div
       className={cn(
@@ -37,14 +37,14 @@ export const Root = ({ children, addClear = false, className }) => {
       )}
     >
       {children}
-      {addClear && <ClearField />}
+      {clearField ? <ClearField clearField={clearField} /> : null}
     </div>
   );
 };
 Root.displayName = "Input.Root";
 Root.propTypes = {
   children: PropTypes.node.isRequired,
-  addClear: PropTypes.bool,
+  clearField: PropTypes.func,
   className: PropTypes.string,
 };
 
