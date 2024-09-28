@@ -8,31 +8,14 @@ import AddValidation from "./helpers/AddValidation";
 import { useFormField } from "./Form";
 
 const inputVariants = cva(
-  "flex w-full border text-base rounded-md font-semibold border-grey-4 ring-offset-primary placeholder:text-grey-3 placeholder:font-normal focus-visible:outline-0 focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50",
-  {
-    variants: {
-      variant: {
-        form: "bg-transparent focus-visible:border-primary focus-visible:ring-primary",
-        search:
-          "bg-grey-6 focus-visible:border-secondary focus-visible:ring-secondary",
-      },
-      size: {
-        form: "h-14 pl-6 pr-22",
-        search: "h-14 px-12",
-      },
-    },
-    defaultVariants: {
-      variant: "form",
-      size: "form",
-    },
-  },
+  "flex w-full h-14 pl-6 pr-22 border text-base rounded-md font-semibold border-grey-4 ring-offset-primary placeholder:text-grey-3 placeholder:font-normal focus-visible:outline-0 focus-visible:ring-1 focus-visible:border-primary focus-visible:ring-primary disabled:cursor-not-allowed disabled:opacity-50",
 );
 
 export const Root = ({ children, clearField, className }) => {
   return (
     <div
       className={cn(
-        "relative w-full flex items-center justify-center input--root",
+        "relative w-full flex items-center justify-center input--root", // TODO: ce e input-root
         className,
       )}
     >
@@ -87,22 +70,15 @@ SuperRoot.propTypes = {
   className: PropTypes.string,
 };
 
-export const Field = forwardRef(
-  ({ className, type, variant, size, ...props }, ref) => {
-    return (
-      <input
-        type={type}
-        className={cn(inputVariants({ variant, size, className }))}
-        ref={ref}
-        {...props}
-      />
-    );
-  },
-);
+export const Field = forwardRef(({ className, type, ...props }, ref) => {
+  return (
+    <input
+      type={type}
+      className={cn(inputVariants({ className }))}
+      ref={ref}
+      {...props}
+    />
+  );
+});
 Field.displayName = "Input.Field";
-Field.propTypes = {
-  className: PropTypes.string,
-  type: PropTypes.string,
-  variant: PropTypes.oneOf(["form", "search"]),
-  size: PropTypes.oneOf(["form", "search"]),
-};
+Field.propTypes = { className: PropTypes.string, type: PropTypes.string };

@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import SearchBar from "../../components/search/SearchBar";
 import Button from "../../components/ui/Button";
 import PostInfos from "./PostInfos";
 import { Star, Flag } from "lucide-react";
@@ -48,16 +47,7 @@ const PostPage = () => {
 
   return (
     <main className="max-w-[1200px] my-10 px-6 mx-auto">
-      <SearchBar
-        className="p-0"
-        buttonStyling="bg-primary text-white hover:bg-btn-primary-hover"
-        options={{ darkFocus: true, darkSelect: true }}
-      />
-
-      <BreadrumbsNav
-        crumbsExtension={getCrumbsExtension(post)}
-        className="mt-10"
-      />
+      <BreadrumbsNav crumbsExtension={getCrumbsExtension(post)} />
 
       <div className="flex justify-between py-8">
         <h1 className="font-bold text-xl">{post.title}</h1>

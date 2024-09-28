@@ -157,9 +157,7 @@ LocationSelect.propTypes = {
   value: PropTypes.any,
   onChange: PropTypes.func,
   options: PropTypes.shape({
-    darkFocus: PropTypes.bool,
     darkBackground: PropTypes.bool,
-    darkSelect: PropTypes.bool,
     showSeparator: PropTypes.bool,
     icon: PropTypes.string,
   }).isRequired,

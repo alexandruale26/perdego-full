@@ -140,9 +140,7 @@ SelectorsSection.propTypes = {
 export default SelectorsSection;
 
 const getSelectorOptions = () => ({
-  darkFocus: true,
   darkBackground: false,
-  darkSelect: true,
   showSeparator: false,
   icon: null,
 });

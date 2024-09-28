@@ -64,7 +64,7 @@ const NewPostPage = () => {
 
   return (
     <main className="max-w-[1200px] mt-10 mb-12 px-6 mx-auto">
-      <BreadrumbsNav className="mb-7" />
+      <BreadrumbsNav className="mb-8" />
 
       <div>
         <h1 className="text-xl text-primary font-bold">Publicǎ un anunț</h1>

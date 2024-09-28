@@ -1,24 +1,14 @@
-export default ({
-  darkFocus,
-  darkBackground,
-  darkSelect,
-  showSeparator,
-  icon,
-}) => ({
-  control: (provided, state) => ({
+export default ({ darkBackground, showSeparator, icon }) => ({
+  control: (provided, { isFocused }) => ({
     ...provided,
     height: "3.5rem",
     backgroundColor: darkBackground ? "var(--grey6)" : "transparent",
     borderRadius: "0.375rem",
-    borderColor: getBorderColor(state.isFocused, darkFocus),
+    borderColor: isFocused ? "var(--primary)" : "var(--grey4)",
     cursor: "pointer",
-    boxShadow: state.isFocused
-      ? darkFocus
-        ? "0 0 0 1px var(--primary)"
-        : "0 0 0 1px var(--secondary)"
-      : provided.boxShadow,
+    boxShadow: isFocused ? "0 0 0 1px var(--primary)" : provided.boxShadow,
     "&:hover": {
-      borderColor: getBorderColor(state.isFocused, darkFocus),
+      borderColor: isFocused ? "var(--primary)" : "var(--grey4)",
     },
   }),
   menu: (provided) => ({
@@ -44,23 +34,14 @@ export default ({
     fontWeight: 600,
     paddingLeft: getPadding(icon),
   }),
-  option: (provided, { isFocused, isSelected }) => ({
+  option: (provided, { isFocused }) => ({
     ...provided,
-    backgroundColor: isFocused
-      ? darkSelect
-        ? "var(--primary)"
-        : "var(--secondary)"
-      : "transparent",
+    backgroundColor: isFocused ? "var(--primary)" : "transparent",
     borderBottom: "1px solid #eee",
-    color: isFocused ? (darkSelect ? "#fff" : "var(--black)") : "var(--grey)",
+    color: isFocused ? "#fff" : "var(--grey)",
     cursor: "pointer",
     ":active": {
-      backgroundColor: isFocused
-        ? "var(--primary)"
-        : isSelected
-          ? "var(--primary)"
-          : "inherit",
-      color: isFocused ? "#fff" : isSelected ? "#fff" : "var(--grey2)",
+      backgroundColor: isFocused ? "var(--primary)" : "inherit",
     },
   }),
   groupHeading: (provided) => ({
@@ -89,13 +70,5 @@ export default ({
     backgroundColor: "var(--grey4)",
   }),
 });
-
-const getBorderColor = (isFocused, darkFocus) => {
-  return isFocused
-    ? darkFocus
-      ? "var(--primary)"
-      : "var(--secondary)"
-    : "var(--grey4)";
-};
 
 const getPadding = (icon) => (icon ? "2.4rem" : "1rem");

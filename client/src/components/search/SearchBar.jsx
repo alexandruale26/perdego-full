@@ -1,20 +1,24 @@
 import PropTypes from "prop-types";
 import * as Input from "../ui/Input";
 import { cn } from "../../utils/cn";
-import LocationSelect from "../selectors/LocationSelect";
 import Button from "../ui/Button";
 import { Pencil, Search } from "lucide-react";
+import LocationSelect from "../selectors/LocationSelect";
+import PostTypeSelect from "../selectors/PostTypeSelect";
+import CategorySelect from "../selectors/CategorySelect";
 
 import { useForm } from "react-hook-form";
 import { Form, FormControl, FormField, FormItem } from "../ui/Form";
 
-const formItemLocationClass = { className: "w-full max-w-[400px]" };
 const defaultValues = {
   search: "",
   location: "",
+  type: "gasite",
+  category: "",
 };
 
-const SearchBar = ({ className, buttonStyling, options = {} }) => {
+// TODO: make validations for when get searchParams from url to location, type, category
+const SearchBar = ({ className }) => {
   const onSubmit = async (fields) => {
     console.log(fields);
   };
@@ -25,87 +29,115 @@ const SearchBar = ({ className, buttonStyling, options = {} }) => {
   });
 
   return (
-    <Form getFieldState={form.getFieldState}>
+    <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
         className={cn(
-          "w-full max-w-[1200px] flex mx-auto gap-2 px-6 pt-10",
+          "w-full max-w-[1200px] flex mx-auto gap-4 flex-col",
           className,
         )}
       >
-        <FormField
-          control={form.control}
-          name="search"
-          render={({ field }) => (
-            <FormItem className="w-full">
-              <FormControl>
-                <Input.Root clearField={() => form.resetField(field.name)}>
-                  <div className="size-6 p-0 rounded-full absolute left-4 shrink-0 top-1/2 -translate-y-1/2">
-                    <Pencil />
-                  </div>
+        <div className="flex gap-4">
+          <FormField
+            control={form.control}
+            name="search"
+            render={({ field }) => (
+              <FormItem className="w-full">
+                <FormControl>
+                  <Input.Root clearField={() => form.resetField(field.name)}>
+                    <div className="size-6 p-0 rounded-full absolute left-4 shrink-0 top-1/2 -translate-y-1/2">
+                      <Pencil />
+                    </div>
 
-                  <Input.Field
-                    name="search"
-                    variant="search"
-                    size="search"
-                    placeholder="Cauți ceva anume?"
-                    maxLength={50}
-                    className={cn("w-full", {
-                      "focus-visible:border-primary focus-visible:ring-primary":
-                        options.darkFocus,
-                    })}
+                    <Input.Field
+                      name="search"
+                      placeholder="Cauți ceva anume?"
+                      className="bg-grey-6 px-12"
+                      maxLength={50}
+                      {...field}
+                    />
+                  </Input.Root>
+                </FormControl>
+              </FormItem>
+            )}
+          />
+
+          <FormField
+            control={form.control}
+            name="location"
+            render={({ field }) => (
+              <FormItem className="w-full">
+                <FormControl>
+                  <LocationSelect
+                    isClearable
+                    usedInPostCreate={false}
+                    options={getSelectorOptions("location")}
                     {...field}
                   />
-                </Input.Root>
-              </FormControl>
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name="location"
-          render={({ field }) => (
-            <FormItem {...formItemLocationClass}>
-              <FormControl>
-                <LocationSelect
+                </FormControl>
+              </FormItem>
+            )}
+          />
+        </div>
+
+        <div className="flex gap-4 justify-between">
+          <div className="w-full">
+            <div className="w-[270px]">
+              <PostTypeSelect
+                formControl={form.control}
+                showLabel={false}
+                defaultValue={form.formState.defaultValues.type}
+              />
+            </div>
+          </div>
+
+          <FormField
+            control={form.control}
+            name="category"
+            render={({ field }) => (
+              <FormItem className="w-full">
+                <CategorySelect
                   isClearable
                   usedInPostCreate={false}
-                  options={{
-                    darkFocus: options?.darkFocus ?? false,
-                    darkBackground: true,
-                    darkSelect: options?.darkSelect ?? false,
-                    showSeparator: true,
-                    icon: "location",
-                  }}
+                  options={getSelectorOptions("category")}
                   {...field}
                 />
-              </FormControl>
-            </FormItem>
-          )}
-        />
+              </FormItem>
+            )}
+          />
+        </div>
 
-        <Button
-          type="submit"
-          className={cn(
-            "gap-3 text-black text-lg font-semibold px-7 hover:bg-current",
-            buttonStyling,
-          )}
-        >
-          <Search />
-          <span className="text-inherit">Cǎutare</span>
-        </Button>
+        <div className="flex gap-8">
+          <Button
+            type="submit"
+            className="gap-3 w-full max-w-[250px] text-lg font-semibold"
+          >
+            <Search />
+            <span className="text-inherit">Cǎutare</span>
+          </Button>
+
+          <Button
+            type="button"
+            variant="ghost"
+            className="text-lg font-semibold px-8"
+            onClick={() => {
+              form.reset();
+            }}
+          >
+            Şterge filtrele
+          </Button>
+        </div>
       </form>
     </Form>
   );
 };
 SearchBar.displayName = "SearchBar";
-SearchBar.propTypes = {
-  className: PropTypes.string,
-  buttonStyling: PropTypes.string,
-  options: PropTypes.shape({
-    darkFocus: PropTypes.bool,
-    darkSelect: PropTypes.bool,
-  }),
-};
+SearchBar.propTypes = { className: PropTypes.string };
 
 export default SearchBar;
+
+const getSelectorOptions = (icon) => ({
+  darkBackground: true,
+  showSeparator: true,
+  icon,
+});
