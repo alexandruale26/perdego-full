@@ -29,7 +29,7 @@ const SelectorsSection = ({ form: { control, getValues, resetField } }) => {
 
   return (
     <section className="mt-5 ml-8 space-y-4">
-      <PostTypeSelect control={control} className="max-w-[250px]" />
+      <PostTypeSelect formControl={control} className="max-w-[250px]" />
 
       <FormField
         control={control}
@@ -38,7 +38,12 @@ const SelectorsSection = ({ form: { control, getValues, resetField } }) => {
           <FormItem {...formItemClass}>
             <p {...paragraphClass}>Categorie obiect</p>
             <FormControl>
-              <CategorySelect name="category" isInPostForm {...field} />
+              <CategorySelect
+                isClearable={false}
+                usedInPostCreate
+                options={getSelectorOptions()}
+                {...field}
+              />
             </FormControl>
             <InputErrorMessage />
           </FormItem>
@@ -52,7 +57,12 @@ const SelectorsSection = ({ form: { control, getValues, resetField } }) => {
           <FormItem {...formItemClass}>
             <p {...paragraphClass}>Localitate</p>
             <FormControl>
-              <LocationSelect name="location" isInPostForm {...field} />
+              <LocationSelect
+                isClearable={false}
+                usedInPostCreate
+                options={getSelectorOptions()}
+                {...field}
+              />
             </FormControl>
             <InputErrorMessage />
           </FormItem>
@@ -128,3 +138,11 @@ SelectorsSection.propTypes = {
 };
 
 export default SelectorsSection;
+
+const getSelectorOptions = () => ({
+  darkFocus: true,
+  darkBackground: false,
+  darkSelect: true,
+  showSeparator: false,
+  icon: null,
+});

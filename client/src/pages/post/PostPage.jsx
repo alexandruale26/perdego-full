@@ -51,6 +51,7 @@ const PostPage = () => {
       <SearchBar
         className="p-0"
         buttonStyling="bg-primary text-white hover:bg-btn-primary-hover"
+        options={{ darkFocus: true, darkSelect: true }}
       />
 
       <BreadrumbsNav

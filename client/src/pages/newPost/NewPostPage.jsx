@@ -25,6 +25,7 @@ const NewPostPage = () => {
   const navigate = useNavigate();
 
   const form = useForm({
+    // TODO: make validations for location, type, category and reuse to ExpandedSearch
     resolver: zodResolver(newPostSchema),
     defaultValues,
     mode: "onChange",

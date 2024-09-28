@@ -1,62 +1,58 @@
-const padddingIsForm = "1rem";
-const padddingIsNotForm = "2.5rem";
-
-export default (isInPostForm = false) => ({
+export default ({
+  darkFocus,
+  darkBackground,
+  darkSelect,
+  showSeparator,
+  icon,
+}) => ({
   control: (provided, state) => ({
     ...provided,
     height: "3.5rem",
-    backgroundColor: isInPostForm ? "transparent" : "var(--grey6)",
+    backgroundColor: darkBackground ? "var(--grey6)" : "transparent",
     borderRadius: "0.375rem",
-    borderColor: state.isFocused
-      ? isInPostForm
-        ? "var(--primary)"
-        : "var(--secondary)"
-      : "var(--grey4)",
+    borderColor: getBorderColor(state.isFocused, darkFocus),
     cursor: "pointer",
     boxShadow: state.isFocused
-      ? isInPostForm
+      ? darkFocus
         ? "0 0 0 1px var(--primary)"
         : "0 0 0 1px var(--secondary)"
       : provided.boxShadow,
     "&:hover": {
-      borderColor: state.isFocused
-        ? isInPostForm
-          ? "var(--primary)"
-          : "var(--secondary)"
-        : "var(--grey4)",
+      borderColor: getBorderColor(state.isFocused, darkFocus),
     },
   }),
   menu: (provided) => ({
     ...provided,
     borderRadius: "0.375rem",
     overflow: "hidden",
+    boxShadow: "0px 5px 15px rgba(0,0,0,0.3)",
   }),
   singleValue: (provided) => ({
     ...provided,
     color: "var(--black)",
     fontWeight: 600,
-    paddingLeft: isInPostForm ? padddingIsForm : padddingIsNotForm,
+    paddingLeft: getPadding(icon),
   }),
   placeholder: (provided) => ({
     ...provided,
     color: "var(--grey3)",
-    paddingLeft: isInPostForm ? padddingIsForm : padddingIsNotForm,
+    paddingLeft: getPadding(icon),
   }),
   input: (provided) => ({
     ...provided,
     color: "var(--black)",
     fontWeight: 600,
-    paddingLeft: isInPostForm ? padddingIsForm : padddingIsNotForm,
+    paddingLeft: getPadding(icon),
   }),
   option: (provided, { isFocused, isSelected }) => ({
     ...provided,
     backgroundColor: isFocused
-      ? isInPostForm
+      ? darkSelect
         ? "var(--primary)"
         : "var(--secondary)"
       : "transparent",
     borderBottom: "1px solid #eee",
-    color: isFocused ? (isInPostForm ? "#fff" : "var(--black)") : "var(--grey)",
+    color: isFocused ? (darkSelect ? "#fff" : "var(--black)") : "var(--grey)",
     cursor: "pointer",
     ":active": {
       backgroundColor: isFocused
@@ -89,7 +85,17 @@ export default (isInPostForm = false) => ({
   }),
   indicatorSeparator: (provided) => ({
     ...provided,
-    display: isInPostForm ? "none" : "block",
+    display: showSeparator ? "block" : "none",
     backgroundColor: "var(--grey4)",
   }),
 });
+
+const getBorderColor = (isFocused, darkFocus) => {
+  return isFocused
+    ? darkFocus
+      ? "var(--primary)"
+      : "var(--secondary)"
+    : "var(--grey4)";
+};
+
+const getPadding = (icon) => (icon ? "2.4rem" : "1rem");

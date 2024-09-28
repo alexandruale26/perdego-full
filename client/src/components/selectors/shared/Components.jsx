@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import { components } from "react-select";
-import { X, MapPin, ChevronDown } from "lucide-react";
+import { X, MapPin, Package, ChevronDown } from "lucide-react";
 
 export const Option = (props) => {
   const { data } = props;
@@ -33,21 +33,17 @@ Option.propTypes = {
   }).isRequired,
 };
 
-export const ValueContainer = ({
-  isInPostForm = false,
-  children,
-  ...props
-}) => {
+export const ValueContainer = ({ icon, children, ...props }) => {
   return (
     <components.ValueContainer {...props}>
-      {!isInPostForm && <MapPin className="text-black absolute ml-4" />}
+      {getIcon(icon)}
       {children}
     </components.ValueContainer>
   );
 };
 ValueContainer.displayName = "Select.ValueContainer";
 ValueContainer.propTypes = {
-  isInPostForm: PropTypes.bool,
+  icon: PropTypes.string,
   children: PropTypes.node,
 };
 
@@ -68,3 +64,11 @@ export const DropdownIndicator = () => {
   );
 };
 DropdownIndicator.displayName = "Select.DropdownIndicator";
+
+const getIcon = (icon) => {
+  const iconClass = { className: "text-black absolute ml-4" };
+
+  if (icon === "location") return <MapPin {...iconClass} />;
+  if (icon === "category") return <Package {...iconClass} />;
+  return null;
+};

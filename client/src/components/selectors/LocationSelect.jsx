@@ -14,7 +14,7 @@ import {
 //TODO: message if cities fetch has failed
 
 const LocationSelect = forwardRef(
-  ({ name, isInPostForm = false, ...props }, ref) => {
+  ({ usedInPostCreate, isClearable, options, ...props }, ref) => {
     const [cities, setCities] = useState(null);
     const debounceTimer = useRef(null);
     const latestOptions = useRef([]);
@@ -33,18 +33,12 @@ const LocationSelect = forwardRef(
 
           setCities(data);
         } catch ({ message }) {
-          console.log(message);
+          console.log(message); // TODO: Pagina a aparut o problema
         }
       };
 
       fetchCitiesData();
     }, []);
-
-    const handleSelectValueChange = () => {
-      return isInPostForm
-        ? ({ value }) => props.onChange(value)
-        : (value) => value;
-    };
 
     const loadOptions = (inputValue, callback) => {
       if (debounceTimer.current) clearTimeout(debounceTimer.current);
@@ -73,7 +67,7 @@ const LocationSelect = forwardRef(
         });
 
         const citiesOption = {
-          label: isInPostForm
+          label: usedInPostCreate
             ? filteredCounties.length > 0
               ? "Localitǎți"
               : ""
@@ -91,7 +85,7 @@ const LocationSelect = forwardRef(
             .sort(sortCities),
         };
 
-        if (isInPostForm) {
+        if (usedInPostCreate) {
           const options = [citiesOption];
 
           if (filteredCities.length > 0) {
@@ -129,21 +123,20 @@ const LocationSelect = forwardRef(
 
     return (
       <AsyncSelect
-        name={name}
-        isClearable={!isInPostForm}
         blurInputOnSelect
-        styles={styles(isInPostForm)}
+        isClearable={isClearable}
+        styles={styles(options)}
         noOptionsMessage={() =>
-          isInPostForm
+          usedInPostCreate
             ? "Cautǎ dupǎ localitate"
             : "Cautǎ dupǎ localitate sau județ"
         }
         loadingMessage={() => "..."}
         loadOptions={loadOptions}
-        placeholder={isInPostForm ? "Cautǎ dupǎ localitate" : "Toatǎ țara"}
+        placeholder={usedInPostCreate ? "Cautǎ dupǎ localitate" : "Toatǎ țara"}
         components={{
           ValueContainer: (props) => {
-            return <ValueContainer isInPostForm={isInPostForm} {...props} />;
+            return <ValueContainer icon={options.icon} {...props} />;
           },
           ClearIndicator,
           DropdownIndicator,
@@ -151,7 +144,7 @@ const LocationSelect = forwardRef(
         }}
         ref={ref}
         {...props}
-        onChange={handleSelectValueChange()}
+        onChange={(value) => props.onChange(value?.value ?? "")}
       />
     );
   },
@@ -159,9 +152,17 @@ const LocationSelect = forwardRef(
 LocationSelect.displayName = "LocationSelect";
 LocationSelect.propTypes = {
   name: PropTypes.string.isRequired,
-  isInPostForm: PropTypes.bool,
+  usedInPostCreate: PropTypes.bool.isRequired,
+  isClearable: PropTypes.bool.isRequired,
   value: PropTypes.any,
   onChange: PropTypes.func,
+  options: PropTypes.shape({
+    darkFocus: PropTypes.bool,
+    darkBackground: PropTypes.bool,
+    darkSelect: PropTypes.bool,
+    showSeparator: PropTypes.bool,
+    icon: PropTypes.string,
+  }).isRequired,
 };
 
 export default LocationSelect;
