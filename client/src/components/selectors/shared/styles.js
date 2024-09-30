@@ -16,6 +16,7 @@ export default ({ darkBackground, showSeparator, icon }) => ({
     borderRadius: "0.375rem",
     overflow: "hidden",
     boxShadow: "0px 5px 15px rgba(0,0,0,0.3)",
+    backgroundColor: darkBackground ? "var(--grey6)" : "#fff",
   }),
   singleValue: (provided) => ({
     ...provided,

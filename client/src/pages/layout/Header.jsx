@@ -1,8 +1,15 @@
 import { Link as RouterLink } from "react-router-dom";
 import Link from "../../components/Link";
 import Button from "../../components/ui/Button";
-import { UserRound } from "lucide-react";
+import { PencilLine, Search, UserRound } from "lucide-react";
 import { api } from "../../services/api.js";
+
+const ghostButtonAttributes = {
+  asChild: true,
+  variant: "ghost",
+  size: "iconText",
+  className: "h-12",
+};
 
 const Header = () => {
   // TODO: de sters
@@ -24,18 +31,29 @@ const Header = () => {
           className="w-[253px] h-[60px]"
         />
       </Link>
-      <nav className="flex items-center gap-10">
+      <nav className="flex items-center gap-5">
         {/* <Button type="button" onClick={getMe}>
           Get me
         </Button> */}
-        <Button asChild variant="iconText" size="iconText">
-          <RouterLink to="/autentificare">
-            <UserRound />
-            <span className="text-black">Contul tǎu</span>
+        <Button {...ghostButtonAttributes}>
+          <RouterLink to="/anunturi">
+            <Search />
+            <span>Cautǎ în anunțuri</span>
           </RouterLink>
         </Button>
-        <Button asChild className="h-12">
-          <RouterLink to="/anunturi/nou">Adaugǎ anunț nou</RouterLink>
+
+        <Button {...ghostButtonAttributes}>
+          <RouterLink to="/autentificare">
+            <UserRound />
+            <span>Contul tǎu</span>
+          </RouterLink>
+        </Button>
+
+        <Button asChild className="h-12 gap-3 px-4">
+          <RouterLink to="/anunturi/nou">
+            <PencilLine />
+            Adaugǎ anunț nou
+          </RouterLink>
         </Button>
       </nav>
     </header>

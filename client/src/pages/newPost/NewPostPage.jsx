@@ -67,7 +67,7 @@ const NewPostPage = () => {
       <BreadrumbsNav className="mb-8" />
 
       <div>
-        <h1 className="text-xl text-primary font-bold">Publicǎ un anunț</h1>
+        <h1 className="text-xl text-primary font-bold">Adaugǎ un anunț</h1>
 
         <Form {...form}>
           <form

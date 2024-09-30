@@ -62,27 +62,52 @@ const SearchBar = ({ className }) => {
             )}
           />
 
-          <FormField
-            control={form.control}
-            name="location"
-            render={({ field }) => (
-              <FormItem className="w-full">
-                <FormControl>
-                  <LocationSelect
-                    isClearable
-                    usedInPostCreate={false}
-                    options={getSelectorOptions("location")}
-                    {...field}
-                  />
-                </FormControl>
-              </FormItem>
-            )}
-          />
+          <Button
+            type="submit"
+            className="gap-3 w-full max-w-[300px] text-lg font-semibold"
+          >
+            <Search />
+            <span className="text-inherit">Cǎutare</span>
+          </Button>
         </div>
 
-        <div className="flex gap-4 justify-between">
-          <div className="w-full">
-            <div className="w-[270px]">
+        <div className="flex gap-4">
+          <div className="w-full flex gap-4">
+            <FormField
+              control={form.control}
+              name="location"
+              render={({ field }) => (
+                <FormItem className="w-full">
+                  <FormControl>
+                    <LocationSelect
+                      isClearable
+                      usedInPostCreate={false}
+                      options={getSelectorOptions("location")}
+                      {...field}
+                    />
+                  </FormControl>
+                </FormItem>
+              )}
+            />
+
+            <FormField
+              control={form.control}
+              name="category"
+              render={({ field }) => (
+                <FormItem className="w-full">
+                  <CategorySelect
+                    isClearable
+                    usedInPostCreate={false}
+                    options={getSelectorOptions("category")}
+                    {...field}
+                  />
+                </FormItem>
+              )}
+            />
+          </div>
+
+          <div className="mt-auto">
+            <div className="w-[300px]">
               <PostTypeSelect
                 formControl={form.control}
                 showLabel={false}
@@ -90,36 +115,13 @@ const SearchBar = ({ className }) => {
               />
             </div>
           </div>
-
-          <FormField
-            control={form.control}
-            name="category"
-            render={({ field }) => (
-              <FormItem className="w-full">
-                <CategorySelect
-                  isClearable
-                  usedInPostCreate={false}
-                  options={getSelectorOptions("category")}
-                  {...field}
-                />
-              </FormItem>
-            )}
-          />
         </div>
 
-        <div className="flex gap-8">
-          <Button
-            type="submit"
-            className="gap-3 w-full max-w-[250px] text-lg font-semibold"
-          >
-            <Search />
-            <span className="text-inherit">Cǎutare</span>
-          </Button>
-
+        <div>
           <Button
             type="button"
             variant="ghost"
-            className="text-lg font-semibold px-8"
+            className="text-lg font-semibold px-4 h-12"
             onClick={() => {
               form.reset();
             }}

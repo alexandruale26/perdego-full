@@ -11,7 +11,7 @@ const buttonVariants = cva(
       variant: {
         primary: "bg-primary text-white hover:bg-btn-primary-hover",
         cta: "bg-cta text-white hover:bg-btn-primary-hover",
-        iconText: "text-primary font-semibold rounded-md",
+        iconText: "text-primary font-semibold rounded-md", // TODO: might not be used
         icon: "bg-transparent text-primary rounded-full hover:bg-grey-5 transition-colors",
         text: "bg-transparent text-base font-normal underline",
         ghost: "hover:bg-grey-6",
