@@ -6,7 +6,7 @@ import { WifiOff, Wifi } from "lucide-react";
 function NetworkToast() {
   useEffect(() => {
     const handleOnline = () => {
-      toast.dismiss("offline-toast");
+      toast.dismiss("network-toast");
       toast(<OnlineToast />, {
         duration: 5000,
         onDismiss: () => toast.dismiss(),
@@ -14,7 +14,7 @@ function NetworkToast() {
     };
 
     const handleOffline = () => {
-      toast(<OfflineToast />, { id: "offline-toast", duration: Infinity });
+      toast(<OfflineToast />, { id: "network-toast", duration: Infinity });
     };
 
     if (!navigator.onLine) handleOffline();

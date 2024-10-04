@@ -1,4 +1,4 @@
-[
+export default [
   "Abrud-j_Alba",
   "Aiud-j_Alba",
   "Alba-Iulia-j_Alba",
@@ -13049,7 +13049,7 @@
   "Ranceni-c_Berezeni-j_Vaslui",
   "Satu-Nou-c_Berezeni-j_Vaslui",
   "Stuhulet-c_Berezeni-j_Vaslui",
-  "Barlad-c_Birlad-j_Vaslui",
+  "Barlad-j_Vaslui",
   "Igesti-c_Blagesti-j_Vaslui",
   "Sipeni-c_Blagesti-j_Vaslui",
   "Arsita-c_Bogdana-j_Vaslui",
@@ -13752,5 +13752,5 @@
   "Botarlau-c_Vulturu-j_Vrancea",
   "Hangulesti-c_Vulturu-j_Vrancea",
   "Maluri-c_Vulturu-j_Vrancea",
-  "Vadu-Rosca-c_Vulturu-j_Vrancea"
-]
+  "Vadu-Rosca-c_Vulturu-j_Vrancea",
+];

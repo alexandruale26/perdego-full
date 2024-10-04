@@ -9,7 +9,9 @@ import {
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
-} from "./Breadcrumb";
+} from "../ui/Breadcrumb";
+
+// TODO: don't add search params... PostPage ??
 
 const BreadrumbsNav = ({ crumbsExtension, className }) => {
   const location = useLocation();

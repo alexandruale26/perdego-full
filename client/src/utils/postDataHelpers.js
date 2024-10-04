@@ -1,5 +1,5 @@
 import categories from "../sharedData/categories";
-import { parseLocation } from "./citiesHelpers";
+import { parseCity } from "./locationSelectHelpers";
 
 export const getTypeLabel = (string) => {
   return string === "gasite" ? "Gǎsite" : "Pierdute";
@@ -10,7 +10,7 @@ export const getCategoryLabel = (string) => {
 };
 
 export const getLocationLabel = (string) => {
-  const location = parseLocation(string);
+  const location = parseCity(string);
   return location.commune
     ? `${location.name}, comuna ${location.commune}, județul ${location.county}`
     : `${location.name}, județul ${location.county}`;

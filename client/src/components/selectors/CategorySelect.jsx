@@ -10,7 +10,7 @@ import {
 } from "./shared/Components";
 
 const CategorySelect = forwardRef(
-  ({ usedInPostCreate, isClearable, options, ...props }, ref) => {
+  ({ usedInPostCreate, isClearable, defaultValue, options, ...props }, ref) => {
     delete props.value;
 
     return (
@@ -19,6 +19,7 @@ const CategorySelect = forwardRef(
         isClearable={isClearable}
         isSearchable={false}
         styles={styles(options)}
+        defaultValue={defaultValue}
         placeholder={
           usedInPostCreate ? "Alege o categorie" : "Toate categoriile"
         }
@@ -44,6 +45,7 @@ CategorySelect.propTypes = {
   isClearable: PropTypes.bool.isRequired,
   value: PropTypes.any,
   onChange: PropTypes.func,
+  defaultValue: PropTypes.string,
   options: PropTypes.shape({
     darkBackground: PropTypes.bool,
     showSeparator: PropTypes.bool,

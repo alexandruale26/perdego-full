@@ -6,26 +6,18 @@ import { Pencil, Search } from "lucide-react";
 import LocationSelect from "../selectors/LocationSelect";
 import PostTypeSelect from "../selectors/PostTypeSelect";
 import CategorySelect from "../selectors/CategorySelect";
+import defaultValues from "../../sharedData/searchDefaultValues";
 
 import { useForm } from "react-hook-form";
 import { Form, FormControl, FormField, FormItem } from "../ui/Form";
 
-const defaultValues = {
-  search: "",
-  location: "",
-  type: "gasite",
-  category: "",
-};
-
-// TODO: make validations for when get searchParams from url to location, type, category
-const SearchBar = ({ className }) => {
+const SearchBar = ({ formValues, setFormValues, className }) => {
   const onSubmit = async (fields) => {
     console.log(fields);
   };
 
   const form = useForm({
-    // resolver: zodResolver(newPostSchema),
-    defaultValues,
+    values: formValues,
   });
 
   return (
@@ -83,6 +75,7 @@ const SearchBar = ({ className }) => {
                       isClearable
                       usedInPostCreate={false}
                       options={getSelectorOptions("location")}
+                      defaultValue={form.getValues("location")} // !! good like this
                       {...field}
                     />
                   </FormControl>
@@ -99,6 +92,9 @@ const SearchBar = ({ className }) => {
                     isClearable
                     usedInPostCreate={false}
                     options={getSelectorOptions("category")}
+                    // defaultValue={categories.find(
+                    //   (item) => item.value === searchParams.get("category"),
+                    // )}
                     {...field}
                   />
                 </FormItem>
@@ -111,7 +107,7 @@ const SearchBar = ({ className }) => {
               <PostTypeSelect
                 formControl={form.control}
                 showLabel={false}
-                defaultValue={form.formState.defaultValues.type}
+                defaultValue={form.getValues("type")}
               />
             </div>
           </div>
@@ -123,7 +119,10 @@ const SearchBar = ({ className }) => {
             variant="ghost"
             className="text-lg font-semibold px-4 h-12"
             onClick={() => {
-              form.reset();
+              const fields = document.querySelectorAll('button[role="radio"]');
+              fields[0].click();
+              form.reset(defaultValues);
+              setFormValues(defaultValues);
             }}
           >
             Şterge filtrele

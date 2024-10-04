@@ -1,9 +1,14 @@
-import { useEffect, useState, useRef, forwardRef } from "react";
+import { useRef, forwardRef } from "react";
 import PropTypes from "prop-types";
 import AsyncSelect from "react-select/async";
 import styles from "./shared/styles";
-import { parseLocation, sortCities } from "../../utils/citiesHelpers";
 import counties from "../../sharedData/counties";
+import cities from "../../sharedData/cities";
+import {
+  parseCity,
+  sortCities,
+  parseCounty,
+} from "../../utils/locationSelectHelpers";
 import {
   Option,
   ClearIndicator,
@@ -11,34 +16,15 @@ import {
   ValueContainer,
 } from "./shared/Components";
 
-//TODO: message if cities fetch has failed
-
 const LocationSelect = forwardRef(
-  ({ usedInPostCreate, isClearable, options, ...props }, ref) => {
-    const [cities, setCities] = useState(null);
+  (
+    { usedInPostCreate, isClearable, defaultValue = "", options, ...props },
+    ref,
+  ) => {
     const debounceTimer = useRef(null);
     const latestOptions = useRef([]);
 
     delete props.value;
-
-    // TODO: better data import
-    useEffect(() => {
-      const fetchCitiesData = async () => {
-        try {
-          const response = await fetch("/cities.json");
-          if (!response.ok) {
-            throw new Error("Failed to fetch data");
-          }
-          const data = await response.json();
-
-          setCities(data);
-        } catch ({ message }) {
-          console.log(message); // TODO: Pagina a aparut o problema
-        }
-      };
-
-      fetchCitiesData();
-    }, []);
 
     const loadOptions = (inputValue, callback) => {
       if (debounceTimer.current) clearTimeout(debounceTimer.current);
@@ -73,15 +59,7 @@ const LocationSelect = forwardRef(
               : ""
             : "Localitǎți",
           options: filteredCities
-            .map((item) => {
-              const { name, commune, county } = parseLocation(item);
-              return {
-                value: item,
-                label: name,
-                commune,
-                county,
-              };
-            })
+            .map((city) => parseCity(city))
             .sort(sortCities),
         };
 
@@ -93,18 +71,14 @@ const LocationSelect = forwardRef(
             return callback(options);
           }
         } else {
-          filteredCounties = counties.filter((i) =>
-            i.name.toLowerCase().includes(searchValue),
-          );
+          filteredCounties = counties.filter((i) => {
+            return i.split("-j_")[1].toLowerCase().includes(searchValue);
+          });
 
           const options = [
-            // TODO: think if need to make a separate function to this too
             {
               label: "Județe",
-              options: filteredCounties.map((item) => ({
-                value: item.id,
-                label: item.name,
-              })),
+              options: filteredCounties.map((county) => parseCounty(county)),
             },
             citiesOption,
           ];
@@ -121,11 +95,22 @@ const LocationSelect = forwardRef(
       debounceTimer.current = debounce;
     };
 
+    const getValue = () => {
+      if (defaultValue) {
+        if (defaultValue.startsWith("-j_")) return parseCounty(defaultValue);
+        return parseCity(defaultValue);
+      }
+      return null;
+    };
+    const values = getValue();
+
     return (
       <AsyncSelect
+        key={usedInPostCreate ? "location" : values}
         blurInputOnSelect
         isClearable={isClearable}
         styles={styles(options)}
+        defaultValue={values}
         noOptionsMessage={() =>
           usedInPostCreate
             ? "Cautǎ dupǎ localitate"
@@ -156,6 +141,7 @@ LocationSelect.propTypes = {
   isClearable: PropTypes.bool.isRequired,
   value: PropTypes.any,
   onChange: PropTypes.func,
+  defaultValue: PropTypes.string,
   options: PropTypes.shape({
     darkBackground: PropTypes.bool,
     showSeparator: PropTypes.bool,
