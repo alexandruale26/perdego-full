@@ -11,13 +11,13 @@ import defaultValues from "../../sharedData/searchDefaultValues";
 import { useForm } from "react-hook-form";
 import { Form, FormControl, FormField, FormItem } from "../ui/Form";
 
-const SearchBar = ({ formValues, setFormValues, className }) => {
+const SearchBar = ({ filterValues, setFilterValues, className }) => {
   const onSubmit = async (fields) => {
     console.log(fields);
   };
 
   const form = useForm({
-    values: formValues,
+    values: filterValues,
   });
 
   return (
@@ -36,7 +36,11 @@ const SearchBar = ({ formValues, setFormValues, className }) => {
             render={({ field }) => (
               <FormItem className="w-full">
                 <FormControl>
-                  <Input.Root clearField={() => form.resetField(field.name)}>
+                  <Input.Root
+                    clearField={() =>
+                      form.resetField(field.name, { defaultValue: "" })
+                    }
+                  >
                     <div className="size-6 p-0 rounded-full absolute left-4 shrink-0 top-1/2 -translate-y-1/2">
                       <Pencil />
                     </div>
@@ -75,7 +79,7 @@ const SearchBar = ({ formValues, setFormValues, className }) => {
                       isClearable
                       usedInPostCreate={false}
                       options={getSelectorOptions("location")}
-                      defaultValue={form.getValues("location")} // !! good like this
+                      defaultValue={form.getValues("location")}
                       {...field}
                     />
                   </FormControl>
@@ -92,9 +96,7 @@ const SearchBar = ({ formValues, setFormValues, className }) => {
                     isClearable
                     usedInPostCreate={false}
                     options={getSelectorOptions("category")}
-                    // defaultValue={categories.find(
-                    //   (item) => item.value === searchParams.get("category"),
-                    // )}
+                    defaultValue={form.getValues("category")}
                     {...field}
                   />
                 </FormItem>
@@ -122,7 +124,7 @@ const SearchBar = ({ formValues, setFormValues, className }) => {
               const fields = document.querySelectorAll('button[role="radio"]');
               fields[0].click();
               form.reset(defaultValues);
-              setFormValues(defaultValues);
+              setFilterValues(defaultValues);
             }}
           >
             Şterge filtrele
@@ -133,7 +135,11 @@ const SearchBar = ({ formValues, setFormValues, className }) => {
   );
 };
 SearchBar.displayName = "SearchBar";
-SearchBar.propTypes = { className: PropTypes.string };
+SearchBar.propTypes = {
+  className: PropTypes.string,
+  filterValues: PropTypes.object.isRequired,
+  setFilterValues: PropTypes.func.isRequired,
+};
 
 export default SearchBar;
 

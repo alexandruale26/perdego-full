@@ -1,5 +1,6 @@
 import { lazy, Suspense } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { Toaster } from "./components/ui/Sonner";
 import HomePage from "./pages/home/HomePage";
 import AboutPage from "./pages/AboutPage";
 import DashboardPage from "./pages/DashboardPage";
@@ -106,10 +107,11 @@ const router = createBrowserRouter([
   },
 ]);
 
-// TODO: new page with something was gone wrong
+// TODO: new page with something has gone wrong
 const App = () => {
   return (
     <>
+      <Toaster visibleToasts={1} />
       <NetworkToast />
       <RouterProvider router={router} />
     </>

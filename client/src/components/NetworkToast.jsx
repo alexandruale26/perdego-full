@@ -1,8 +1,8 @@
 import { useEffect } from "react";
 import { toast } from "sonner";
-import { Toaster } from "./ui/Sonner";
 import { WifiOff, Wifi } from "lucide-react";
 
+// TODO: Better network toast + better closebutton
 function NetworkToast() {
   useEffect(() => {
     const handleOnline = () => {
@@ -23,7 +23,7 @@ function NetworkToast() {
     window.addEventListener("offline", handleOffline);
   }, []);
 
-  return <Toaster position="bottom-right" visibleToasts={1} />;
+  return null;
 }
 NetworkToast.displayName = "NetworkToast";
 

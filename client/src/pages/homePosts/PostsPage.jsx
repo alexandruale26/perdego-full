@@ -10,14 +10,14 @@ import defaultValues from "../../sharedData/searchDefaultValues";
 
 const PostsPage = () => {
   const [isLoading, setIsLoading] = useState(true);
-  const [formValues, setFormValues] = useState(defaultValues);
+  const [filterValues, setFilterValues] = useState(defaultValues);
   const [searchParams] = useSearchParams();
 
   // TODO: make validations for when get searchParams from url to location, type, category
   useEffect(() => {
     const searchFields = Array.from(searchParams.entries());
 
-    // if (searchFields.length === 0) return defaultValues;
+    // TODO: what to do on throw???
     const xx = searchFields.reduce(
       (acc, [name, value]) => {
         const trimmedName = name.trim();
@@ -52,7 +52,7 @@ const PostsPage = () => {
       { ...defaultValues },
     );
 
-    setFormValues(xx);
+    setFilterValues(xx);
     setIsLoading(false);
   }, []);
 
@@ -60,7 +60,10 @@ const PostsPage = () => {
     <main className="max-w-[1200px] my-10 px-6 mx-auto flex flex-col gap-8">
       <BreadrumbsNav />
       <SectionCard>
-        <SearchBar formValues={formValues} setFormValues={setFormValues} />
+        <SearchBar
+          filterValues={filterValues}
+          setFilterValues={setFilterValues}
+        />
       </SectionCard>
     </main>
   ) : (

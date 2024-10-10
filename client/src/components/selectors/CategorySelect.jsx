@@ -13,13 +13,16 @@ const CategorySelect = forwardRef(
   ({ usedInPostCreate, isClearable, defaultValue, options, ...props }, ref) => {
     delete props.value;
 
+    const categoryData = categories.find((item) => item.value === defaultValue);
+
     return (
       <Select
+        key={usedInPostCreate ? "category" : categoryData}
+        defaultValue={categoryData}
         blurInputOnSelect
         isClearable={isClearable}
         isSearchable={false}
         styles={styles(options)}
-        defaultValue={defaultValue}
         placeholder={
           usedInPostCreate ? "Alege o categorie" : "Toate categoriile"
         }

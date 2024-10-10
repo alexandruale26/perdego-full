@@ -17,13 +17,9 @@ import {
 } from "./shared/Components";
 
 const LocationSelect = forwardRef(
-  (
-    { usedInPostCreate, isClearable, defaultValue = "", options, ...props },
-    ref,
-  ) => {
+  ({ usedInPostCreate, isClearable, defaultValue, options, ...props }, ref) => {
     const debounceTimer = useRef(null);
     const latestOptions = useRef([]);
-
     delete props.value;
 
     const loadOptions = (inputValue, callback) => {
@@ -95,22 +91,22 @@ const LocationSelect = forwardRef(
       debounceTimer.current = debounce;
     };
 
-    const getValue = () => {
+    const getLocationData = () => {
       if (defaultValue) {
         if (defaultValue.startsWith("-j_")) return parseCounty(defaultValue);
         return parseCity(defaultValue);
       }
       return null;
     };
-    const values = getValue();
+    const locationData = getLocationData();
 
     return (
       <AsyncSelect
-        key={usedInPostCreate ? "location" : values}
+        key={usedInPostCreate ? "location" : locationData}
+        defaultValue={locationData}
         blurInputOnSelect
         isClearable={isClearable}
         styles={styles(options)}
-        defaultValue={values}
         noOptionsMessage={() =>
           usedInPostCreate
             ? "Cautǎ dupǎ localitate"
